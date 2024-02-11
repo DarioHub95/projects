@@ -25,9 +25,9 @@ class loop
    double ham2;
    double ham3;
    int pbc;
-   int L;			// numero siti spaziali
-   int N;			// numero slice temporali
-   int M;			// numero totale siti
+   int L;			  // numero siti spaziali
+   int N;			  // numero slice temporali
+   int M;			  // numero totale siti
    int np;			// numero particelle
    double tau;
    double *hi;
