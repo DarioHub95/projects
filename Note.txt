@@ -1,0 +1,21 @@
+
+Host: ibiscohpc-ui.scope.unina.it
+IP: 143.225.21.2
+utente: adecandia
+password: Neuro2022
+
+per compilare: 
+g++ -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/adecandia/.lib2/ -lpvm
+
+(ti crea l'eseguibile a.out)
+
+per eseguire un job: 
+srun -p sequential a.out &> output.txt &
+
+per vedere lo stato del job:    squeue   |   jobs -l
+
+___________________________
+
+altre informazioni su Ibisco le puoi trovare in:
+
+https://ibiscohpc-wiki.scope.unina.it/wiki:startdoc
