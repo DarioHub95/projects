@@ -12,23 +12,22 @@
 class loop
   {
    public:
-   loop(void);
+   loop(int _L,int pbc,double Jz,double *h,double beta,double tau);
    void bond(int m1,int m2);		// mette un bond tra due spin
    void dinamica(double *A);
-   void check(void);
 
+   int type;
+   int flag;
    double beta;
    double t;
    double V;
-   double eps;
    double ham1;
    double ham2;
    double ham3;
-   double hmax;
    int pbc;
-   int L;			// numero siti spaziali
-   int N;			// numero slice temporali
-   int M;			// numero totale siti
+   int L;			  // numero siti spaziali
+   int N;			  // numero slice temporali
+   int M;			  // numero totale siti
    int np;			// numero particelle
    double tau;
    double *hi;
@@ -39,9 +38,11 @@ class loop
    double **pbreak;
    int *G;
    int nc;		// numero cluster
+   int size;
    int *F;		// superspin
-   double *B;
-   int *stack;
+   double **W;		// interazioni tra superspin
+   double *B;		// campo esterno sui superspin
+   double memtot;
   };
 
 #ifndef __HEADERS__
@@ -49,20 +50,16 @@ class loop
 #include <math.h>
 #include <pvm.h>
 #define __HEADERS__
-#include "kernel.c"
 
+#if 0
 void loop::check(void)
   {
-#if 0
    static int count;
    int ntot=0;
    int nk=0;
    int htmp=0;
    for (int j=0;j<N;j++)
      {
-      //int nl=0;
-      //for (int i=0;i<L;i++) nl+=S[i+j*L];
-      //debug(0,"tempo %i: n=%i\n",j,nl);
       int jp=(j<N-1?j+1:0);
       int i1=j%2;
       for (int i=i1;i<L;i+=2)
@@ -84,44 +81,41 @@ void loop::check(void)
            }
         }
      }
-   if (ntot%N || htmp!=htot) debug(9,"errore 103... ntot=%i N=%i\n",ntot,N);
+   if (ntot%N || htmp!=htot) debug(9,"errore 103...\n");
    count++;
    printf("check %i OK: ntot=%i htot=%i nk=%i\n",count,ntot/N,htot,nk);
-#endif
   }
+#endif
 
-loop::loop(void)
+loop::loop(int _L,int _pbc,double _Jz,double *_h,double _beta,double _tau)
   {
+   L=_L;
+   pbc=_pbc;
+   V=_Jz;
+   hi=_h;
+   beta=_beta;
+   tau=_tau;
+   t=1;			// unità di energia
+   ham1=0.5;
+   ham2=0.25;
+   ham3=0.5;
+#if 0
    L=getarg_i("L",8);                   // numero siti
    tau=getarg_d("tau",0.2);
    beta=getarg_d("beta",1);
    t=getarg_d("Jxy",1);                   // termini di hopping
-   V=getarg_d("Jz",0);                  // interazione statica intracella (repulsiva per V>0)
+   V=getarg_d("Jz",0);			// interazione statica intracella (repulsiva per V>0)
    pbc=getarg_i("pbc",0);
-   eps=getarg_d("eps",0);
-   int type=getarg_i("type",-1,"0 uniforme, -1 antiferro, >0 random");
-   hi=dvector(0,L-1);
-   if (type>0)
-     {
-      unsigned long S1=poprandom();
-      init_random(type);
-      for (int i=0;i<L;i++) hi[i]=eps*(2*Xrandom()-1);
-      pushrandom(S1);
-     }
-   else if (type==0) for (int i=0;i<L;i++) hi[i]=eps;
-   else if (type<0) for (int i=0;i<L;i++) hi[i]=eps*(i%2?1:-1);
-   ham1=0.5;
-   ham2=0.25;
-   ham3=0.5;
-   hmax=0;
+#endif
+   double hmax=0;
    for (int i=0;i<L;i++) if (fabs(hi[i])>hmax) hmax=fabs(hi[i]);
+   flag=(V!=0 || hmax!=0?1:0);			// se flag>0, fai dinamica monte carlo sui loop
    // N.B: il numero di slice è doppio, perché i termini di hopping agiscono solo su metà delle placchette...
    N=4*(int)rint(0.5*beta/tau);
    if (L<=2 || N<4 || N%2) debug(9,"errore 101...\n");
    int Sz=getarg_i("Sz",0);
-   // N.B: Sz dovrebbe essere uguale a -L, -L+2, ... L-2, L
-   // se invece è ad esempio -L+1, prendiamo il valore inferiore, ovvero -L
-   np=(L+Sz)/2;							// numero di particelle (half filling per Sz=0) N.B: se L è dispari il numero di particelle è (L-1)/2
+   if ((L+Sz)%2) debug(9,"errore 105...\n");
+   np=(L+Sz)/2;							// numero di particelle
    // N.B: il tau definito qui corrisponde a \Delta\tau di Evertz
    // l'operatore da considerare sulla placchetta ombreggiata è quindi exp(-tau*H) dove H è il termine di hopping dell'hamiltoniana corrispondente alla coppia di siti
    // per ogni coppia di siti primi vicini ci sono infatti N/2 placchette ombreggiate
@@ -136,18 +130,11 @@ loop::loop(void)
    G=ivector(0,M-1);
    F=ivector(0,M-1);
    B=dvector(0,M-1);
-   stack=ivector(0,N-1);
-   // kernel
-   kernel(N);
+   memtot=30.*M;
+   W=NULL;
+   size=0;
    // inizializzazione
-   int ntot=0;
-   for (int i=0;i<L;i++)
-     {
-      int s1=(i%2?1:0);				// stato di neel
-      for (int j=0;j<N;j++) S[i+j*L]=s1;
-      ntot+=s1;
-     }
-   if (ntot!=np) debug(9,"numero di particelle iniziale errato...\n");
+   for (int i=0;i<L;i++) for (int j=0;j<N;j++) S[i+j*L]=(i%2?1:0);		// stato di neel
    htot=0;									// numero totale hopping
   }
 
@@ -160,24 +147,22 @@ void loop::bond(int m1,int m2)
    int l2=m2;
    while (l1!=G[l1]) l1=G[l1];
    while (l2!=G[l2]) l2=G[l2];
-   int lmax=(l1<l2?l2:l1);
-   G[m1]=G[m2]=G[l1]=G[l2]=lmax;
+   if (l1!=l2)
+     {
+      int lmin=(l1<l2?l1:l2);
+      G[m1]=G[m2]=G[l1]=G[l2]=lmin;
+     }
   }
 
 void loop::dinamica(double *A)
   {
-   //check();
    // CLUSTERIZZAZIONE
    for (int m=0;m<M;m++) G[m]=m;
-   // termini di hopping dell'hamiltoniana
-   if (pbc && L%2) debug(9,"condizioni periodiche incompatibili con L dispari...\n");
-   int imax=(pbc?L-1:L-2);
-   for (int i=0;i<=imax;i++)
+   for (int i=0;i<L;i++)
      {
-      // consideriamo adesso il termine di hopping da i a i+1
-      // agisce dal tempo j a j+1 dove j ha la stessa parità di i
       int ip=(i<L-1?i+1:0);
-      double thop=ham1*t;		// N.B: stiamo considerando t uguale per tutte le coppie (i,i+1)
+      double thop=0;
+      if (pbc || i<L-1) thop=ham1*t;
       // N.B: leggendo Evertz considerare che Jx corrisponde a 2*thop, mentre \Delta\tau corrisponde esattamente a tau
       // mentre se usiamo hamiltoniana elettronica e poniamo ham1=1 abbiamo che thop è uguale al valore di t
       // il peso di una placchetta ombreggiata è uguale a
@@ -221,63 +206,6 @@ void loop::dinamica(double *A)
          else debug(9,"errore 104...\n");
         }
      }
-   if (pbc==0)
-     {
-      // step temporali non appartenenti a nessuna placchetta
-      // il sito i==0 non appartiene a nessuna placchetta per (j,j+1) con j dispari
-      for (int j=1;j<N;j+=2)
-        {
-         int m1=j*L;
-         int m2=(j<N-1?j+1:0)*L;
-         bond(m1,m2);			// trasporta lo stato da j a j+1
-        }
-      // il sito i==L-1 non appartiene a nessuna placchetta per (j,j+1) con j avente la stessa parità di L-1
-      for (int j=(L-1)%2;j<N;j+=2)
-        {
-         int m1=(L-1)+j*L;
-         int m2=(L-1)+(j<N-1?j+1:0)*L;
-         bond(m1,m2);                   // trasporta lo stato da j a j+1
-        }
-     }
-   // interazioni statiche
-   if (fabs(V)>0)
-     {
-      // N.B: l'interazione tra due spin vicini è ham2*s1*s2*tau*V/2, dove il fattore 1/2 tiene conto del fatto che abbiamo N slice temporali, ma tau=2*beta/N
-      // la probabilità di mettere il bond è 1-exp(deltaS), dove deltaS=-2*(ham2*tau*fabs(V)/2) è la diminuzione dell'azione
-      double pbond=1-exp(-ham2*tau*fabs(V));
-      for (int j=0;j<N;j++)
-        {
-         for (int i=0;i<L;i++)
-           {
-            int m=i+j*L;
-            int s1=(S[m]?1:-1);         // magnetizzazione dello spin 
-            if (pbc || i<L-1)
-              {
-               int ip=(i<L-1?i+1:0);
-               int m2=ip+j*L;
-               int s2=(S[m2]?1:-1);
-               if (s1*s2*V<0 && Xrandom()<pbond) bond(m,m2);		// se s1*s2*V<0 gli spin soddisfano l'interazione (V>0 per interazione antiferro)
-              }
-           }
-        }
-     }
-   int nb=0;
-   for (int i=0;i<L;i++) if (i==L/2)		// metti dissipazione solo sul sito centrale
-     {
-      // dissipazione sul sito i-mo
-      for (int j=0;j<N;j++)
-        {
-         int m1=i+j*L;
-         int n=luijten2(N,stack);
-         for (int k=0;k<n;k++)
-           {
-            int j2=(j+1+stack[k])%N;		// N.B: stack[k] è la distanza meno uno
-            int m2=i+j2*L;
-            bond(m1,m2);
-            nb++;
-           }
-        }
-     }
    // DEFINIZIONE SUPERSPIN
    nc=0;
    for (int m=0;m<M;m++) if (m!=G[m])
@@ -287,55 +215,74 @@ void loop::dinamica(double *A)
       G[m]=l;
      }
    else F[m]=nc++;
-   for (int m=0;m<M;m++) G[m]=F[G[m]];	// metti G[m] uguale al numero del cluster che va da 0 a nc-1...
-#if 0
-   // calcola variazione del numero di particelle dovuto al flip dei loop
-   for (int p=0;p<nc;p++)
+   for (int m=0;m<M;m++) G[m]=F[G[m]];
+   if (flag)						// flag!=0 in caso di interazioni statiche
      {
-      int ns=0;
-      int n1=0;
-      for (int m=0;m<M;m++) if (G[m]==p)
+      if (size<nc)
         {
-         ns++;
-         n1+=S[m];
+         memtot+=8*((nc+nc*(double)nc)-(size+size*(double)size));
+         //printf("memoria totale: %g Gb (nc=%i)\n",1e-9*memtot,nc);
+         W=(double**)getmem(W,nc*sizeof(double*));
+         W[0]=(double*)getmem(W[0],nc*nc*sizeof(double));
+         for (int i=1;i<nc;i++) W[i]=W[i-1]+nc;
+         size=nc;
         }
-      int ndel=ns-2*n1;
-      if (ndel%N)
+      // azzera interazioni tra loop
+      for (int p=0;p<nc;p++)
         {
-         for (int j=0;j<N;j++)
+         for (int q=0;q<nc;q++) W[p][q]=0;
+         B[p]=0;
+        }
+      // calcola interazioni tra loop
+      for (int j=0;j<N;j++)
+        {
+         for (int i=0;i<L;i++)
            {
-            for (int i=0;i<L;i++)
+            int m=i+j*L;
+            int s1=(S[m]?1:-1);		// magnetizzazione dello spin 
+            int p=G[m];			// loop (cluster a cui appartiene lo spin)
+            // N.B: 1/2 perché tau=2*beta/N (mentre qui consideriamo N slice temporali, non N/2)
+            // B[p] deve essere positivo se la magnetizzazione è nella stessa direzione del campo magnetico (vedi sotto algoritmo di metropolis)
+            B[p]+=ham3*s1*tau*hi[i]/2;
+            if (pbc || i<L-1)
               {
-               int m=i+j*L;
-               if (G[m]==p)
-                 {
-                  if (S[m]>0) printf("1"); else printf("0");
-                 }
-               else printf(" ");
+               int ip=(i<L-1?i+1:0);
+               int m2=ip+j*L;
+               int s2=(S[m2]?1:-1);
+               int q=G[m2];
+               // N.B: 1/2 perché tau=2*beta/N (mentre qui consideriamo N slice temporali, non N/2)
+               // -1 perché è antiferro (repulsiva) per V>0
+               double wtmp=-ham2*s1*s2*tau*V/2;
+               // se l'interazione è repulsiva (positiva) il contributo a W[p][q] sarà positivo nel caso di spin antiparalleli (o coppia di siti occupati da una particella)
+               // quindi W[p][q] è positivo se gli spin soddisfano l'interazione
+               W[p][q]+=wtmp;
+               W[q][p]+=wtmp;
               }
-            printf("\n");
            }
-         for (int m=0;m<M;m++) if (G[m]==p) printf("j=%i i=%i\n",m/L,m%L);
-         debug(9,"errore 201...\n");
+        }
+      // DINAMICA METROPOLIS
+      for (int p=0;p<nc;p++) F[p]=1;                       // valore iniziale dei super-spin
+      int step1=nc;
+      for (int k=0;k<step1;k++)
+        {
+         int p=(int)floor(nc*Xrandom());
+         // etmp è la variazione di energia dovuta al flip di F[p] che cambia segno
+         // se F[p]==1, ovvero il valore iniziale, l'energia aumenta se B[p]>0
+         // questo vuol dire che B[p] deve essere positivo se la magnetizzazione del loop (cluster)
+         // nello stato iniziale F[p]==1 è nella stessa direzione del campo magnetico
+         double etmp=2*B[p]*F[p];
+         for (int q=0;q<nc;q++) if (q!=p)
+           {
+            // variazione di energia delle interazioni statiche
+            // se F[p]==F[q]==1, ovvero i valori iniziali, allora l'energia aumenta se W[p][q]>0
+            // questo vuol dire che W[p][q] deve essere positivo se nello stato iniziale F[p]==F[q]==1 gli spin soddisfacevano l'interazione
+            etmp+=2*W[p][q]*F[q]*F[p];
+           }
+         if (etmp<=0 || Xrandom()<exp(-etmp)) F[p]=-F[p];
         }
      }
-#endif
-   // calcoliamo interazione del superspin con il campo magnetico
-   for (int p=0;p<M;p++) B[p]=0;
-   for (int m=0;m<M;m++)
-     {
-      int i=m%L;
-      int s1=(S[m]?1:-1);
-      double btmp=ham3*s1*tau*hi[i]/2;         // N.B: 1/2 perché tau=2*beta/N (mentre qui consideriamo N slice temporali, non N/2)
-      B[G[m]]+=btmp;
-     }
+   else for (int p=0;p<nc;p++) F[p]=(Xrandom()<0.5?1:-1);
    // FLIP DEI LOOP (SUPER-SPIN)
-   for (int p=0;p<nc;p++)
-     {
-      // abbiamo un termine B[p]*S nell'azione, dove S=1, per cui la variazione dell'azione è -2*B[p] se lo spin diventa -1
-      double ptmp=1/(1+exp(2*B[p]));		// probabilità di flippare
-      F[p]=(Xrandom()<ptmp?-1:1);
-     }
    for (int m=0;m<M;m++) S[m]=(F[G[m]]<0?1-S[m]:S[m]);
    // calcola densità di particelle e di hopping 
    htot=0;					// numero totale hopping
@@ -357,7 +304,6 @@ void loop::dinamica(double *A)
      }
    // MEDIA OSSERVABILI
    A[0]++;
-   A[29]+=nb/(double)N;
    A[30]+=nc;
    int ntot=0;
    for (int m=0;m<M;m++) ntot+=S[m];
