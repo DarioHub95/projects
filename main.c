@@ -8,21 +8,23 @@ int main(int argc,char **argv)
   {
    pvm_init();
 
-   int L=10;							// numero di siti
-   int pbc=0;							// condizioni al bordo (0: condizioni aperte, 1: condizioni periodiche)
-   double Jz=0.5;				  // interazione
-   double eps=1;					// intensità del campo magnetico random
-   double beta=10;				// temperatura inversa
-   double tau=0.001;			// step tempo immaginario
-   int nstep=10000;
+   int L=10;							           // numero di siti
+   int pbc=0;							           // condizioni al bordo (0: condizioni aperte, 1: condizioni periodiche)
+   int nstep=1000;
+   int amax=32;
 
-   double *h=dvector(0,L-1);
-   for (int i=0;i<L;i++) h[i]=eps*(2*Xrandom()-1);		// estrai campo magnetico random
+   double Jz=0.5;				             // interazione
+   double eps=1;					           // intensità del campo magnetico random
+   double beta=10;				           // temperatura inversa
+   double tau=0.001;			           // step tempo immaginario
+   double *h=dvector(0,L-1);         // alloca dinamicamente un array di dimensione L
+   double *A=dvector(0,amax-1);
+
+
+   for (int i=0;i<L;i++) h[i]=eps*(2*Xrandom()-1);		// genera campo magnetico random su ogni sito della catena
 
    loop *X=new loop(L,pbc,Jz,h,beta,tau);
 
-   int amax=32;
-   double *A=dvector(0,amax-1);
    for (int i=0;i<nstep;i++)
      {
       X->dinamica(A);
