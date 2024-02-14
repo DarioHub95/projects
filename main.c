@@ -10,12 +10,17 @@ int main(int argc,char **argv)
 
    int L=11;							// numero di siti
    int pbc=0;							// condizioni al bordo (0: condizioni aperte, 1: condizioni periodiche)
-   double Jz=1;						// interazione
-   double eps=1;						// campo magnetico random
    int type=1;						// tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
-   double beta=10;						// temperatura inversa
-   double tau=0.001;						// step tempo immaginario
-   double alpha=1;					// dissipazione sul sito centrale
+   int nstep;      // numero di volte di esecuzione del monte carlo
+   int amax=32;
+   int n=0;                           // indice del ciclo while
+
+   double Jz=1;						          // interazione
+   double eps=1;						        // campo magnetico random
+   double beta=10;						      // temperatura inversa
+   double tau=0.001;					    	// step tempo immaginario
+   double alpha=1;					        // dissipazione sul sito centrale
+   double *A=dvector(0,amax-1);
 
    L=getarg_i("L",L);
    pbc=getarg_i("pbc",pbc);
@@ -25,16 +30,11 @@ int main(int argc,char **argv)
    beta=getarg_d("beta",beta);
    tau=getarg_d("tau",tau);
    alpha=getarg_d("alpha",alpha);
+   nstep=getarg_i("nstep",1000);
 
    loop *X=new loop();
 
-   int nstep=getarg_i("nstep",100000);
-   int amax=32;
-   double *A=dvector(0,amax-1);
-   int n=0;
-
   printf("numero di step\t\t<H_hop>\t\t<H_int>\t\t<H_mag>\n");
-
 
    while (n<nstep)
      {
@@ -46,7 +46,7 @@ int main(int argc,char **argv)
          if (cputerm()) break;
         }
     
-    printf("%2g\t\t%15g%15g%15g\n",A[0],A[3]/A[1],A[10]/A[1],A[12]/A[1]);
+    printf("%6g\t\t%15g%15g%15g\n",A[0],A[3]/A[1],A[10]/A[1],A[12]/A[1]);
 
      }
 
