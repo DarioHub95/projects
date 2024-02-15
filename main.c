@@ -30,7 +30,7 @@ int main(int argc,char **argv)
    beta=getarg_d("beta",beta);
    tau=getarg_d("tau",tau);
    alpha=getarg_d("alpha",alpha);
-   nstep=getarg_i("nstep",1000);
+   nstep=getarg_i("nstep",2200);
 
    loop *X=new loop();
 
