@@ -10,7 +10,7 @@ void kernel(int N);
 
 void kernel(int N)
   {
-   double alpha=getarg_d("alpha",1);
+   double alpha=getarg_d("alpha",0);
    double beta=getarg_d("beta",1000);
    double wc=getarg_d("wc",10);					// frequenza di cut-off
    double ss=getarg_d("ss",1);						// esponente fuzione spettrale (ss==1: caso ohmico)

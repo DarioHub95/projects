@@ -30,6 +30,7 @@ class loop
    int N;			// numero slice temporali
    int M;			// numero totale siti
    int np;			// numero particelle
+   int type;    // tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
    double tau;
    double *hi;
 
@@ -92,15 +93,17 @@ void loop::check(void)
 
 loop::loop(void)
   {
-   L=getarg_i("L",8);                   // numero siti
+   L=getarg_i("L",8);                   // numero siti della catena
    tau=getarg_d("tau",0.2);
    beta=getarg_d("beta",1);
    t=getarg_d("Jxy",1);                   // termini di hopping
    V=getarg_d("Jz",0);                  // interazione statica intracella (repulsiva per V>0)
    pbc=getarg_i("pbc",0);
    eps=getarg_d("eps",0);
-   int type=getarg_i("type",-1,"0 uniforme, -1 antiferro, >0 random");
+   type=getarg_i("type",-1,"0 uniforme, -1 antiferro, >0 random");
    hi=dvector(0,L-1);
+
+   // definizione del campo magnetico secondo il type
    if (type>0)
      {
       unsigned long S1=poprandom();
@@ -110,36 +113,50 @@ loop::loop(void)
      }
    else if (type==0) for (int i=0;i<L;i++) hi[i]=eps;
    else if (type<0) for (int i=0;i<L;i++) hi[i]=eps*(i%2?1:-1);
+
+   // dichiarazione delle costanti nell'Hamiltoniana
    ham1=0.5;
    ham2=0.25;
    ham3=0.5;
    hmax=0;
+   htot=0;
+
    for (int i=0;i<L;i++) if (fabs(hi[i])>hmax) hmax=fabs(hi[i]);
-   // N.B: il numero di slice è doppio, perché i termini di hopping agiscono solo su metà delle placchette...
+
    N=4*(int)rint(0.5*beta/tau);
+   // N.B: il numero di slice è doppio, perché i termini di hopping agiscono solo su metà delle placchette...
+   
    if (L<=2 || N<4 || N%2) debug(9,"errore 101...\n");
+
    int Sz=getarg_i("Sz",0);
    // N.B: Sz dovrebbe essere uguale a -L, -L+2, ... L-2, L
    // se invece è ad esempio -L+1, prendiamo il valore inferiore, ovvero -L
-   np=(L+Sz)/2;							// numero di particelle (half filling per Sz=0) N.B: se L è dispari il numero di particelle è (L-1)/2
+
+   np=(L+Sz)/2;
+   // numero di particelle (half filling per Sz=0) N.B: se L è dispari il numero di particelle è (L-1)/2
+
+   tau=2*beta/N;
    // N.B: il tau definito qui corrisponde a \Delta\tau di Evertz
    // l'operatore da considerare sulla placchetta ombreggiata è quindi exp(-tau*H) dove H è il termine di hopping dell'hamiltoniana corrispondente alla coppia di siti
    // per ogni coppia di siti primi vicini ci sono infatti N/2 placchette ombreggiate
    // nella notazione di Evertz H = (Jx/2) * ( S^+_i S^-_{i+1} + S^+_{i+1} S^-_i )
    // nella nostra notazione al posto di (Jx/2) abbiamo ham1*t per cui se ham1==0.5 si ha che t corrisponde a Jx di Evertz
-   tau=2*beta/N;
-   M=L*N;											// numero totale spin
-   // altro workspace
-   S=ivector(0,M-1);
+
+   M=L*N;											
+   // numero totale spin
+
+   S=ivector(0,M-1);       // contiene tutti gli spin, vederlo come una configurazione del reticolo
    nhop=ivector(0,L-1);
    pbreak=dmatrix(0,15,0,2);
    G=ivector(0,M-1);
    F=ivector(0,M-1);
    B=dvector(0,M-1);
    stack=ivector(0,N-1);
-   // kernel
-   kernel(N);
-   // inizializzazione
+
+   // kernel del bagno termico
+   //kernel(N);
+
+   // inizializzazione della configurazione iniziale degli LxN spin (i=indice spaziale, j=indice temporale)
    int ntot=0;
    for (int i=0;i<L;i++)
      {
@@ -147,8 +164,8 @@ loop::loop(void)
       for (int j=0;j<N;j++) S[i+j*L]=s1;
       ntot+=s1;
      }
+
    if (ntot!=np) debug(9,"numero di particelle iniziale errato...\n");
-   htot=0;									// numero totale hopping
   }
 
 // le placchette piene sono quelle in cui agisce un termine di hopping dell'hamiltoniana
@@ -169,6 +186,7 @@ void loop::dinamica(double *A)
    //check();
    // CLUSTERIZZAZIONE
    for (int m=0;m<M;m++) G[m]=m;
+  
    // termini di hopping dell'hamiltoniana
    if (pbc && L%2) debug(9,"condizioni periodiche incompatibili con L dispari...\n");
    int imax=(pbc?L-1:L-2);
@@ -178,7 +196,7 @@ void loop::dinamica(double *A)
       // agisce dal tempo j a j+1 dove j ha la stessa parità di i
       int ip=(i<L-1?i+1:0);
       double thop=ham1*t;		// N.B: stiamo considerando t uguale per tutte le coppie (i,i+1)
-      // N.B: leggendo Evertz considerare che Jx corrisponde a 2*thop, mentre \Delta\tau corrisponde esattamente a tau
+      // N.B: leggendo Evertz considerare che Jx corrisponde a 2*thop,
       // mentre se usiamo hamiltoniana elettronica e poniamo ham1=1 abbiamo che thop è uguale al valore di t
       // il peso di una placchetta ombreggiata è uguale a
       // < 0 1 | exp(-tau*H) | 1 0 > = < 1 0 | exp(-tau*H) | 0 1 > = sinh(tau*thop) (hopping)
