@@ -17,16 +17,19 @@ int main(int argc,char **argv)
   // int Sz=-1;                    // magnetizzazione (sempre negativa)
 
    double Jz=1;						          // interazione
-   double eps=0;						        // campo magnetico random
+   double eps=1;						        // campo magnetico random
    double beta=10;						      // temperatura inversa
    double tau=0.001;					    	// step tempo immaginario (errore 101 se uguale a beta)
-   double alpha=1;					        // dissipazione sul sito centrale
+   double alpha=0;					        // dissipazione sul sito centrale
    double *A=dvector(0,amax-1);
    double *B=dvector(0,amax-1);
 
    double T0 = walltime();          // Registra il tempo di inizio della simulazione
    double DT = 0;                   // Intervallo di tempo tra 2 acquisizioni dei dati
 
+
+  // getarg_*: legge valore (intero, double) associato a un determinato nome di variabile. 
+  // Se l'argomento è presente, restituisce il suo valore intero; altrimenti, restituisce un valore di default.
    L=getarg_i("L",L);
    pbc=getarg_i("pbc",pbc);
    Jz=getarg_d("Jz",Jz);
@@ -35,7 +38,7 @@ int main(int argc,char **argv)
    beta=getarg_d("beta",beta);
    tau=getarg_d("tau",tau);
    alpha=getarg_d("alpha",alpha);
-   nstep=getarg_i("nstep",500);
+   nstep=getarg_i("nstep",50);
   // Sz=getarg_i("Sz",Sz);
 
 
@@ -46,6 +49,9 @@ int main(int argc,char **argv)
    while (n<nstep)
      {
       X->dinamica(A);
+    
+    // cpuint: Restituisce booleano che indica se è tempo di effettuare un'interruzione di CPU.
+    // cputerm: Controlla se il tempo di CPU massimo è stato raggiunto o se è presente un file "STOP" nella directory del processo, in tal caso termina il job.
 
       if (cpuint() || cputerm())
         {

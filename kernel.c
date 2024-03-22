@@ -55,6 +55,7 @@ void kernel(int N)
    fclose(stream);
    exit(1);
 #endif
+
    // calcola probabilità 
    for (int i=0;i<=N2;i++)
      {
