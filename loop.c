@@ -16,6 +16,7 @@ class loop
    void bond(int m1,int m2);		// mette un bond tra due spin
    void dinamica(double *A);
    void check(void);
+   float corr(int j_r, int j_tau, int k_r, int k_tau);
 
    double beta;
    double t;
@@ -25,12 +26,15 @@ class loop
    double ham2;
    double ham3;
    double hmax;
+   int c;      // indice configurazione stampata
    int pbc;
    int L;			// numero siti spaziali
    int N;			// numero slice temporali
    int M;			// numero totale siti
    int np;			// numero particelle
    int type;    // tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
+   int j_r, j_tau, k_r, k_tau;      // coordinate spaziotemporali dei due spin per la correlazione
+
    double tau;
    double *hi;
 
@@ -54,7 +58,7 @@ class loop
 
 void loop::check(void)
   {
-#if 0
+   #if 0
    static int count;
    int ntot=0;
    int nk=0;
@@ -88,12 +92,12 @@ void loop::check(void)
    if (ntot%N || htmp!=htot) debug(9,"errore 103... ntot=%i N=%i\n",ntot,N);
    count++;
    printf("check %i OK: ntot=%i htot=%i nk=%i\n",count,ntot/N,htot,nk);
-#endif
+   #endif
   }
 
 loop::loop(void)
   {
-   L=getarg_i("L",8);                   // numero siti della catena
+   L=getarg_i("L",8);                   
    tau=getarg_d("tau",0.2);
    beta=getarg_d("beta",1);
    t=getarg_d("Jxy",1);                   // termini di hopping
@@ -168,8 +172,8 @@ loop::loop(void)
    if (ntot!=np) debug(9,"numero di particelle iniziale errato...\n");
   }
 
-// le placchette piene sono quelle in cui agisce un termine di hopping dell'hamiltoniana
-// le placchette piene hanno angolo in basso a sinistra (i,j) con i+j dispari, mentre le placchette vuote con i+j pari
+ // le placchette piene sono quelle in cui agisce un termine di hopping dell'hamiltoniana
+ // le placchette piene hanno angolo in basso a sinistra (i,j) con i+j dispari, mentre le placchette vuote con i+j pari
 
 void loop::bond(int m1,int m2)    // associa 2 spin qualsiasi allo stesso cluster
   {
@@ -183,22 +187,39 @@ void loop::bond(int m1,int m2)    // associa 2 spin qualsiasi allo stesso cluste
 
 void loop::dinamica(double *A)
   {
+
+// CONFIGURAZIONE CORRENTE: di seguito viene stampata la configurazione del reticolo
+
+    // int s=15;
+    // printf("Configurazione %i di spin:\n",c+1);
+    // if(s!=L) debug(9,"Attenzione: la funzione printf() è predisposta solo per %i siti\n",s);
+    // else
+    // {
+    //   printf("\n");
+    //   for (int i=0;i<N;i++) printf("%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i\n",S[0+i*L],S[1+i*L],S[2+i*L],S[3+i*L],S[4+i*L],S[5+i*L],S[6+i*L],S[7+i*L],S[8+i*L],S[9+i*L],S[10+i*L],S[11+i*L],S[12+i*L],S[13+i*L],S[14+i*L]);
+    //   printf("\n");
+    // }
+    // c++;
+
+// FUNZIONE DI CHECK
    //check();
 
-   // CLUSTERIZZAZIONE: ad ogni spin associamo uno ed un solo tag in [0,M-1]
+// CLUSTERIZZAZIONE: ad ogni spin associamo uno ed un solo tag in [0,M-1]
    // ovvero nello stato iniziale ad ogni spin è associato un cluster
    for (int m=0;m<M;m++) G[m]=m;
   
-   // termini di hopping dell'hamiltoniana
    if (pbc && L%2) debug(9,"condizioni periodiche incompatibili con L dispari...\n");
    int imax=(pbc?L-1:L-2);
-    double thop=ham1*t;		// N.B: stiamo considerando t uguale per tutte le coppie (i,i+1)
+
+// TERMINE DI HOPPING dell'hamiltoniana. N.B: stiamo considerando t uguale per tutte le coppie (i,i+1)
+    double thop=ham1*t;		
     // N.B: leggendo Evertz considerare che Jx corrisponde a 2*thop,
     // mentre se usiamo hamiltoniana elettronica e poniamo ham1=1 abbiamo che thop è uguale al valore di t
     // il peso di una placchetta ombreggiata è uguale a
     // < 0 1 | exp(-tau*H) | 1 0 > = < 1 0 | exp(-tau*H) | 0 1 > = sinh(tau*thop) (hopping)
     // < 0 1 | exp(-tau*H) | 0 1 > = < 1 0 | exp(-tau*H) | 1 0 > = cosh(tau*thop) 
     // < 0 0 | exp(-tau*H) | 0 0 > = < 1 1 | exp(-tau*H) | 1 1 > = 1
+
     double ztmp=exp(tau*thop);
     double ytmp=exp(-tau*thop);
     // pesi di tutte le possibili configurazioni di una placchetta ombreggiata
@@ -208,12 +229,12 @@ void loop::dinamica(double *A)
     pbreak[3][1]=pbreak[12][1]=(ztmp-1)/(ztmp+ytmp);
     pbreak[10][1]=pbreak[5][1]=(ztmp-1)/(ztmp-ytmp);		
     pbreak[10][2]=pbreak[5][2]=(1-ytmp)/(ztmp-ytmp);
-    //valore 0: non sono presenti spin nella placchetta
-    //valore 3: no hopping, lo spin (i,j) evolve in (i,j+1)
-    //valore 5: hopping verso destra, lo spin salta da (i,j)--->(i+1,j+1)
-    //valore 10: hopping verso sinistra, lo spin salta da (i+1,j)--->(i,j+1)
-    //valore 12: no hopping, lo spin (i+1,j) evolve in (i+1,j+1)
-    //valore 15: no hopping, gli spin evolvono da j--->j+1
+    //pbreak[0][]: non sono presenti spin nella placchetta
+    //pbreak[3][]: no hopping, lo spin (i,j) evolve in (i,j+1)
+    //pbreak[5][]: hopping verso destra, lo spin salta da (i,j)--->(i+1,j+1)
+    //pbreak[10][]: hopping verso sinistra, lo spin salta da (i+1,j)--->(i,j+1)
+    //pbreak[12][]: no hopping, lo spin (i+1,j) evolve in (i+1,j+1)
+    //pbreak[15][]: no hopping, gli spin evolvono da j--->j+1
 
    for (int i=0;i<=imax;i++)
      {
@@ -270,7 +291,7 @@ void loop::dinamica(double *A)
         }
      }
 
-   // INTERAZIONI STATICHE TRA SPIN
+// INTERAZIONI STATICHE TRA SPIN
    if (fabs(V)>0)
      {
       // N.B: l'interazione tra due spin vicini è ham2*s1*s2*tau*V/2, dove il fattore 1/2 tiene conto del fatto che abbiamo N slice temporali, ma tau=2*beta/N
@@ -292,9 +313,9 @@ void loop::dinamica(double *A)
            }
         }
      }
-   int nb=0;
 
-   // DISSIPAZIONE solo sul sito centrale
+// DISSIPAZIONE sul sito centrale
+   int nb=0;
    for (int i=0;i<L;i++) if (i==L/2)		
      {
       // dissipazione sul sito i-mo: lungo la worldline del sito centrale 
@@ -314,7 +335,7 @@ void loop::dinamica(double *A)
         }
      }
 
-   // DEFINIZIONE SUPERSPIN
+// DEFINIZIONE SUPERSPIN
    nc=0;
    for (int m=0;m<M;m++) if (m!=G[m])
      {
@@ -325,8 +346,8 @@ void loop::dinamica(double *A)
    else F[m]=nc++;
    for (int m=0;m<M;m++) G[m]=F[G[m]];	// metti G[m] uguale al numero del cluster che va da 0 a nc-1...
 
-#if 0
-   // calcola variazione del numero di particelle dovuto al flip dei loop
+// CALCOLA VARIAZIONE del numero di particelle dovuto al flip dei loop
+   #if 0
    for (int p=0;p<nc;p++)
      {
       int ns=0;
@@ -356,19 +377,19 @@ void loop::dinamica(double *A)
          debug(9,"errore 201...\n");
         }
      }
-#endif
+    #endif
 
-   // calcoliamo interazione del superspin con il campo magnetico
+// INTERAZIONE del superspin con il campo magnetico
    for (int p=0;p<M;p++) B[p]=0;
    for (int m=0;m<M;m++)
      {
       int i=m%L;
       int s1=(S[m]?1:-1);
-      double btmp=ham3*s1*tau*hi[i]/2;         // N.B: 1/2 perché tau=2*beta/N (mentre qui consideriamo N slice temporali, non N/2)
+      double btmp=ham3*s1*tau*hi[i]/2;   // N.B: 1/2 perché tau=2*beta/N (mentre qui consideriamo N slice temporali, non N/2)
       B[G[m]]+=btmp;
      }
 
-   // FLIP DEI LOOP (SUPER-SPIN)
+// FLIP DEI LOOP (SUPER-SPIN)
    for (int p=0;p<nc;p++)
      {
       // abbiamo un termine B[p]*S nell'azione, dove S=1, per cui la variazione dell'azione è -2*B[p] se lo spin diventa -1
@@ -376,7 +397,8 @@ void loop::dinamica(double *A)
       F[p]=(Xrandom()<ptmp?-1:1);
      }
    for (int m=0;m<M;m++) S[m]=(F[G[m]]<0?1-S[m]:S[m]);
-   // calcola densità di particelle e di hopping 
+   
+// CALCOLO DENSITA' di particelle e di hopping 
    htot=0;					// numero totale hopping
    for (int i=0;i<L;i++)
      {
@@ -394,18 +416,23 @@ void loop::dinamica(double *A)
         }
       htot+=nhop[i];
      }
-   // MEDIA OSSERVABILI
-   A[0]++;
-   A[29]+=nb/(double)N;
+     
+// MEDIA OSSERVABILI
+
+   A[0]++;                     // indice di step della simulazione
+   A[28]=nb/(double)N;         // numero di bond del bagno termico allo step MC corrente
+   A[29]+=nb/(double)N;        // media temporale del numero di bond del bagno termico
    A[30]+=nc;
+
+   // settore che seleziona le config a magnetizzazione fissata (o a numero di particelle np)
+   // su cui fare le medie statistiche
    int ntot=0;
    for (int m=0;m<M;m++) ntot+=S[m];
-   if (ntot==N*np)
-     {
-      // settore a numero di particelle np su cui fare le medie statistiche
-      A[1]++;
-      // numero hopping
-      A[3]-=htot/beta;
+   if (ntot==N*np)        
+     {  
+      A[1]++;               // numero effettivo di config a np fissato
+      A[3]-=htot/beta;      // numero hopping/beta
+
       // interazioni
       double utmp=0;
       double htmp=0;
@@ -422,9 +449,14 @@ void loop::dinamica(double *A)
             utmp+=ham2*V*s1*s2;
            }
         }
-      A[10]+=utmp/N;
-      A[12]+=htmp/N;
+      A[10]+=utmp/N;       // media temporale interazione spin-spin (A[10]+=utmp/N;)
+      A[12]+=htmp/N;       // media temporale interazione con B (A[12]+=htmp/N;)
+      A[2]=A[3]+A[10]+A[12];           // media temporale Energia interna
+
      }
+
   }
+
+
 #endif
 #endif

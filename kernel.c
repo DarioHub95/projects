@@ -13,8 +13,8 @@ void kernel(int N)
    double alpha=getarg_d("alpha",0);
    double beta=getarg_d("beta",1000);
    double wc=getarg_d("wc",10);					// frequenza di cut-off
-   double ss=getarg_d("ss",1);						// esponente fuzione spettrale (ss==1: caso ohmico)
-   int M=1000;							// termini dello sviluppo in serie
+   double ss=getarg_d("ss",1);					// esponente fuzione spettrale (ss==1: caso ohmico)
+   int M=1000;							            // termini dello sviluppo in serie
    double norm=exp(gammln(1+ss)+(1-ss)*log(wc));
    double delta=beta/N;
    int N2=N/2;
@@ -66,5 +66,8 @@ void kernel(int N)
    luijten1(N2,K+1);
    free(K);
   }
+
+
+
 #endif
 #endif 
