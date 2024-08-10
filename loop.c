@@ -16,7 +16,6 @@ class loop
    void bond(int m1,int m2);		// mette un bond tra due spin
    void dinamica(double *A);
    void check(void);
-   float corr(int j_r, int j_tau, int k_r, int k_tau);
 
    double beta;
    double t;
@@ -26,18 +25,18 @@ class loop
    double ham2;
    double ham3;
    double hmax;
-   int c;      // indice configurazione stampata
    int pbc;
    int L;			// numero siti spaziali
    int N;			// numero slice temporali
    int M;			// numero totale siti
    int np;			// numero particelle
    int type;    // tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
-   int j_r, j_tau, k_r, k_tau;      // coordinate spaziotemporali dei due spin per la correlazione
+   int tw;               // tempo di waiting per autocorrelazione
 
    double tau;
    double *hi;
 
+   double *Sw;         // vettore che salva gli spin della catena al tempo t_w
    int *S;
    int *nhop;
    int htot;			// numero totale hopping
@@ -97,7 +96,8 @@ void loop::check(void)
 
 loop::loop(void)
   {
-   L=getarg_i("L",8);                   
+   L=getarg_i("L",8);
+   tw=getarg_i("tw",1);                                
    tau=getarg_d("tau",0.2);
    beta=getarg_d("beta",1);
    t=getarg_d("Jxy",1);                   // termini di hopping
@@ -118,10 +118,10 @@ loop::loop(void)
    else if (type==0) for (int i=0;i<L;i++) hi[i]=eps;
    else if (type<0) for (int i=0;i<L;i++) hi[i]=eps*(i%2?1:-1);
 
-   // dichiarazione delle costanti nell'Hamiltoniana
+   // dichiarazione delle costanti nell'Hamiltoniana //MODIFICATO
    ham1=0.5;
-   ham2=0.25;
-   ham3=0.5;
+   ham2=-1;
+   ham3=1;
    hmax=0;
    htot=0;
 
@@ -150,6 +150,7 @@ loop::loop(void)
    // numero totale spin
 
    S=ivector(0,M-1);       // contiene tutti gli spin, vederlo come una configurazione del reticolo
+   Sw=dvector(0,L-1);          // vettore che salva gli spin della catena al tempo t_w
    nhop=ivector(0,L-1);
    pbreak=dmatrix(0,15,0,2);
    G=ivector(0,M-1);
@@ -190,16 +191,16 @@ void loop::dinamica(double *A)
 
 // CONFIGURAZIONE CORRENTE: di seguito viene stampata la configurazione del reticolo
 
-    // int s=15;
-    // printf("Configurazione %i di spin:\n",c+1);
+    // int s=8;
+    // printf("Configurazione %i di spin:\n",(int)A[0]);
     // if(s!=L) debug(9,"Attenzione: la funzione printf() è predisposta solo per %i siti\n",s);
     // else
     // {
     //   printf("\n");
-    //   for (int i=0;i<N;i++) printf("%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i%4i\n",S[0+i*L],S[1+i*L],S[2+i*L],S[3+i*L],S[4+i*L],S[5+i*L],S[6+i*L],S[7+i*L],S[8+i*L],S[9+i*L],S[10+i*L],S[11+i*L],S[12+i*L],S[13+i*L],S[14+i*L]);
+    // for(int j=0;j<N;j++) printf("%4i%4i%4i%4i%4i%4i%4i%4i\n",S[0+j*L],S[1+j*L],S[2+j*L],S[3+j*L],S[4+j*L],S[5+j*L],S[6+j*L],S[7+j*L]);
+    // // NOTA: ad ogni slice temporale per j=1,...,N si ripete la configurazione della catena
     //   printf("\n");
     // }
-    // c++;
 
 // FUNZIONE DI CHECK
    //check();
@@ -229,7 +230,7 @@ void loop::dinamica(double *A)
     pbreak[3][1]=pbreak[12][1]=(ztmp-1)/(ztmp+ytmp);
     pbreak[10][1]=pbreak[5][1]=(ztmp-1)/(ztmp-ytmp);		
     pbreak[10][2]=pbreak[5][2]=(1-ytmp)/(ztmp-ytmp);
-    //pbreak[0][]: non sono presenti spin nella placchetta
+    //pbreak[0][]: no hopping, tutti spin down nella placchetta
     //pbreak[3][]: no hopping, lo spin (i,j) evolve in (i,j+1)
     //pbreak[5][]: hopping verso destra, lo spin salta da (i,j)--->(i+1,j+1)
     //pbreak[10][]: hopping verso sinistra, lo spin salta da (i+1,j)--->(i,j+1)
@@ -314,11 +315,11 @@ void loop::dinamica(double *A)
         }
      }
 
-// DISSIPAZIONE sul sito centrale
+// DISSIPAZIONE sull'ultimo sito della catena //MODIFICATO
    int nb=0;
-   for (int i=0;i<L;i++) if (i==L/2)		
+   for (int i=0;i<L;i++) if (i==L-1)		
      {
-      // dissipazione sul sito i-mo: lungo la worldline del sito centrale 
+      // dissipazione sul sito L-mo: lungo la worldline del sito centrale 
       // vengono estratti n siti in modo random salvati in stack[]
       // e per ognuno viene fatto il bond con il sito centrale
       for (int j=0;j<N;j++)
@@ -397,9 +398,10 @@ void loop::dinamica(double *A)
       F[p]=(Xrandom()<ptmp?-1:1);
      }
    for (int m=0;m<M;m++) S[m]=(F[G[m]]<0?1-S[m]:S[m]);
-   
+
 // CALCOLO DENSITA' di particelle e di hopping 
    htot=0;					// numero totale hopping
+   int sy=0;
    for (int i=0;i<L;i++)
      {
       nhop[i]=0;
@@ -407,14 +409,16 @@ void loop::dinamica(double *A)
       for (int j=i%2;j<N;j+=2)
         {
          int jp=(j<N-1?j+1:0);
-         int m1=i+j*L;          // SOUTH-WEST
-         int m2=i+jp*L;       // NORTH-WEST
+         int m1=i+j*L;         // SOUTH-WEST
+         int m2=i+jp*L;        // NORTH-WEST
          int m3=ip+jp*L;       // NORTH-EAST
-         int m4=ip+j*L;       // SOUTH-EAST
-         int stmp=S[m1]+2*S[m2]+4*S[m3]+8*S[m4];           // configurazione di spin della placchetta, da 0 a 15
-         if (stmp==10 || stmp==5) nhop[i]++;			// N.B: stmp==5 è un hopping a destra, stmp==10 un hopping a sinistra
+         int m4=ip+j*L;        // SOUTH-EAST
+         int stmp=S[m1]+2*S[m2]+4*S[m3]+8*S[m4];        // configurazione di spin della placchetta, da 0 a 15
+         if (stmp==10 || stmp==5) nhop[i]++;			     // N.B: stmp==5 è un hopping a destra, stmp==10 un hopping a sinistra
         }
       htot+=nhop[i];
+      if (i==L-1) sy+=nhop[i];   
+
      }
      
 // MEDIA OSSERVABILI
@@ -436,11 +440,16 @@ void loop::dinamica(double *A)
       // interazioni
       double utmp=0;
       double htmp=0;
-      for (int i=0;i<L;i++) for (int j=0;j<N;j++)
+      for (int i=0;i<L;i++)
+      {
+      // spin
+      int ssum=0;
+        for (int j=0;j<N;j++)
         {
          int m=i+j*L;
          int s1=(S[m]?1:-1);
          htmp-=ham3*hi[i]*s1;
+         ssum+=s1;
          if (pbc || i<L-1)
            {
             int ip=(i<L-1?i+1:0);
@@ -449,9 +458,30 @@ void loop::dinamica(double *A)
             utmp+=ham2*V*s1*s2;
            }
         }
-      A[10]+=utmp/N;       // media temporale interazione spin-spin (A[10]+=utmp/N;)
-      A[12]+=htmp/N;       // media temporale interazione con B (A[12]+=htmp/N;)
+        
+        // Parte di codice per autocorrelazione spin-spin
+        if((int)A[0]==tw)               // salvo media su tempo immag dello spin i-esimo al tempo t=t_w
+        {
+          Sw[i]=(double)ssum/N;
+          A[13+i]=Sw[i];
+        }
+        else if((int)A[0]>tw) A[13+i]=(double)ssum/N*Sw[i];       // calcolo autocorrelazione
+
+        // Parte di codice per componenti ultimo spin
+        if(i==L-1)
+        {
+          A[21]=0;     // Sx
+          A[22]=(double)sy;     // Sy
+          A[23]=(double)ssum/N;     // Sz
+        } 
+
+
+      }
+
+      A[10]+=utmp/N;       // media su tempo immag di interazione spin-spin
+      A[12]+=htmp/N;       // media su tempo immag di interazione con B
       A[2]=A[3]+A[10]+A[12];           // media temporale Energia interna
+
 
      }
 
