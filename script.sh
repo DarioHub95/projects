@@ -1,125 +1,132 @@
 #!/bin/bash
+#----------------------LOGS--------------------------------------------------------|
+
+exec 3>&1 4>&2
+trap 'exec 2>&4 1>&3' 0 1 2 3
+exec 1>log.out 2>&1
+# Everything below will go to the file 'log.out':
+
+#----------------------------------------------------------------------------------|
+
+echo ""
+GREEN='\033[0;32m'
+NC='\033[0m'
+screen_script_path="scripts/screen.sh"
+media_script_path="scripts/media.sh"
+
+if ls Dati_* 1> /dev/null 2>&1; then
+echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]-----------------------------------------------|${NC}"
+    echo ""
+    echo "Eliminazione directory..."
+    echo ""
+    rm -rf Dati_* Media_* Durata_*
+fi
+
+# Inserire modello
+echo -e "${GREEN}[TASK 1 - MODELLO DI PARTICELLE]------------------------------------------|${NC}"
+echo ""
+echo "Modelli di particelle disponibili:"
+echo ""
+echo " 1 - PARTICELLE LIBERE"
+echo " 2 - PARTICELLE INTERAGENTI"
+echo " 3 - MODELLO DI ANDERSON"
+echo " 4 - MANY BODY LOCALIZATION (MBL)"
+echo " 5 - MBL + BAGNO SULL'ULTIMO SITO"
+echo ""
+read -p "Inserire numero del corrispondente modello: " P
+echo ""
+# Usa sed per sostituire il valore di P
+sed -i "s/int P = [0-9]*;/int P = $P;/" "main.c"
+
+# Inserire osservabile
+echo -e "${GREEN}[TASK 2 - OSSERVABILE]----------------------------------------------------|${NC}"
+echo ""
+echo "Osservabili disponibili:"
+echo ""
+echo " 2 - ENEGIA TOTALE E_tot"
+# echo " 3 - ENEGIA E_hop"
+# echo "10 - ENEGIA E_Int"
+# echo "12 - ENEGIA E_mag"
+echo " 4 - ENEGIE H_hop, H_int, H_mag"
+echo " 5 - AUTOCORRELAZIONE 8 SPIN"
+echo " 6 - COMPONENI SPIN SU L"
+echo ""
+read -p "Inserire numero del corrispondente osservabile: " O
 echo ""
 
-# # Compila i file sorgente C
-# echo "Compilazione dei file sorgente..."
-# g++ -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/adecandia/.lib2/ -lpvm -o a.out
-# echo ""
+# Inserire vars per autocorrelazione
+if [ "$O" -eq 5 ]; then
+echo -e "${GREEN}[TASK 2.1 - OSSERVABILE AUTOCORRELAZIONE]---------------------------------|${NC}"
+echo ""
+echo "Osservabile AUTOCORRELAZIONE SPIN-SPIN C(t_w, t)."
+echo ""
+echo "Lunghezza della catena impostata a: 8 siti"
+echo ""
+read -p "Inserire tempo di waiting (t_w): " tw
+echo ""
+fi
 
-# Definisci la variabile R
-R=2
+echo -e "${GREEN}[TASK 3 - STRUTTURA DATI]-------------------------------------------------|${NC}"
+echo ""
+# Inserire numero di step MC
+read -p "Numero di step Montecarlo (nstep): " nstep
+echo ""
 
+# Inserire il valore di R
+read -p "Numero di realizzazioni per gruppo (R): " R
+echo ""
+
+# Inserire il valore di G (numero di gruppi)
+read -p "Numero di gruppi di realizzazioni (G): " G
+echo ""
+
+# Compila i file sorgente C
+echo -e "${GREEN}[TASK 4 - COMPILAZIONE]----------------------------------------------------|${NC}"
+echo ""
+echo "Compilazione dei file sorgente..."
+g++ -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/adecandia/.lib2/ -lpvm -o a.out
+echo ""
+
+if [ "$O" -eq 2 ] || [ "$O" -eq 3 ] || [ "$O" -eq 10 ] || [ "$O" -eq 12 ]; then
+    var=OSSERV_$O
+elif [ "$O" -eq 4 ]; then
+    var=ENERGIE
+elif [ "$O" -eq 5 ]; then
+    var="CORR_tw_${tw}"
+elif [ "$O" -eq 6 ]; then
+    var=SPIN
+fi
+
+# Loop per creare screen e eseguire comandi
+echo -e "${GREEN}[TASK 5 - ESECUZIONE SIMULAZIONI]------------------------------------------|${NC}"
+echo ""
 # Crea una directory per i file di output
-output_dir="R_${R}"
-mkdir -p $output_dir
-echo "Creata la directory $output_dir per i file di output con samples Monte Carlo..."
+mkdir -p "Dati_${var}"
+echo "Creata la directory Dati_${var} per i file di output..."
 echo ""
+for g in $(seq 1 $G); do
+    screen_name="G$g"
+    echo "Creazione dello screen: $screen_name"
+    echo "Esecuzione di $screen_script_path..."
+    echo ""
+    screen -dmS "$screen_name" bash -c "bash $screen_script_path ${g} ${R} ${O} ${G} ${nstep} ${var} ${tw}; exec bash"
+    sleep 1
+    if [ "$G" -gt 1 ]; then sleep 9
+    fi
 
-# # Esegui il programma R volte, salvando l'output in file separati
-# echo "Esecuzione ogni 30s delle $R realizzazioni ..."
-# for numero in $(seq 1 $R); do
-#     echo "Esecuzione realizzazione $numero..."
-#     srun --propagate=NONE -p sequential ./a.out &> "${output_dir}/output${numero}.txt" &
-#     sleep 30
-# done
-
-# echo ""
-
-# # Attendi che tutti i processi in background siano completati
-# wait
-# echo "Tutti i jobs sono stati completati."
-# echo ""
-
-# # Processa i file di output nella directory
-# echo "Pulizia dei file di output eliminando le righe 'step'..."
-# for file in "${output_dir}"/output*.txt; do
-#     sed -i '/^step/d' "$file"
-# done
-
-# # Salva le prime 10 righe del primo file di output in mediaR$R.txt
-# head -n 17 "${output_dir}/output1.txt" > "mediaR${R}.txt"
-
-# # Rimuovi le prime 10 righe da ogni file di output
-# for file in "${output_dir}"/output*.txt; do
-#     tail -n +18 "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
-# done
-# echo ""
-
-#-----------------------------------------------------
-
-
-# Crea una variabile per accumulare la somma
-total_sum=0
-
-# Loop attraverso ciascun file
-for file in "${output_dir}"/output*.txt; do
-    # Estrai la prima riga del file e salvala in una variabile
-    first_line=$(head -n 1 "$file")
-    
-    # Somma i valori nella prima riga
-    # Supponiamo che i valori siano separati da spazi o tabulazioni
-    sum=$(echo "$first_line" | awk '{s=0; for(i=1; i<=NF; i++) s+=$i; print s}')
-    
-    # Aggiungi il risultato alla somma totale
-    total_sum=$(echo "$total_sum + $sum" | bc)
 done
 
-# Mostra la somma totale
-echo "La somma totale delle prime righe è: $total_sum"
+echo -e "${GREEN}[TASK 6 - SCREEN PER LA MEDIA]---------------------------------------------|${NC}"
+echo ""
+echo "Creazione dello screen: media"
+echo "Esecuzione di $media_script_path..."
+echo ""
+screen -dmS "media" bash -c "bash $media_script_path ${g} ${R} ${O} ${G} ${nstep} ${var} ${tw}; exec bash"
+sleep 2
 
-
-
-#----------------------------------------------------
-
-
-
-# # Inizializza array per memorizzare la somma delle colonne e il conteggio dei valori validi
-# declare -a sums
-# declare -a counts
-# declare -i line_count=0
-
-# # Inizializza gli array sums e counts con zeri
-# for file in "${output_dir}"/output*.txt; do
-#     awk '{if ($1 != "-nan") sums[NR] += $1; if ($1 != "-nan") counts[NR] += 1} END {for (i = 1; i <= NR; i++) print sums[i], counts[i]}' "$file" |
-#     while read -r sum count; do
-#         sums[$line_count]=$(echo "${sums[$line_count]:-0} + $sum" | bc -l)
-#         counts[$line_count]=$(( ${counts[$line_count]:-0} + ${count:-0} ))
-#         ((line_count++))
-#     done
-# done
-# echo "Somma dei valori delle righe completata."
-
-# echo ""
-
-
-# # Inserisci una riga vuota dopo le prime 17 righe
-# sed -i '17a\' "mediaR${R}.txt"
-
-# # Aggiungi somme e conteggi al file, partendo dalla riga 18
-# for ((i=0; i<line_count; i++)); do
-#     echo "${sums[$i]}" >> "mediaR${R}.txt"
-#     echo "${counts[$i]}" >> "mediaR${R}.txt"
-# done
-
-
-
-
-# # Calcola la media per ogni riga, escludendo le righe con -nan, e salva in mediaR${R}.txt
-# echo "Calcolo delle medie per riga ed esclusione dei valori -nan..."
-# for ((i=0; i<line_count; i++)); do
-#     if [ ${counts[$i]} -gt 0 ]; then
-#         average=$(echo "scale=6; ${sums[$i]} / ${counts[$i]}" | bc -l | sed 's/\./,/')
-#     else
-#         average="nan"
-#     fi
-#     echo "$i, $average" >> "${output_dir}/mediaR${R}.txt"
-# done
-# echo "Calcolo delle medie completato. Risultati salvati in ${output_dir}/mediaR${R}.txt."
-
-
-# # Processa i file di output nella directory
-# echo "Sostituzione punti -> virgole nel file delle medie..."
-# for file in mediaR${R}.txt; do
-#     sed -i 's/\./,/g' "$file"
-# done
-# echo ""
+echo -e "${GREEN}[TASK 7 - SCREEN ATTIVI]---------------------------------------------------|${NC}"
+echo ""
+screen -ls
+echo "Usa il comando 'screen -ls' per visualizzare lo stato degli screen."
+echo ""
+sed -i "s/int P = [0-9]*;/int P = 0;/" "main.c"

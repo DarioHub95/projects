@@ -31,12 +31,11 @@ class loop
    int M;			// numero totale siti
    int np;			// numero particelle
    int type;    // tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
-   int tw;               // tempo di waiting per autocorrelazione
+   int tw;
 
    double tau;
    double *hi;
 
-   double *Sw;         // vettore che salva gli spin della catena al tempo t_w
    int *S;
    int *nhop;
    int htot;			// numero totale hopping
@@ -150,7 +149,6 @@ loop::loop(void)
    // numero totale spin
 
    S=ivector(0,M-1);       // contiene tutti gli spin, vederlo come una configurazione del reticolo
-   Sw=dvector(0,L-1);          // vettore che salva gli spin della catena al tempo t_w
    nhop=ivector(0,L-1);
    pbreak=dmatrix(0,15,0,2);
    G=ivector(0,M-1);
@@ -399,9 +397,9 @@ void loop::dinamica(double *A)
      }
    for (int m=0;m<M;m++) S[m]=(F[G[m]]<0?1-S[m]:S[m]);
 
-// CALCOLO DENSITA' di particelle e di hopping 
+// CALCOLO DENSITA' di particelle e di hopping
+
    htot=0;					// numero totale hopping
-   int sy=0;
    for (int i=0;i<L;i++)
      {
       nhop[i]=0;
@@ -417,7 +415,7 @@ void loop::dinamica(double *A)
          if (stmp==10 || stmp==5) nhop[i]++;			     // N.B: stmp==5 è un hopping a destra, stmp==10 un hopping a sinistra
         }
       htot+=nhop[i];
-      if (i==L-1) sy+=nhop[i];   
+      if (i==L-2) A[22]=(double)nhop[i];
 
      }
      
@@ -442,14 +440,17 @@ void loop::dinamica(double *A)
       double htmp=0;
       for (int i=0;i<L;i++)
       {
-      // spin
-      int ssum=0;
+        int ssum=0;
         for (int j=0;j<N;j++)
         {
          int m=i+j*L;
          int s1=(S[m]?1:-1);
          htmp-=ham3*hi[i]*s1;
-         ssum+=s1;
+         ssum+=s1;        // somma tutti gli spin immaginari
+
+         // Parte di codice per autocorrelazione1 spin-spin
+         A[32+m]=s1; // la configurazione di spin corrente
+
          if (pbc || i<L-1)
            {
             int ip=(i<L-1?i+1:0);
@@ -458,20 +459,16 @@ void loop::dinamica(double *A)
             utmp+=ham2*V*s1*s2;
            }
         }
-        
-        // Parte di codice per autocorrelazione spin-spin
-        if((int)A[0]==tw)               // salvo media su tempo immag dello spin i-esimo al tempo t=t_w
-        {
-          Sw[i]=(double)ssum/N;
-          A[13+i]=Sw[i];
-        }
-        else if((int)A[0]>tw) A[13+i]=(double)ssum/N*Sw[i];       // calcolo autocorrelazione
+
+        // Parte di codice per autocorrelazione2 spin-spin
+          A[13+i]=(double)ssum/N; // media sugli spin immaginari
+
 
         // Parte di codice per componenti ultimo spin
         if(i==L-1)
         {
-          A[21]=0;     // Sx
-          A[22]=(double)sy;     // Sy
+          A[21]=0;          // Sx
+          // A[22]=(double)sy;     // Sy
           A[23]=(double)ssum/N;     // Sz
         } 
 
