@@ -18,7 +18,7 @@ jobs:
       with:
         secure: true
         server_address: smtp.gmail.com  # Modifica se utilizzi un altro server SMTP
-        server_port: 587  # Usa 587 per TLS, 465 per SSL
+        server_port: 465  # Usa 587 per TLS, 465 per SSL
         username: ${{ secrets.SMTP_USERNAME }}  # Indirizzo email dal segreto
         password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segreto
         subject: "Il job è completato!"
