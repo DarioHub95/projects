@@ -16,8 +16,8 @@ jobs:
     - name: Send Email Notification
       uses: dawidd6/action-send-mail@v3  # Utilizza l'azione per inviare email
       with:
-        server_address: mail.unina.it # Modifica se utilizzi un altro server SMTP
-        server_port: 25  # Usa 587 per TLS, 465 per SSL
+        server_address: studenti.unina.it # Modifica se utilizzi un altro server SMTP
+        server_port: 465  # Usa 587 per TLS, 465 per SSL
         username: ${{ secrets.SMTP_USERNAME }}  # Indirizzo email dal segreto
         password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segreto
         subject: "Il job è completato!"
