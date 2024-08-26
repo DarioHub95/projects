@@ -17,8 +17,8 @@ jobs:
       uses: dawidd6/action-send-mail@v3  # Utilizza l'azione per inviare email
       with:
         secure: true
-        server_address: smtp.gmail.com  # Modifica se utilizzi un altro server SMTP
-        server_port: TLS  # Usa 587 per TLS, 465 per SSL
+        server_address: aspmx.l.google.com  # Modifica se utilizzi un altro server SMTP
+        server_port: 25  # Usa 587 per TLS, 465 per SSL
         username: ${{ secrets.SMTP_USERNAME }}  # Indirizzo email dal segreto
         password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segreto
         subject: "Il job è completato!"
