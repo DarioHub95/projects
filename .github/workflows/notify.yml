@@ -22,5 +22,5 @@ jobs:
         password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segret
         subject: "Il job è completato!"
         body: "Il repository su GitHub è stato aggiornato con un nuovo commit! Dettagli: ${{ github.event.head_commit.message }}"
-        to: "dario.esposito30@studenti.unina.it"  # Inserisci l'indirizzo email del destinatario
+        to: "dario.esposito30@studenti.unina.it, dario.esposito95@alice.it"  # Inserisci l'indirizzo email del destinatario
         from: ${{ secrets.SMTP_USERNAME }} # Utilizza lo stesso indirizzo email per 'from'
