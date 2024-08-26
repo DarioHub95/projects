@@ -1,0 +1,26 @@
+name: Notify on Update
+
+on:
+  push:
+    branches:
+      - master  # Sostituisci con il branch che desideri monitorare, se diverso
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest  # Specifica l'ambiente di esecuzione
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Assicurati di controllare il codice sorgente
+
+    - name: Send Email Notification
+      uses: dawidd6/action-send-mail@v3  # Utilizza l'azione per inviare email
+      with:
+        server_address: smtp.gmail.com  # Modifica se utilizzi un altro server SMTP
+        server_port: 587  # Usa 587 per TLS, 465 per SSL
+        username: ${{ secrets.SMTP_USERNAME }}  # Indirizzo email dal segreto
+        password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segreto
+        subject: "Il job è completato!"
+        body: "Il repository su GitHub è stato aggiornato con un nuovo commit. Dettagli: ${{ github.event.head_commit.message }}"
+        to: "dario.espo1995@gmail.com"  # Inserisci l'indirizzo email del destinatario
+        from: ${{ secrets.SMTP_USERNAME }}  # Utilizza lo stesso indirizzo email per 'from'
