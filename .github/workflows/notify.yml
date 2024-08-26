@@ -19,7 +19,7 @@ jobs:
         server_address: studenti.unina.it # Modifica se utilizzi un altro server SMTP
         server_port: 465  # Usa 587 per TLS, 465 per SSL
         username: ${{ secrets.SMTP_USERNAME }}  # Indirizzo email dal segreto
-        password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segreto
+        password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segret
         subject: "Il job è completato!"
         body: "Il repository su GitHub è stato aggiornato con un nuovo commit! Dettagli: ${{ github.event.head_commit.message }}"
         to: "dario.esposito30@studenti.unina.it"  # Inserisci l'indirizzo email del destinatario
