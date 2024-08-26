@@ -45,6 +45,7 @@ class loop
    int *F;		// superspin
    double *B;
    int *stack;
+   unsigned long seed;
   };
 
 #ifndef __HEADERS__
@@ -110,7 +111,10 @@ loop::loop(void)
    if (type>0)
      {
       unsigned long S1=poprandom();
-      init_random(type);
+      // unsigned long seed=(unsigned long)time(NULL);
+      // unsigned int mype=pvm_mype();
+      init_random(seed);
+      // init_random(type);
       for (int i=0;i<L;i++) hi[i]=eps*(2*Xrandom()-1);
       pushrandom(S1);
      }

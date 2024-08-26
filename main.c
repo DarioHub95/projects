@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include <string.h>
+#include <time.h>
 #include <pvm.h>
 #define __HEADERS__
 #include "loop.c"
@@ -9,15 +9,16 @@ int main(int argc,char **argv)
   {
    pvm_init();
 
-   int L=8;							// numero di siti della catena di spin
+   int L=3;							// numero di siti della catena di spin
    int pbc=0;							// condizioni al bordo (0: condizioni aperte, 1: condizioni periodiche)
    int type=1;						// tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
    int nstep=20;       // numero di esecuzioni del monte carlo
    int amax=32;
    int n=0;
    int Sz=0;             // magnetizzazione della catena (sempre negativa)
-   int tw=5;               // tempo di waiting per autocorrelazione
-   int Oss=5;
+   int tw=1;               // tempo di waiting per autocorrelazione
+   int Oss=0;
+   int mype=pvm_mype();
 
    double Jz=0.2; //0.2						        // interazione spin-spin            // MODIFICATO
    double eps=0;  //5						        //intensità del campo magnetico     // MODIFICATO
@@ -30,13 +31,11 @@ int main(int argc,char **argv)
    double *Stmp=dvector(0,M-1);       // contiene tutti gli spin a fissato i, ovvero per j=1,2,...,N
    double *Sm=dvector(0,L-1);          // vettore che salva gli spin della catena al tempo t_w
   //  double *E=dvector(0,4);
+   unsigned long seed=(int)time(NULL)+mype;
+   
+  // Variabili extra--------------------------------------------------------
 
-
-  // Variabili di input all'eseguibile ./a.out--------------------------------------------------------
-
-    nstep=atoi(argv[2]);
-    Oss=atoi(argv[1]);
-    if (atoi(argv[1])==5){ L=8; tw=atoi(argv[3]); }
+    if (Oss==5) L=8; // se scelgo la correlazione, la lunghezza deve essere fissata
 
     int P = 0;
     switch (P) {
@@ -66,7 +65,7 @@ int main(int argc,char **argv)
             alpha = 0.01;
             break;
     }
-  //--------------------------------------------------------------------------------------------------
+  //---------------------------------------------------------------------------------
 
 
   // getarg_*: legge valore (intero, double) associato a un determinato nome di variabile. 
@@ -94,7 +93,7 @@ int main(int argc,char **argv)
 
       if (cpuint() || cputerm())
         {
-         printf("step: %i/%i, <H_hop>=%g, <H_int>=%g, <H_mag>=%g\n",n,nstep,A[3]/A[1],A[10]/A[1],A[12]/A[1]);
+        //  printf("step: %i/%i, <H_hop>=%g, <H_int>=%g, <H_mag>=%g\n",n,nstep,A[3]/A[1],A[10]/A[1],A[12]/A[1]);
          if (cputerm()) break;
         }
 
@@ -104,7 +103,6 @@ int main(int argc,char **argv)
       // [3]:  Media temporale numero di hopping diviso per beta (H_hop)
       // [10]: Media temporale dell'interazione spin-spin (H_int)
       // [12]: Media temporale dell'interazione con B (campo magnetico esterno) (H_mag)
-      // [13-20]: Media sugli spin immaginari per L=8
       // [21-23]: Componenti Sx Sy Sz spin ultimo sito
       // [28]: Numero di bond del bagno termico allo step Monte Carlo corrente
       // [29]: Media temporale del numero di bond del bagno termico
@@ -121,10 +119,9 @@ int main(int argc,char **argv)
     else if (Oss==4)
         printf("%15g%15g%15g%15g\n",A[0],A[3]/A[1],A[10]/A[1],A[12]/A[1]);
 
-    // PRINT AUTOCORRELAZIONE PER L SITI
+    // PRINT AUTOCORRELAZIONE SPIN-SPIN PER L SITI <Sij(tw)*Sij(t)>_tau
     else if (Oss == 5 && n>=tw-1 )
     {
-        // Parte di codice per autocorrelazione spin-spin <Sij(tw)*Sij(t)>_tau
 
         if(A[0]==(double)tw) for(int m=0;m<M;m++) Stmp[m]=A[amax+m];    // salva config spin al tempo t=t_w
          else if(A[0]>=(double)tw)
@@ -140,14 +137,6 @@ int main(int argc,char **argv)
 
         printf("%15g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g\n",
               A[0],A[amax],A[amax+1],A[amax+2],A[amax+3],A[amax+4],A[amax+5],A[amax+3],A[amax+7]);
-
-        // // Parte di codice per autocorrelazione spin-spin <Sij(tw)>_tau*<Sij(t)>_tau
-
-        // if(A[0]==(double)tw) for(int i=0;i<L;i++) Sm[i]=A[13+i];
-        // else if(A[0]>=(double)tw) for(int i=0;i<L;i++) A[13+i]=Sm[i]*A[13+i];
-
-        // printf("%15g%20.10f%20.10f%20.10f%20.10f%20.10f%20.10f%20.10f%20.10f\n",
-        //       A[0], A[Oss+8], A[Oss+9], A[Oss+10], A[Oss+11], A[Oss+12], A[Oss+13], A[Oss+14], A[Oss+15]);
 
     }
 

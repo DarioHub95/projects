@@ -1,26 +1,34 @@
 # !/bin/bash
-# set -x
+set -x
 
 # Primo istante di tempo
 start_time=$(date +%s)
 
-while screen -ls | grep -q "Sockets"; do
+while screen -ls | grep -q "[0-9]\+\.${2}"; do
     sleep 1
 done
 
-echo "Pulizia dei dati di output eliminando le righe 'step' ed 'srun'..."
-for file in "Dati_$6"/output*.txt; do
-    sed -i '/^step/d' "$file"
-    sed -i '/^srun/d' "$file"
-done
+# Se la cartella non esiste, esci dallo screen
+if [ ! -d "Dati_$2" ]; then
+    echo "La cartella Dati_$2 non esiste. Uscita dallo screen..."
+    screen -X quit
+fi
 
-# # Conta il numero di file nella cartella e salva le prime 16 righe del primo file di media totale
-R_tot=$(ls -1 "Dati_$6" | wc -l)
-head -n 16 "Dati_$6"/output1_G1.txt > "Media_R_${R_tot}.txt"
+
+# Conta il numero di file nella cartella e salva le prime 16 righe del primo file di media totale
+R_tot=$(ls -1 "Dati_$2"/output* 2>/dev/null | wc -l)
+# R_tot=$(( $(ls -1 "Dati_$2" | wc -l) - 2 ))
+# Trova il primo file che inizia con 'output'
+output_file=$(find "Dati_$2" -maxdepth 1 -type f -name "output*" | head -n 1)
+if [ -z "$output_file" ]; then
+    echo "Nessun file di output trovato."
+    exit 1
+fi
+head -n 16 "$output_file" > "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 
 # Conteggio del numero massimo di occorrenze di "-nan" negli output
 max_nan_count=0
-for file in "Dati_$6"/output*.txt; do
+for file in "Dati_$2"/output*.txt; do
     nan_count=$(grep -c "\-nan" "$file")
     
     if (( nan_count > max_nan_count )); then
@@ -28,57 +36,62 @@ for file in "Dati_$6"/output*.txt; do
     fi
 done
 echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
-
 echo "Rimuovi ${max_nan_count:-0} righe non sommabili da ogni file di output..."
-for file in "Dati_$6"/output*.txt; do
+for file in "Dati_$2"/output*.txt; do
     tail -n +$((max_nan_count + 16 + 1)) "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
 done
 echo ""
 
+# Verifica se R_tot è maggiore del limite corrente di file aperti
+if [[ $R_tot -gt $(ulimit -n) ]]; then
+    ulimit -n $((R_tot + 10))  # Aumenta il limite di file aperti di R_tot + 10
+    echo "Il limite dei file aperti è stato aumentato a $((R_tot + 10))"
+fi
+
+
 # Calcolo delle medie a 1 colonna (OPERATORE SINGOLO)
-if [ "$3" -eq 2 ] || [ "$3" -eq 3 ] || [ "$3" -eq 10 ] || [ "$3" -eq 12 ]; then
+if [ "$1" -eq 2 ] || [ "$1" -eq 3 ] || [ "$1" -eq 10 ] || [ "$1" -eq 12 ]; then
 echo "Media su tutte le realizzazioni..."
-paste -d+ "Dati_$6"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=2; i++) for(j=1; j<R; j++) $i+=$(i+j*2); printf "%15.10g\t%15.10g\n", $1/R, $2/R}' > "temp_output.txt"
+paste -d+ "Dati_$2"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=2; i++) for(j=1; j<R; j++) $i+=$(i+j*2); printf "\t%20.15g\t%20.15g\n", $1/R, $2/R}' > "temp_output.txt"
 fi
 
 # Calcolo delle medie a 3 colonne (ENERGIE / COMPONENTI SPIN SU L)
-if [[ "$3" -eq 4 || "$3" -eq 6 ]]; then
+if [[ "$1" -eq 4 || "$1" -eq 6 ]]; then
 echo "Media su tutte le realizzazioni..."
-paste -d+ "Dati_$6"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=4; i++) for(j=1; j<R; j++) $i+=$(i+j*4); printf "%15.10g\t%15.10g\t%15.10g\t%15.10g\n", $1/R, $2/R, $3/R, $4/R}' > "temp_output.txt"
+paste -d+ "Dati_$2"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=4; i++) for(j=1; j<R; j++) $i+=$(i+j*4); printf "\t%20.15g\t%20.15g\t%20.15g\t%20.15g\n", $1/R, $2/R, $3/R, $4/R}' > "temp_output.txt"
 fi
 
-# # (DA FARE) Calcolo delle medie a 6 colonne (ENERGIE + COMPONENTI SPIN)
-# if [[ "$3" -eq 5 || "$3" -eq 6 ]]; then
-# echo "Media su tutte le realizzazioni..."
-# paste -d+ "Dati_$6"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=3; i++) for(j=1; j<R; j++) $i+=$(i+j*3); printf "\t%.15f\t%.15f\t%.15f\n", $1/R, $2/R, $3/R}' > "temp_output.txt"
-# fi
-
 # Calcolo delle medie a 8 colonne (CORRELAZIONE PER L=8)
-if [[ "$3" -eq 5 ]]; then
+if [[ "$1" -eq 5 ]]; then
 echo "Media su tutte le realizzazioni..."
-paste -d+ "Dati_$6"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=9; i++) for(j=1; j<R; j++) $i+=$(i+j*9); printf "%15.10g\t%15.10g\t%15.10g\t%15.10g\t%15.10g\t%15.10g\t%15.10g\t%15.10g\t%15.10g\n", $1/R, $2/R, $3/R, $4/R, $5/R, $6/R, $7/R, $8/R, $9/R}' > "temp_output.txt"
+paste -d+ "Dati_$2"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=9; i++) for(j=1; j<R; j++) $i+=$(i+j*9); printf "\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\n", $1/R, $2/R, $3/R, $4/R, $5/R, $6/R, $7/R, $8/R, $9/R}' > "temp_output.txt"
 fi
 
 # Inserisci l'output dopo la 16esima riga
 {
-    head -n 16 "Media_R_${R_tot}.txt"
+    head -n 16 "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
     cat "temp_output.txt"
-} > "Media_R_${R_tot}.txt.tmp"
+} > "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt.tmp"
 
-mv "Media_R_${R_tot}.txt.tmp" "Media_R_${R_tot}.txt"
+mv "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt.tmp" "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 rm temp_*.txt
 echo ""
 
-# # Processa i file di output nella directory
-# echo "Sostituzione punti con virgole nel file delle medie..."
-# for file in "Media_R_${R_tot}.txt"; do
-#     sed -i 's/\./,/g' "$file"
-# done
+# Processa i file di output nella directory
+echo "Sostituzione punti con virgole nel file delle medie..."
+for file in "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"; do
+    sed -i 's/\./,/g' "$file"
+done
+
+# Inserisci riga di Data e ora e di tasks nel file di media totale
+sed -i "1i Tasks: ${R_tot}" "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
+sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 
 # Secondo istante di tempo e uscita dagli screen
+rm -rf "Durata_${2}"*
 end_time=$(date +%s)
 time_diff=$((end_time - start_time))
 hms=$(date -u -d @$time_diff +'%H:%M:%S')
-echo "$hms" > "Durata_=_${hms}"
+echo "$hms" > "Durata_${2}=_${hms}"
 
 screen -X quit
