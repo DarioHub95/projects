@@ -46,10 +46,44 @@ count=0
         else
             echo "Allocate le risorse per il job ${4}_${3}_J${i}. Esecuzione..."
             ((count++))
-            wait $job_pid
+            wait $job_id
             rename_output_files
         fi
     done
 done
+
+# # Verifica se esistono file che iniziano con output-*
+# if ! ls output-* 1> /dev/null 2>&1; then
+#     echo "Nessun file che inizia con 'output-*' trovato. Uscita dallo screen..."
+#     screen -X quit
+# fi
+
+# #USCITA DI EMERGENZA-----------------------------------------------------------------------
+
+# job_names=$(squeue -u $USER -o "%j" | tail -n +2)
+
+# # Trova il job associato ai file, puoi adattare questo comando per ottenere l'ID del job
+# job_id=$(squeue -u $USER -n "${job_names}" -o "%i" -h | head -n 1)
+
+# # Controlla se il job è ancora in esecuzione e verifica l'ultima modifica del file
+# if [ "$(squeue -j "$job_id" -o "%t" -h)" = "R" ]; then
+#     echo "Il job $job_id è ancora in esecuzione."
+
+#     # Controlla se i file sono stati modificati negli ultimi 5 secondi
+#     if [ "$(find output-* -type f -exec stat -c %Y {} + | awk -v threshold=$(date +%s) -v sec=5 '{
+#         if (threshold - $1 >= sec) exit 1
+#     }' || echo "1")" = "1" ]; then
+#         echo "Il file non è stato modificato negli ultimi 5 secondi."
+#         echo "Cancellazione del job $job_id..."
+#         scancel "$job_id"
+#     else
+#         echo "Il file è stato modificato recentemente. Il job non verrà cancellato."
+#     fi
+# else
+#     echo "Il job $job_id non è in esecuzione o non esiste."
+# fi
+
+
+
 
 screen -X quit

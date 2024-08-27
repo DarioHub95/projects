@@ -94,4 +94,7 @@ time_diff=$((end_time - start_time))
 hms=$(date -u -d @$time_diff +'%H:%M:%S')
 echo "$hms" > "Durata_${2}=_${hms}"
 
+
+
+
 screen -X quit
