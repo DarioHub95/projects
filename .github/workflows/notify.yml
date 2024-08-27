@@ -14,10 +14,9 @@ jobs:
       uses: actions/checkout@v3  # Assicurati di controllare il codice sorgente
 
     - name: Read email body from file
-      id: read-email-body
       run: |
         body=$(cat body.txt)
-        echo "::set-output name=body::$body"
+        echo "body=$body" >> $GITHUB_ENV  # Salva il contenuto nell'environment file
 
     - name: Send Email Notification
       uses: dawidd6/action-send-mail@v3  # Utilizza l'azione per inviare email
@@ -27,6 +26,6 @@ jobs:
         username: ${{ secrets.SMTP_USERNAME }}  # Indirizzo email dal segreto
         password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segret
         subject: "IBiSco: Jobs eseguiti con successo!"
-        body: ${{ steps.read-email-body.outputs.body }}  # Usa il contenuto letto dal file come corpo dell'email
+        body: ${{ env.body }}  # Usa l'email body dall'environment variable
         to: "dario.espo1995@gmail.com"  # Inserisci l'indirizzo email del destinatario
         from: ${{ secrets.SMTP_USERNAME }} # Utilizza lo stesso indirizzo email per 'from"
