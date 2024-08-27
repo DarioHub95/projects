@@ -1,6 +1,6 @@
 Data acquisizione: 2024-08-26 10:00:39
 Numero di tasks=550
-seed=1724630090
+seed=172463009
 seed2=165
 L=4
 nstep=10000
