@@ -2,8 +2,10 @@ name: Notify on Update
 
 on:
   push:
-    branches:
-      - master  # Sostituisci con il branch che desideri monitorare, se diverso
+    paths:
+      - '**.txt'
+    # branches:
+    #   - master  # Sostituisci con il branch che desideri monitorare, se diverso
 
 jobs:
   notify:
