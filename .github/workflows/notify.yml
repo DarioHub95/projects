@@ -16,11 +16,11 @@ jobs:
     - name: Send Email Notification
       uses: dawidd6/action-send-mail@v3  # Utilizza l'azione per inviare email
       with:
-        server_address: studenti.unina.it # Modifica se utilizzi un altro server SMTP
+        server_address: smtp.gmail.com # Modifica se utilizzi un altro server SMTP
         server_port: 465  # Usa 587 per TLS, 465 per SSL
         username: ${{ secrets.SMTP_USERNAME }}  # Indirizzo email dal segreto
         password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segret
         subject: "Il job è completato!"
         body: "Il repository su GitHub è stato aggiornato con un nuovo commit! Dettagli: ${{ github.event.head_commit.message }}"
-        to: "dario.esposito30@studenti.unina.it, dario.esposito95@alice.it"  # Inserisci l'indirizzo email del destinatario
+        to: "dario.espo1995@gmail.com"  # Inserisci l'indirizzo email del destinatario
         from: ${{ secrets.SMTP_USERNAME }} # Utilizza lo stesso indirizzo email per 'from"
