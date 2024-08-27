@@ -95,6 +95,11 @@ hms=$(date -u -d @$time_diff +'%H:%M:%S')
 echo "$hms" > "Durata_${2}=_${hms}"
 
 
+# Esegui il push del commit al repository remoto
+git add "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
+git commit -a -m "Calcolati valori medi"
+git push origin master
+echo "Commit e push completati."
 
 
 screen -X quit

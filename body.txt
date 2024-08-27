@@ -1,0 +1,24 @@
+[Dettagli della Simulazione]
+-----------------------------
+Data: 2024-08-26 23:04:33
+Tasks: 1830
+
+Modello utilizzato: {Modello}
+Osservabile scelto: {Osservabile}
+
+Parametri del Modello:
+- L: {L}
+- nstep: {nstep}
+- Sz: {Sz}
+- Jxy: {Jxy}
+- Jz: {Jz}
+- eps: {eps}
+- alpha: {alpha}
+- pbc: {pbc}
+
+[Job Lanciati]
+-----------------------------
+- Nome Job: {Nome_Job1}
+  ID Job: {ID_Job1}
+- Nome Job: {Nome_Job2}
+  ID Job: {ID_Job2}

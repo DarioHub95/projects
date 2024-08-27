@@ -15,9 +15,9 @@ int main(int argc,char **argv)
    int nstep=20;       // numero di esecuzioni del monte carlo
    int amax=32;
    int n=0;
-   int Sz=-1;             // magnetizzazione della catena (sempre negativa)
+   int Sz=0;             // magnetizzazione della catena (sempre negativa)
    int tw=1;               // tempo di waiting per autocorrelazione
-   int Oss=4;
+   int Oss=0;
    int mype=pvm_mype();
 
    double Jz=0.2; //0.2						        // interazione spin-spin            // MODIFICATO
