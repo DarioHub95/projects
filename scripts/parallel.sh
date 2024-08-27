@@ -36,16 +36,16 @@ count=0
             echo "Riduzione del numero di task di 10."
             ((num_tasks -= 10))
             if ((num_tasks < 100)); then
-                echo "Il numero di task è inferiore a 100. Uscita dallo screen."
+                echo "Il numero di task è inferiore a 100. Cancellazione del job ${4}_${3}_J${i}..."
                 scancel $job_id
-                cd ..
-                touch "Job_${4}_${3}_J${i}_eliminato"
-                rm -rf Dati_$3/
-                screen -X quit
+                # cd ..
+                touch "../Job_${4}_${3}_J${i}_eliminato"
+                # screen -X quit
             fi
         else
             echo "Allocate le risorse per il job ${4}_${3}_J${i}. Esecuzione..."
             ((count++))
+            job_id=$!
             wait $job_id
             rename_output_files
         fi

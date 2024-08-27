@@ -12,6 +12,11 @@ done
 if [ ! -d "Dati_$2" ]; then
     echo "La cartella Dati_$2 non esiste. Uscita dallo screen..."
     screen -X quit
+elif [ -d "Dati_$2" ] && [ "$(ls Dati_$2 | wc -l)" -eq 2 ]; then
+    # Se la cartella contiene solo 2 file
+    echo "La cartella Dati_$2 contiene solo 2 file. Elimino la cartella ed esco dallo screen..."
+    rm -rf "Dati_$2"
+    screen -X quit
 fi
 
 
@@ -92,14 +97,12 @@ rm -rf "Durata_${2}"*
 end_time=$(date +%s)
 time_diff=$((end_time - start_time))
 hms=$(date -u -d @$time_diff +'%H:%M:%S')
-echo "$hms" > "Durata_${2}=_${hms}"
+# echo "$hms" > "Durata_${2}=_${hms}"
+dati="${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 
 
-# Esegui il push del commit al repository remoto
-git add "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
-git commit -a -m "Calcolati valori medi"
-git push origin master
-echo "Commit e push completati."
+# RICHIAMA LO SCRIPT DI NOTIFY-----------------------------------------------------
 
+./scripts/notify.sh $dati $2 $3 $4 $R_tot $(date -u -d @$start_time +'%H.%M.%S') $hms
 
 screen -X quit

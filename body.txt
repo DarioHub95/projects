@@ -1,24 +1,26 @@
+------------------------------
 [Dettagli della Simulazione]
 ------------------------------
-Data: 2024-08-26 23:04:33
-Tasks: 1830
+Start Date: 6
+End Date: 2024-08-28 01:26:54
+Duration: 7
 
-Modello utilizzato: {Modello}
-Osservabile scelto: {Osservabile}
+Modello selezionato: 3
+Osservabile scelto: 2
 
 Parametri del Modello:
-- L: {L}
-- nstep: {nstep}
-- Sz: {Sz}
-- Jxy: {Jxy}
-- Jz: {Jz}
-- eps: {eps}
-- alpha: {alpha}
-- pbc: {pbc}
+- L: 4
+- nstep: 
+- Sz: 
+- Jxy: 1
+- Jz: 
+- eps: 
+- alpha: 
 
-[Job Lanciati]
 -----------------------------
-- Nome Job: {Nome_Job1}
-  ID Job: {ID_Job1}
-- Nome Job: {Nome_Job2}
-  ID Job: {ID_Job2}
+[Dettagli Job Lanciati]
+-----------------------------
+
+Task totali: 5
+Job totali:
+
