@@ -3,7 +3,7 @@ name: Notify on Update
 on:
   push:
     branches:
-      - 'example.txt'  # Triggera il workflow quando un file .txt viene aggiunto o modificato
+      - master  # Sostituisci con il branch che desideri monitorare, se diverso
 
 jobs:
   notify:
