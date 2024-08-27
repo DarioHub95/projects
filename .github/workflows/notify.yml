@@ -3,7 +3,7 @@ name: Notify on Update
 on:
   push:
     paths:
-      - 'scripts/**.txt'
+      - 'scripts/body.txt'
 
 jobs:
   notify:
