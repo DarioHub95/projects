@@ -3,7 +3,7 @@ name: Notify on Update
 on:
   push:
     branches:
-      - '**/*.txt'  # Triggera il workflow quando un file .txt viene aggiunto o modificato
+      - 'master/*.txt'  # Triggera il workflow quando un file .txt viene aggiunto o modificato
 
 jobs:
   notify:
