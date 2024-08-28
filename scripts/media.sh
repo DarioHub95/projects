@@ -103,6 +103,6 @@ dati="${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 
 # RICHIAMA LO SCRIPT DI NOTIFY-----------------------------------------------------
 
-./scripts/notify.sh $dati $2 $3 $4 $R_tot $(date -u -d @$start_time +'%H.%M.%S') $hms
+./scripts/notify_ok.sh $dati $2 $3 $4 $R_tot $(date -u -d @$start_time +"%d-%m-%Y %H:%M:%S") $hms
 
 screen -X quit
