@@ -65,10 +65,8 @@ cat <<EOF > $output_file
     [ERRORE $error_code]
 ------------------------------
 
-$error_message_1\n
-
-$error_message_2\n
-
+$error_message_1
+$error_message_2
 ${extra_message}
 
 EOF
