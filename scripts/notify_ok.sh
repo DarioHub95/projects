@@ -60,7 +60,7 @@ echo ""
 
 # Esegui il push del commit al repository remoto
 # git pull
-git add -a .
+git add -A .
 git commit -a -m "IBiSco: Jobs eseguiti con successo!"
 git push origin master
 echo "Commit e push completati."
