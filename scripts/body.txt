@@ -1,8 +1,8 @@
 ------------------------------
-    [ERRORE 150]
+    [ERRORE 250]
 ------------------------------
 
-PERMESSI INSUFFICIENTI: Non hai i permessi necessari per eseguire i comandi richiesti.
+ERRORE DI ESECUZIONE DEL JOB: Il job non è riuscito a partire a causa di risorse non disponibili.
 
 -----------------------------
 
