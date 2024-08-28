@@ -1,6 +1,8 @@
 ------------------------------
+    [ERRORE 150]
+------------------------------
 
-ERRORE: FILE 150 NON TROVATO!
+PERMESSI INSUFFICIENTI: Non hai i permessi necessari per eseguire i comandi richiesti.
 
 -----------------------------
 
