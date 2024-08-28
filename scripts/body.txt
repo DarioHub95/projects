@@ -2,7 +2,7 @@
 [Dettagli della Simulazione]
 ------------------------------
 Start Date: 6
-End Date: 2024-08-28 02:12:21
+End Date: 2024-08-28 02:15:26
 Duration: 100
 
 Modello selezionato: Ising
