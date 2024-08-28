@@ -88,13 +88,6 @@ if [ $(wc -l < "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S')
 fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 
-
-# Processa i file di output nella directory
-echo "Sostituzione punti con virgole nel file delle medie..."
-for file in "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"; do
-    sed -i 's/\./,/g' "$file"
-done
-
 # Inserisci riga di Data e ora e di tasks nel file di media totale
 sed -i "1i Tasks: ${R_tot}" "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
@@ -105,3 +98,8 @@ sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${3}_${2}_L${4}_R${R_tot}_$(date
 screen -X quit
 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 
+# Processa i file di output nella directory
+echo "Sostituzione punti con virgole nel file delle medie..."
+for file in "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"; do
+    sed -i 's/\./,/g' "$file"
+done

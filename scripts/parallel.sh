@@ -8,11 +8,22 @@ rename_output_files() {
 }
 
 # Pulizia dei file output esistenti
-if [ -d "Dati_$3" ] && [ "$(ls -A Dati_$3)" ]; then
+if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
 rm Dati_$3/output*
 fi
 
-mv a.out Dati_$3/
+if [ ! -f "a.out" ]; then
+    #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+    scancel $job_id
+    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste." 
+    #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+else
+    # Se il file a.out esiste
+    mv a.out Dati_$3/
+    echo "Il file 'a.out' è stato spostato nella directory 'Dati_$3'."
+fi
+
+mv a.out Dati_$3/ #110
 cd Dati_$3/
 
 #LANCIO DEI JOB-----------------------------------
@@ -26,21 +37,21 @@ count=0
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
-        job_status=$(squeue -j $job_id -o "%R" -h)
+        job_status=$(squeue -j $job_id -o "%t" -h)
+        job_reason=$(squeue -j $job_id -o "%R" -h)
 
         # Controlla se il job è in attesa di risorse
-        if [[ "$job_status" == *"Resources"* || "$job_status" == *"Priority"* ]]; then
-            echo "Il job ${4}_${3}_J${i} non è riuscito a partire poichè in attesa di risorse."
+        if [[ "$job_status" == *"PD"* || "$job_status" == *"Priority"* ]]; then
+            echo "Il job ${4}_${3}_J${i} non è riuscito a partire poichè in pending..."
             echo "Cancellazione del job..."
             scancel $job_id
             echo "Riduzione del numero di task di 10."
             ((num_tasks -= 10))
             if ((num_tasks < 100)); then
-                echo "Il numero di task è inferiore a 100. Cancellazione del job ${4}_${3}_J${i}..."
+                #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
                 scancel $job_id
-                # cd ..
-                touch "../Job_${4}_${3}_J${i}_eliminato"
-                # screen -X quit
+                ./scripts/notify_errors.sh 250 "[parallel.sh] Il numero di task è inferiore a 100. Cancellazione del job ${4}_${3}_J${i} a causa di ${job_reason}" 
+                #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
             fi
         else
             echo "Allocate le risorse per il job ${4}_${3}_J${i}. Esecuzione..."

@@ -1,26 +1,10 @@
 ------------------------------
-[Dettagli della Simulazione]
+    [ERRORE 110]
 ------------------------------
-Start Date: 29-03-1970 16:07:49
-End Date:   28-08-2024 21:13:22
-Durata:     05:05:33
 
-Modello selezionato: pippo
-Osservabile scelto:  
+ESEGUIBILE TROVATO 
 
-Parametri del Modello:
-- L:     
-- nstep: 
-- Sz:    
-- Jxy:   1
-- Jz:    
-- eps:   
-- alpha: 
+Il file 'a.out' non è stato trovato. 
 
------------------------------
-[Dettagli Job Lanciati]
------------------------------
-
-Task totali: 
-Job totali:  5
+[parallel.sh] Il file 'a.out' non esiste.
 
