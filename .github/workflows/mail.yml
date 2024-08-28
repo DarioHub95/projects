@@ -1,0 +1,39 @@
+name: Notify on Update
+
+on:
+  push:
+    paths:
+      - 'scripts/body.txt'
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest  # Specifica l'ambiente di esecuzione
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Assicurati di controllare il codice sorgente
+
+    - name: Extract Commit Message
+      id: get_commit_msg
+      run: |
+        commit_message=$(git log -1 --pretty=%B)
+        echo "commit_message=$commit_message" >> $GITHUB_ENV
+
+    - name: Read email body from file
+      run: |
+        echo "body<<EOF" >> $GITHUB_ENV
+        cat scripts/body.txt >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+    
+    - name: Send Email Notification
+      uses: dawidd6/action-send-mail@v3  # Utilizza l'azione per inviare email
+      with:
+        server_address: smtp.gmail.com # Modifica se utilizzi un altro server SMTP
+        server_port: 465  # Usa 587 per TLS, 465 per SSL
+        username: ${{ secrets.SMTP_USERNAME }}  # Indirizzo email dal segreto
+        password: ${{ secrets.SMTP_PASSWORD }}  # Password dell'email dal segret
+        subject: ${{ env.commit_message }}
+        # subject: "IBiSco: Jobs eseguiti con successo!"
+        body: ${{ env.body }}  # Usa l'email body dalla variabile di environment
+        to: "dario.espo1995@gmail.com"  # Inserisci l'indirizzo email del destinatario
+        from: ${{ secrets.SMTP_USERNAME }} # Utilizza lo stesso indirizzo email per 'from"
