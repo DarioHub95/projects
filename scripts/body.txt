@@ -2,7 +2,9 @@
     [ERRORE 100]
 ------------------------------
 
+FILE O DIRECTORY NON TROVATI
 
+Il file 'a.out' o la directory 'Dati' non esistono.
 
------------------------------
+NOTA: La cartella Dati_Energie non esiste. Uscita dallo screen...
 
