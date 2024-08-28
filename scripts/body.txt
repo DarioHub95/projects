@@ -1,8 +1,8 @@
 ------------------------------
-    [ERRORE 100]
+    [ERRORE 350]
 ------------------------------
 
-FILE O DIRECTORY NON TROVATI
-I file di dati o la directory 'Dati' non esistono.
-[media.sh] La cartella Dati_ non contiene i dati. Eliminazione ed esco dallo screen media_...
+ERRORE NEL CALCOLO DELLE MEDIE
+Il calcolo delle medie non è riuscito a causa di dati malformati.
+[media.sh] Il file 'pippo.txt' non contiene nessun valore medio. Uscita dallo screen media_...
 
