@@ -1,15 +1,15 @@
 ------------------------------
 [Dettagli della Simulazione]
 ------------------------------
-Start Date: 22.50.27
-End Date: 2024-08-28 10:26:46
-Duration: 09:36:19
+Start Date: 6
+End Date: 2024-08-28 11:44:37
+Duration: 100
 
 Modello selezionato: Ising
 Osservabile scelto: Energie
 
 Parametri del Modello:
-- L: 12
+- L: 4
 - nstep: 
 - Sz: 
 - Jxy: 1
@@ -21,6 +21,6 @@ Parametri del Modello:
 [Dettagli Job Lanciati]
 -----------------------------
 
-Task totali: 1590
+Task totali: 550
 Job totali:
 
