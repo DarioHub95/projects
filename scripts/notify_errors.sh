@@ -65,11 +65,11 @@ cat <<EOF > $output_file
     [ERRORE $error_code]
 ------------------------------
 
-$error_message_1
+$error_message_1\n
 
-$error_message_2
+$error_message_2\n
 
-NOTA: ${extra_message}
+${extra_message}
 
 EOF
 

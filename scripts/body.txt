@@ -2,9 +2,9 @@
     [ERRORE 100]
 ------------------------------
 
-FILE O DIRECTORY NON TROVATI
+FILE O DIRECTORY NON TROVATI\n
 
-I file di dati o la directory 'Dati' non esistono.
+I file di dati o la directory 'Dati' non esistono.\n
 
-NOTA: [media.sh] La cartella Dati_ non contiene i dati. Eliminazione ed esco dallo screen media_...
+[media.sh] La cartella Dati_ non contiene i dati. Eliminazione ed esco dallo screen media_...
 
