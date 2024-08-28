@@ -81,16 +81,12 @@ rm temp_*.txt
 echo ""
 
 
-
-
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ $(wc -l < "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt") -le 20 ]; then
-    ./scripts/notify_errors.sh 100 "[media.sh] Il file '${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt' non contiene nessun valore medio. Uscita dallo screen media_$2..." 
+    ./scripts/notify_errors.sh 350 "[media.sh] Il file '${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt' non contiene nessun valore medio. Uscita dallo screen media_$2..." 
     screen -X quit
 fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-
-
 
 
 # Processa i file di output nella directory

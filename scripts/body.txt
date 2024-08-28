@@ -2,7 +2,10 @@
     [ERRORE 350]
 ------------------------------
 
-ERRORE NEL CALCOLO DELLE MEDIE
-Il calcolo delle medie non è riuscito a causa di dati malformati.
+
+ERRORE NEL CALCOLO DELLE MEDIE 
+
+Il calcolo delle medie non è riuscito a causa di dati malformati. 
+
 [media.sh] Il file 'pippo.txt' non contiene nessun valore medio. Uscita dallo screen media_...
 

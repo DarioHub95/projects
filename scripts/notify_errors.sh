@@ -3,6 +3,7 @@
 output_file="scripts/body.txt"
 error_code=$1  # Il codice di errore passato come primo argomento
 extra_message=$2
+nl=$'\n'  # newline
 
 # Seleziona la descrizione dell'errore in base al codice di errore
 error_message=""
@@ -63,10 +64,10 @@ esac
 cat <<EOF > $output_file
 ------------------------------
     [ERRORE $error_code]
-------------------------------
+------------------------------$nl
 
-$error_message_1
-$error_message_2
+$error_message_1 $nl
+$error_message_2 $nl
 ${extra_message}
 
 EOF
