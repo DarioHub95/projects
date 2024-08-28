@@ -101,7 +101,7 @@ sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${3}_${2}_L${4}_R${R_tot}_$(date
 
 
 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-./scripts/notify_ok.sh "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt" $start_time
+./scripts/notify_ok.sh "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt" $start_time $5
 screen -X quit
 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 

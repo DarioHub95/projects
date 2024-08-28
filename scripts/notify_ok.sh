@@ -47,7 +47,7 @@ Parametri del Modello:
 -----------------------------
 
 Task totali: ${R}
-Job totali:
+Job totali:  ${3}
 
 EOF
 

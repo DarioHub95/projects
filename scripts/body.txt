@@ -1,11 +1,26 @@
 ------------------------------
-    [ERRORE 350]
+[Dettagli della Simulazione]
 ------------------------------
+Start Date: 29-03-1970 16:07:49
+End Date:   28-08-2024 21:13:22
+Durata:     05:05:33
 
+Modello selezionato: pippo
+Osservabile scelto:  
 
-ERRORE NEL CALCOLO DELLE MEDIE 
+Parametri del Modello:
+- L:     
+- nstep: 
+- Sz:    
+- Jxy:   1
+- Jz:    
+- eps:   
+- alpha: 
 
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
+-----------------------------
+[Dettagli Job Lanciati]
+-----------------------------
 
-[media.sh] Il file 'pippo.txt' non contiene nessun valore medio. Uscita dallo screen media_...
+Task totali: 
+Job totali:  5
 
