@@ -8,6 +8,7 @@ echo ""
 
 # Estrai i valori dalle parti del nome del file
 file=$1
+sed -i 's/\,/./g' "$file"
 basename="${file%.txt}"
 IFS='_' read -r -a components <<< "$basename"
 
@@ -52,6 +53,7 @@ EOF
 
 echo "Il file $output_file è stato generato con successo."
 echo ""
+sed -i 's/\./,/g' "$file"
 
 #-------------------GITHUB-------------------------------------#
 

@@ -1,9 +1,9 @@
 ------------------------------
 [Dettagli della Simulazione]
 ------------------------------
-Start Date: 27-04-1970 21:50:12
-End Date:   28-08-2024 11:16:47
-Durata:     13:26:35
+Start Date: 02-01-1970 04:03:30
+End Date:   28-08-2024 11:20:07
+Durata:     07:16:37
 
 Modello selezionato: Ising
 Osservabile scelto:  Energie
@@ -13,7 +13,7 @@ Parametri del Modello:
 - nstep: 10000
 - Sz:    0
 - Jxy:   1
-- Jz:    0
+- Jz:    0.2
 - eps:   0
 - alpha: 0
 
