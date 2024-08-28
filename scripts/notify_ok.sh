@@ -7,7 +7,8 @@ echo "File ${1} trovato. Generazione del body per email di notifica..."
 echo ""
 
 # Estrai i valori dalle parti del nome del file
-basename="${${1}%.txt}"
+file=$1
+basename="${file%.txt}"
 IFS='_' read -r -a components <<< "$basename"
 
 modello="${components[0]}"        # Ising
