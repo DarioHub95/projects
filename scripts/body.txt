@@ -2,20 +2,20 @@
 [Dettagli della Simulazione]
 ------------------------------
 Start Date: 19-11-5170 15:38:53
-End Date:   28-08-2024 11:12:27
-Durata:     19:33:34
+End Date:   28-08-2024 11:13:18
+Durata:     19:34:25
 
 Modello selezionato: 
 Osservabile scelto:  
 
 Parametri del Modello:
 - L:     
-- nstep: 
-- Sz:    
+- nstep: 10000
+- Sz:    0
 - Jxy:   1
-- Jz:    
-- eps:   
-- alpha: 
+- Jz:    0
+- eps:   0
+- alpha: 0
 
 -----------------------------
 [Dettagli Job Lanciati]
