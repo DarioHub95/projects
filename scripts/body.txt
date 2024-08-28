@@ -10,7 +10,7 @@ Osservabile scelto: Energie
 
 Parametri del Modello:
 - L: 12
-- nstep: 
+- nstep: 10000
 - Sz: 
 - Jxy: 1
 - Jz: 
