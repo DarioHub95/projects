@@ -9,39 +9,62 @@ error_message=""
 
 case $error_code in
     100)
-        error_message="FILE O DIRECTORY NON TROVATI:\nIl file 'a.out' o la directory 'Dati' non esistono.\n${extra_message}"
+        error_message_1="FILE O DIRECTORY NON TROVATI"
+        error_message_2="Il file 'a.out' o la directory 'Dati' non esistono."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     150)
-        error_message="PERMESSI INSUFFICIENTI: Non hai i permessi necessari per eseguire i comandi richiesti.\n${extra_message}"
+        error_message_1="PERMESSI INSUFFICIENTI"
+        error_message_2="Non hai i permessi necessari per eseguire i comandi richiesti."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     200)
-        error_message="PROBLEMI DI SPAZIO SU DISCO: Spazio su disco insufficiente per creare o spostare i file.\n${extra_message}"
+        error_message_1="PROBLEMI DI SPAZIO SU DISCO"
+        error_message_2="Spazio su disco insufficiente per creare o spostare i file."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     250)
-        error_message="ERRORE DI ESECUZIONE DEL JOB: Il job non è riuscito a partire a causa di risorse non disponibili.\n${extra_message}"
+        error_message_1="ERRORE DI ESECUZIONE DEL JOB"
+        error_message_2="Il job non è riuscito a partire a causa di risorse non disponibili."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     300)
-        error_message="ERRORE NELLA MODIFICA DEI FILE DI OUTPUT: La modifica dei file di output non è riuscita.\n${extra_message}"
+        error_message_1="ERRORE NELLA MODIFICA DEI FILE DI OUTPUT"
+        error_message_2="La modifica dei file di output non è riuscita."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     350)
-        error_message="ERRORE NEL CALCOLO DELLE MEDIE: Il calcolo delle medie non è riuscito a causa di dati malformati.\n${extra_message}"
+        error_message_1="ERRORE NEL CALCOLO DELLE MEDIE"
+        error_message_2="Il calcolo delle medie non è riuscito a causa di dati malformati."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     400)
-        error_message="ERRORE DI TEMPO DI ESECUZIONE: La differenza di tempo calcolata per la durata del processo è errata.\n${extra_message}"
+        error_message_1="ERRORE DI TEMPO DI ESECUZIONE"
+        error_message_2="La differenza di tempo calcolata per la durata del processo è errata."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     450)
-        error_message="ERRORE DI NOTIFICA: La notifica di completamento non è stata inviata correttamente.\n${extra_message}"
+        error_message_1="ERRORE DI NOTIFICA"
+        error_message_2="La notifica di completamento non è stata inviata correttamente."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     500)
-        error_message="USCITA DALLA SCREEN: Il comando per uscire dallo screen non è riuscito.\n${extra_message}"
+        error_message_1="USCITA DALLA SCREEN"
+        error_message_2="Il comando per uscire dallo screen non è riuscito."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     550)
-        error_message="ERRORE NEL PROCESSO DI PULIZIA: La rimozione dei file temporanei non è riuscita.\n${extra_message}"
+        error_message_1="ERRORE NEL PROCESSO DI PULIZIA"
+        error_message_2="La rimozione dei file temporanei non è riuscita."
+        error_message_3="NOTA: ${extra_message}"
         ;;
     *)
-        error_message="ERRORE SCONOSCIUTO: Codice di errore non riconosciuto.\n${extra_message}"
+        error_message_1="ERRORE SCONOSCIUTO"
+        error_message_2="Codice di errore non riconosciuto."
+        error_message_3="NOTA: ${extra_message}"
         ;;
 esac
+
 
 # Assembla il contenuto del body.txt con la descrizione dell'errore
 cat <<EOF > $output_file

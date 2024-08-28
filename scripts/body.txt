@@ -2,7 +2,7 @@
     [ERRORE 100]
 ------------------------------
 
-FILE O DIRECTORY NON TROVATI:\nIl file 'a.out' o la directory 'Dati' non esistono.\nLa cartella Dati_ non esiste. Uscita dallo screen...
+
 
 -----------------------------
 
