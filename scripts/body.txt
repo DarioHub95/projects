@@ -1,26 +1,8 @@
 ------------------------------
-[Dettagli della Simulazione]
+    [ERRORE 100]
 ------------------------------
-Start Date: 28-08-2024 11:26:34
-End Date:   28-08-2024 20:11:47
-Durata:     08:45:13
 
-Modello selezionato: Anderson
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-- L:     4
-- nstep: 10000
-- Sz:    0
-- Jxy:   1
-- Jz:    0
-- eps:   5
-- alpha: 0
+FILE O DIRECTORY NON TROVATI:\nIl file 'a.out' o la directory 'Dati' non esistono.\nLa cartella Dati_ non esiste. Uscita dallo screen...
 
 -----------------------------
-[Dettagli Job Lanciati]
------------------------------
-
-Task totali: 570
-Job totali:
 

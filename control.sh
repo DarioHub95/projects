@@ -11,7 +11,7 @@ echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]------------------------------------
 echo ""
 echo "Rimozione file di log..."
 echo ""
-rm -rf Job_* srun.log Durata_*
+rm -rf Job_* srun.log
 if ls *.txt 1> /dev/null 2>&1; then
 echo "Sposto file di media..."
 echo ""
