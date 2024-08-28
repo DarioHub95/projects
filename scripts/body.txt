@@ -2,8 +2,8 @@
 [Dettagli della Simulazione]
 ------------------------------
 Start Date: 6
-End Date: 2024-08-28 01:58:05
-Duration: 5
+End Date: 2024-08-28 02:00:17
+Duration: 7
 
 Modello selezionato: Energie
 Osservabile scelto: Ising
