@@ -92,17 +92,8 @@ done
 sed -i "1i Tasks: ${R_tot}" "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 
-# Secondo istante di tempo e uscita dagli screen
-rm -rf "Durata_${2}"*
-end_time=$(date +%s)
-time_diff=$((end_time - start_time))
-hms=$(date -u -d @$time_diff +'%H:%M:%S')
-# echo "$hms" > "Durata_${2}=_${hms}"
-dati="${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
+#----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 
-
-# RICHIAMA LO SCRIPT DI NOTIFY-----------------------------------------------------
-
-./scripts/notify_ok.sh $dati $2 $3 $4 $R_tot $(date -u -d @$start_time +"%d-%m-%Y %H:%M:%S") $hms
+./scripts/notify_ok.sh "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt" $start_time
 
 screen -X quit

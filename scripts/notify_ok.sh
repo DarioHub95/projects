@@ -6,20 +6,33 @@ echo ""
 echo "File ${1} trovato. Generazione del body per email di notifica..."
 echo ""
 
+# Estrai i valori dalle parti del nome del file
+basename="${$1%.txt}"
+IFS='_' read -r -a components <<< "$basename"
+
+modello="${components[0]}"        # Ising
+osservabile="${components[1]}"     # Energie
+L="${components[2]#L}"            # 12
+R="${components[3]#R}"            # 1590
+
+end_time=$(date +%s)
+time_diff=$((end_time - $2))
+hms=$(date -u -d @$time_diff +'%H:%M:%S')
+
 # Assembla il contenuto del body.txt
 cat <<EOF > $output_file
 ------------------------------
 [Dettagli della Simulazione]
 ------------------------------
-Start Date: ${6}
-End Date:   $(date +"%d-%m-%Y %H:%M:%S")
-Durata:     ${7}
+Start Date: $(date -u -d @$2 +"%d-%m-%Y %H:%M:%S")
+End Date:   $(date -u -d @$end_time +"%d-%m-%Y %H:%M:%S")
+Durata:     ${hms}
 
-Modello selezionato: ${3}
-Osservabile scelto:  ${2}
+Modello selezionato: ${modello}
+Osservabile scelto:  ${osservabile}
 
 Parametri del Modello:
-- L:     ${4}
+- L:     ${L}
 - nstep: $(grep -oP '(?<=^nstep=)\d+' "${1}")
 - Sz:    $(grep -oP '(?<=^Sz=)-?\d+' "${1}")
 - Jxy:   1
@@ -31,7 +44,7 @@ Parametri del Modello:
 [Dettagli Job Lanciati]
 -----------------------------
 
-Task totali: ${5}
+Task totali: ${R}
 Job totali:
 
 EOF
