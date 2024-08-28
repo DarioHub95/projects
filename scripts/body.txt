@@ -1,26 +1,26 @@
 ------------------------------
 [Dettagli della Simulazione]
 ------------------------------
-Start Date: 02-01-1970 04:03:30
-End Date:   28-08-2024 11:20:07
-Durata:     07:16:37
+Start Date: 28-08-2024 11:26:34
+End Date:   28-08-2024 20:11:47
+Durata:     08:45:13
 
-Modello selezionato: Ising
+Modello selezionato: Anderson
 Osservabile scelto:  Energie
 
 Parametri del Modello:
-- L:     12
+- L:     4
 - nstep: 10000
 - Sz:    0
 - Jxy:   1
-- Jz:    0.2
-- eps:   0
+- Jz:    0
+- eps:   5
 - alpha: 0
 
 -----------------------------
 [Dettagli Job Lanciati]
 -----------------------------
 
-Task totali: 1590
+Task totali: 570
 Job totali:
 
