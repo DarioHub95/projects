@@ -2,29 +2,9 @@
 
 output_file="scripts/body.txt"
 
-# Verifica se esiste il file di media
-if ! ls "${1}" 1> /dev/null 2>&1; then
-
-cat <<EOF > $output_file
-------------------------------
-[Dettagli della Simulazione]
-------------------------------
-
-ERRORE: FILE ${1} NON TROVATO!
-
------------------------------
-[Dettagli Job Lanciati]
------------------------------
-
-Task totali: ${5}
-Job totali:
-
-EOF
-
-fi
-
 echo ""
 echo "File ${1} trovato. Generazione del body per email di notifica..."
+echo ""
 
 # Assembla il contenuto del body.txt
 cat <<EOF > $output_file

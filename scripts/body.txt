@@ -1,26 +1,6 @@
 ------------------------------
-[Dettagli della Simulazione]
-------------------------------
-Start Date: 6
-End Date:   28-08-2024 12:32:16
-Durata:     100
 
-Modello selezionato: Ising
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-- L:     4
-- nstep: 10000
-- Sz:    0
-- Jxy:   1
-- Jz:    0
-- eps:   0
-- alpha: 0
+ERRORE: FILE prova.txt NON TROVATO!
 
 -----------------------------
-[Dettagli Job Lanciati]
------------------------------
-
-Task totali: 550
-Job totali:
 
