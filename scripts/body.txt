@@ -4,7 +4,7 @@
 
 FILE O DIRECTORY NON TROVATI
 
-Il file 'a.out' o la directory 'Dati' non esistono.
+I file di dati o la directory 'Dati' non esistono.
 
-NOTA: La cartella Dati_Energie non esiste. Uscita dallo screen...
+NOTA: [media.sh] La cartella Dati_ non contiene i dati. Eliminazione ed esco dallo screen media_...
 

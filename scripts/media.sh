@@ -10,11 +10,11 @@ done
 
 # Se la cartella non esiste, esci dallo screen
 if [ ! -d "Dati_$2" ]; then
-    echo "La cartella Dati_$2 non esiste. Uscita dallo screen..."
+    ./scripts/notify_errors.sh 100 "[media.sh] La cartella Dati_$2 non esiste. Uscita dallo screen media_$2..." 
     screen -X quit
 elif [ -d "Dati_$2" ] && [ "$(ls Dati_$2 | wc -l)" -eq 2 ]; then
-    # Se la cartella contiene solo 2 file
-    echo "La cartella Dati_$2 contiene solo 2 file. Elimino la cartella ed esco dallo screen..."
+    # Se la cartella contiene solo 2 file 
+    ./scripts/notify_errors.sh 100 "[media.sh] La cartella Dati_$2 non contiene i dati. Eliminazione ed esco dallo screen media_$2..." 
     rm -rf "Dati_$2"
     screen -X quit
 fi

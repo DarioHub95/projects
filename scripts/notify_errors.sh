@@ -10,7 +10,11 @@ error_message=""
 case $error_code in
     100)
         error_message_1="FILE O DIRECTORY NON TROVATI"
-        error_message_2="Il file 'a.out' o la directory 'Dati' non esistono."
+        error_message_2="I file di dati o la directory 'Dati' non esistono."
+        ;;
+    110)
+        error_message_1="ESEGUIBILE TROVATO"
+        error_message_2="Il file 'a.out' non è stato trovato."
         ;;
     150)
         error_message_1="PERMESSI INSUFFICIENTI"
