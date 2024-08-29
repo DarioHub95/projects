@@ -35,5 +35,5 @@ jobs:
         subject: ${{ env.commit_message }}
         # subject: "IBiSco: Jobs eseguiti con successo!"
         body: ${{ env.body }}  # Usa l'email body dalla variabile di environment
-        to: "dario.espo1995@gmail.com"  # Inserisci l'indirizzo email del destinatario
+        to: "dario.espo1995@gmail.com, vincenzo.espo56@gmail.com"  # Inserisci l'indirizzo email del destinatario
         from: ${{ secrets.SMTP_USERNAME }} # Utilizza lo stesso indirizzo email per 'from"
