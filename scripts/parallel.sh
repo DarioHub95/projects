@@ -43,7 +43,7 @@ for ((i=1; i<=$1; i++)); do
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
         # job_status=$(squeue -j $job_id -o "%t" -h)
         job_status="PD"
-        job_reason=$(squeue -u $USER -j $job_id -o "%R" -h)
+        job_reason=$(squeue -j $job_id -o "%R" -h)
             squeue -u adecandia
         sleep 15
 
@@ -56,7 +56,7 @@ for ((i=1; i<=$1; i++)); do
             ((num_tasks -= 10))
                     sleep 15
 
-            if (( $num_tasks < 50 || $num_tasks < 0 )); then
+            if (( $num_tasks < 50 )); then
                 echo "Il numero di task è inferiore a 100. Cancellazione del job ${4}_${3}_J${i}..."
                 scancel $job_id
                 esito+=("cancellato a causa di: ${job_reason}")
