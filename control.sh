@@ -212,11 +212,11 @@ echo "Usa il comando 'screen -r ${var}' per visualizzare l'acquisizione."
 echo "Usa il comando 'screen -r media_${var}' per visualizzare l'acquisizione."
 echo ""
 
-# Reimposta i default dei parametri di input nel main.c
-sed -i "s/int P = [0-9]*;/int P = 0;/" "main.c"
-sed -i "s/int L=[0-9]*;/int L=3;/" "main.c"
-sed -i "s/int nstep=[0-9]*;/int nstep=20;/" "main.c"
-sed -i "s/int tw=[0-9]*;/int tw=1;/" "main.c"
-sed -i "s/int Oss=[0-9]*;/int Oss=0;/" "main.c" 
+# # Reimposta i default dei parametri di input nel main.c
+# sed -i "s/int P = [0-9]*;/int P = 0;/" "main.c"
+# sed -i "s/int L=[0-9]*;/int L=3;/" "main.c"
+# sed -i "s/int nstep=[0-9]*;/int nstep=20;/" "main.c"
+# sed -i "s/int tw=[0-9]*;/int tw=1;/" "main.c"
+# sed -i "s/int Oss=[0-9]*;/int Oss=0;/" "main.c" 
 
 
