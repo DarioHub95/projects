@@ -1,0 +1,16 @@
+seed=1724921886
+seed2=2
+L=4
+nstep=100
+tw=1
+Jz=0
+eps=5
+alpha=0
+Sz=0
+pbc=0
+type=1
+beta=10
+tau=0.001
+Jxy=1
+wc=10
+ss=1

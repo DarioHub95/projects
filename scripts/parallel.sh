@@ -43,6 +43,7 @@ for ((i=1; i<=$1; i++)); do
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
         job_status=$(squeue -j $job_id -o "%t" -h)
         job_reason=$(squeue -j $job_id -o "%R" -h)
+        sleep 5
 
         # Controlla se il job è in attesa di risorse
         if [[ "$job_status" == "PD" ]]; then
@@ -67,6 +68,7 @@ for ((i=1; i<=$1; i++)); do
             tasks_per_job+=($num_tasks)
         fi
     done
+    sleep 10
     jobs+=("${4}_${3}_J${i}")
     ids+=("${job_id}")
 done

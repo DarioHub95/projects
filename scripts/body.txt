@@ -1,10 +1,10 @@
 ------------------------------
-    [ERRORE 350]
+    [ERRORE 100]
 ------------------------------
 
-ERRORE NEL CALCOLO DELLE MEDIE 
+FILE O DIRECTORY NON TROVATI 
 
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
+I file di dati o la directory 'Dati' non esistono. 
 
-[media.sh] Il file 'Anderson_Energie_L4_R3_08.57.52.txt' non contiene nessun valore medio. Uscita dallo screen media_Energie...
+[media.sh] La cartella Dati_Energie non contiene i dati. Eliminazione ed esco dallo screen media_Energie...
 
