@@ -1,9 +1,10 @@
---------------------------------------
-[Dettagli Job Lanciati]
---------------------------------------
+------------------------------
+    [ERRORE 350]
+------------------------------
 
-Task totali: 700
-Job totali:  0
+ERRORE NEL CALCOLO DELLE MEDIE 
 
+Il calcolo delle medie non è riuscito a causa di dati malformati. 
 
-| Job Name | Job ID | Task per Job | Esito   |
+[media.sh] Il file 'Anderson_Energie_L4_R390_11.31.54.txt' non contiene nessun valore medio. Uscita dallo screen media_Energie...
+
