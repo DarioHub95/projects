@@ -70,8 +70,8 @@ for ((i=1; i<=$1; i++)); do
             # # cd ../
             # if [ "$nstep" -eq 10000 ]; then
             #     ./../scripts/notify_ok.sh "$nstep" "Allocate le risorse per il job ${4}_${3}_J${i} in stato ${job_status}. Esecuzione..."
-            #     # cd "Dati_$3/"
             # fi
+            # # cd "Dati_$3/"
             # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
     done
@@ -91,7 +91,7 @@ done
 if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
     cd ../
-    ./scripts/notify_errors.sh 250 "[parallel.sh] Superato il limite inferiore di 100 task per tutti i job. Interruzione della simulazione."
+    ./scripts/notify_errors.sh 250 "[parallel.sh] Superato il limite inferiore di 50 task per tutti i job. Interruzione della simulazione."
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
