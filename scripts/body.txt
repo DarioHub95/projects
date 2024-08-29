@@ -1,9 +1,10 @@
---------------------------------------
-[Dettagli Job Lanciati]
---------------------------------------
+------------------------------
+    [ERRORE 100]
+------------------------------
 
-Task totali: 2
-Job totali:  0
+FILE O DIRECTORY NON TROVATI 
 
+I file di dati o la directory 'Dati' non esistono. 
 
-| Job Name | Job ID | Task per Job | Esito   |
+[media.sh] La cartella Dati_Energie non contiene i dati. Eliminazione ed esco dallo screen media_Energie...
+
