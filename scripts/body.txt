@@ -1,9 +1,24 @@
 --------------------------------------
-[Dettagli Job Lanciati]
+[Dettagli della Simulazione]
 --------------------------------------
+Start Date: 29-08-2024 16:56:36
+End Date:   29-08-2024 17:08:02
+Durata:     00:11:26
 
-Task totali: 800
-Job totali:  0
+Modello selezionato: Anderson
+Osservabile scelto:  Energie
 
+Parametri del Modello:
+> L:     4
+> nstep: 
+> Sz:    
+> Jxy:   1
+> Jz:    
+> eps:   
+> alpha: 
 
-| Job Name | Job ID | Task per Job | Esito   |
+File delle medie:
+Anderson_Energie_L4_R667_16.56.36.txt
+
+N° di file eliminati: -667
+Questo è il numero di file esclusi dal calcolo della media poichè avevano almeno il 20% di '-nan'.
