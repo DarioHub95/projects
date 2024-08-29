@@ -37,7 +37,7 @@ for ((i=1; i<=$1; i++)); do
     count=0
     while [ $count -eq 0 ]; do
         srun --job-name="${4}_${3}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        sleep 1
+        sleep 2
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
@@ -56,7 +56,6 @@ for ((i=1; i<=$1; i++)); do
                 scancel $job_id
                 esito+=("cancellato a causa di: ${job_reason}")
                 tasks_per_job+=(0)
-
             fi
         else
             echo "Allocate le risorse per il job ${4}_${3}_J${i}. Esecuzione..."
