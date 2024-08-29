@@ -51,6 +51,7 @@ for ((i=1; i<=$1; i++)); do
             echo "Cancellazione del job..."
             scancel $job_id
             echo "Riduzione del numero di task di 10."
+            squeue -u adecandia
             ((num_tasks -= 10))
                     sleep 10
 
