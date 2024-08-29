@@ -52,7 +52,7 @@ for ((i=1; i<=$1; i++)); do
             echo "Cancellazione del job..."
             scancel $job_id
             echo "Riduzione del numero di task di 10."
-            (($num_tasks -= 10))
+            ((num_tasks -= 10))
                     sleep 15
 
             if (( $num_tasks < 50 || $num_tasks < 0 )); then
