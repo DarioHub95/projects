@@ -37,13 +37,14 @@ for ((i=1; i<=$1; i++)); do
     count=0
     while [ $count -eq 0 ]; do
         srun --job-name="${4}_${3}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        sleep 2
+        sleep 10
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
         job_status=$(squeue -j $job_id -o "%t" -h)
         # job_reason=$(squeue -j $job_id -o "%R" -h)
-        sleep 10
+            squeue -u adecandia
+        sleep 15
 
         # Controlla se il job è in attesa di risorse
         if [[ "$job_status" == "PD" ]]; then
@@ -51,9 +52,8 @@ for ((i=1; i<=$1; i++)); do
             echo "Cancellazione del job..."
             scancel $job_id
             echo "Riduzione del numero di task di 10."
-            squeue -u adecandia
             ((num_tasks -= 10))
-                    sleep 10
+                    sleep 15
 
             if ((num_tasks < 50)); then
                 echo "Il numero di task è inferiore a 100. Cancellazione del job ${4}_${3}_J${i}..."
@@ -62,7 +62,7 @@ for ((i=1; i<=$1; i++)); do
                 tasks_per_job+=(0)
             fi
         else
-            echo "Allocate le risorse per il job ${4}_${3}_J${i}. Esecuzione..."
+            echo "Allocate le risorse per il job ${4}_${3}_J${i} in stato ${job_status}. Esecuzione..."
             ((count++))
             job_pid=$!
             wait $job_pid
@@ -71,7 +71,7 @@ for ((i=1; i<=$1; i++)); do
             tasks_per_job+=($num_tasks)
         fi
     done
-    sleep 10
+    sleep 15
     jobs+=("${4}_${3}_J${i}")
     ids+=("${job_id}")
 done
