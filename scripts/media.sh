@@ -3,6 +3,7 @@ set -x
 
 # Primo istante di tempo
 start_time=$(date +%s)
+total_tasks=$(ls -1 "Dati_$2"/output* 2>/dev/null | wc -l)
 
 while screen -ls | grep -q "[0-9]\+\.${2}"; do
     sleep 1
@@ -21,29 +22,36 @@ fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 
 
-# Conta il numero di file nella cartella e salva le prime 16 righe del primo file di media totale
-R_tot=$(ls -1 "Dati_$2"/output* 2>/dev/null | wc -l)
-# R_tot=$(( $(ls -1 "Dati_$2" | wc -l) - 2 ))
-
-# Trova il primo file che inizia con 'output'
-output_file=$(find "Dati_$2" -maxdepth 1 -type f -name "output*" | head -n 1)
-head -n 16 "$output_file" > "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
-
-# Conteggio del numero massimo di occorrenze di "-nan" negli output
+# Tolleranza al 20% per il numero di -nan nei file di dati
 max_nan_count=0
+nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
 for file in "Dati_$2"/output*.txt; do
-    nan_count=$(grep -c "\-nan" "$file")
-    
-    if (( nan_count > max_nan_count )); then
-        max_nan_count=$nan_count
+    nan_count=$(grep -c "\-nan" "$file")    
+
+    if [ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) -eq 1 ]; then
+        echo "La soglia del 20% è superata. Eliminazione del file $file..."
+        rm "$file"
+    else
+        echo "La soglia non è superata. Nan count: $nan_count"
+        if (( nan_count > max_nan_count )); then
+            max_nan_count=$nan_count
+        fi
     fi
 done
 echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
+
+# Rimuovi in ogni file il numero di righe pari al massimo numero di -nan trovati 
 echo "Rimuovi ${max_nan_count:-0} righe non sommabili da ogni file di output..."
 for file in "Dati_$2"/output*.txt; do
     tail -n +$((max_nan_count + 16 + 1)) "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
 done
 echo ""
+
+# Conta il numero di file nella cartella e salva le prime 16 righe del primo file di media totale
+R_tot=$(ls -1 "Dati_$2"/output* 2>/dev/null | wc -l)
+# R_tot=$(( $(ls -1 "Dati_$2" | wc -l) - 2 ))
+output_file=$(find "Dati_$2" -maxdepth 1 -type f -name "output*" | head -n 1)
+head -n 16 "$output_file" > "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 
 # Verifica se R_tot è maggiore del limite corrente di file aperti
 if [[ $R_tot -gt $(ulimit -n) ]]; then
@@ -92,10 +100,8 @@ fi
 sed -i "1i Tasks: ${R_tot}" "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 
-
 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-./scripts/notify_ok.sh "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt" $start_time
-screen -X quit
+./scripts/notify_ok.sh "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt" $start_time $total_tasks
 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 
 # Processa i file di output nella directory
@@ -103,3 +109,5 @@ echo "Sostituzione punti con virgole nel file delle medie..."
 for file in "${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"; do
     sed -i 's/\./,/g' "$file"
 done
+
+screen -X quit
