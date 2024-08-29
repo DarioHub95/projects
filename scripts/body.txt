@@ -2,7 +2,7 @@
 [Dettagli Job Lanciati]
 --------------------------------------
 
-Task totali: argomento2
+Task totali: 700
 Job totali:  0
 
 

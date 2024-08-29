@@ -1,17 +1,17 @@
 #!/bin/bash
 set -x
 
+#vars
 rename_output_files() {
     for file in output-*; do
         mv "$file" "output_J${i}_${file#output-}"
     done
 }
-
 tasks_per_job=()
 esito=()
 jobs=()
 ids=()
-
+nstep=$(grep -oP '(?<=^nstep=)\d+' "main.c")
 
 # Pulizia dei file output esistenti
 if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
@@ -28,24 +28,21 @@ else
     echo "Il file 'a.out' è stato spostato nella directory 'Dati_$3'."
 fi
 
-cd Dati_$3/
-
 #LANCIO DEI JOB-----------------------------------
+cd Dati_$3/
 
 for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     count=0
     while [ $count -eq 0 ]; do
         srun --job-name="${4}_${3}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        sleep 10
+        sleep 2
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
         job_status=$(squeue -j $job_id -o "%t" -h)
         # job_status="PD"
         job_reason=$(squeue -j $job_id -o "%R" -h)
-            squeue -u adecandia
-        sleep 15
 
         # Controlla se il job è in attesa di risorse
         if [[ "$job_status" == "PD" ]]; then
@@ -54,8 +51,6 @@ for ((i=1; i<=$1; i++)); do
             scancel $job_id
             echo "Riduzione del numero di task di 10."
             ((num_tasks -= 10))
-                    sleep 15
-
             if (( $num_tasks < 50 || $num_tasks < 0 )); then
                 echo "Il numero di task è inferiore a 100. Cancellazione del job ${4}_${3}_J${i}..."
                 ((count++))
@@ -71,18 +66,21 @@ for ((i=1; i<=$1; i++)); do
             ((count++))
             esito+=("eseguito") 
             tasks_per_job+=($num_tasks)
+            # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            # # cd ../
+            # if [ "$nstep" -eq 10000 ]; then
+            #     ./../scripts/notify_ok.sh "$nstep" "Allocate le risorse per il job ${4}_${3}_J${i} in stato ${job_status}. Esecuzione..."
+            #     # cd "Dati_$3/"
+            # fi
+            # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
     done
-    echo "fuori dal while"
-    sleep 15
     jobs+=("${4}_${3}_J${i}")
     ids+=("${job_id}")
 done
 
+# cd ../
 # ------------------FINE LANCIO----------------------------------------
-cd ../
-
-
 
 # Verifica del numero di tasks eseguiti dai jobs
 sum=0
@@ -92,25 +90,14 @@ done
 
 if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+    cd ../
     ./scripts/notify_errors.sh 250 "[parallel.sh] Superato il limite inferiore di 100 task per tutti i job. Interruzione della simulazione."
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-    ./scripts/notify_ok.sh "J" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
+    ./../scripts/notify_ok.sh "J" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 fi
-
-
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-
-# # Verifica se esistono file che iniziano con output-*
-# if ! ls output-* 1> /dev/null 2>&1; then
-#     echo "Nessun file che inizia con 'output-*' trovato. Uscita dallo screen..."
-# fi
-
-
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-
 
 screen -X quit

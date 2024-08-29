@@ -1,11 +1,13 @@
 #!/bin/bash
 
-output_file="scripts/body.txt"
+echo ""
+echo "Generazione del file $output_file per email di notifica..."
+echo ""
 
 if [ "$1" != "J" ]; then
-echo ""
-echo "File ${1} trovato. Generazione del body per email di notifica..."
-echo ""
+
+output_file="scripts/body.txt"
+git_message="Simulazione eseguita con successo"
 
 # Estrai i valori dalle parti del nome del file
 file=$1
@@ -46,27 +48,10 @@ File di medie: ${file}
 
 EOF
 
-echo "Il file $output_file è stato generato con successo."
-echo ""
+elif [ "$1" == "J" ]; then
 
-#-------------------GITHUB-------------------------------------#
-
-echo "Eseguo il commit e il push..."
-echo ""
-
-# Esegui il push del commit al repository remoto
-# git pull
-git add -A .
-git commit -a -m "IBiSco: Simulazione eseguita con successo!"
-git push origin master
-echo "Commit e push completati."
-#-------------------GITHUB-------------------------------------#
-
-else
-
-echo ""
-echo "Job allocato. Generazione del body per email di notifica..."
-echo ""
+output_file="../scripts/body.txt"
+git_message="Jobs lanciati con successo"
 
 # vars
 # Calcolo del numero massimo di righe tra gli array
@@ -100,23 +85,38 @@ done
 
 # EOF
 
-echo "Il file $output_file è stato generato con successo."
-echo ""
+else
+
+output_file="../scripts/body.txt"
+git_message="Eseguito Job ..."
+
+# Assembla il contenuto del body.txt
+cat <<EOF > "$output_file"
+--------------------------------------
+[Dettaglio Job eseguito]
+--------------------------------------
+
+Task totali: ${2}
+Job totali:  ${#jobs[@]}
+
+
+| Job Name | Job ID | Task per Job | Esito   |
+EOF
+
+
+fi
 
 #-------------------GITHUB-------------------------------------#
-
+echo ""
 echo "Eseguo il commit e il push..."
 echo ""
 
 # Esegui il push del commit al repository remoto
 # git pull
 git add -A .
-git commit -a -m "IBiSco: Jobs lanciati con successo!"
+git commit -a -m "IBiSco: ${git_message}!"
 git push origin master
 echo "Commit e push completati."
 #-------------------GITHUB-------------------------------------#
-
-fi
-
 
 
