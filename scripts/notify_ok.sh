@@ -53,7 +53,7 @@ EOF
 
 elif [ "$1" == "J" ]; then
 
-output_file="../scripts/body.txt"
+output_file="scripts/body.txt"
 git_message="Jobs lanciati con successo"
 
 # vars

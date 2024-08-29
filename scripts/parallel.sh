@@ -67,11 +67,9 @@ for ((i=1; i<=$1; i++)); do
             esito+=("eseguito") 
             tasks_per_job+=($num_tasks)
             # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-            # # cd ../
             # if [ "$nstep" -eq 10000 ]; then
             #     ./../scripts/notify_ok.sh "$nstep" "Allocate le risorse per il job ${4}_${3}_J${i} in stato ${job_status}. Esecuzione..."
             # fi
-            # # cd "Dati_$3/"
             # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
     done
@@ -79,7 +77,7 @@ for ((i=1; i<=$1; i++)); do
     ids+=("${job_id}")
 done
 
-# cd ../
+cd ../
 # ------------------FINE LANCIO----------------------------------------
 
 # Verifica del numero di tasks eseguiti dai jobs
@@ -96,7 +94,7 @@ if [ "$sum" -eq 0 ]; then
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-    ./../scripts/notify_ok.sh "J" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
+    ./scripts/notify_ok.sh "J" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 fi
 

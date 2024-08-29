@@ -4,7 +4,6 @@ set -x
 # Primo istante di tempo
 start_time=$(date +%s)
 total_tasks=$(ls -1 "Dati_$2"/output* 2>/dev/null | wc -l)
-MEDIA="${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 
 while screen -ls | grep -q "[0-9]\+\.${2}"; do
     sleep 1
@@ -41,9 +40,9 @@ for file in "Dati_$2"/output*.txt; do
 done
 echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
 
-# Conta il numero di file nella cartella e salva le prime 16 righe del primo file di media totale
+# Conta il numero di file nella cartella e salva le prime 16 righe del primo file in media totale
 R_tot=$(ls -1 "Dati_$2"/output* 2>/dev/null | wc -l)
-# R_tot=$(( $(ls -1 "Dati_$2" | wc -l) - 2 ))
+MEDIA="${3}_${2}_L${4}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 output_file=$(find "Dati_$2" -maxdepth 1 -type f -name "output*" | head -n 1)
 head -n 16 "$output_file" > "${MEDIA}"
 
