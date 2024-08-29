@@ -44,7 +44,8 @@ Parametri del Modello:
 > eps:   $(grep -oP '(?<=^eps=)\d+(\.\d+)?' "${1}")
 > alpha: $(grep -oP '(?<=^alpha=)\d+(\.\d+)?' "${1}")
 
-File di medie: ${file}
+File delle medie:
+${file}
 
 EOF
 
