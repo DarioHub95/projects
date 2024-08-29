@@ -68,6 +68,7 @@ for ((i=1; i<=$1; i++)); do
             job_pid=$!
             wait $job_pid
             rename_output_files
+            ((count++))
             esito+=("eseguito") 
             tasks_per_job+=($num_tasks)
         fi
