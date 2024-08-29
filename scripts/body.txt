@@ -1,10 +1,21 @@
-------------------------------
-    [ERRORE 350]
-------------------------------
+--------------------------------------
+[Dettagli della Simulazione]
+--------------------------------------
+Start Date: 29-08-2024 09:45:54
+End Date:   29-08-2024 09:59:01
+Durata:     00:13:07
 
-ERRORE NEL CALCOLO DELLE MEDIE 
+Modello selezionato: Anderson
+Osservabile scelto:  Energie
 
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
+Parametri del Modello:
+> L:     4
+> nstep: 100
+> Sz:    0
+> Jxy:   1
+> Jz:    0
+> eps:   5
+> alpha: 0
 
-[media.sh] Il file 'Anderson_Energie_L4_R3_09.43.49.txt' non contiene nessun valore medio. Uscita dallo screen media_Energie...
+File di medie: Anderson_Energie_L4_R3_09.45.54.txt
 

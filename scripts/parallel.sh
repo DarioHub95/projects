@@ -41,8 +41,8 @@ for ((i=1; i<=$1; i++)); do
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
-        # job_status=$(squeue -j $job_id -o "%t" -h)
-        job_status="PD"
+        job_status=$(squeue -j $job_id -o "%t" -h)
+        # job_status="PD"
         job_reason=$(squeue -j $job_id -o "%R" -h)
             squeue -u adecandia
         sleep 15
@@ -72,6 +72,7 @@ for ((i=1; i<=$1; i++)); do
             tasks_per_job+=($num_tasks)
         fi
     done
+    echo "fuori dal while"
     sleep 15
     jobs+=("${4}_${3}_J${i}")
     ids+=("${job_id}")
@@ -85,7 +86,7 @@ done
 
 if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-    ./scripts/notify_errors.sh 250 "[parallel.sh] Superato il limite inferiore di 100 task per tutti i job. Interruzione della simulazione."
+    ./../scripts/notify_errors.sh 250 "[parallel.sh] Superato il limite inferiore di 100 task per tutti i job. Interruzione della simulazione."
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
