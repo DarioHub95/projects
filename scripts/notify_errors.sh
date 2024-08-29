@@ -81,6 +81,6 @@ echo ""
 # Esegui il push del commit al repository remoto
 # git pull
 git add .
-git commit -a -m "IBiSco: Errore!"
+git commit -a -m "IBiSco: Errore ${error_code}!"
 git push origin master
 echo "Commit e push completati."
