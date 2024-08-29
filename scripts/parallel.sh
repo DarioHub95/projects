@@ -79,6 +79,11 @@ for ((i=1; i<=$1; i++)); do
     ids+=("${job_id}")
 done
 
+# ------------------FINE LANCIO----------------------------------------
+cd ../
+
+
+
 # Verifica del numero di tasks eseguiti dai jobs
 sum=0
 for value in "${tasks_per_job[@]}"; do
@@ -87,12 +92,12 @@ done
 
 if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-    ./../scripts/notify_errors.sh 250 "[parallel.sh] Superato il limite inferiore di 100 task per tutti i job. Interruzione della simulazione."
+    ./scripts/notify_errors.sh 250 "[parallel.sh] Superato il limite inferiore di 100 task per tutti i job. Interruzione della simulazione."
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-    ./../scripts/notify_ok.sh "J" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
+    ./scripts/notify_ok.sh "J" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 fi
 

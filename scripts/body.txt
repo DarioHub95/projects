@@ -1,9 +1,9 @@
 --------------------------------------
 [Dettagli della Simulazione]
 --------------------------------------
-Start Date: 29-08-2024 09:59:15
-End Date:   29-08-2024 10:04:59
-Durata:     00:05:44
+Start Date: 29-08-2024 10:06:38
+End Date:   29-08-2024 10:13:02
+Durata:     00:06:24
 
 Modello selezionato: Anderson
 Osservabile scelto:  Energie
@@ -17,5 +17,5 @@ Parametri del Modello:
 > eps:   5
 > alpha: 0
 
-File di medie: Anderson_Energie_L4_R6_09.59.15.txt
+File di medie: Anderson_Energie_L4_R3_10.06.38.txt
 
