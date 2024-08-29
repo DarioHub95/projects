@@ -1,10 +1,21 @@
-------------------------------
-    [ERRORE 350]
-------------------------------
+--------------------------------------
+[Dettagli della Simulazione]
+--------------------------------------
+Start Date: 29-08-2024 14:25:24
+End Date:   29-08-2024 14:25:32
+Durata:     00:00:08
 
-ERRORE NEL CALCOLO DELLE MEDIE 
+Modello selezionato: Ising
+Osservabile scelto:  Energie
 
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
+Parametri del Modello:
+> L:     4
+> nstep: 
+> Sz:    
+> Jxy:   1
+> Jz:    
+> eps:   
+> alpha: 
 
-[media.sh] Il file 'Ising_Energie_L4_R390_14.25.24.txt' non contiene nessun valore medio. Uscita dallo screen media_Energie...
+File di medie: Ising_Energie_L4_R390_14.25.24.txt
 
