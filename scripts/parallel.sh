@@ -42,7 +42,7 @@ for ((i=1; i<=$1; i++)); do
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
         job_status=$(squeue -j $job_id -o "%t" -h)
-        job_reason=$(squeue -j $job_id -o "%R" -h)
+        # job_reason=$(squeue -j $job_id -o "%R" -h)
         sleep 5
 
         # Controlla se il job è in attesa di risorse
