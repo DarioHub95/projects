@@ -1,10 +1,10 @@
 ------------------------------
-    [ERRORE 110]
+    [ERRORE 350]
 ------------------------------
 
-ESEGUIBILE TROVATO 
+ERRORE NEL CALCOLO DELLE MEDIE 
 
-Il file 'a.out' non è stato trovato. 
+Il calcolo delle medie non è riuscito a causa di dati malformati. 
 
-[parallel.sh] Il file 'a.out' non esiste.
+[media.sh] Il file 'Anderson_Energie_L4_R1180_23.04.03.txt' non contiene nessun valore medio. Uscita dallo screen media_Energie...
 

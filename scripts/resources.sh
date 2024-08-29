@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Contare il numero di nodi in stato "allocated", "mixed" e "idle"
 allocated_count=$(sinfo -lN | grep " parallel" | awk '$4 == "allocated"' | wc -l)
 mixed_count=$(sinfo -lN | grep " parallel" | awk '$4 == "mixed"' | wc -l)

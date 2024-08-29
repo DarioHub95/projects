@@ -26,8 +26,8 @@ case $error_code in
         error_message_2="Spazio su disco insufficiente per creare o spostare i file."
         ;;
     250)
-        error_message_1="ERRORE DI ESECUZIONE DEL JOB"
-        error_message_2="Il job non è riuscito a partire a causa di risorse non disponibili."
+        error_message_1="ERRORE DI ESECUZIONE DEI JOB"
+        error_message_2="I job non sono riusciti a partire a causa di risorse non disponibili."
         ;;
     300)
         error_message_1="ERRORE NELLA MODIFICA DEI FILE DI OUTPUT"
@@ -53,10 +53,7 @@ case $error_code in
         error_message_1="ERRORE NEL PROCESSO DI PULIZIA"
         error_message_2="La rimozione dei file temporanei non è riuscita."
         ;;
-    *)
-        error_message_1="ERRORE SCONOSCIUTO"
-        error_message_2="Codice di errore non riconosciuto."
-        ;;
+
 esac
 
 

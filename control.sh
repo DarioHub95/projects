@@ -9,9 +9,9 @@ media_script_path="scripts/media.sh"
 
 echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]-----------------------------------------------|${NC}"
 echo ""
-echo "Rimozione file di log..."
+echo "Rimozione file 'srun.log'..."
 echo ""
-rm -rf Job_* srun.log
+rm -rf srun.log
 if ls *.txt 1> /dev/null 2>&1; then
 echo "Sposto file di media..."
 echo ""
@@ -201,7 +201,7 @@ echo ""
 echo "Creazione dello screen: media_${var}"
 echo "Esecuzione di $media_script_path..."
 echo ""
-screen -dmS "media_${var}" bash -c "bash $media_script_path ${O} ${var} ${mod} ${L} ${J}; exec bash"
+screen -dmS "media_${var}" bash -c "bash $media_script_path ${O} ${var} ${mod} ${L}; exec bash"
 sleep 1
 
 echo -e "${GREEN}[TASK 7 - SCREEN ATTIVI]---------------------------------------------------|${NC}"
