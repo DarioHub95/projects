@@ -196,13 +196,13 @@ echo ""
 screen -dmS "${var}" bash -c "bash $script_path ${J} ${R} ${var} ${mod}; exec bash"
 sleep 1
 
-echo -e "${GREEN}[TASK 6 - SCREEN PER LA MEDIA]---------------------------------------------|${NC}"
-echo ""
-echo "Creazione dello screen: media_${var}"
-echo "Esecuzione di $media_script_path..."
-echo ""
-screen -dmS "media_${var}" bash -c "bash $media_script_path ${O} ${var} ${mod} ${L}; exec bash"
-sleep 1
+# echo -e "${GREEN}[TASK 6 - SCREEN PER LA MEDIA]---------------------------------------------|${NC}"
+# echo ""
+# echo "Creazione dello screen: media_${var}"
+# echo "Esecuzione di $media_script_path..."
+# echo ""
+# screen -dmS "media_${var}" bash -c "bash $media_script_path ${O} ${var} ${mod} ${L}; exec bash"
+# sleep 1
 
 echo -e "${GREEN}[TASK 7 - SCREEN ATTIVI]---------------------------------------------------|${NC}"
 echo ""

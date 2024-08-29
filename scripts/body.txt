@@ -1,21 +1,10 @@
---------------------------------------
-[Dettagli della Simulazione]
---------------------------------------
-Start Date: 29-08-2024 14:25:24
-End Date:   29-08-2024 14:25:32
-Durata:     00:00:08
+------------------------------
+    [ERRORE 250]
+------------------------------
 
-Modello selezionato: Ising
-Osservabile scelto:  Energie
+ERRORE DI ESECUZIONE DEI JOB 
 
-Parametri del Modello:
-> L:     4
-> nstep: 
-> Sz:    
-> Jxy:   1
-> Jz:    
-> eps:   
-> alpha: 
+I job non sono riusciti a partire a causa di risorse non disponibili. 
 
-File di medie: Ising_Energie_L4_R390_14.25.24.txt
+[parallel.sh] Superato il limite inferiore di 100 task per tutti i job. Interruzione della simulazione.
 
