@@ -47,7 +47,7 @@ Parametri del Modello:
 File delle medie:
 ${file}
 
-No di file eliminati: $((${3} - $R ))
+N° di file eliminati: $((${3} - $R ))
 Questo è il numero di file esclusi dal calcolo della media poichè avevano almeno il 20% di '-nan'.
 EOF
 
