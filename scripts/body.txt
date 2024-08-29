@@ -1,10 +1,9 @@
-------------------------------
-    [ERRORE 250]
-------------------------------
+--------------------------------------
+[Dettagli Job Lanciati]
+--------------------------------------
 
-ERRORE DI ESECUZIONE DEI JOB 
+Task totali: 5
+Job totali:  0
 
-I job non sono riusciti a partire a causa di risorse non disponibili. 
 
-[parallel.sh] Superato il limite inferiore di 50 task per tutti i job. Interruzione della simulazione.
-
+| Job Name | Job ID | Task per Job | Esito   |

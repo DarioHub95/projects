@@ -52,7 +52,7 @@ for ((i=1; i<=$1; i++)); do
             echo "Riduzione del numero di task di 10."
             ((num_tasks -= 10))
             if (( $num_tasks < 50 || $num_tasks < 0 )); then
-                echo "Il numero di task è inferiore a 100. Cancellazione del job ${4}_${3}_J${i}..."
+                echo "Il numero di task è inferiore a 50 o <0. Cancellazione del job ${4}_${3}_J${i}..."
                 ((count++))
                 scancel $job_id
                 esito+=("cancellato a causa di: ${job_reason}")
