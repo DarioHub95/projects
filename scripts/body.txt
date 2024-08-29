@@ -6,5 +6,5 @@ ERRORE NEL CALCOLO DELLE MEDIE
 
 Il calcolo delle medie non è riuscito a causa di dati malformati. 
 
-[media.sh] Il file 'Anderson_Energie_L4_R6_09.07.59.txt' non contiene nessun valore medio. Uscita dallo screen media_Energie...
+[media.sh] Il file 'Anderson_Energie_L4_R3_09.11.29.txt' non contiene nessun valore medio. Uscita dallo screen media_Energie...
 
