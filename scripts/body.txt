@@ -1,9 +1,21 @@
 --------------------------------------
-[Dettagli Job Lanciati]
+[Dettagli della Simulazione]
 --------------------------------------
+Start Date: 29-08-2024 14:38:19
+End Date:   29-08-2024 14:38:20
+Durata:     00:00:01
 
-Task totali: 5
-Job totali:  0
+Modello selezionato: Anderson
+Osservabile scelto:  Energie
 
+Parametri del Modello:
+> L:     4
+> nstep: 300
+> Sz:    0
+> Jxy:   1
+> Jz:    0
+> eps:   5
+> alpha: 0
 
-| Job Name | Job ID | Task per Job | Esito   |
+File di medie: Anderson_Energie_L4_R5_14.38.19.txt
+
