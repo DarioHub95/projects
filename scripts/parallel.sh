@@ -11,7 +11,7 @@ tasks_per_job=()
 esito=()
 jobs=()
 ids=()
-nstep=$(grep -oP '(?<=^nstep=)\d+' "main.c")
+nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
 
 # Pulizia dei file output esistenti
 if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
@@ -28,20 +28,21 @@ else
     echo "Il file 'a.out' è stato spostato nella directory 'Dati_$3'."
 fi
 
-#LANCIO DEI JOB-----------------------------------
 cd Dati_$3/
+
+
+#--LANCIO DEI JOB - MODO 2 ----------------------------------
 
 for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     count=0
     while [ $count -eq 0 ]; do
         srun --job-name="${4}_${3}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        sleep 2
+        sleep 1
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
         job_status=$(squeue -j $job_id -o "%t" -h)
-        # job_status="PD"
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
         # Controlla se il job è in attesa di risorse
@@ -67,9 +68,9 @@ for ((i=1; i<=$1; i++)); do
             esito+=("eseguito") 
             tasks_per_job+=($num_tasks)
             # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-            # if [ "$nstep" -eq 10000 ]; then
-            #     ./../scripts/notify_ok.sh "$nstep" "Allocate le risorse per il job ${4}_${3}_J${i} in stato ${job_status}. Esecuzione..."
-            # fi
+            if [ "$nstep" -eq 10000 ]; then
+                ./../scripts/notify_ok.sh "Dati acquisiti! Job ${4}_${3}_J${i} completato con $num_tasks task!" "${4}_${3}_J${i}"
+            fi
             # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
     done
@@ -78,7 +79,7 @@ for ((i=1; i<=$1; i++)); do
 done
 
 cd ../
-# ------------------FINE LANCIO----------------------------------------
+# ------------------FINE LANCIO MODO 2----------------------------------------
 
 # Verifica del numero di tasks eseguiti dai jobs
 sum=0

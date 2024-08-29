@@ -91,19 +91,15 @@ done
 else
 
 output_file="../scripts/body.txt"
-git_message="Eseguito Job ..."
+git_message="Job eseguito!"
 
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
 --------------------------------------
-[Dettaglio Job eseguito]
+[Dettaglio Job "${2}"]
 --------------------------------------
 
-Task totali: ${2}
-Job totali:  ${#jobs[@]}
-
-
-| Job Name | Job ID | Task per Job | Esito   |
+"${1}"
 EOF
 
 
