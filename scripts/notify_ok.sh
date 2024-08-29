@@ -95,7 +95,7 @@ for ((i=0; i<max_len; i++)); do
     job_name=${jobs[$i]:-""}
     
     # Stampa della riga formattata
-    printf "| %-8s | %-6s | %-12s | %-7s |\n" "$job_name" "$job_id" "$task_per_job" "$esito_val" >> $output_file
+    printf "| %-8s | %-6s | %-12s | %-7s |\n" "$3" "$job_id" "$task_per_job" "$esito_val" >> $output_file
 done
 
 # EOF
