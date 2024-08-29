@@ -113,4 +113,4 @@ fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 
 
-# screen -X quit
+screen -X quit
