@@ -84,7 +84,7 @@ if [ "$sum" -eq 0 ]; then
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-    ./scripts/notify_ok.sh "J" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
+    ./../scripts/notify_ok.sh "J" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 fi
 
@@ -100,4 +100,4 @@ fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 
 
-screen -X quit
+# screen -X quit
