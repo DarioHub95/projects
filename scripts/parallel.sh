@@ -43,7 +43,7 @@ for ((i=1; i<=$1; i++)); do
         job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
         job_status=$(squeue -j $job_id -o "%t" -h)
         # job_reason=$(squeue -j $job_id -o "%R" -h)
-        sleep 5
+        sleep 10
 
         # Controlla se il job è in attesa di risorse
         if [[ "$job_status" == "PD" ]]; then
@@ -52,6 +52,8 @@ for ((i=1; i<=$1; i++)); do
             scancel $job_id
             echo "Riduzione del numero di task di 10."
             ((num_tasks -= 10))
+                    sleep 10
+
             if ((num_tasks < 50)); then
                 echo "Il numero di task è inferiore a 100. Cancellazione del job ${4}_${3}_J${i}..."
                 scancel $job_id
