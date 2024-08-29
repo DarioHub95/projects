@@ -88,7 +88,6 @@ done
 
 if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-    cd ../
     ./scripts/notify_errors.sh 250 "[parallel.sh] Superato il limite inferiore di 50 task per tutti i job. Interruzione della simulazione."
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 else
