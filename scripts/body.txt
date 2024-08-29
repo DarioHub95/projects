@@ -1,21 +1,10 @@
---------------------------------------
-[Dettagli della Simulazione]
---------------------------------------
-Start Date: 29-08-2024 09:30:00
-End Date:   29-08-2024 09:30:59
-Durata:     00:00:59
+------------------------------
+    [ERRORE 100]
+------------------------------
 
-Modello selezionato: Anderson
-Osservabile scelto:  Corr
+FILE O DIRECTORY NON TROVATI 
 
-Parametri del Modello:
-> L:     tw
-> nstep: 100
-> Sz:    0
-> Jxy:   1
-> Jz:    0
-> eps:   5
-> alpha: 0
+I file di dati o la directory 'Dati' non esistono. 
 
-File di medie: Anderson_Corr_tw_L8_R3_09.30.00.txt
+[media.sh] La cartella Dati_Energie non contiene i dati. Eliminazione ed esco dallo screen media_Energie...
 
