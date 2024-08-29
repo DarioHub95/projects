@@ -42,6 +42,8 @@ Parametri del Modello:
 > eps:   $(grep -oP '(?<=^eps=)\d+(\.\d+)?' "${1}")
 > alpha: $(grep -oP '(?<=^alpha=)\d+(\.\d+)?' "${1}")
 
+File di medie: ${file}
+
 EOF
 
 echo "Il file $output_file è stato generato con successo."
