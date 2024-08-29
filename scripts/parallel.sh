@@ -45,7 +45,7 @@ for ((i=1; i<=$1; i++)); do
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
         # Controlla se il job è in attesa di risorse
-        if [[ "$job_status" == *"PD"* ]]; then
+        if [[ "$job_status" == "PD" ]]; then
             echo "Il job ${4}_${3}_J${i} non è riuscito a partire poichè in pending..."
             echo "Cancellazione del job..."
             scancel $job_id
