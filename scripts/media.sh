@@ -10,11 +10,7 @@ while screen -ls | grep -q "[0-9]\+\.${2}"; do
 done
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [ ! -d "Dati_$2" ]; then
-    ./scripts/notify_errors.sh 100 "[media.sh] La cartella Dati_$2 non esiste. Uscita dallo screen media_$2..." 
-    screen -X quit
-elif [ -d "Dati_$2" ] && [ "$(ls Dati_$2 | wc -l)" -eq 2 ]; then
-    # Se la cartella contiene solo 2 file 
+if [ -d "Dati_$2" ] && [ "$(ls Dati_$2 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
     ./scripts/notify_errors.sh 100 "[media.sh] La cartella Dati_$2 non contiene i dati di output. Eliminazione ed esco dallo screen media_$2..." 
     rm -rf "Dati_$2"
     screen -X quit

@@ -178,17 +178,17 @@ sed -i "s/int Oss=[0-9]*;/int Oss=$O;/" "main.c"
 # Compila i file sorgente C
 echo -e "${GREEN}[TASK 4 - COMPILAZIONE]----------------------------------------------------|${NC}"
 echo ""
+# Crea una directory per i file di output
+mkdir -p "Dati_${var}"
+echo "Creata la directory Dati_${var} per i file di output..."
+echo ""
 echo "Compilazione dei file sorgente 'main.c' 'loop.c' 'kernel.c'..."
-mpiCC -O3 -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/adecandia/.lib2/ -lpvm
+mpiCC -O3 -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/adecandia/.lib2/ -lpvm -o "Dati_${var}"/a.out
 # g++ -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/adecandia/.lib2/ -lpvm -o a.out
 echo ""
 
 # Loop per creare screen e eseguire comandi
 echo -e "${GREEN}[TASK 5 - ESECUZIONE SIMULAZIONI]------------------------------------------|${NC}"
-echo ""
-# Crea una directory per i file di output
-mkdir -p "Dati_${var}"
-echo "Creata la directory Dati_${var} per i file di output..."
 echo ""
 echo "Creazione dello screen: ${var}"
 echo "Esecuzione di $script_path..."

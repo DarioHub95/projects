@@ -18,21 +18,14 @@ if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
 rm Dati_$3/output*
 fi
 
-if [ ! -f "a.out" ]; then
-    #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+if [ ! -f "Dati_${3}/a.out" ]; then
     scancel $job_id
     ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste." 
-    #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-else
-    mv a.out Dati_$3/
-    echo "Il file 'a.out' è stato spostato nella directory 'Dati_$3'."
 fi
+#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 
 cd Dati_$3/
-
-
-#--LANCIO DEI JOB - MODO 2 ----------------------------------
-
 for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     count=0
@@ -67,19 +60,17 @@ for ((i=1; i<=$1; i++)); do
             ((count++))
             esito+=("eseguito") 
             tasks_per_job+=($num_tasks)
-            # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
             if [ "$nstep" -eq 10000 ]; then
                 ./../scripts/notify_ok.sh "Dati acquisiti! Job ${4}_${3}_J${i} completato con $num_tasks task!" "${4}_${3}_J${i}"
             fi
-            # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
     done
     jobs+=("${4}_${3}_J${i}")
     ids+=("${job_id}")
 done
-
 cd ../
-# ------------------FINE LANCIO MODO 2----------------------------------------
 
 # Verifica del numero di tasks eseguiti dai jobs
 sum=0
