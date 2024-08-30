@@ -10,7 +10,6 @@ if [ "$1" == "S" ]; then
 #Formattazione
 #./scripts/notify_ok.sh "S" "<file>" $start_time $total_tasks
 
-
 output_file="scripts/body.txt"
 git_message="Simulazione eseguita con successo!"
 
@@ -30,7 +29,7 @@ hms=$(date -u -d @$time_diff +'%H:%M:%S')
 # Assembla il contenuto del body.txt
 cat <<EOF > $output_file
 --------------------------------------
-[Dettagli della Simulazione]
+    [Dettagli della Simulazione]
 --------------------------------------
 Start Date: $(date -u -d @$start_time +"%d-%m-%Y %H:%M:%S")
 End Date:   $(date -u -d @$end_time +"%d-%m-%Y %H:%M:%S")
@@ -51,11 +50,15 @@ Parametri del Modello:
 File delle medie:
 ${2}
 
-N° di file eliminati: $(4 - R )
-Questo è il numero di file esclusi dal calcolo della media poichè avevano almeno il 20% di '-nan'.
+N° di file output eliminati: $(($4 - R))
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
+
 EOF
 
 elif [ "$1" == "JJ" ]; then
+
+#Formattazione
+# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
 
 output_file="scripts/body.txt"
 git_message="Jobs lanciati con successo!"
@@ -70,7 +73,7 @@ if [ ${#ids[@]} -gt $max_len ]; then max_len=${#ids[@]}; fi
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
 --------------------------------------
-[Dettagli Job Lanciati]
+       [Dettagli Job Lanciati]
 --------------------------------------
 
 N° di Task impostati: "${2}"
