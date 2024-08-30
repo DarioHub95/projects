@@ -18,9 +18,9 @@ modello="${components[0]}"        # Ising
 osservabile="${components[1]}"     # Energie
 L="${components[2]#L}"            # 12
 R="${components[3]#R}"            # 1590
-
+start_time=$2
 end_time=$(date +%s)
-time_diff=$((end_time - $2))
+time_diff=$((end_time - start_time))
 hms=$(date -u -d @$time_diff +'%H:%M:%S')
 
 # Assembla il contenuto del body.txt
