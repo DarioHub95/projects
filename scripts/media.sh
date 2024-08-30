@@ -15,7 +15,7 @@ if [ ! -d "Dati_$2" ]; then
     screen -X quit
 elif [ -d "Dati_$2" ] && [ "$(ls Dati_$2 | wc -l)" -eq 2 ]; then
     # Se la cartella contiene solo 2 file 
-    ./scripts/notify_errors.sh 100 "[media.sh] La cartella Dati_$2 non contiene i dati. Eliminazione ed esco dallo screen media_$2..." 
+    ./scripts/notify_errors.sh 100 "[media.sh] La cartella Dati_$2 non contiene i dati di output. Eliminazione ed esco dallo screen media_$2..." 
     rm -rf "Dati_$2"
     screen -X quit
 fi
@@ -88,10 +88,12 @@ mv "${MEDIA}.tmp" "${MEDIA}"
 rm temp_*.txt
 echo ""
 
-
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ $(wc -l < "${MEDIA}") -le 20 ]; then
     ./scripts/notify_errors.sh 350 "[media.sh] Il file '${MEDIA}' non contiene nessun valore medio. Uscita dallo screen media_$2..." 
+    screen -X quit
+if [ ! -f "${MEDIA}" ]; then
+    ./scripts/notify_errors.sh 200 "[media.sh] Il file '${MEDIA}' non esiste. Uscita dallo screen media_$2..." 
     screen -X quit
 fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
@@ -99,6 +101,7 @@ fi
 # Inserisci riga di Data e ora e di tasks nel file di media totale
 sed -i "1i Tasks: ${R_tot}" "${MEDIA}"
 sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${MEDIA}"
+sed -i '/seed/d' "${MEDIA}"
 
 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 ./scripts/notify_ok.sh "${MEDIA}" $start_time $total_tasks

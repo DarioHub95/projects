@@ -1,24 +1,10 @@
---------------------------------------
-[Dettagli della Simulazione]
---------------------------------------
-Start Date: 29-08-2024 20:29:56
-End Date:   30-08-2024 09:09:16
-Durata:     12:39:20
+------------------------------
+    [ERRORE 250]
+------------------------------
 
-Modello selezionato: Anderson
-Osservabile scelto:  Energie
+ERRORE DI ESECUZIONE DEI JOB 
 
-Parametri del Modello:
-> L:     4
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0
-> eps:   5
-> alpha: 0
+I job non sono riusciti a partire a causa di risorse non disponibili. 
 
-File delle medie:
-Anderson_Energie_L4_R1393_20.29.56.txt
+[parallel.sh] Superato il limite inferiore di 50 task per tutti i job. Interruzione della simulazione.
 
-N° di file eliminati: -1393
-Questo è il numero di file esclusi dal calcolo della media poichè avevano almeno il 20% di '-nan'.

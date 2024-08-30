@@ -22,8 +22,8 @@ case $error_code in
         error_message_2="Non hai i permessi necessari per eseguire i comandi richiesti."
         ;;
     200)
-        error_message_1="PROBLEMI DI SPAZIO SU DISCO"
-        error_message_2="Spazio su disco insufficiente per creare o spostare i file."
+        error_message_1="FILE DI MEDIA NON TROVATO"
+        error_message_2="Il file non è stato generato."
         ;;
     250)
         error_message_1="ERRORE DI ESECUZIONE DEI JOB"
@@ -37,17 +37,9 @@ case $error_code in
         error_message_1="ERRORE NEL CALCOLO DELLE MEDIE"
         error_message_2="Il calcolo delle medie non è riuscito a causa di dati malformati."
         ;;
-    400)
-        error_message_1="ERRORE DI TEMPO DI ESECUZIONE"
-        error_message_2="La differenza di tempo calcolata per la durata del processo è errata."
-        ;;
     450)
         error_message_1="ERRORE DI NOTIFICA"
         error_message_2="La notifica di completamento non è stata inviata correttamente."
-        ;;
-    500)
-        error_message_1="USCITA DALLA SCREEN"
-        error_message_2="Il comando per uscire dallo screen non è riuscito."
         ;;
     550)
         error_message_1="ERRORE NEL PROCESSO DI PULIZIA"
