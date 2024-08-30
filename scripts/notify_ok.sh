@@ -28,7 +28,7 @@ cat <<EOF > $output_file
 --------------------------------------
 [Dettagli della Simulazione]
 --------------------------------------
-Start Date: $(date -u -d @$2 +"%d-%m-%Y %H:%M:%S")
+Start Date: $(date -u -d @$start_time +"%d-%m-%Y %H:%M:%S")
 End Date:   $(date -u -d @$end_time +"%d-%m-%Y %H:%M:%S")
 Durata:     ${hms}
 
