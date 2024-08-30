@@ -94,12 +94,12 @@ done
 
 if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-    ./scripts/notify_errors.sh 250 "[parallel.sh] Superato il limite inferiore di 50 task per tutti i job. Interruzione della simulazione."
+    ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per ${4}_${3}: superato il limite inferiore di 50 task per tutti i job."
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
+    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}" "${4}"   # $2 ---> input_tasks (R)
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 fi
 

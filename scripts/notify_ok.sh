@@ -58,17 +58,23 @@ EOF
 elif [ "$1" == "JJ" ]; then
 
 #Formattazione
-# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
+# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}" 
 
 output_file="scripts/body.txt"
 git_message="Jobs lanciati con successo!"
 
 # vars
+tasks_per_job=("${@:5:3}") # I prossimi 3 argomenti sono gli elementi di tasks_per_job
+esito=("${@:8:3}")         # I successivi 3 argomenti sono gli elementi di esito
+jobs=("${@:11:3}")         # I successivi 3 argomenti sono gli elementi di jobs
+ids=("${@:14:3}")          # I successivi 3 argomenti sono gli elementi di ids
+
 # Calcolo del numero massimo di righe tra gli array
 max_len=${#tasks_per_job[@]}
 if [ ${#esito[@]} -gt $max_len ]; then max_len=${#esito[@]}; fi
 if [ ${#jobs[@]} -gt $max_len ]; then max_len=${#jobs[@]}; fi
 if [ ${#ids[@]} -gt $max_len ]; then max_len=${#ids[@]}; fi
+
 
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
@@ -76,11 +82,13 @@ cat <<EOF > "$output_file"
        [Dettagli Job Lanciati]
 --------------------------------------
 
-N° di Task impostati: "${2}"
-N° di Task eseguiti:   ${sum}
+Modello selezionato: ${4}
 
-N° di Job totali: ${#jobs[@]}
-N° di Job eseguiti: ${#jobs[@]}
+N° di Task richiesti: $((${2}*${#jobs[@]}))
+N° di Task eseguiti:  ${3}
+
+N° di Job richiesti: ${#jobs[@]}
+N° di Job eseguiti: ${ids}
 
 
 | Job Name | Job ID | Task per Job | Esito   |
@@ -93,7 +101,7 @@ for ((i=0; i<max_len; i++)); do
     job_name=${jobs[$i]:-""}
     
     # Stampa della riga formattata
-    printf "| %-8s | %-6s | %-12s | %-7s |\n" "$3" "$job_id" "$task_per_job" "$esito_val" >> $output_file
+    printf "| %-8s | %-6s | %-12s | %-7s |\n" "$job_name" "$job_id" "$task_per_job" "$esito_val" >> $output_file
 done
 
 # EOF
