@@ -64,20 +64,26 @@ output_file="scripts/body.txt"
 git_message="Jobs lanciati con successo!"
 
 # vars
-max_len=$(( ( $# - 4 ) / 4 ))
-tasks_per_job=("${@:5:max_len}") # I prossimi 3 argomenti sono gli elementi di tasks_per_job
-esito=("${@:5+max_len:max_len}")         # I successivi 3 argomenti sono gli elementi di esito
-jobs=("${@:5+max_len*2:max_len}")         # I successivi 3 argomenti sono gli elementi di jobs
-ids=("${@:5+max_len*3:max_len}")          # I successivi 3 argomenti sono gli elementi di ids
+x=$(( ( $# - 4 ) / 4 ))
+tasks_per_job=("${@:5:x}") # I prossimi 3 argomenti sono gli elementi di tasks_per_job
+esito=("${@:5+x:x}")         # I successivi 3 argomenti sono gli elementi di esito
+jobs=("${@:5+x*2:x}")         # I successivi 3 argomenti sono gli elementi di jobs
+ids=("${@:5+x*3:x}")          # I successivi 3 argomenti sono gli elementi di ids
 basename="${4%.txt}"
 IFS='_' read -r -a components <<< "$basename"
 modello="${components[0]}"        # Ising
 osservabile="${components[1]}"     # Energie
+max_len=0
 
-# Calcolo del numero massimo di righe tra gli array
-if [ ${#esito[@]} -gt $max_len ]; then max_len=${#esito[@]}; fi
-if [ ${#jobs[@]} -gt $max_len ]; then max_len=${#jobs[@]}; fi
-if [ ${#ids[@]} -gt $max_len ]; then max_len=${#ids[@]}; fi
+# Itera su tutte le componenti di tutti gli array e trova la lunghezza massima
+for element in "${jobs[@]}" "${ids[@]}" "${tasks_per_job[@]}" "${esito[@]}"; do
+    length=${#element}
+    if [ $length -gt $max_len ]; then
+        max_len=$length
+    fi
+    # Stampa la lunghezza corrente per il debug (opzionale)
+    echo "Lunghezza corrente: $length"
+done
 
 
 # Assembla il contenuto del body.txt
@@ -95,25 +101,39 @@ N° di Task eseguiti:  ${3}
 N° di Job richiesti: ${#jobs[@]}
 
 Dettagli Job Lanciati:
-| Job Name | Job ID | Task per Job | Esito   |
+
 EOF
 
+printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$jobs" "$max_len" "$ids" "$max_len" "$tasks_per_job" "$max_len" "$esito" >> $output_file
+printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" >> $output_file
 
-printf "| %-8s | %-6s | %-12s | %-7s |\n" "Job Name" "Job ID" "Task per Job" "Esito" >> $output_file
 
-for ((i=0; i<max_len; i++)); do
+
+for ((i=1; i<x; i++)); do
     job_id=${ids[$i]:-""}
     task_per_job=${tasks_per_job[$i]:-""}
     esito_val=${esito[$i]:-""}
     job_name=${jobs[$i]:-""}
     
     # Stampa della riga formattata
-    printf "| %-8s | %-6s | %-12s | %-7s |\n" "$job_name" "$job_id" "$task_per_job" "$esito_val" >> $output_file
+    printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$job_name" "$max_len" "$job_id" "$max_len" "$task_per_job" "$max_len" "$esito_val" >> $output_file
 done
+
+
+printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" >> $output_file
 
 # EOF
 
 elif [ "$1" == "J" ]; then
+
+#Formattazione
+# ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Dati acquisiti! Job ${4}_${3}_J${i} completato con $num_tasks task! "
 
 output_file="../scripts/body.txt"
 git_message="Job info"
@@ -130,17 +150,17 @@ EOF
 
 fi
 
-# #-------------------GITHUB-------------------------------------#
-# echo ""
-# echo "Eseguo il commit e il push..."
-# echo ""
+#-------------------GITHUB-------------------------------------#
+echo ""
+echo "Eseguo il commit e il push..."
+echo ""
 
-# # Esegui il push del commit al repository remoto
-# # git pull
-# git add -A .
-# git commit -a -m "IBiSco: ${git_message}"
-# git push origin master
-# echo "Commit e push completati."
-# #-------------------GITHUB-------------------------------------#
+# Esegui il push del commit al repository remoto
+# git pull
+git add -A .
+git commit -a -m "IBiSco: ${git_message}"
+git push origin master
+echo "Commit e push completati."
+#-------------------GITHUB-------------------------------------#
 
 

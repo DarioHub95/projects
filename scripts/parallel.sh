@@ -7,10 +7,10 @@ rename_output_files() {
         mv "$file" "output_J${i}_${file#output-}"
     done
 }
-tasks_per_job=()
-esito=()
-jobs=()
-ids=()
+tasks_per_job=("Tasks")
+esito=("Esito")
+jobs=("Job Name")
+ids=("Job ID")
 nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
 cpu_idle=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}');
 
@@ -47,7 +47,7 @@ for ((i=1; i<=$1; i++)); do
         #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
             if [[ "$job_status" == "R" ]]; then
             echo "Il job ${4}_${3}_J${i} partito!"
-            ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato con $num_tasks task!"
+            ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato con $num_tasks task! "
             fi
         #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
@@ -63,7 +63,7 @@ for ((i=1; i<=$1; i++)); do
                 echo "Il numero di task è inferiore a 50 o <0. Cancellazione del job ${4}_${3}_J${i}..."
                 ((count++))
                 scancel $job_id
-                esito+=("cancellato a causa di: ${job_reason}")
+                esito+=("Cancellato a causa di: ${job_reason}")
                 tasks_per_job+=(0)
             fi
         else
@@ -72,11 +72,11 @@ for ((i=1; i<=$1; i++)); do
             wait $job_pid
             rename_output_files
             ((count++))
-            esito+=("eseguito") 
+            esito+=("Eseguito") 
             tasks_per_job+=($num_tasks)
             #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
             if [ "$nstep" -eq 10000 ]; then
-                ./../scripts/notify_ok.sh "J" "Dati acquisiti! Job ${4}_${3}_J${i} completato con $num_tasks task!" "${4}_${3}_J${i}"
+                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Dati acquisiti! Job ${4}_${3}_J${i} completato con $num_tasks task! "
             fi
             #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
@@ -99,7 +99,7 @@ if [ "$sum" -eq 0 ]; then
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}_${3}" "${1}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
+    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}_${3}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 fi
 
