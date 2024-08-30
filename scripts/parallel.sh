@@ -40,7 +40,7 @@ for ((i=1; i<=$1; i++)); do
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
         # se la diff è di 450 tasks con le cpu, per una sola volta aspetta 10 min
-        if (( $((cpu_idle - num_tasks)) < 450 && $((cpu_idle - num_tasks)) >= 430 && nstep == 10000 )); then
+        if (( cpu_idle - num_tasks < 450 && cpu_idle - num_tasks >= 430 && $nstep == 10000 )); then
         echo "Attendo 10 min che il job ${4}_${3}_J${i} parta..."
         sleep 600
         job_status=$(squeue -j $job_id -o "%t" -h)
