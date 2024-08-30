@@ -98,4 +98,4 @@ else
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 fi
 
-# screen -X quit
+screen -X quit
