@@ -4,13 +4,13 @@ echo ""
 echo "Generazione del file $output_file per email di notifica..."
 echo ""
 
-if [ "$1" != "J" ]; then
+if [ "$1" == "S" ]; then
 
 output_file="scripts/body.txt"
-git_message="Simulazione eseguita con successo"
+git_message="Simulazione eseguita con successo!"
 
 # Estrai i valori dalle parti del nome del file
-file=$1
+# file=$2
 basename="${file%.txt}"
 IFS='_' read -r -a components <<< "$basename"
 
@@ -18,7 +18,7 @@ modello="${components[0]}"        # Ising
 osservabile="${components[1]}"     # Energie
 L="${components[2]#L}"            # 12
 R="${components[3]#R}"            # 1590
-start_time=$2
+start_time=$3
 end_time=$(date +%s)
 time_diff=$((end_time - start_time))
 hms=$(date -u -d @$time_diff +'%H:%M:%S')
@@ -45,16 +45,16 @@ Parametri del Modello:
 > alpha: $(grep -oP '(?<=^alpha=)\d+(\.\d+)?' "${1}")
 
 File delle medie:
-${file}
+"${2}"
 
-N° di file eliminati: $((${3} - $R ))
+N° di file eliminati: $((${4} - $R ))
 Questo è il numero di file esclusi dal calcolo della media poichè avevano almeno il 20% di '-nan'.
 EOF
 
-elif [ "$1" == "J" ]; then
+elif [ "$1" == "JJ" ]; then
 
 output_file="scripts/body.txt"
-git_message="Jobs lanciati con successo"
+git_message="Jobs lanciati con successo!"
 
 # vars
 # Calcolo del numero massimo di righe tra gli array
@@ -69,8 +69,11 @@ cat <<EOF > "$output_file"
 [Dettagli Job Lanciati]
 --------------------------------------
 
-Task totali: ${2}
-Job totali:  ${#jobs[@]}
+N° di Task impostati: "${2}"
+N° di Task eseguiti:   ${sum}
+
+N° di Job totali: ${#jobs[@]}
+N° di Job eseguiti: ${#jobs[@]}
 
 
 | Job Name | Job ID | Task per Job | Esito   |
@@ -88,20 +91,20 @@ done
 
 # EOF
 
-else
+elif [ "$1" == "J" ]; then
 
 output_file="../scripts/body.txt"
-git_message="Job eseguito!"
+git_message="Job info"
 
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
 --------------------------------------
-[Dettaglio Job "${2}"]
+[Info sul Job "${2}"]
 --------------------------------------
 
-"${1}"
-EOF
+"${3}"
 
+EOF
 
 fi
 
@@ -113,7 +116,7 @@ echo ""
 # Esegui il push del commit al repository remoto
 # git pull
 git add -A .
-git commit -a -m "IBiSco: ${git_message}!"
+git commit -a -m "IBiSco: ${git_message}"
 git push origin master
 echo "Commit e push completati."
 #-------------------GITHUB-------------------------------------#

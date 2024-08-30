@@ -12,6 +12,7 @@ esito=()
 jobs=()
 ids=()
 nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
+cpu_idle=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}');
 
 # Pulizia dei file output esistenti
 if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
@@ -38,6 +39,19 @@ for ((i=1; i<=$1; i++)); do
         job_status=$(squeue -j $job_id -o "%t" -h)
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
+        # se la diff è di 450 tasks con le cpu, per una sola volta aspetta 10 min
+        if (( num_tasks - cpu_idle == 450 && nstep == 10000 )); then
+        echo "Attendo 10 min che il job ${4}_${3}_J${i} parta..."
+        sleep 600
+        job_status=$(squeue -j $job_id -o "%t" -h)
+        #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            if [[ "$job_status" == "R" ]]; then
+            echo "Il job ${4}_${3}_J${i} partito!"
+            ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato con $num_tasks task!"
+            fi
+        #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+        fi
+
         # Controlla se il job è in attesa di risorse
         if [[ "$job_status" == "PD" ]]; then
             echo "Il job ${4}_${3}_J${i} non è riuscito a partire poichè in pending..."
@@ -62,7 +76,7 @@ for ((i=1; i<=$1; i++)); do
             tasks_per_job+=($num_tasks)
             #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
             if [ "$nstep" -eq 10000 ]; then
-                ./../scripts/notify_ok.sh "Dati acquisiti! Job ${4}_${3}_J${i} completato con $num_tasks task!" "${4}_${3}_J${i}"
+                ./../scripts/notify_ok.sh "J" "Dati acquisiti! Job ${4}_${3}_J${i} completato con $num_tasks task!" "${4}_${3}_J${i}"
             fi
             #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
@@ -85,7 +99,7 @@ if [ "$sum" -eq 0 ]; then
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-    ./scripts/notify_ok.sh "J" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
+    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"
     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 fi
 

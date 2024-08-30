@@ -100,7 +100,7 @@ sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${MEDIA}"
 sed -i '/seed/d' "${MEDIA}"
 
 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-./scripts/notify_ok.sh "${MEDIA}" $start_time $total_tasks
+./scripts/notify_ok.sh "S" "${MEDIA}" $start_time $total_tasks
 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 
 # Processa i file di output nella directory
