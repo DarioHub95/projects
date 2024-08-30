@@ -1,0 +1,5 @@
+| Job Name            | Job ID | Task per Job | Esito     |
+|-                   -|-     -|-     -|-         -|
+| Anderson_Ising_J1   | 000   | 999   | success   |
+| Anderson_Ising_J2   | 111   | 888   | fail      |
+| Anderson_Ising_J3   | 222   | 777   | pending   |

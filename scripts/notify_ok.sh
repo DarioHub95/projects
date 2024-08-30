@@ -58,19 +58,23 @@ EOF
 elif [ "$1" == "JJ" ]; then
 
 #Formattazione
-# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}" 
+# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}_${3}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}" 
 
 output_file="scripts/body.txt"
 git_message="Jobs lanciati con successo!"
 
 # vars
-tasks_per_job=("${@:5:3}") # I prossimi 3 argomenti sono gli elementi di tasks_per_job
-esito=("${@:8:3}")         # I successivi 3 argomenti sono gli elementi di esito
-jobs=("${@:11:3}")         # I successivi 3 argomenti sono gli elementi di jobs
-ids=("${@:14:3}")          # I successivi 3 argomenti sono gli elementi di ids
+max_len=$(( ( $# - 4 ) / 4 ))
+tasks_per_job=("${@:5:max_len}") # I prossimi 3 argomenti sono gli elementi di tasks_per_job
+esito=("${@:5+max_len:max_len}")         # I successivi 3 argomenti sono gli elementi di esito
+jobs=("${@:5+max_len*2:max_len}")         # I successivi 3 argomenti sono gli elementi di jobs
+ids=("${@:5+max_len*3:max_len}")          # I successivi 3 argomenti sono gli elementi di ids
+basename="${4%.txt}"
+IFS='_' read -r -a components <<< "$basename"
+modello="${components[0]}"        # Ising
+osservabile="${components[1]}"     # Energie
 
 # Calcolo del numero massimo di righe tra gli array
-max_len=${#tasks_per_job[@]}
 if [ ${#esito[@]} -gt $max_len ]; then max_len=${#esito[@]}; fi
 if [ ${#jobs[@]} -gt $max_len ]; then max_len=${#jobs[@]}; fi
 if [ ${#ids[@]} -gt $max_len ]; then max_len=${#ids[@]}; fi
@@ -79,20 +83,23 @@ if [ ${#ids[@]} -gt $max_len ]; then max_len=${#ids[@]}; fi
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
 --------------------------------------
-       [Dettagli Job Lanciati]
+       [Jobs per ${4}]
 --------------------------------------
 
-Modello selezionato: ${4}
+Modello selezionato: ${modello}
+Osservabile scelto:  ${osservabile}
 
 N° di Task richiesti: $((${2}*${#jobs[@]}))
 N° di Task eseguiti:  ${3}
 
 N° di Job richiesti: ${#jobs[@]}
-N° di Job eseguiti: ${ids}
 
-
+Dettagli Job Lanciati:
 | Job Name | Job ID | Task per Job | Esito   |
 EOF
+
+
+printf "| %-8s | %-6s | %-12s | %-7s |\n" "Job Name" "Job ID" "Task per Job" "Esito" >> $output_file
 
 for ((i=0; i<max_len; i++)); do
     job_id=${ids[$i]:-""}
