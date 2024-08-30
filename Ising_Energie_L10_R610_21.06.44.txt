@@ -1,0 +1,18 @@
+Date: 2024-08-27 01:46:08
+Tasks: 610
+seed=1724706436
+seed2=71
+L=10
+nstep=10000
+tw=1
+Jz=0,2
+eps=0
+alpha=0
+Sz=0
+pbc=0
+type=1
+beta=10
+tau=0,001
+Jxy=1
+wc=10
+ss=1

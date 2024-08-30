@@ -33,6 +33,23 @@ echo " 6 - COMPONENI SPIN SU L"
 echo ""
 read -p "Inserire numero del corrispondente osservabile: " O
 echo ""
+
+# Inserire vars per autocorrelazione
+if [ "$O" -eq 5 ]; then
+echo -e "${GREEN}[TASK 1.1 - OSSERVABILE AUTOCORRELAZIONE]---------------------------------|${NC}"
+echo ""
+echo "Osservabile AUTOCORRELAZIONE SPIN-SPIN C(t_w, t)."
+echo ""
+echo "Lunghezza della catena impostata a: 8 siti"
+echo ""
+L=8
+sed -i "s/int L=[0-9]*;/int L=8;/" "main.c"
+sed -i "s/int Sz=-\?1;/int Sz=0;/" "main.c"
+read -p "Inserire tempo di waiting (t_w): " tw
+echo ""
+sed -i "s/int tw=[0-9]*;/int tw=$tw;/" "main.c"
+fi
+
 if [ "$O" -eq 2 ] || [ "$O" -eq 3 ] || [ "$O" -eq 10 ] || [ "$O" -eq 12 ]; then
     var="Oss$O"
 elif [ "$O" -eq 4 ]; then
@@ -51,22 +68,6 @@ if [[ $(squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R" | grep
     echo "Interruzione dello script..."
     echo ""
     exit 1  
-fi
-
-# Inserire vars per autocorrelazione
-if [ "$O" -eq 5 ]; then
-echo -e "${GREEN}[TASK 1.1 - OSSERVABILE AUTOCORRELAZIONE]---------------------------------|${NC}"
-echo ""
-echo "Osservabile AUTOCORRELAZIONE SPIN-SPIN C(t_w, t)."
-echo ""
-echo "Lunghezza della catena impostata a: 8 siti"
-echo ""
-L=8
-sed -i "s/int L=[0-9]*;/int L=8;/" "main.c"
-sed -i "s/int Sz=-\?1;/int Sz=0;/" "main.c"
-read -p "Inserire tempo di waiting (t_w): " tw
-echo ""
-sed -i "s/int tw=[0-9]*;/int tw=$tw;/" "main.c"
 fi
 
 

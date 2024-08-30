@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 echo ""
 echo "Generazione del file $output_file per email di notifica..."
@@ -6,12 +7,15 @@ echo ""
 
 if [ "$1" == "S" ]; then
 
+#Formattazione
+#./scripts/notify_ok.sh "S" "<file>" $start_time $total_tasks
+
+
 output_file="scripts/body.txt"
 git_message="Simulazione eseguita con successo!"
 
 # Estrai i valori dalle parti del nome del file
-# file=$2
-basename="${file%.txt}"
+basename="${2%.txt}"
 IFS='_' read -r -a components <<< "$basename"
 
 modello="${components[0]}"        # Ising
@@ -37,17 +41,17 @@ Osservabile scelto:  ${osservabile}
 
 Parametri del Modello:
 > L:     ${L}
-> nstep: $(grep -oP '(?<=^nstep=)\d+' "${1}")
-> Sz:    $(grep -oP '(?<=^Sz=)-?\d+' "${1}")
+> nstep: $(grep -oP '(?<=^nstep=)\d+' "${2}")
+> Sz:    $(grep -oP '(?<=^Sz=)-?\d+' "${2}")
 > Jxy:   1
-> Jz:    $(grep -oP '(?<=^Jz=)\d+(\.\d+)?' "${1}")
-> eps:   $(grep -oP '(?<=^eps=)\d+(\.\d+)?' "${1}")
-> alpha: $(grep -oP '(?<=^alpha=)\d+(\.\d+)?' "${1}")
+> Jz:    $(grep -oP '(?<=^Jz=)\d+(\.\d+)?' "${2}")
+> eps:   $(grep -oP '(?<=^eps=)\d+(\.\d+)?' "${2}")
+> alpha: $(grep -oP '(?<=^alpha=)\d+(\.\d+)?' "${2}")
 
 File delle medie:
-"${2}"
+${2}
 
-N° di file eliminati: $((${4} - $R ))
+N° di file eliminati: $(4 - R )
 Questo è il numero di file esclusi dal calcolo della media poichè avevano almeno il 20% di '-nan'.
 EOF
 
@@ -108,17 +112,17 @@ EOF
 
 fi
 
-#-------------------GITHUB-------------------------------------#
-echo ""
-echo "Eseguo il commit e il push..."
-echo ""
+# #-------------------GITHUB-------------------------------------#
+# echo ""
+# echo "Eseguo il commit e il push..."
+# echo ""
 
-# Esegui il push del commit al repository remoto
-# git pull
-git add -A .
-git commit -a -m "IBiSco: ${git_message}"
-git push origin master
-echo "Commit e push completati."
-#-------------------GITHUB-------------------------------------#
+# # Esegui il push del commit al repository remoto
+# # git pull
+# git add -A .
+# git commit -a -m "IBiSco: ${git_message}"
+# git push origin master
+# echo "Commit e push completati."
+# #-------------------GITHUB-------------------------------------#
 
 
