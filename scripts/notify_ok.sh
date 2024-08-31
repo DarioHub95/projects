@@ -141,10 +141,10 @@ git_message="Job info"
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
 --------------------------------------
-[Info sul Job "${2}"]
+[Info sul Job ${2}]
 --------------------------------------
 
-"${3}"
+${3}
 
 EOF
 

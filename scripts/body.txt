@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job "__J"]
+[Info sul Job __J]
 --------------------------------------
 
-"Job"
+Job __J lanciato alle ore 16:47:01 con  task! 
 
