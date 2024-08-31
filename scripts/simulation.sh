@@ -44,17 +44,19 @@ for ((i=1; i<=$1; i++)); do
         job_status=$(squeue -j $job_id -o "%t" -h)
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
-        # se la diff è di circa 400 tasks con le cpu, aspetta 15 min
+        # se la diff è di circa 400 tasks con le cpu, aspetta un tot di min
         if (( $((cpu_idle - num_tasks)) < 400 && $((cpu_idle - num_tasks)) >= 390 && $nstep == 10000 )); then
         echo "Attendo 15 min che il job ${4}_${3}_J${i} parta..."
-        sleep 900
-        job_status=$(squeue -j $job_id -o "%t" -h)
-        #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-            if [[ "$job_status" == "R" ]]; then
-            echo "Il job ${4}_${3}_J${i} partito!"
-            ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-            fi
-        #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            for ((j=1; j<=30; j++)); do 
+                sleep 60
+                job_status=$(squeue -j $job_id -o "%t" -h)
+            #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                if [[ "$job_status" == "R" ]]; then
+                echo "Il job ${4}_${3}_J${i} partito!"
+                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+                fi
+            #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            done
         fi
 
         # Controlla se il job è in attesa di risorse

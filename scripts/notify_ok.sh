@@ -133,6 +133,7 @@ printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%*s' "$max_len" |
 elif [ "$1" == "J" ]; then
 
 #Formattazione
+# ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
 # ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Dati acquisiti! Job ${4}_${3}_J${i} completato con $num_tasks task! "
 
 output_file="../scripts/body.txt"

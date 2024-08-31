@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job __J]
+[Info sul Job Anderson_Energie_J2]
 --------------------------------------
 
-Job __J lanciato alle ore 16:47:01 con  task! 
+Job Anderson_Energie_J2 lanciato con 120 task! 
 
