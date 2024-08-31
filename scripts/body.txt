@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job Anderson_Energie_J2]
+[Info sul Job Anderson_Energie_J3]
 --------------------------------------
 
-Dati acquisiti! Job Anderson_Energie_J2 completato con 120 task! 
+Job Anderson_Energie_J3 lanciato con 120 task! 
 
