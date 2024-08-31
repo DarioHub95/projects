@@ -30,8 +30,8 @@ case $error_code in
         error_message_2="I job non sono riusciti a partire a causa di risorse non disponibili."
         ;;
     300)
-        error_message_1="ERRORE NELLA MODIFICA DEI FILE DI OUTPUT"
-        error_message_2="La modifica dei file di output non è riuscita."
+        error_message_1="ERRORE DI ESECUZIONE DEL JOB"
+        error_message_2="Il job non è partito. Potrebbe essere a rischio cancellazione per mancanza di risorse."
         ;;
     350)
         error_message_1="ERRORE NEL CALCOLO DELLE MEDIE"
