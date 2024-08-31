@@ -1,10 +1,10 @@
 ------------------------------
-    [ERRORE 110]
+    [ERRORE 250]
 ------------------------------
 
-ESEGUIBILE TROVATO 
+ERRORE DI ESECUZIONE DEI JOB 
 
-Il file 'a.out' non è stato trovato. 
+I job non sono riusciti a partire a causa di risorse non disponibili. 
 
-[parallel.sh] Il file 'a.out' non esiste.
+[parallel.sh] Interruzione della simulazione per Anderson_Energie: superato il limite inferiore di 50 task per tutti i job.
 
