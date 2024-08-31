@@ -45,7 +45,7 @@ for ((i=1; i<=$1; i++)); do
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
         # se la diff è di circa 400 tasks con le cpu, aspetta un tot di min
-        if (( $((cpu_idle - num_tasks)) < 400 && $((cpu_idle - num_tasks)) >= 390 && $nstep == 10000 )); then
+        if (( $((cpu_idle - num_tasks)) < 400 && $((cpu_idle - num_tasks)) >= 390 )); then
         echo "Attendo 15 min che il job ${4}_${3}_J${i} parta..."
             for ((j=1; j<=30; j++)); do 
                 sleep 60
