@@ -141,6 +141,12 @@ echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
 
 # Conta il numero di file rimasti in Data e salva le prime 16 righe del primo file in media totale
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
+var4=$4
+var3=$3
+varL=$L
+
+sleep 30
+
 MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 output_file=$(find "Dati_$3" -maxdepth 1 -type f -name "output*" | head -n 1)
 head -n 16 "$output_file" > "${MEDIA}"
