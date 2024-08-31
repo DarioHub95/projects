@@ -70,8 +70,8 @@ cat <<EOF > $output_file
 
 $error_message_1 $nl
 $error_message_2 $nl
-${1}
 ${2}
+${3}
 
 EOF
 fi

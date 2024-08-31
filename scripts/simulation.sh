@@ -158,7 +158,7 @@ echo "Il numero di file con righe sbagliate è $file_count_lines"
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ $file_count_nan != 0 || $file_count_lines != 0 ]; then       
-    ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
+    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" 
 fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 
