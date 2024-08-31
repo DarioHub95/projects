@@ -5,8 +5,8 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 # script_path="scripts/sequential.sh"
 # script_path="scripts/parallel.sh"
-script_path="sim.sh"
-media_script_path="scripts/media.sh"
+script_path="scripts/simulation.sh"
+# media_script_path="scripts/media.sh"
 
 echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]-----------------------------------------------|${NC}"
 echo ""
@@ -156,7 +156,8 @@ echo ""
 echo -e "${GREEN}[TASK 4 - STRUTTURA DATI]------------------------------------------------|${NC}"
 echo ""
 
-echo "Eseguire troppi job rispetto al numero di CPU disponibili può causare lunghe attese in coda, poiché i job aspettano risorse libere."
+echo "Eseguire troppi job rispetto al numero di CPU disponibili può causare lunghe attese in coda,"
+echo "poiché i job aspettano risorse libere."
 echo ""
 
 # Inserire il valore di R
