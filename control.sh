@@ -215,12 +215,13 @@ sleep 1
 # screen -dmS "media_${var}" bash -c "bash $media_script_path ${O} ${var} ${mod} ${L}; exec bash"
 # sleep 1
 
-echo ""
 screen -ls
 echo "Usa il comando 'screen -ls' per visualizzare lo stato degli screen."
 echo "Usa il comando 'screen -r ${var}' per visualizzare l'acquisizione."
-echo "Usa il comando 'screen -r media_${var}' per visualizzare l'acquisizione."
+# echo "Usa il comando 'screen -r media_${var}' per visualizzare l'acquisizione."
 echo ""
+echo -e "${GREEN}---------------------------------------------------------------------------|${NC}"
+
 
 # # Reimposta i default dei parametri di input nel main.c
 # sed -i "s/int P = [0-9]*;/int P = 0;/" "main.c"

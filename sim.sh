@@ -113,9 +113,9 @@ fi
 #----------------------------------------------------------------------------------------------------------------
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [ -d "Dati_$3" ] && [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
-    ./scripts/notify_errors.sh 100 "[media.sh] La cartella Dati_$3 non contiene i dati di output. Eliminazione ed esco dallo screen media_$3..." 
-    rm -rf "Dati_$3"
+if [ "$sum" -ne 0 ] && [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
+    ./scripts/notify_errors.sh 100 "[media.sh] Alcuni Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
+    # rm -rf "Dati_$3"
     screen -X quit
 fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
