@@ -53,7 +53,7 @@ for ((i=1; i<=$1; i++)); do
             #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
                 if [[ "$job_status" == "R" ]]; then
                 echo "Il job ${4}_${3}_J${i} partito!"
-                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job '${4}_${3}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
                 fi
             #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
             done
