@@ -1,10 +1,22 @@
-------------------------------
-    [ERRORE 250]
-------------------------------
+--------------------------------------
+       [Jobs per Anderson_Energie]
+--------------------------------------
 
-ERRORE DI ESECUZIONE DEI JOB 
+Modello selezionato: Anderson
+Osservabile scelto:  Energie
 
-I job non sono riusciti a partire a causa di risorse non disponibili. 
+N° di Task richiesti: 3000
+N° di Task eseguiti:  1050
 
-[parallel.sh] Interruzione della simulazione per Anderson_Energie: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati.
+N° di Job richiesti: 6
 
+Dettagli Job Lanciati:
+
+| Job Name            | Job ID              | Tasks               | Esito               |
+| ------------------- | ------------------- | ------------------- | ------------------- |
+| Anderson_Energie_J1 | 318125              | 210                 | Eseguito            |
+| Anderson_Energie_J2 | 318155              | 210                 | Eseguito            |
+| Anderson_Energie_J3 | 318185              | 210                 | Eseguito            |
+| Anderson_Energie_J4 | 318215              | 210                 | Eseguito            |
+| Anderson_Energie_J5 | 318245              | 210                 | Eseguito            |
+| ------------------- | ------------------- | ------------------- | ------------------- |
