@@ -6,5 +6,5 @@ ERRORE DI ESECUZIONE DEI JOB
 
 I job non sono riusciti a partire a causa di risorse non disponibili. 
 
-[parallel.sh] Interruzione della simulazione per Anderson_Corr_tw1: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati.
+[parallel.sh] Interruzione della simulazione per Anderson_Corr_tw10: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati.
 
