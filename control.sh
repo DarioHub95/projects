@@ -13,11 +13,14 @@ echo ""
 echo "Rimozione file 'srun.log'..."
 echo ""
 rm -rf srun.log
-if ls *.txt 1> /dev/null 2>&1; then
-echo "Sposto file di media..."
-echo ""
-mv *.txt Medie/
-fi
+# Controlla tutti i file .txt nella directory corrente
+for file in *.txt; do
+    if [ -f "$file" ] && [ $(wc -l < "$file") -gt 5000 ]; then
+        echo "Sposto file di media..."
+        echo ""
+        mv "$file" Medie/
+    fi
+done
 
 # Inserire osservabile
 echo -e "${GREEN}[TASK 1 - OSSERVABILE]----------------------------------------------------|${NC}"
@@ -105,7 +108,6 @@ elif [ "$P" -eq 5 ]; then
 echo " MODELLO: MBL + BAGNO SULL'ULTIMO SITO"
 fi
 echo ""
-
 
 # Controlla se la variabile è definita
 if [ -z "$L" ]; then
@@ -222,6 +224,8 @@ echo "Usa il comando 'screen -r ${var}' per visualizzare l'acquisizione."
 # echo "Usa il comando 'screen -r media_${var}' per visualizzare l'acquisizione."
 echo ""
 echo -e "${GREEN}---------------------------------------------------------------------------|${NC}"
+echo ""
+echo ""
 
 
 # # Reimposta i default dei parametri di input nel main.c
