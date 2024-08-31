@@ -50,12 +50,12 @@ for ((i=1; i<=$1; i++)); do
             for ((j=1; j<=30; j++)); do 
                 sleep 60
                 job_status=$(squeue -j $job_id -o "%t" -h)
-            #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
                 if [[ "$job_status" == "R" ]]; then
                 echo "Il job ${4}_${3}_J${i} partito!"
                 ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job '${4}_${3}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
                 fi
-            #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
             done
         fi
 
@@ -81,11 +81,11 @@ for ((i=1; i<=$1; i++)); do
             ((count++))
             esito+=("Eseguito") 
             tasks_per_job+=($num_tasks)
-            #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
             if [ "$nstep" -eq 10000 ]; then
                 ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Dati acquisiti! Job ${4}_${3}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
             fi
-            #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
         fi
     done
     jobs+=("${4}_${3}_J${i}")
@@ -106,10 +106,10 @@ if [ "$sum" -eq 0 ]; then
     screen -X quit
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 else
+    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
-    #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
     ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}_${3}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
-    #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
 fi
 
 #----------------------------------------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ fi
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ "$sum" -ne 0 ] && [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
-    ./scripts/notify_errors.sh 100 "[media.sh] Alcuni Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
+    ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
     screen -X quit
 fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
@@ -126,12 +126,15 @@ fi
 
 # Tolleranza al 20% per il numero di -nan nei file di dati
 max_nan_count=0
+file_count_nan=0
+file_count_lines=0
 for file in "Dati_$3"/output*.txt; do
     nan_count=$(grep -c "\-nan" "$file")    
 
     if [ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) -eq 1 ]; then
         echo "La soglia del 20% è superata. Eliminazione del file $file..."
         rm "$file"
+        file_count_nan=$((file_count_nan + 1))
     else
         echo "La soglia non è superata. Nan count: $nan_count"
         if (( nan_count > max_nan_count )); then
@@ -140,6 +143,24 @@ for file in "Dati_$3"/output*.txt; do
     fi
 done
 echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
+
+# Controlla se il primo numero dell'ultima riga è diverso da nstep
+for file in "Dati_$3"/output*; do
+    last_line=$(tail -n 1 "$file")
+    first_number=$(echo "$last_line" | awk '{print $1}')
+    if [ "$first_number" -ne $nstep ]; then
+        echo "Eliminando file: $file (primo numero: $first_number)"
+        # rm "$file"
+        file_count_lines=$((file_count_lines + 1))
+    fi
+done
+echo "Il numero di file con righe sbagliate è $file_count_lines"
+
+#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+if [ $file_count_nan != 0 || $file_count_lines != 0 ]; then       
+    ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
+fi
+#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 
 # Conta il numero di file rimasti in Data e salva le prime 16 righe del primo file in media totale
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
@@ -203,9 +224,9 @@ sed -i "1i Tasks: ${R_tot}" "${MEDIA}"
 sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${MEDIA}"
 sed -i '/seed/d' "${MEDIA}"
 
-#----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
 ./scripts/notify_ok.sh "S" "${MEDIA}" $start_time $total_tasks
-#----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
 
 # Processa i file di output nella directory
 echo "Sostituzione punti con virgole nel file delle medie..."

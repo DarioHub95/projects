@@ -234,5 +234,3 @@ echo ""
 # sed -i "s/int nstep=[0-9]*;/int nstep=20;/" "main.c"
 # sed -i "s/int tw=[0-9]*;/int tw=1;/" "main.c"
 # sed -i "s/int Oss=[0-9]*;/int Oss=0;/" "main.c" 
-
-

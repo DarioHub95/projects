@@ -1,6 +1,11 @@
---------------------------------------
-[Info sul Job Anderson_Energie_J4]
---------------------------------------
+------------------------------
+    [WARNING 550]
+------------------------------
 
-Dati acquisiti! Job Anderson_Energie_J4 completato con 120 task! 
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
+
+550
+N° di file con eccesso di '-nan': 5
 

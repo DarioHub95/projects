@@ -42,13 +42,13 @@ case $error_code in
         error_message_2="La notifica di completamento non è stata inviata correttamente."
         ;;
     550)
-        error_message_1="ERRORE NEL PROCESSO DI PULIZIA"
-        error_message_2="La rimozione dei file temporanei non è riuscita."
+        error_message_1="WARNING NEL PROCESSO DI PULIZIA DEI DATI"
+        error_message_2="[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'."
         ;;
 
 esac
 
-
+if [ $error_code != 550 ]; then
 # Assembla il contenuto del body.txt con la descrizione dell'errore
 cat <<EOF > $output_file
 ------------------------------
@@ -60,6 +60,21 @@ $error_message_2 $nl
 ${extra_message}
 
 EOF
+
+else
+# Assembla il contenuto del body.txt con la descrizione del warning
+cat <<EOF > $output_file
+------------------------------
+    [WARNING $error_code]
+------------------------------
+
+$error_message_1 $nl
+$error_message_2 $nl
+${1}
+${2}
+
+EOF
+fi
 
 echo ""
 echo "Il file $output_file è stato generato con successo."
