@@ -9,6 +9,5 @@ WARNING NEL PROCESSO DI PULIZIA DEI DATI
 N° di file con eccesso di '-nan': 5
 N° di file corrotti: 10 
 
-
 File corretti: 999
 
