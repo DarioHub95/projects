@@ -2,5 +2,5 @@
 [Info sul Job "__J"]
 --------------------------------------
 
-"Job __J lanciato con  task! "
+"Job __J lanciato alle ore 2024-08-31 16:44:32 con  task! "
 
