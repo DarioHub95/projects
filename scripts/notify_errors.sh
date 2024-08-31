@@ -73,6 +73,8 @@ $error_message_1 $nl
 $error_message_2 $nl
 ${2}
 ${3}
+$nl
+${4}
 
 EOF
 fi

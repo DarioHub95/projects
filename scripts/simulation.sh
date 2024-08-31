@@ -156,14 +156,16 @@ for file in "Dati_$3"/output*; do
 done
 echo "Il numero di file con righe sbagliate è $file_count_lines"
 
+# Conta il numero di file rimasti in Data
+R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
+
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ $file_count_nan != 0 || $file_count_lines != 0 ]; then       
-    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" 
+    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
 fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 
-# Conta il numero di file rimasti in Data e salva le prime 16 righe del primo file in media totale
-R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
+# Salva le prime 16 righe del primo file in media totale
 MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 output_file=$(find "Dati_$3" -maxdepth 1 -type f -name "output*" | head -n 1)
 head -n 16 "$output_file" > "${MEDIA}"
