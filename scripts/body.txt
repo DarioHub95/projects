@@ -1,5 +1,5 @@
 ------------------------------
-    [WARNING 550]
+[WARNING 550]
 ------------------------------
 
 WARNING NEL PROCESSO DI PULIZIA DEI DATI 

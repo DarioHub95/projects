@@ -4,7 +4,6 @@ output_file="scripts/body.txt"
 error_code=$1  # Il codice di errore passato come primo argomento
 extra_message=$2
 nl=$'\n'  # newline
-
 # Seleziona la descrizione dell'errore in base al codice di errore
 error_message=""
 
@@ -49,6 +48,7 @@ case $error_code in
 esac
 
 if [ $error_code != 550 ]; then
+git_message="Errore $error_code"
 # Assembla il contenuto del body.txt con la descrizione dell'errore
 cat <<EOF > $output_file
 ------------------------------
@@ -62,10 +62,11 @@ ${extra_message}
 EOF
 
 else
+git_message="Warning $error_code"
 # Assembla il contenuto del body.txt con la descrizione del warning
 cat <<EOF > $output_file
 ------------------------------
-    [WARNING $error_code]
+[WARNING $error_code]
 ------------------------------
 
 $error_message_1 $nl
@@ -88,6 +89,6 @@ echo ""
 # Esegui il push del commit al repository remoto
 # git pull
 git add .
-git commit -a -m "IBiSco: Errore ${error_code}!"
+git commit -a -m "IBiSco: ${git_message}!"
 git push origin master
 echo "Commit e push completati."
