@@ -1,10 +1,10 @@
 ------------------------------
-    [ERRORE 100]
+    [ERRORE 110]
 ------------------------------
 
-FILE O DIRECTORY NON TROVATI 
+ESEGUIBILE TROVATO 
 
-I file di dati o la directory 'Dati' non esistono. 
+Il file 'a.out' non è stato trovato. 
 
-[media.sh] La cartella Dati_Energie non contiene i dati di output. Eliminazione ed esco dallo screen media_Energie...
+[parallel.sh] Il file 'a.out' non esiste.
 
