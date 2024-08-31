@@ -101,7 +101,7 @@ if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
     ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per ${4}_${3}: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati."
     rm -rf "Dati_$3"
-    screen -X quit
+    # screen -X quit
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
