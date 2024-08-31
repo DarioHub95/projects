@@ -66,8 +66,8 @@ for ((i=1; i<=$1; i++)); do
             scancel $job_id
             echo "Riduzione del numero di task di 10."
             ((num_tasks -= 10))
-            if (( $num_tasks < 50 || $num_tasks < 0 )); then
-                echo "Il numero di task è inferiore a 50 o <0. Cancellazione del job ${4}_${3}_J${i}..."
+            if (( $num_tasks < 10 || $num_tasks < 0 )); then
+                echo "Il numero di task è inferiore a 10 o <0. Cancellazione del job ${4}_${3}_J${i}..."
                 ((count++))
                 scancel $job_id
                 esito+=("Cancellato a causa di: ${job_reason}")
@@ -103,7 +103,7 @@ if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
     ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per ${4}_${3}: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati."
     rm -rf "Dati_$3"
-    # screen -X quit
+    screen -X quit
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 else
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
@@ -113,7 +113,7 @@ else
 fi
 
 #----------------------------------------------------------------------------------------------------------------
-                                        #CALCOLO MEDIE
+############################################### CALCOLO MEDIE ###################################################
 #----------------------------------------------------------------------------------------------------------------
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
