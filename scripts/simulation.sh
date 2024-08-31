@@ -14,7 +14,7 @@ esito=("Esito")
 jobs=("Job Name")
 ids=("Job ID")
 nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
-Oss=$(grep -oP '(?<=int P = )\d+' main.c)
+Oss=$(grep -oP 'int\s+Oss\s*=\s*\K\d+' main.c)
 L=$(grep -oP '(?<=int L=)\d+' main.c)
 cpu_idle=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}');
 total_tasks=$(($1*$2))
@@ -209,7 +209,6 @@ fi
 
 mv "${MEDIA}.tmp" "${MEDIA}"
 rm temp_*.txt
-echo ""
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ $(wc -l < "${MEDIA}") -le 20 ]; then
@@ -234,4 +233,4 @@ sed -i '/seed/d' "${MEDIA}"
 echo "Sostituzione punti con virgole nel file delle medie..."
 sed -i 's/\./,/g' "$MEDIA"
 
-# screen -X quit
+screen -X quit

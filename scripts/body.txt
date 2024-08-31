@@ -5,18 +5,14 @@
 Modello selezionato: Anderson
 Osservabile scelto:  Energie
 
-N° di Task richiesti: 3000
-N° di Task eseguiti:  1050
+N° di Task richiesti: 900
+N° di Task eseguiti:  200
 
-N° di Job richiesti: 6
+N° di Job richiesti: 2
 
 Dettagli Job Lanciati:
 
 | Job Name            | Job ID              | Tasks               | Esito               |
 | ------------------- | ------------------- | ------------------- | ------------------- |
-| Anderson_Energie_J1 | 318125              | 210                 | Eseguito            |
-| Anderson_Energie_J2 | 318155              | 210                 | Eseguito            |
-| Anderson_Energie_J3 | 318185              | 210                 | Eseguito            |
-| Anderson_Energie_J4 | 318215              | 210                 | Eseguito            |
-| Anderson_Energie_J5 | 318245              | 210                 | Eseguito            |
+| Anderson_Energie_J1 | 318271              | 200                 | Eseguito            |
 | ------------------- | ------------------- | ------------------- | ------------------- |
