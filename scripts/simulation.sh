@@ -52,7 +52,7 @@ for ((i=1; i<=$1; i++)); do
         #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
             if [[ "$job_status" == "R" ]]; then
             echo "Il job ${4}_${3}_J${i} partito!"
-            ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato alle ore $(date '+%Y-%m-%d %H:%M:%S') con $num_tasks task! "
+            ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
             fi
         #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
@@ -81,7 +81,7 @@ for ((i=1; i<=$1; i++)); do
             tasks_per_job+=($num_tasks)
             #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
             if [ "$nstep" -eq 10000 ]; then
-                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Dati acquisiti! Job ${4}_${3}_J${i} completato alle ore $(date '+%Y-%m-%d %H:%M:%S') con $num_tasks task! "
+                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Dati acquisiti! Job ${4}_${3}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
             fi
             #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
