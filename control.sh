@@ -153,7 +153,7 @@ echo ""
 
 ./scripts/resources.sh
 
-echo -e "${GREEN}[TASK 3.1 - STRUTTURA DATI]------------------------------------------------|${NC}"
+echo -e "${GREEN}[TASK 4 - STRUTTURA DATI]------------------------------------------------|${NC}"
 echo ""
 
 echo "Eseguire troppi job rispetto al numero di CPU disponibili può causare lunghe attese in coda, poiché i job aspettano risorse libere."
@@ -178,7 +178,7 @@ sed -i "s/int Oss=[0-9]*;/int Oss=$O;/" "main.c"
 
 
 # Compila i file sorgente C
-echo -e "${GREEN}[TASK 4 - COMPILAZIONE]----------------------------------------------------|${NC}"
+echo -e "${GREEN}[TASK 5 - COMPILAZIONE]----------------------------------------------------|${NC}"
 echo ""
 # Crea una directory per i file di output
 mkdir -p "Dati_${var}"
@@ -190,7 +190,7 @@ mpiCC -O3 -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/
 echo ""
 
 # Loop per creare screen e eseguire comandi
-echo -e "${GREEN}[TASK 5 - ESECUZIONE SIMULAZIONI]------------------------------------------|${NC}"
+echo -e "${GREEN}[TASK 6 - ESECUZIONE SIMULAZIONI]------------------------------------------|${NC}"
 echo ""
 echo "Creazione dello screen: ${var}"
 echo "Esecuzione di $script_path..."

@@ -208,4 +208,4 @@ sed -i '/seed/d' "${MEDIA}"
 echo "Sostituzione punti con virgole nel file delle medie..."
 sed -i 's/\./,/g' "$MEDIA"
 
-screen -X quit
+# screen -X quit
