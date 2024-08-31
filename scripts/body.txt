@@ -1,10 +1,10 @@
 ------------------------------
-    [ERRORE 250]
+    [ERRORE 100]
 ------------------------------
 
-ERRORE DI ESECUZIONE DEI JOB 
+FILE O DIRECTORY NON TROVATI 
 
-I job non sono riusciti a partire a causa di risorse non disponibili. 
+I file di dati o la directory 'Dati' non esistono. 
 
-[parallel.sh] Interruzione della simulazione per Anderson_Energie: superato il limite inferiore di 50 task per tutti i job.
+[media.sh] La cartella Dati_Energie non contiene i dati di output. Eliminazione ed esco dallo screen media_Energie...
 
