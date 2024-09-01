@@ -214,7 +214,7 @@ rm temp_*.txt
 if [ $(wc -l < "${MEDIA}") -le 20 ]; then
     ./scripts/notify_errors.sh 350 "[media.sh] Il file '${MEDIA}' non contiene nessun valore medio. Uscita dallo screen media_$3..." 
     screen -X quit
-if [ ! -f "${MEDIA}" ]; then
+elif [ ! -f "${MEDIA}" ]; then
     ./scripts/notify_errors.sh 200 "[media.sh] Il file '${MEDIA}' non esiste. Uscita dallo screen media_$3..." 
     screen -X quit
 fi
@@ -231,6 +231,6 @@ sed -i '/seed/d' "${MEDIA}"
 
 # Processa i file di output nella directory
 echo "Sostituzione punti con virgole nel file delle medie..."
-sed -i 's/\./,/g' "$MEDIA"
+sed -i 's/\./,/g' "${MEDIA}"
 
 screen -X quit

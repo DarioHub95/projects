@@ -1,18 +1,6 @@
 --------------------------------------
-       [Jobs per Anderson_Energie]
+[Info sul Job Anderson_Energie_J1]
 --------------------------------------
 
-Modello selezionato: Anderson
-Osservabile scelto:  Energie
+Dati acquisiti! Job Anderson_Energie_J1 completato alle ore 05:41:35 con 200 task! 
 
-N° di Task richiesti: 900
-N° di Task eseguiti:  200
-
-N° di Job richiesti: 2
-
-Dettagli Job Lanciati:
-
-| Job Name            | Job ID              | Tasks               | Esito               |
-| ------------------- | ------------------- | ------------------- | ------------------- |
-| Anderson_Energie_J1 | 318271              | 200                 | Eseguito            |
-| ------------------- | ------------------- | ------------------- | ------------------- |
