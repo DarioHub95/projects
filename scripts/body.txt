@@ -1,6 +1,10 @@
---------------------------------------
-[Info sul Job Anderson_Energie_J2]
---------------------------------------
+------------------------------
+    [ERRORE 250]
+------------------------------
 
-Dati acquisiti! Job Anderson_Energie_J2 completato alle ore 09:29:31 con 220 task! 
+ERRORE DI ESECUZIONE DEI JOB 
+
+I job non sono riusciti a partire a causa di risorse non disponibili. 
+
+[parallel.sh] Interruzione della simulazione per Ising_Corr_tw1: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati.
 
