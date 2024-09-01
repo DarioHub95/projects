@@ -38,7 +38,7 @@ for ((i=1; i<=$1; i++)); do
     count=0
     while [ $count -eq 0 ]; do
         srun --job-name="$job_name" -p parallel -n $num_tasks --immediate=60 a.out > srun.log 2>&1 &
-        sleep 1
+        sleep 20
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "$job_name" -o "%i" -h | head -n 1)
@@ -50,12 +50,12 @@ for ((i=1; i<=$1; i++)); do
         echo "Attendo 10 min che il job $job_name parta..."
         sleep 1800
         job_status=$(squeue -j $job_id -o "%t" -h)
-        #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-            if [[ "$job_status" == "R" ]]; then
-            echo "Il job $job_name partito!"
-            # ./../scripts/notify_ok.sh "J" "$job_name" "Job $job_name lanciato con $num_tasks task! "
-            fi
-        #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+        # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+        #     if [[ "$job_status" == "R" ]]; then
+        #     echo "Il job $job_name partito!"
+        #     ./../scripts/notify_ok.sh "J" "$job_name" "Job $job_name lanciato con $num_tasks task! "
+        #     fi
+        # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
         fi
 
         # Controlla se il job è in attesa di risorse
