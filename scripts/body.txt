@@ -1,22 +1,25 @@
 --------------------------------------
-       [Jobs per Anderson_Energie]
+    [Dettagli della Simulazione]
 --------------------------------------
+Start Date: 31-08-2024 23:41:14
+End Date:   01-09-2024 12:35:57
+Durata:     12:54:43
 
 Modello selezionato: Anderson
 Osservabile scelto:  Energie
 
-N° di Task richiesti: 3600
-N° di Task eseguiti:  650
+Parametri del Modello:
+> L:     8
+> nstep: 10000
+> Sz:    0
+> Jxy:   1
+> Jz:    0
+> eps:   5
+> alpha: 0
 
-N° di Job richiesti: 6
+File delle medie:
+Anderson_Energie_L8_R584_23.41.14.txt
 
-Dettagli Job Lanciati:
+N° di file output eliminati: 2416
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
 
-| Job Name                          | Job ID                            | Tasks                             | Esito                             |
-| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
-| Anderson_Energie_J1               | 318312                            | 200                               | Eseguito                          |
-| Anderson_Energie_J2               | 318354                            | 220                               | Eseguito                          |
-| Anderson_Energie_J3               | 318396                            | 230                               | Eseguito                          |
-| Anderson_Energie_J4               | 318536                            | 0                                 | Cancellato a causa di: (Priority) |
-| Anderson_Energie_J5               | 318596                            | 0                                 | Cancellato a causa di: (Priority) |
-| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
