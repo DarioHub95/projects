@@ -36,55 +36,65 @@ cd scripts/
 for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     count=0
-    while [ $count -eq 0 ]; do
-        srun --job-name="$job_name" -p parallel -n $num_tasks --immediate=60 a.out > srun.log 2>&1 &
-        sleep 20
+    while :; do
+        srun --job-name="$job_name" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+        if (( $count == 0 )); then sleep 60; ((count++)); else sleep 5; fi
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "$job_name" -o "%i" -h | head -n 1)
         job_status=$(squeue -j $job_id -o "%t" -h)
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
-        # se la diff è di circa 400 tasks con le cpu, aspetta 30 min
-        if (( $((cpu_idle - num_tasks)) < 400 && $((cpu_idle - num_tasks)) >= 390 && $nstep == 10000 )); then
-        echo "Attendo 10 min che il job $job_name parta..."
-        sleep 1800
-        job_status=$(squeue -j $job_id -o "%t" -h)
-        # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-        #     if [[ "$job_status" == "R" ]]; then
-        #     echo "Il job $job_name partito!"
-        #     ./../scripts/notify_ok.sh "J" "$job_name" "Job $job_name lanciato con $num_tasks task! "
-        #     fi
-        # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-        fi
 
-        # Controlla se il job è in attesa di risorse
-        if [[ "$job_status" == "PD" ]]; then
-            echo "Il job $job_name non è riuscito a partire poichè in pending..."
-            echo "Cancellazione del job..."
-            scancel $job_id
-            echo "Riduzione del numero di task di 10."
-            ((num_tasks -= 10))
-            if (( $num_tasks < 50 || $num_tasks < 0 )); then
-                echo "Il numero di task è inferiore a 50 o <0. Cancellazione del job $job_name..."
-                ((count++))
-                scancel $job_id
-                esito+=("Cancellato a causa di: ${job_reason}")
-                tasks_per_job+=(0)
-            fi
+        case $job_status in
+            "R")
+                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                # if [ "$nstep" -eq 10000 ]; then
+                #     echo "Il job $job_name partito!"
+                #     ./../scripts/notify_ok.sh "J" "$job_name" "Job $job_name lanciato con $num_tasks task! "
+                # fi
+                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+
+                echo "Allocate le risorse per il job $job_name. Esecuzione..."
+                job_pid=$!
+                wait $job_pid
+                rename_output_files
+                esito+=("Eseguito") 
+                tasks_per_job+=($num_tasks)
+                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                # if [ "$nstep" -eq 10000 ]; then
+                #     ./../scripts/notify_ok.sh "J" "$job_name" "Dati acquisiti! Job $job_name completato con $num_tasks task! "
+                # fi
+                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                break  # Esci dal ciclo se il job è in esecuzione
+                ;;
+            "PD")
+                echo "Il job con ID $job_id è ancora in attesa (PD)."
+                if (( elapsed >= timeout1 )); then
+                    echo "Sono trascorsi 20 minuti e il job è ancora in attesa. Passo alla fase di verifica."
+                    job_status="CHECK"  # Cambia lo stato per eseguire un'azione specifica
+                fi
+                ;;
+        esac
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         else
-            echo "Allocate le risorse per il job $job_name in stato ${job_status}. Esecuzione..."
-            job_pid=$!
-            wait $job_pid
-            rename_output_files
-            ((count++))
-            esito+=("Eseguito") 
-            tasks_per_job+=($num_tasks)
-            # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-            # if [ "$nstep" -eq 10000 ]; then
-            #     ./../scripts/notify_ok.sh "J" "$job_name" "Dati acquisiti! Job $job_name completato con $num_tasks task! "
-            # fi
-            # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+
+
         fi
     done
     jobs+=("$job_name")

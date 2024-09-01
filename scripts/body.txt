@@ -1,25 +1,6 @@
 --------------------------------------
-    [Dettagli della Simulazione]
+[Info sul Job Anderson_Energie_J1]
 --------------------------------------
-Start Date: 31-08-2024 23:41:14
-End Date:   01-09-2024 12:35:57
-Durata:     12:54:43
 
-Modello selezionato: Anderson
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     8
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0
-> eps:   5
-> alpha: 0
-
-File delle medie:
-Anderson_Energie_L8_R584_23.41.14.txt
-
-N° di file output eliminati: 2416
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
+Dati acquisiti! Job Anderson_Energie_J1 completato alle ore 22:30:19 con 190 task! 
 
