@@ -1,25 +1,10 @@
---------------------------------------
-    [Dettagli della Simulazione]
---------------------------------------
-Start Date: 02-09-2024 20:03:00
-End Date:   02-09-2024 20:03:05
-Durata:     00:00:05
+------------------------------
+    [ERRORE 250]
+------------------------------
 
-Modello selezionato: Ising
-Osservabile scelto:  Corr
+ERRORE DI ESECUZIONE DEI JOB 
 
-Parametri del Modello:
-> L:     tw1
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   0
-> alpha: 0
+I job non sono riusciti a partire a causa di risorse non disponibili. 
 
-File delle medie:
-Ising_Corr_tw1_L8_R30_20.03.00.txt
-
-N° di file output eliminati: 1350
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
+[parallel.sh] Interruzione della simulazione per Ising_Corr_tw1: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati.
 

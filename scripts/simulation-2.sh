@@ -15,8 +15,9 @@ ids=("Job ID")
 nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
 Oss=$(grep -oP 'int\s+Oss\s*=\s*\K\d+' main.c)
 L=$(grep -oP '(?<=int L=)\d+' main.c)
-cpu_idle=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}');
+# cpu_idle=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}');
 total_tasks=$(($1*$2))
+job_name="${4}_${3}"
 
 # Pulizia dei file output esistenti
 if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
@@ -34,68 +35,110 @@ cd Dati_$3/
 for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     count=0
-    while [ $count -eq 0 ]; do
-        srun --job-name="${4}_${3}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        sleep 1
+    while :; do
+        srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+        sleep 10
 
         # Verifica dello stato del job i-esimo
-        job_id=$(squeue -u $USER -n "${4}_${3}_J${i}" -o "%i" -h | head -n 1)
+        job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
         job_status=$(squeue -j $job_id -o "%t" -h)
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
-        # se la diff è di circa 400 tasks con le cpu, aspetta un tot di min
-        if (( $((cpu_idle - num_tasks)) < 400 && $((cpu_idle - num_tasks)) >= 390 )); then
-        echo "Attendo 15 min che il job ${4}_${3}_J${i} parta..."
-            for ((j=1; j<=30; j++)); do 
-                sleep 60
-                job_status=$(squeue -j $job_id -o "%t" -h)
-            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-                if [[ "$job_status" == "R" ]]; then
-                echo "Il job ${4}_${3}_J${i} partito!"
-                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job '${4}_${3}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-                fi
-            #-----------------------------------------------------------------
-            done
-        fi
+        case $job_status in
+            "R")
+                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                # if [ "$nstep" -eq 10000 ]; then
+                #     echo "Il job ${job_name}_J${i} partito!"
+                #     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job ${job_name}_J${i} lanciato con $num_tasks task! "
+                # fi
+                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 
-        # Controlla se il job è in attesa di risorse
-        if [[ "$job_status" == "PD" ]]; then
-            echo "Il job ${4}_${3}_J${i} non è riuscito a partire poichè in pending..."
-            echo "Cancellazione del job..."
-            scancel $job_id
-            echo "Riduzione del numero di task di 10."
-            ((num_tasks -= 10))
-            if (( $num_tasks < 10 || $num_tasks < 0 )); then
-                echo "Il numero di task è inferiore a 10 o <0. Cancellazione del job ${4}_${3}_J${i}..."
-                ((count++))
-                scancel $job_id
-                esito+=("Cancellato a causa di: ${job_reason}")
-                tasks_per_job+=(0)
-            fi
-        else
-            echo "Allocate le risorse per il job ${4}_${3}_J${i} in stato ${job_status}. Esecuzione..."
-            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-                if [[ "$job_status" == "R" ]]; then
-                echo "Il job ${4}_${3}_J${i} partito!"
-                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job '${4}_${3}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+                echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
+                job_pid=$!
+                wait $job_pid
+                rename_output_files
+                esito+=("Eseguito") 
+                tasks_per_job+=($num_tasks)
+                
+                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                # if [ "$nstep" -eq 10000 ]; then
+                #     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato con $num_tasks task! "
+                # fi
+                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                break  # Esci dal ciclo se il job è in esecuzione
+                ;;
+            "PD")
+                # Controlla se il job è in attesa di risorse
+                if [[ "$job_reason" == *"Resources"* ]]; then
+
+                    echo "Il job ${job_name}_J${i} non ha le risorse necessarie."
+                    scancel $job_id
+                    echo "Riduzione del numero di task di 10 e rilancio del job ${job_name}_J${i}..."
+                    ((num_tasks -= 10))
+
+                    if (( $num_tasks < 2 )); then
+                        echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
+                        scancel $job_id
+                        esito+=("Cancellato (assenza di risorse)")
+                        tasks_per_job+=(0)
+                        break
+                    fi
+
+                # Controlla se il job non è ancora running ma in priority
+                elif ! echo "$(squeue -j $job_id -o "%R" -h)" | grep -q "ibisco"; then 
+                    echo "Il job con ID $job_id è ancora in attesa (PD) ma con $job_reason."
+                    time=1800
+
+                    # Verifica se il job_id è il primo nella lista di sprio
+                    if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
+                        echo "Il job con ID $job_id è il primo nella lista."
+                        i=0
+                        while (( $i < $time && $(squeue -j $job_id -o "%t" -h) != "R" )); do        # aspetta al massimo 30 min e ogni 1s controlla job_status==R
+                            echo "Il job con ID $job_id è il primo nella lista."
+                            sleep 1
+                            ((i++))
+                        done
+                        ((time -= 600))
+                        if (( $time == 0 )); then
+                            echo "Eseguiti i 3 tentativi di attesa ma il job non è partito. Cancellazione del job ${job_name}_J${i}..."
+                            scancel $job_id
+                            esito+=("Cancellato (attesa eccessiva)")
+                            tasks_per_job+=(0)
+                            break
+                        fi
+
+                    # Verifica se il job_id è il secondo nella lista di sprio
+                    elif [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
+                        echo "Il job con ID $job_id NON è il primo nella lista, ma il SECONDO."
+                        sprio -S '-Y' --long
+                        scancel $job_id
+                        echo "Riduzione del numero di task di 10 e rilancio del job ${job_name}_J${i}..."
+                        ((num_tasks -= 10))
+
+                        if (( $num_tasks < 2 )); then
+                            echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
+                            scancel $job_id
+                            esito+=("Cancellato (bassa Priority)")
+                            tasks_per_job+=(0)
+                            break
+                        fi
+                    
+                    # Elimina il job_id se ha poca Priority
+                    else
+                        echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
+                        scancel $job_id
+                        esito+=("Cancellato (bassa Priority)")
+                        tasks_per_job+=(0)
+                        break
+                    fi
                 fi
-            #-----------------------------------------------------------------
-            job_pid=$!
-            wait $job_pid
-            rename_output_files
-            ((count++))
-            esito+=("Eseguito") 
-            tasks_per_job+=($num_tasks)
-            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-            if [ "$nstep" -eq 10000 ]; then
-                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Dati acquisiti! Job ${4}_${3}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-            fi
-            #-----------------------------------------------------------------
-        fi
+                ;;
+        esac
     done
-    jobs+=("${4}_${3}_J${i}")
+    jobs+=("${job_name}_J${i}")
     ids+=("${job_id}")
 done
+
 cd ../
 
 # Verifica del numero di tasks eseguiti dai jobs

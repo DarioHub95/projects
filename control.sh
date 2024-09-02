@@ -5,7 +5,7 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 # script_path="scripts/sequential.sh"
 # script_path="scripts/parallel.sh"
-script_path="scripts/simulation.sh"
+script_path="scripts/simulation-2.sh"
 # media_script_path="scripts/media.sh"
 
 echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]-----------------------------------------------|${NC}"
