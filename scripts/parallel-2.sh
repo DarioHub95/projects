@@ -13,15 +13,12 @@ jobs=("Job Name")
 ids=("Job ID")
 nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
 cpu_idle=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}');
-# {job_name}_J${i}="${4}_${3}"
-{job_name}_J${i}="test"
-
+job_name="${4}_${3}"
 
 # # Pulizia dei file output esistenti
 # if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
-# rm scripts/output*
+# rm Dati_$3/output*
 # fi
-rm scripts/output*
 
 
 
@@ -33,6 +30,9 @@ rm scripts/output*
 # #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 
 cd scripts/
+
+
+
 for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     count=0
@@ -139,6 +139,11 @@ for ((i=1; i<=$1; i++)); do
     jobs+=("${job_name}_J${i}")
     ids+=("${job_id}")
 done
+
+
+
+
+
 cd ../
 
 # Verifica del numero di tasks eseguiti dai jobs
