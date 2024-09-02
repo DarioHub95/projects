@@ -165,7 +165,7 @@ echo "Il numero di file con righe sbagliate è $file_count_lines"
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [ $file_count_nan != 0 || $file_count_lines != 0 ]; then       
+if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
     ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
 fi
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
