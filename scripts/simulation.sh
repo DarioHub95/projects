@@ -1,8 +1,7 @@
-#!/bin/bash
-set -x
+# #!/bin/bash
+# set -x
 
 #vars simulazione
-# Primo istante di tempo
 start_time=$(date +%s)
 rename_output_files() {
     for file in output-*; do
@@ -29,7 +28,7 @@ if [ ! -f "Dati_${3}/a.out" ]; then
     scancel $job_id
     ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste." 
 fi
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+#-----------------------------------------------------------------
 
 cd Dati_$3/
 for ((i=1; i<=$1; i++)); do
@@ -55,7 +54,7 @@ for ((i=1; i<=$1; i++)); do
                 echo "Il job ${4}_${3}_J${i} partito!"
                 ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job '${4}_${3}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
                 fi
-            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+            #-----------------------------------------------------------------
             done
         fi
 
@@ -75,12 +74,12 @@ for ((i=1; i<=$1; i++)); do
             fi
         else
             echo "Allocate le risorse per il job ${4}_${3}_J${i} in stato ${job_status}. Esecuzione..."
-            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
                 if [[ "$job_status" == "R" ]]; then
                 echo "Il job ${4}_${3}_J${i} partito!"
                 ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job '${4}_${3}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
                 fi
-            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+            #-----------------------------------------------------------------
             job_pid=$!
             wait $job_pid
             rename_output_files
@@ -91,7 +90,7 @@ for ((i=1; i<=$1; i++)); do
             if [ "$nstep" -eq 10000 ]; then
                 ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Dati acquisiti! Job ${4}_${3}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
             fi
-            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+            #-----------------------------------------------------------------
         fi
     done
     jobs+=("${4}_${3}_J${i}")
@@ -110,12 +109,12 @@ if [ "$sum" -eq 0 ]; then
     ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per ${4}_${3}: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati."
     rm -rf "Dati_$3"
     screen -X quit
-    #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+    #-----------------------------------------------------------------
 else
     #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
     ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}_${3}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
-    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+    #-----------------------------------------------------------------
 fi
 
 #----------------------------------------------------------------------------------------------------------------

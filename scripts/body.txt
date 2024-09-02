@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job Anderson_Energie_J6]
+[Info sul Job Ising_Corr_tw1_J1]
 --------------------------------------
 
-Dati acquisiti! Job Anderson_Energie_J6 completato alle ore 19:10:41 con 430 task! 
+Job 'Ising_Corr_tw1_J1' lanciato alle ore 20:03:06 con 160 task! 
 
