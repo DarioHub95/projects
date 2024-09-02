@@ -229,3 +229,241 @@
 + '[' 0 -eq 0 ']'
 ++ sleep 1
 + ./scripts/notify_errors.sh 250 '[parallel.sh] Interruzione della simulazione per Ising_Corr_tw1: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati.'
+remote: To https://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@github.com/DarioHub95/XXZ-Code.git
+   d808717..2ebe522  master -> master
+++ sleep 1
++ rm -rf Dati_Corr_tw1
+++ sleep 1
++ screen -X quit
+++ sleep 1
+++ sleep 1
+++ date +%s
++ start_time=1725313916
+++ sleep 1
++ tasks_per_job=("Tasks")
+++ sleep 1
++ esito=("Esito")
+++ sleep 1
++ jobs=("Job Name")
+++ sleep 1
++ ids=("Job ID")
+++ sleep 1
+++ grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c
++ nstep=100
+++ sleep 1
+++ grep -oP 'int\s+Oss\s*=\s*\K\d+' main.c
++ Oss=5
+++ sleep 1
+++ grep -oP '(?<=int L=)\d+' main.c
++ L=8
+++ sleep 1
++ total_tasks=600
+++ sleep 1
++ job_name=Ising_Corr_tw1
+++ sleep 1
+++ ls Dati_Corr_tw1
+++ wc -l
++ '[' 1 -gt 2 ']'
+++ sleep 1
++ '[' '!' -f Dati_Corr_tw1/a.out ']'
+++ sleep 1
++ cd Dati_Corr_tw1/
++ (( i=1 ))
+++ sleep 1
++ (( i<=3 ))
+++ sleep 1
+++ sleep 1
++ num_tasks=200
+++ sleep 1
++ count=0
+++ sleep 1
++ :
+++ sleep 1
+++ sleep 1
++ srun --job-name=Ising_Corr_tw1_J1 -p parallel -n 200 a.out
++ sleep 10
+++ sleep 1
+++ squeue -u adecandia -n Ising_Corr_tw1_J1 -o %i -h
+++ head -n 1
++ job_id=319204
+++ sleep 1
+++ squeue -j 319204 -o %t -h
++ job_status=PD
+++ sleep 1
+++ squeue -j 319204 -o %R -h
++ job_reason='(Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions)'
++ case $job_status in
+++ sleep 1
+++ sleep 1
++ [[ (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) == *\R\e\s\o\u\r\c\e\s* ]]
+++ sleep 1
++ [[ (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) == *\R\e\s\o\u\r\c\e\s* ]]
++ [[ (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) == *\D\O\W\N\,\ \D\R\A\I\N\E\D* ]]
+++ sleep 1
++ echo 'Il job con ID 319204 è ancora in attesa (PD) ma con (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions).'
+++ sleep 1
++ time=1800
+++ sleep 1
+++ sprio -S -Y
+++ awk 'NR==2 {print $1}'
++ '[' 319204 == 313118 ']'
+++ sleep 1
+++ sprio -S -Y
+++ awk 'NR==3 {print $1}'
++ '[' 319204 == 313119 ']'
+++ sleep 1
++ echo 'Il Job Ising_Corr_tw1_J1 ha una priority troppo bassa. Cancellazione del job Ising_Corr_tw1_J1...'
+++ sleep 1
++ scancel 319204
+++ sleep 1
++ esito+=("Cancellato (bassa Priority)")
+++ sleep 1
++ tasks_per_job+=(0)
+++ sleep 1
++ break
+++ sleep 1
++ jobs+=("${job_name}_J${i}")
+++ sleep 1
++ ids+=("${job_id}")
++ (( i++ ))
+++ sleep 1
++ (( i<=3 ))
+++ sleep 1
+++ sleep 1
++ num_tasks=200
+++ sleep 1
++ count=0
+++ sleep 1
++ :
+++ sleep 1
+++ sleep 1
++ srun --job-name=Ising_Corr_tw1_J2 -p parallel -n 200 a.out
++ sleep 10
+++ sleep 1
+++ squeue -u adecandia -n Ising_Corr_tw1_J2 -o %i -h
+++ head -n 1
++ job_id=319205
+++ sleep 1
+++ squeue -j 319205 -o %t -h
++ job_status=PD
+++ sleep 1
+++ squeue -j 319205 -o %R -h
++ job_reason='(Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions)'
++ case $job_status in
+++ sleep 1
+++ sleep 1
++ [[ (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) == *\R\e\s\o\u\r\c\e\s* ]]
+++ sleep 1
++ [[ (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) == *\R\e\s\o\u\r\c\e\s* ]]
++ [[ (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) == *\D\O\W\N\,\ \D\R\A\I\N\E\D* ]]
+++ sleep 1
++ echo 'Il job con ID 319205 è ancora in attesa (PD) ma con (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions).'
+++ sleep 1
++ time=1800
+++ sleep 1
+++ sprio -S -Y
+++ awk 'NR==2 {print $1}'
++ '[' 319205 == 313118 ']'
+++ sleep 1
+++ sprio -S -Y
+++ awk 'NR==3 {print $1}'
++ '[' 319205 == 313119 ']'
+++ sleep 1
++ echo 'Il Job Ising_Corr_tw1_J2 ha una priority troppo bassa. Cancellazione del job Ising_Corr_tw1_J2...'
+++ sleep 1
++ scancel 319205
+++ sleep 1
++ esito+=("Cancellato (bassa Priority)")
+++ sleep 1
++ tasks_per_job+=(0)
+++ sleep 1
++ break
+++ sleep 1
++ jobs+=("${job_name}_J${i}")
+++ sleep 1
++ ids+=("${job_id}")
++ (( i++ ))
+++ sleep 1
++ (( i<=3 ))
+++ sleep 1
+++ sleep 1
++ num_tasks=200
+++ sleep 1
++ count=0
+++ sleep 1
++ :
+++ sleep 1
+++ sleep 1
++ srun --job-name=Ising_Corr_tw1_J3 -p parallel -n 200 a.out
++ sleep 10
+++ sleep 1
+++ squeue -u adecandia -n Ising_Corr_tw1_J3 -o %i -h
+++ head -n 1
++ job_id=319206
+++ sleep 1
+++ squeue -j 319206 -o %t -h
++ job_status=PD
+++ sleep 1
+++ squeue -j 319206 -o %R -h
++ job_reason='(Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions)'
++ case $job_status in
+++ sleep 1
+++ sleep 1
++ [[ (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) == *\R\e\s\o\u\r\c\e\s* ]]
+++ sleep 1
++ [[ (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) == *\R\e\s\o\u\r\c\e\s* ]]
++ [[ (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions) == *\D\O\W\N\,\ \D\R\A\I\N\E\D* ]]
+++ sleep 1
++ echo 'Il job con ID 319206 è ancora in attesa (PD) ma con (Nodes required for job are DOWN, DRAINED or reserved for jobs in higher priority partitions).'
+++ sleep 1
++ time=1800
+++ sleep 1
+++ sprio -S -Y
+++ awk 'NR==2 {print $1}'
++ '[' 319206 == 313118 ']'
+++ sleep 1
+++ sprio -S -Y
+++ awk 'NR==3 {print $1}'
++ '[' 319206 == 313119 ']'
+++ sleep 1
++ echo 'Il Job Ising_Corr_tw1_J3 ha una priority troppo bassa. Cancellazione del job Ising_Corr_tw1_J3...'
+++ sleep 1
++ scancel 319206
+++ sleep 1
++ esito+=("Cancellato (bassa Priority)")
+++ sleep 1
++ tasks_per_job+=(0)
+++ sleep 1
++ break
+++ sleep 1
++ jobs+=("${job_name}_J${i}")
+++ sleep 1
++ ids+=("${job_id}")
++ (( i++ ))
+++ sleep 1
++ (( i<=3 ))
+++ sleep 1
+++ sleep 1
++ cd ../
+++ sleep 1
++ sum=0
++ for value in '"${tasks_per_job[@]}"'
+++ sleep 1
+++ sleep 1
++ sum=0
++ for value in '"${tasks_per_job[@]}"'
+++ sleep 1
+++ sleep 1
++ sum=0
++ for value in '"${tasks_per_job[@]}"'
+++ sleep 1
+++ sleep 1
++ sum=0
++ for value in '"${tasks_per_job[@]}"'
+++ sleep 1
+++ sleep 1
++ sum=0
+++ sleep 1
++ '[' 0 -eq 0 ']'
+++ sleep 1
++ ./scripts/notify_errors.sh 250 '[parallel.sh] Interruzione della simulazione per Ising_Corr_tw1: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati.'
