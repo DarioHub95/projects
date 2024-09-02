@@ -74,8 +74,13 @@ for ((i=1; i<=$1; i++)); do
                 break  # Esci dal ciclo se il job è in esecuzione
                 ;;
             "PD")
+                # Se srun avviene tra 00:00 e le 05:00 allora aspetta
+                if [ $(date +"%H") -ge 0 ] && [ $(date +"%H") -lt 5 ] && [[ "$job_reason" == *"ibiscohpc"* ]]; then
+                    echo "L'orario è compreso tra mezzanotte e le 5. Aspetto..."
+                    sleep 1
+
                 # Controlla se il job è in attesa di risorse
-                if [[ "$job_reason" == *"Resources"* ]]; then
+                elif [[ "$job_reason" == *"Resources"* ]]; then
 
                     echo "Il job ${job_name}_J${i} non ha le risorse necessarie."
                     scancel $job_id

@@ -467,3 +467,105 @@ remote: To https://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@github.com/DarioHub9
 + '[' 0 -eq 0 ']'
 ++ sleep 1
 + ./scripts/notify_errors.sh 250 '[parallel.sh] Interruzione della simulazione per Ising_Corr_tw1: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati.'
+remote: error: GH013: Repository rule violations found for refs/heads/master.[K
+remote: 
+remote: - GITHUB PUSH PROTECTION[K
+remote:   —————————————————————————————————————————[K
+remote:     Resolve the following violations before pushing again[K
+remote: 
+remote:     - Push cannot contain secrets[K
+remote: 
+remote:     [K
+remote:      (?) Learn how to resolve a blocked push[K
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push[K
+remote:     [K
+remote:      (?) This repository does not have Secret Scanning enabled, but is eligible. Enable Secret Scanning to view and manage detected secrets.[K
+remote:      Visit the repository settings page, https://github.com/DarioHub95/XXZ-Code/settings/security_analysis[K
+remote:     [K
+remote:     [K
+remote:       —— GitHub Personal Access Token ——————————————————————[K
+remote:        locations:[K
+remote:          - commit: 444cd55990732f1a5904ddfd32f4e884bb11a540[K
+remote:            path: scripts/error.log:232[K
+remote:     [K
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.[K
+remote:        https://github.com/DarioHub95/XXZ-Code/security/secret-scanning/unblock-secret/2lX6P5JXsSPED1L52HmmnIHBfM8[K
+remote:     [K
+remote: 
+remote: 
+To https://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@github.com/DarioHub95/XXZ-Code.git
+ ! [remote rejected] master -> master (push declined due to repository rule violations)
+error: failed to push some refs to 'https://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@github.com/DarioHub95/XXZ-Code.git'
+++ sleep 1
++ rm -rf Dati_Corr_tw1
+++ sleep 1
++ screen -X quit
+++ sleep 1
+++ sleep 1
+++ date +%s
++ start_time=1725314652
+++ sleep 1
++ tasks_per_job=("Tasks")
+++ sleep 1
++ esito=("Esito")
+++ sleep 1
++ jobs=("Job Name")
+++ sleep 1
++ ids=("Job ID")
+++ sleep 1
+++ grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c
++ nstep=100
+++ sleep 1
+++ grep -oP 'int\s+Oss\s*=\s*\K\d+' main.c
++ Oss=5
+++ sleep 1
+++ grep -oP '(?<=int L=)\d+' main.c
++ L=8
+++ sleep 1
++ total_tasks=700
+++ sleep 1
++ job_name=Ising_Corr_tw1
+++ sleep 1
+++ ls Dati_Corr_tw1
+++ wc -l
++ '[' 1 -gt 2 ']'
+++ sleep 1
++ '[' '!' -f Dati_Corr_tw1/a.out ']'
+++ sleep 1
++ cd Dati_Corr_tw1/
++ (( i=1 ))
+++ sleep 1
++ (( i<=2 ))
+++ sleep 1
+++ sleep 1
++ num_tasks=350
+++ sleep 1
++ count=0
+++ sleep 1
++ :
+++ sleep 1
+++ sleep 1
++ srun --job-name=Ising_Corr_tw1_J1 -p parallel -n 350 a.out
++ sleep 10
+++ sleep 1
+++ squeue -u adecandia -n Ising_Corr_tw1_J1 -o %i -h
+++ head -n 1
++ job_id=319209
+++ sleep 1
+++ squeue -j 319209 -o %t -h
++ job_status=PD
+++ sleep 1
+++ squeue -j 319209 -o %R -h
++ job_reason='(Resources)'
++ case $job_status in
+++ sleep 1
+++ sleep 1
+++ date +%H
++ '[' 00 -ge 0 ']'
+++ sleep 1
+++ date +%H
++ '[' 00 -lt 5 ']'
+++ sleep 1
++ echo 'L'\''orario è compreso tra mezzanotte e le 5. Aspetto 3 ore...'
+++ sleep 1
++ sleep 10800
