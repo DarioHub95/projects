@@ -1,5 +1,11 @@
-# #!/bin/bash
+#!/bin/bash
+
+# Comandi di DEBUG
 set -x
+trap 'sleep 1' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+log_file="scripts/control.log"
+error_log_file="scripts/error.log"
+exec > "$log_file" 2> >(tee -a "$error_log_file" >&2)
 
 #vars simulazione
 start_time=$(date +%s)
@@ -85,7 +91,7 @@ for ((i=1; i<=$1; i++)); do
                     fi
 
                 # Controlla se il job non è ancora running ma in priority
-                elif ! echo "$(squeue -j $job_id -o "%R" -h)" | grep -q "ibisco"; then 
+                elif [[ "$job_reason" == *"Resources"* || "$job_reason" == *"DOWN, DRAINED"* ]]; then 
                     echo "Il job con ID $job_id è ancora in attesa (PD) ma con $job_reason."
                     time=1800
 
