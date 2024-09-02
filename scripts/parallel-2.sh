@@ -38,7 +38,7 @@ for ((i=1; i<=$1; i++)); do
     count=0
     while :; do
         srun --job-name="$job_name" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        if (( $count == 0 )); then sleep 60; ((count++)); else sleep 5; fi
+        sleep 10
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "$job_name" -o "%i" -h | head -n 1)
@@ -61,6 +61,7 @@ for ((i=1; i<=$1; i++)); do
                 rename_output_files
                 esito+=("Eseguito") 
                 tasks_per_job+=($num_tasks)
+                
                 # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
                 # if [ "$nstep" -eq 10000 ]; then
                 #     ./../scripts/notify_ok.sh "J" "$job_name" "Dati acquisiti! Job $job_name completato con $num_tasks task! "
@@ -69,33 +70,61 @@ for ((i=1; i<=$1; i++)); do
                 break  # Esci dal ciclo se il job è in esecuzione
                 ;;
             "PD")
-                echo "Il job con ID $job_id è ancora in attesa (PD)."
-                if (( elapsed >= timeout1 )); then
-                    echo "Sono trascorsi 20 minuti e il job è ancora in attesa. Passo alla fase di verifica."
-                    job_status="CHECK"  # Cambia lo stato per eseguire un'azione specifica
+                # Controlla se il job è in attesa di risorse
+                if [[ "$job_reason" == *"Resources"* ]]; then
+
+                    echo "Il job $job_name non ha le risorse necessarie."
+                    scancel $job_id
+                    echo "Riduzione del numero di task di 10 e rilancio del job $job_name..."
+                    ((num_tasks -= 10))
+
+                    if (( $num_tasks < 2 )); then
+                        echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job $job_name..."
+                        scancel $job_id
+                        esito+=("Cancellato (assenza di risorse)")
+                        tasks_per_job+=(0)
+                        break
+                    fi
+
+                else
+                    echo "Il job con ID $job_id è ancora in attesa (PD) ma con $job_reason."
+                    time=1800
+
+                    # Verifica se il job_id è il primo nella lista di sprio
+                    if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
+                        echo "Il job con ID $job_id è il primo nella lista."
+                        i=0
+                        while (( $i < $time && $(squeue -j $job_id -o "%t" -h) != "R" )); do        # aspetta al massimo 30 min e ogni 1s controlla job_status==R
+                            echo "Il job con ID $job_id è il primo nella lista."
+                            sleep 1
+                            ((i++))
+                        done
+                        ((time -= 600))
+                        if (( $time == 0 )); then
+                            echo "Eseguiti i 3 tentativi di attesa ma il job non è partito. Cancellazione del job $job_name..."
+                            scancel $job_id
+                            esito+=("Cancellato (attesa eccessiva)")
+                            tasks_per_job+=(0)
+                            break
+                        fi
+
+                    elif [ $(sprio -S '-Y' | grep $job_id | wc -l) == 1 ]
+                        echo "Il job con ID $job_id NON è il primo nella lista."
+                        sprio -S '-Y'
+                        echo "Riduzione del numero di task di 10 e rilancio del job $job_name..."
+                        ((num_tasks -= 1))
+
+                        if (( $num_tasks == 2 )); then
+                            echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job $job_name..."
+                            scancel $job_id
+                            esito+=("Cancellato (bassa Priority)")
+                            tasks_per_job+=(0)
+                            break
+                        fi
+                    fi
                 fi
                 ;;
         esac
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        else
-
-
-        fi
     done
     jobs+=("$job_name")
     ids+=("${job_id}")

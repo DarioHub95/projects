@@ -98,7 +98,7 @@ Osservabile scelto:  ${osservabile}
 N° di Task richiesti: $((${2}*${#jobs[@]}))
 N° di Task eseguiti:  ${3}
 
-N° di Job richiesti: ${#jobs[@]}
+N° di Job richiesti: $((${#jobs[@]} - 1))
 
 Dettagli Job Lanciati:
 
