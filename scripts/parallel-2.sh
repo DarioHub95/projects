@@ -45,7 +45,6 @@ for ((i=1; i<=$1; i++)); do
         job_status=$(squeue -j $job_id -o "%t" -h)
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
-
         case $job_status in
             "R")
                 # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
@@ -86,7 +85,7 @@ for ((i=1; i<=$1; i++)); do
                         break
                     fi
 
-                else
+                elif ! echo "$(squeue -j 318790 -o "%R" -h)" | grep -q "ibisco"; then 
                     echo "Il job con ID $job_id è ancora in attesa (PD) ma con $job_reason."
                     time=1800
 

@@ -75,6 +75,12 @@ for ((i=1; i<=$1; i++)); do
             fi
         else
             echo "Allocate le risorse per il job ${4}_${3}_J${i} in stato ${job_status}. Esecuzione..."
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+                if [[ "$job_status" == "R" ]]; then
+                echo "Il job ${4}_${3}_J${i} partito!"
+                ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job '${4}_${3}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+                fi
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
             job_pid=$!
             wait $job_pid
             rename_output_files
