@@ -1,25 +1,6 @@
 --------------------------------------
-    [Dettagli della Simulazione]
+[Info sul Job Ising_Corr_tw1_J1]
 --------------------------------------
-Start Date: 02-09-2024 18:20:51
-End Date:   02-09-2024 18:21:32
-Durata:     00:00:41
 
-Modello selezionato: Anderson
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     10
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0
-> eps:   5
-> alpha: 0
-
-File delle medie:
-Anderson_Energie_L10_R754_18.20.51.txt
-
-N° di file output eliminati: 1246
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
+Job 'Ising_Corr_tw1_J1' lanciato alle ore 20:27:33 con 30 task! 
 
