@@ -82,6 +82,23 @@ for ((i=1; i<=$1; i++)); do
                 # Controlla se il job è in attesa di risorse
                 elif [[ "$job_reason" == *"Resources"* ]]; then
 
+                    # Verifica se il job_id è il primo nella lista di sprio
+                    elif [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
+                        echo "Il job con ID $job_id NON è il primo nella lista, ma il SECONDO."
+                        sprio -S '-Y' --long
+                        scancel $job_id
+                        echo "Riduzione del numero di task di 10 e rilancio del job ${job_name}_J${i}..."
+                        ((num_tasks -= 10))
+
+                        if (( $num_tasks < 2 )); then
+                            echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
+                            scancel $job_id
+                            esito+=("Cancellato (bassa Priority)")
+                            tasks_per_job+=(0)
+                            break
+                        fi
+                    fi
+
                     echo "Il job ${job_name}_J${i} non ha le risorse necessarie."
                     scancel $job_id
                     echo "Riduzione del numero di task di 10 e rilancio del job ${job_name}_J${i}..."
@@ -96,7 +113,7 @@ for ((i=1; i<=$1; i++)); do
                     fi
 
                 # Controlla se il job non è ancora running ma in priority
-                elif [[ "$job_reason" == *"Resources"* || "$job_reason" == *"DOWN, DRAINED"* ]]; then 
+                elif [[ "$job_reason" == *"Priority"* || "$job_reason" == *"DOWN, DRAINED"* ]]; then 
                     echo "Il job con ID $job_id è ancora in attesa (PD) ma con $job_reason."
                     time=1800
 
@@ -114,22 +131,6 @@ for ((i=1; i<=$1; i++)); do
                             echo "Eseguiti i 3 tentativi di attesa ma il job non è partito. Cancellazione del job ${job_name}_J${i}..."
                             scancel $job_id
                             esito+=("Cancellato (attesa eccessiva)")
-                            tasks_per_job+=(0)
-                            break
-                        fi
-
-                    # Verifica se il job_id è il secondo nella lista di sprio
-                    elif [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
-                        echo "Il job con ID $job_id NON è il primo nella lista, ma il SECONDO."
-                        sprio -S '-Y' --long
-                        scancel $job_id
-                        echo "Riduzione del numero di task di 10 e rilancio del job ${job_name}_J${i}..."
-                        ((num_tasks -= 10))
-
-                        if (( $num_tasks < 2 )); then
-                            echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
-                            scancel $job_id
-                            esito+=("Cancellato (bassa Priority)")
                             tasks_per_job+=(0)
                             break
                         fi

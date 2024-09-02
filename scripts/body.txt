@@ -2,5 +2,5 @@
 [Info sul Job 1]
 --------------------------------------
 
-Job '1' lanciato alle ore 00:23:11 con 140 task! 
+Job '1' lanciato alle ore 00:30:24 con 220 task! 
 

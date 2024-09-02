@@ -10,9 +10,9 @@ script_path="scripts/old_simulation.sh"
 
 echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]-----------------------------------------------|${NC}"
 echo ""
-echo "Rimozione file 'srun.log'..."
+echo "Rimozione file di log..."
 echo ""
-rm -rf srun.log
+rm -rf srun.log scripts/*.log
 # Controlla tutti i file .txt nella directory corrente
 for file in *.txt; do
     if [ -f "$file" ] && [ $(wc -l < "$file") -gt 5000 ]; then
