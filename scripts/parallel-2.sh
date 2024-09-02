@@ -85,7 +85,8 @@ for ((i=1; i<=$1; i++)); do
                         break
                     fi
 
-                elif ! echo "$(squeue -j 318790 -o "%R" -h)" | grep -q "ibisco"; then 
+                # Controlla se il job non è ancora running ma in priority
+                elif ! echo "$(squeue -j $job_id -o "%R" -h)" | grep -q "ibisco"; then 
                     echo "Il job con ID $job_id è ancora in attesa (PD) ma con $job_reason."
                     time=1800
 
@@ -107,19 +108,29 @@ for ((i=1; i<=$1; i++)); do
                             break
                         fi
 
-                    elif [ $(sprio -S '-Y' | grep $job_id | wc -l) == 1 ]
-                        echo "Il job con ID $job_id NON è il primo nella lista."
-                        sprio -S '-Y'
+                    # Verifica se il job_id è il secondo nella lista di sprio
+                    elif [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
+                        echo "Il job con ID $job_id NON è il primo nella lista, ma il SECONDO."
+                        sprio -S '-Y' --long
+                        scancel $job_id
                         echo "Riduzione del numero di task di 10 e rilancio del job $job_name..."
-                        ((num_tasks -= 1))
+                        ((num_tasks -= 10))
 
-                        if (( $num_tasks == 2 )); then
+                        if (( $num_tasks < 2 )); then
                             echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job $job_name..."
                             scancel $job_id
                             esito+=("Cancellato (bassa Priority)")
                             tasks_per_job+=(0)
                             break
                         fi
+                    
+                    # Elimina il job_id se ha poca Priority
+                    else
+                        echo "Il Job $job_name ha una priority troppo bassa. Cancellazione del job $job_name..."
+                        scancel $job_id
+                        esito+=("Cancellato (bassa Priority)")
+                        tasks_per_job+=(0)
+                        break
                     fi
                 fi
                 ;;
