@@ -451,7 +451,6 @@ void loop::dinamica(double *A)
          int s1=(S[m]?1:-1);
          htmp-=ham3*hi[i]*s1;
          ssum+=s1;        // somma tutti gli spin immaginari
-
          // Parte di codice per autocorrelazione1 spin-spin
          A[32+m]=s1; // la configurazione di spin corrente
 
@@ -463,11 +462,6 @@ void loop::dinamica(double *A)
             utmp+=ham2*V*s1*s2;
            }
         }
-
-        // Parte di codice per autocorrelazione2 spin-spin
-          A[13+i]=(double)ssum/N; // media sugli spin immaginari
-
-
         // Parte di codice per componenti ultimo spin
         if(i==L-1)
         {

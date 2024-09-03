@@ -132,7 +132,7 @@ int main(int argc,char **argv)
               int m=i+j*L;
               A[amax+i]+=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
               }    
-            A[amax+i]=A[amax+i]/N;        // somma tutti gli spin immaginari        
+            A[amax+i]=A[amax+i]/N;        // media su tempo immaginario      
         }
 
         printf("%15g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g\n",
