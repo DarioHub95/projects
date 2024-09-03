@@ -24,12 +24,12 @@ if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
 rm Dati_$3/output*
 fi
 
-# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-# if [ ! -f "Dati_${3}/a.out" ]; then
-#     scancel $job_id
-#     ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste." 
-# fi
-# #-----------------------------------------------------------------
+#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+if [ ! -f "Dati_${3}/a.out" ]; then
+    scancel $job_id
+    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste." 
+fi
+#-----------------------------------------------------------------
 
 cd Dati_$3/
 for ((i=1; i<=$1; i++)); do
@@ -46,18 +46,19 @@ for ((i=1; i<=$1; i++)); do
 
         # se la diff è di circa 400 tasks con le cpu, aspetta un tot di min
         if (( $((cpu_idle - num_tasks)) < 400 && $((cpu_idle - num_tasks)) >= 390 )); then
-        echo "Attendo 15 min che il job $job_name_J${i} parta..."
+            echo "Attendo 30 min che il job $job_name_J${i} parta..."
             for ((j=1; j<=30; j++)); do 
                 sleep 60
                 job_status=$(squeue -j $job_id -o "%t" -h)
-            # #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-            #     if [[ "$job_status" == "R" ]]; then
-            #     echo "Il job $job_name_J${i} partito!"
-            #     ./../scripts/notify_ok.sh "J" "$job_name_J${i}" "Job '$job_name_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-            #     break
-            #     fi
-            # #-----------------------------------------------------------------
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+                if [[ "$job_status" == "R" ]]; then
+                echo "Il job $job_name_J${i} partito!"
+                ./../scripts/notify_ok.sh "J" "$job_name_J${i}" "Job '$job_name_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+                break
+                fi
+            #-----------------------------------------------------------------
             done
+            ((num_tasks -= 10))
         fi
 
         # Controlla se il job è in attesa di risorse
@@ -76,23 +77,22 @@ for ((i=1; i<=$1; i++)); do
             fi
         else
             echo "Allocate le risorse per il job $job_name_J${i} in stato ${job_status}. Esecuzione..."
-            # #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-            #     if [[ "$job_status" == "R" ]]; then
-            #     echo "Il job $job_name_J${i} partito!"
-            #     ./../scripts/notify_ok.sh "J" "$job_name_J${i}" "Job '$job_name_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-            #     fi
-            # #-----------------------------------------------------------------
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+            if [ "$nstep" -eq 10000 ]; then
+            ./../scripts/notify_ok.sh "J" "$job_name_J${i}" "Job '$job_name_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+            fi
+            #-----------------------------------------------------------------
             job_pid=$!
             wait $job_pid
             rename_output_files
             ((count++))
             esito+=("Eseguito") 
             tasks_per_job+=($num_tasks)
-            # #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-            # if [ "$nstep" -eq 10000 ]; then
-            #     ./../scripts/notify_ok.sh "J" "$job_name_J${i}" "Dati acquisiti! Job $job_name_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-            # fi
-            # #-----------------------------------------------------------------
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+            if [ "$nstep" -eq 10000 ]; then
+                ./../scripts/notify_ok.sh "J" "$job_name_J${i}" "Dati acquisiti! Job $job_name_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+            fi
+            #-----------------------------------------------------------------
         fi
     done
     jobs+=("$job_name_J${i}")
@@ -106,29 +106,29 @@ for value in "${tasks_per_job[@]}"; do
     sum=$((sum + value))
 done
 
-# if [ "$sum" -eq 0 ]; then
-#     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-#     ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per $job_name: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati."
-#     rm -rf "Dati_$3"
-#     screen -X quit
-#     #-----------------------------------------------------------------
-# else
-#     #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-#     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
-#     ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
-#     #-----------------------------------------------------------------
-# fi
+if [ "$sum" -eq 0 ]; then
+    #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+    ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per $job_name: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati."
+    rm -rf "Dati_$3"
+    screen -X quit
+    #-----------------------------------------------------------------
+else
+    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+    echo "La somma delle componenti dell'array non è 0. La somma è $sum."
+    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
+    #-----------------------------------------------------------------
+fi
 
 #----------------------------------------------------------------------------------------------------------------
 ############################################### CALCOLO MEDIE ###################################################
 #----------------------------------------------------------------------------------------------------------------
 
-# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-# if [ "$sum" -ne 0 ] && [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
-#     ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
-#     screen -X quit
-# fi
-# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+if [ "$sum" -ne 0 ] && [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
+    ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
+    screen -X quit
+fi
+#-----------------------------------------------------------------
 
 
 # Tolleranza al 20% per il numero di -nan nei file di dati
@@ -166,11 +166,11 @@ echo "Il numero di file con righe sbagliate è $file_count_lines"
 # Conta il numero di file rimasti in Data
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
-# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-# if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
-#     ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
-# fi
-# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
+    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
+fi
+#-----------------------------------------------------------------
 
 # Salva le prime 16 righe del primo file in media totale
 MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
@@ -217,24 +217,24 @@ fi
 mv "${MEDIA}.tmp" "${MEDIA}"
 rm temp_*.txt
 
-# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-# if [ $(wc -l < "${MEDIA}") -le 20 ]; then
-#     ./scripts/notify_errors.sh 350 "[media.sh] Il file '${MEDIA}' non contiene nessun valore medio. Uscita dallo screen media_$3..." 
-#     screen -X quit
-# elif [ ! -f "${MEDIA}" ]; then
-#     ./scripts/notify_errors.sh 200 "[media.sh] Il file '${MEDIA}' non esiste. Uscita dallo screen media_$3..." 
-#     screen -X quit
-# fi
-# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+if [ $(wc -l < "${MEDIA}") -le 20 ]; then
+    ./scripts/notify_errors.sh 350 "[media.sh] Il file '${MEDIA}' non contiene nessun valore medio. Uscita dallo screen media_$3..." 
+    screen -X quit
+elif [ ! -f "${MEDIA}" ]; then
+    ./scripts/notify_errors.sh 200 "[media.sh] Il file '${MEDIA}' non esiste. Uscita dallo screen media_$3..." 
+    screen -X quit
+fi
+#-----------------------------------------------------------------
 
 # Inserisci riga di Data e ora e di tasks nel file di media totale
 sed -i "1i Tasks: ${R_tot}" "${MEDIA}"
 sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${MEDIA}"
 sed -i '/seed/d' "${MEDIA}"
 
-# #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-# ./scripts/notify_ok.sh "S" "${MEDIA}" $start_time $total_tasks
-# #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+./scripts/notify_ok.sh "S" "${MEDIA}" $start_time $total_tasks
+#-----------------------------------------------------------------
 
 # Processa i file di output nella directory
 echo "Sostituzione punti con virgole nel file delle medie..."

@@ -37,7 +37,7 @@ int main(int argc,char **argv)
 
     if (Oss==5) L=8; // se scelgo la correlazione, la lunghezza deve essere fissata
 
-    int P = 2;
+    int P = 3;
     switch (P) {
         case 1:
             Jz = 0;
