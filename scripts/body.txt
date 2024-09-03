@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job 1]
+[Info sul Job Anderson_Corr_tw1_J1]
 --------------------------------------
 
-Job '1' lanciato alle ore 12:11:26 con 610 task! 
+Job 'Anderson_Corr_tw1_J1' lanciato alle ore 12:16:19 con 610 task! 
 
