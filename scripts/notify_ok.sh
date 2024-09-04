@@ -18,9 +18,17 @@ basename="${2%.txt}"
 IFS='_' read -r -a components <<< "$basename"
 
 modello="${components[0]}"        # Ising
-osservabile="${components[1]}"     # Energie
-L="${components[2]#L}"            # 12
-R="${components[3]#R}"            # 1590
+
+if [ ${#components[@]} -eq 6 ]; then
+    osservabile="${components[1]}_${components[2]}"  # osservabile è composto da Corr_tw1
+    L="${components[3]#L}"        # 8
+    R="${components[4]#R}"        # 1590
+else
+    osservabile="${components[1]}"     # Energie
+    L="${components[2]#L}"        # 12
+    R="${components[3]#R}"        # 1590
+fi
+
 start_time=$3
 end_time=$(date +%s)
 time_diff=$((end_time - start_time))

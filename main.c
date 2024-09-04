@@ -9,7 +9,7 @@ int main(int argc,char **argv)
   {
    pvm_init();
 
-   int L=8;							// numero di siti della catena di spin
+   int L=4;							// numero di siti della catena di spin
    int pbc=0;							// condizioni al bordo (0: condizioni aperte, 1: condizioni periodiche)
    int type=1;						// tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
    int nstep=10000;       // numero di esecuzioni del monte carlo
@@ -17,7 +17,7 @@ int main(int argc,char **argv)
    int n=0;
    int Sz=0;             // magnetizzazione della catena (sempre negativa)
    int tw=1;               // tempo di waiting per autocorrelazione
-   int Oss=5;
+   int Oss=4;
    int mype=pvm_mype();
 
    double Jz=0.2; //0.2						        // interazione spin-spin            // MODIFICATO
@@ -36,8 +36,9 @@ int main(int argc,char **argv)
   // Variabili extra--------------------------------------------------------
 
     if (Oss==5) L=8; // se scelgo la correlazione, la lunghezza deve essere fissata
+    for(int m=0;m<M;m++) A[amax+m]=0;  // salva config spin al tempo t=t_w
 
-    int P = 3;
+    int P = 5;
     switch (P) {
         case 1:
             Jz = 0;
@@ -103,11 +104,11 @@ int main(int argc,char **argv)
       // [3]:  Media temporale numero di hopping diviso per beta (H_hop)
       // [10]: Media temporale dell'interazione spin-spin (H_int)
       // [12]: Media temporale dell'interazione con B (campo magnetico esterno) (H_mag)
-      // [21-23]: Componenti Sx Sy Sz spin ultimo sito
+      // [21->23]: Componenti Sx Sy Sz spin ultimo sito
       // [28]: Numero di bond del bagno termico allo step Monte Carlo corrente
       // [29]: Media temporale del numero di bond del bagno termico
       // [30]: Somma temporale del numero di cluster
-      // [32-(32+M)]: configurazione degli spin
+      // [32->(32+M)]: configurazione degli spin
 
 
     // PRINT OPERATORE SINGOLO
@@ -120,23 +121,50 @@ int main(int argc,char **argv)
         printf("%15g%15g%15g%15g\n",A[0],A[3]/A[1],A[10]/A[1],A[12]/A[1]);
 
     // PRINT AUTOCORRELAZIONE SPIN-SPIN PER L SITI <Sij(tw)*Sij(t)>_tau
-    else if (Oss == 5 && n>=tw-1 )
+    else if (Oss == 5 )
     {
 
-        if(A[0]==(double)tw) for(int m=0;m<M;m++) Stmp[m]=A[amax+m];    // salva config spin al tempo t=t_w
-         else if(A[0]>=(double)tw)
-          for (int i=0;i<L;i++)
+        if(A[0]==(double)tw)
         {
-            for (int j=0;j<N;j++)
-              {
-              int m=i+j*L;
-              A[amax+i]+=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
-              }    
-            A[amax+i]=A[amax+i]/N;        // media su tempo immaginario      
-        }
+          for(int m=0;m<M;m++) Stmp[m]=A[amax+m];  // salva config spin al tempo t=t_w
+          for (int i=0;i<L;i++)
+            {
+              for (int j=0;j<N;j++)
+                {
+                int m=i+j*L;
+                // A[amax+i]+=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
+                A[amax+m]=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
 
-        printf("%15g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g\n",
-              A[0],A[amax],A[amax+1],A[amax+2],A[amax+3],A[amax+4],A[amax+5],A[amax+3],A[amax+7]);
+                }    
+              // A[amax+i]=A[amax+i]/N;        // media su tempo immaginario
+            }    
+          }
+
+
+        if(A[0]>(double)tw)
+          for (int i=0;i<L;i++)
+          {
+              for (int j=0;j<N;j++)
+                {
+                int m=i+j*L;
+                // A[amax+i]+=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
+                A[amax+m]=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
+
+                }    
+              // A[amax+i]=A[amax+i]/N;        // media su tempo immaginario      
+          }
+
+        printf("%1g\n", A[0]);
+        for(int j=0;j<N;j++) printf("%4g%4g%4g%4g%4g%4g%4g%4g\n",A[amax+j*L],A[amax+1+j*L],A[amax+2+j*L],A[amax+3+j*L],A[amax+4+j*L],A[amax+5+j*L],A[amax+6+j*L],A[amax+7+j*L]);
+        printf("\n");
+
+        // for(int j=0;j<N;j++) printf("%4g%4g%4g%4g%4g%4g%4g%4g\n",Stmp[0+j*L],Stmp[1+j*L],Stmp[2+j*L],Stmp[3+j*L],Stmp[4+j*L],Stmp[5+j*L],Stmp[6+j*L],Stmp[7+j*L]);
+        // printf("\n");
+
+
+
+        // printf("%15g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g\n",
+        //       A[0],A[amax],A[amax+1],A[amax+2],A[amax+3],A[amax+4],A[amax+5],A[amax+3],A[amax+7]);
 
     }
 
