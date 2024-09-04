@@ -1,6 +1,22 @@
 --------------------------------------
-[Info sul Job Anderson_Corr_tw1_J5]
+       [Jobs per Anderson_Corr_tw1]
 --------------------------------------
 
-Dati acquisiti! Job Anderson_Corr_tw1_J5 completato alle ore 12:33:28 con 800 task! 
+Modello selezionato: Anderson
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 4800
+N° di Task eseguiti:  2780
+
+N° di Job richiesti: 5
+
+Dettagli Job Lanciati:
+
+| Job Name             | Job ID               | Tasks                | Esito                |
+| -------------------- | -------------------- | -------------------- | -------------------- |
+| Anderson_Corr_tw1_J1 | 319401               | 610                  | Eseguito             |
+| Anderson_Corr_tw1_J2 | 319481               | 700                  | Eseguito             |
+| Anderson_Corr_tw1_J3 | 319610               | 330                  | Eseguito             |
+| Anderson_Corr_tw1_J4 | 319660               | 340                  | Eseguito             |
+| Anderson_Corr_tw1_J5 | 319664               | 800                  | Eseguito             |
+| -------------------- | -------------------- | -------------------- | -------------------- |
