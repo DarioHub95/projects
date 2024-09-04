@@ -1,22 +1,25 @@
 --------------------------------------
-       [Jobs per Anderson_Corr_tw1]
+    [Dettagli della Simulazione]
 --------------------------------------
+Start Date: 03-09-2024 10:15:56
+End Date:   04-09-2024 10:46:40
+Durata:     00:30:44
 
 Modello selezionato: Anderson
 Osservabile scelto:  Corr
 
-N° di Task richiesti: 4800
-N° di Task eseguiti:  2780
+Parametri del Modello:
+> L:     tw1
+> nstep: 10000
+> Sz:    0
+> Jxy:   1
+> Jz:    0
+> eps:   5
+> alpha: 0
 
-N° di Job richiesti: 5
+File delle medie:
+Anderson_Corr_tw1_L8_R2780_10.15.56.txt
 
-Dettagli Job Lanciati:
+N° di file output eliminati: 4000
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
 
-| Job Name             | Job ID               | Tasks                | Esito                |
-| -------------------- | -------------------- | -------------------- | -------------------- |
-| Anderson_Corr_tw1_J1 | 319401               | 610                  | Eseguito             |
-| Anderson_Corr_tw1_J2 | 319481               | 700                  | Eseguito             |
-| Anderson_Corr_tw1_J3 | 319610               | 330                  | Eseguito             |
-| Anderson_Corr_tw1_J4 | 319660               | 340                  | Eseguito             |
-| Anderson_Corr_tw1_J5 | 319664               | 800                  | Eseguito             |
-| -------------------- | -------------------- | -------------------- | -------------------- |
