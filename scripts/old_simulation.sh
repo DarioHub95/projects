@@ -37,7 +37,7 @@ for ((i=1; i<=$1; i++)); do
     count=0
     while [ $count -eq 0 ]; do
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        sleep 1
+        sleep 10
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)

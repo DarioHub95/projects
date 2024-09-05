@@ -12,7 +12,7 @@ int main(int argc,char **argv)
    int L=8;							// numero di siti della catena di spin
    int pbc=0;							// condizioni al bordo (0: condizioni aperte, 1: condizioni periodiche)
    int type=1;						// tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
-   int nstep=3;       // numero di esecuzioni del monte carlo
+   int nstep=20;       // numero di esecuzioni del monte carlo
    int amax=32;
    int n=0;
    int Sz=0;             // magnetizzazione della catena (sempre negativa)
@@ -23,13 +23,13 @@ int main(int argc,char **argv)
    double Jz=0.2; //0.2						        // interazione spin-spin            // MODIFICATO
    double eps=0;  //5						        //intensità del campo magnetico     // MODIFICATO
    double beta=10;						      // temperatura inversa (parametro fissato)
-   double tau=0.001;					    	// step tempo immaginario (errore 101 se uguale a beta)
+   double tau=0.001;					    	// step tempo immaginario (errore 101 se uguale a beta) 0.001
    double alpha=0; //0.01					        // dissipazione sul sito centrale
    int N=4*(int)rint(0.5*beta/tau);
    int M=L*N;
    double *A=dvector(0,amax+M-1);
    double *Stmp=dvector(0,M-1);       // contiene tutti gli spin a fissato i, ovvero per j=1,2,...,N
-   double *Sm=dvector(0,L-1);          // vettore che salva gli spin della catena al tempo t_w
+   double *Corr=dvector(0,L-1);          // vettore che salva gli spin della catena al tempo t_w
   //  double *E=dvector(0,4);
    unsigned long seed=(int)time(NULL)+mype;
    
@@ -121,50 +121,32 @@ int main(int argc,char **argv)
         printf("%15g%15g%15g%15g\n",A[0],A[3]/A[1],A[10]/A[1],A[12]/A[1]);
 
     // PRINT AUTOCORRELAZIONE SPIN-SPIN PER L SITI <Sij(tw)*Sij(t)>_tau
-    else if (Oss == 5 )
+    else if (Oss == 5 && n>=tw-1)
     {
 
-        if(A[0]==(double)tw)
-        {
-          for(int m=0;m<M;m++) Stmp[m]=A[amax+m];  // salva config spin al tempo t=t_w
-          for (int i=0;i<L;i++)
-            {
-              for (int j=0;j<N;j++)
-                {
-                int m=i+j*L;
-                // A[amax+i]+=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
-                A[amax+m]=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
+        for (int i=0;i<L;i++) Corr[i]=0;
 
-                }    
-              // A[amax+i]=A[amax+i]/N;        // media su tempo immaginario
-            }    
-          }
-
-
-        if(A[0]>(double)tw)
+        if(A[0]==(double)tw) for(int m=0;m<M;m++) Stmp[m]=A[amax+m];  // salva config spin al tempo t=t_w  
+        if(A[0]>=(double)tw)
           for (int i=0;i<L;i++)
           {
               for (int j=0;j<N;j++)
                 {
                 int m=i+j*L;
-                // A[amax+i]+=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
-                A[amax+m]=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
-
+                Corr[i]+=Stmp[m]*A[amax+m];        // somma tutti gli spin immaginari
                 }    
-              // A[amax+i]=A[amax+i]/N;        // media su tempo immaginario      
+              Corr[i]=Corr[i]/N;        // media su tempo immaginario      
           }
-
-        printf("%1g%1g\n", A[0],tw);
-        for(int j=0;j<N;j++) printf("%4g%4g%4g%4g%4g%4g%4g%4g\n",A[amax+j*L],A[amax+1+j*L],A[amax+2+j*L],A[amax+3+j*L],A[amax+4+j*L],A[amax+5+j*L],A[amax+6+j*L],A[amax+7+j*L]);
-        printf("\n");
 
         // for(int j=0;j<N;j++) printf("%4g%4g%4g%4g%4g%4g%4g%4g\n",Stmp[0+j*L],Stmp[1+j*L],Stmp[2+j*L],Stmp[3+j*L],Stmp[4+j*L],Stmp[5+j*L],Stmp[6+j*L],Stmp[7+j*L]);
         // printf("\n");
+        // for(int j=0;j<N;j++) printf("%4g%4g%4g%4g%4g%4g%4g%4g\n",A[amax+j*L],A[amax+1+j*L],A[amax+2+j*L],A[amax+3+j*L],A[amax+4+j*L],A[amax+5+j*L],A[amax+6+j*L],A[amax+7+j*L]);
+        // printf("\n");
+        // for(int j=0;j<N;j++) printf("%4g%4g%4g%4g%4g%4g%4g%4g\n",Stmp[j*L]*A[amax+j*L],Stmp[1+j*L]*A[amax+1+j*L],Stmp[2+j*L]*A[amax+2+j*L],Stmp[3+j*L]*A[amax+3+j*L],Stmp[4+j*L]*A[amax+4+j*L],Stmp[5+j*L]*A[amax+5+j*L],Stmp[6+j*L]*A[amax+6+j*L],Stmp[7+j*L]*A[amax+7+j*L]);
+        // printf("\n");
 
-
-
-        // printf("%15g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g\n",
-        //       A[0],A[amax],A[amax+1],A[amax+2],A[amax+3],A[amax+4],A[amax+5],A[amax+3],A[amax+7]);
+        printf("%15g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g\n",
+              A[0],Corr[0],Corr[1],Corr[2],Corr[3],Corr[4],Corr[5],Corr[6],Corr[7]);
 
     }
 
