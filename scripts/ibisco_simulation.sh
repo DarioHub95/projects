@@ -78,9 +78,7 @@ for ((i=1; i<=$1; i++)); do
         else
             echo "Allocate le risorse per il job ${job_name}_J${i} in stato ${job_status}. Esecuzione..."
             #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-            if [ "$nstep" -eq 10000 ]; then
             ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-            fi
             #-----------------------------------------------------------------
             job_pid=$!
             wait $job_pid
@@ -89,9 +87,7 @@ for ((i=1; i<=$1; i++)); do
             esito+=("Eseguito") 
             tasks_per_job+=($num_tasks)
             #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-            if [ "$nstep" -eq 10000 ]; then
                 ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-            fi
             #-----------------------------------------------------------------
         fi
     done

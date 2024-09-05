@@ -3,11 +3,8 @@
 echo ""
 GREEN='\033[0;32m'
 NC='\033[0m'
-# script_path="scripts/sequential.sh"
-# script_path="scripts/parallel.sh"
-script_path="scripts/old_simulation.sh" #ancora usabile
-# media_script_path="scripts/media.sh"
-# script_path="scripts/simulation.sh"
+# script_path="scripts/ibisco_simulation.sh"
+script_path="scripts/lxgriv_simulation.sh"
 
 
 echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]-----------------------------------------------|${NC}"
@@ -65,11 +62,11 @@ elif [ "$O" -eq 5 ]; then
 elif [ "$O" -eq 6 ]; then
     var=Spin
 fi
-# Trova una cartella contenente 'Energie' e verifica la presenza di un solo file con il prefisso 'Durata_'
-if [[ $(squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R" | grep "${var}" | wc -l) -ne 0 ]]; then
+
+if screen -ls | grep -q "${var}"; then
     echo "Acquisizione dei dati ${var} in esecuzione."
     echo ""
-    squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R"
+    screen -ls
     echo ""
     echo "Interruzione dello script..."
     echo ""
@@ -151,22 +148,19 @@ elif [ "$P" -eq 5 ]; then
     mod=MBL+B
 fi
 
-
-echo -e "${GREEN}[TASK 3 - RISORSE CLUSTER IBISCO]------------------------------------------|${NC}"
-echo ""
-
-./scripts/resources.sh
-
-echo -e "${GREEN}[TASK 4 - STRUTTURA DATI]------------------------------------------------|${NC}"
-echo ""
-
-echo "Eseguire troppi job rispetto al numero di CPU disponibili può causare lunghe attese in coda,"
-echo "poiché i job aspettano risorse libere."
+echo -e "${GREEN}[TASK 3 - STRUTTURA DATI]------------------------------------------------|${NC}"
 echo ""
 
 # Inserire il valore di R
 read -p "Numero di run (R): " R
 echo ""
+
+# Controlla se R è maggiore di 120
+while [ "$R" -gt 120 ]; do
+    echo "Il valore inserito è maggiore di 120. Per favore, inserisci un valore più basso."
+    read -p "Inserisci un nuovo valore per R: " R
+    echo ""
+done
 
 # Inserire il valore di J (numero di jobs)
 read -p "Numero di jobs da eseguire (J): " J
@@ -190,8 +184,8 @@ mkdir -p "Dati_${var}"
 echo "Creata la directory Dati_${var} per i file di output..."
 echo ""
 echo "Compilazione dei file sorgente 'main.c' 'loop.c' 'kernel.c'..."
-mpiCC -O3 -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/adecandia/.lib2/ -lpvm -o "Dati_${var}"/a.out
-# g++ -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/adecandia/.lib2/ -lpvm -o a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+# g++ -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
 echo ""
 
 # Loop per creare screen e eseguire comandi
