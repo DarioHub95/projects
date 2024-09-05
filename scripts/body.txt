@@ -1,25 +1,6 @@
 --------------------------------------
-    [Dettagli della Simulazione]
+[Info sul Job Ising_Corr_tw1_J1]
 --------------------------------------
-Start Date: 04-09-2024 20:24:26
-End Date:   04-09-2024 22:51:33
-Durata:     02:27:07
 
-Modello selezionato: MBL+B
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     4
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   5
-> alpha: 0.01
-
-File delle medie:
-MBL+B_Energie_L4_R203_20.24.26.txt
-
-N° di file output eliminati: 1047
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
+Job 'Ising_Corr_tw1_J1' lanciato alle ore 17:39:03 con 180 task! 
 
