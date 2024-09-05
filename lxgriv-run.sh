@@ -11,7 +11,7 @@ echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]------------------------------------
 echo ""
 echo "Rimozione file di log..."
 echo ""
-rm -rf srun.log scripts/*.log
+rm -rf *.log scripts/*.log
 # Controlla tutti i file .txt nella directory corrente
 for file in *.txt; do
     if [ -f "$file" ] && [ $(wc -l < "$file") -gt 5000 ]; then
