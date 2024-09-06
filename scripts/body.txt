@@ -1,6 +1,20 @@
 --------------------------------------
-[Info sul Job Ising_Corr_tw1_J3]
+       [Jobs per Ising_Corr_tw1]
 --------------------------------------
 
-Dati acquisiti! Job Ising_Corr_tw1_J3 completato alle ore 17:33:14 con 950 task! 
+Modello selezionato: Ising
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 4800
+N° di Task eseguiti:  2690
+
+N° di Job richiesti: 3
+
+Dettagli Job Lanciati:
+
+| Job Name          | Job ID            | Tasks             | Esito             |
+| ----------------- | ----------------- | ----------------- | ----------------- |
+| Ising_Corr_tw1_J1 | 320823            | 850               | Eseguito          |
+| Ising_Corr_tw1_J2 | 320861            | 890               | Eseguito          |
+| Ising_Corr_tw1_J3 | 320888            | 950               | Eseguito          |
+| ----------------- | ----------------- | ----------------- | ----------------- |
