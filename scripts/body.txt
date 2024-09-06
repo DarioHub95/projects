@@ -1,13 +1,10 @@
 ------------------------------
-[WARNING 550]
+    [ERRORE 200]
 ------------------------------
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+FILE DI MEDIA NON TROVATO 
 
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
+Il file non è stato generato. 
 
-N° di file con eccesso di '-nan': 0
-N° di file corrotti: 2007 
-
-N° di file corretti: 0
+[media.sh] Il file '' non esiste. Uscita dallo screen media_Corr_tw1...
 
