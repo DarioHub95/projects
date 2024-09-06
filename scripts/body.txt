@@ -2,5 +2,5 @@
 [Info sul Job Ising_Corr_tw1_J5]
 --------------------------------------
 
-Job 'Ising_Corr_tw1_J5' lanciato alle ore 01:23:46 con 940 task! 
+Dati acquisiti! Job Ising_Corr_tw1_J5 completato alle ore 01:50:54 con 940 task! 
 
