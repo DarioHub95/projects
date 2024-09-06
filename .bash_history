@@ -94,3 +94,18 @@ screen -r Corr_tw1
 screen -r Corr_tw1
 exit
 exit
+bash -n lxgriv-run.sh 
+bash -n scripts/lxgriv_simulation.sh 
+bash -n scripts/lxgriv_simulation.sh 
+./lxgriv-run.sh 
+screen -r Corr_tw1
+./lxgriv-run.sh 
+jobs
+./lxgriv-run.sh 
+screen -r Corr_tw1
+./lxgriv-run.sh 
+screen -r Corr_tw1
+./lxgriv-run.sh 
+screen -r Corr_tw1
+./lxgriv-run.sh 
+screen -r Corr_tw1
