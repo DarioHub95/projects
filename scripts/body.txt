@@ -1,10 +1,6 @@
-------------------------------
-    [ERRORE 110]
-------------------------------
+--------------------------------------
+[Info sul Job Anderson_Corr_tw1_J1]
+--------------------------------------
 
-ESEGUIBILE TROVATO 
-
-Il file 'a.out' non è stato trovato. 
-
-[parallel.sh] Il file 'a.out' non esiste.
+Job 'Anderson_Corr_tw1_J1' lanciato alle ore 19:47:46 con 5 task! 
 
