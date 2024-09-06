@@ -1,20 +1,10 @@
---------------------------------------
-       [Jobs per Anderson_Corr_tw1]
---------------------------------------
+------------------------------
+    [ERRORE 350]
+------------------------------
 
-Modello selezionato: Anderson
-Osservabile scelto:  Corr
+ERRORE NEL CALCOLO DELLE MEDIE 
 
-N° di Task richiesti: 20
-N° di Task eseguiti:  
+Il calcolo delle medie non è riuscito a causa di dati malformati. 
 
-N° di Job richiesti: 3
+[media.sh] Il file 'Anderson_Corr_tw1_L8_R0_19.43.22.txt' non contiene nessun valore medio. Uscita dallo screen media_Corr_tw1...
 
-Dettagli Job Lanciati:
-
-| Job Name             | Job ID               | Tasks                | Esito                |
-| -------------------- | -------------------- | -------------------- | -------------------- |
-| Anderson_Corr_tw1_J1 |                      | 5                    | Eseguito             |
-| Anderson_Corr_tw1_J2 |                      | 5                    | Eseguito             |
-| Anderson_Corr_tw1_J3 |                      | 5                    | Eseguito             |
-| -------------------- | -------------------- | -------------------- | -------------------- |
