@@ -3,9 +3,6 @@
 # Comandi di DEBUG
 set -x
 trap 'sleep 1' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
-log_file="scripts/control.log"
-error_log_file="scripts/error.log"
-exec > "$log_file" 2> >(tee -a "$error_log_file" >&2)
 
 #vars simulazione
 start_time=$(date +%s)

@@ -1,119 +1,121 @@
-# # #!/bin/bash
-# set -x
+#!/bin/bash
 
-# #vars simulazione
-# start_time=$(date +%s)
-# rename_output_files() {
-#     for file in output-*; do
-#         mv "$file" "output_J${i}_${file#output-}"
-#     done
-# }
-# tasks_per_job=("Tasks")
-# esito=("Esito")
-# jobs=("Job Name")
-# ids=("Job ID")
-# nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
-# Oss=$(grep -oP 'int\s+Oss\s*=\s*\K\d+' main.c)
-# L=$(grep -oP '(?<=int L=)\d+' main.c)
-# cpu_idle=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}');
-# total_tasks=$(($1*$2))
-# job_name="${4}_${3}"
+set -x
+# trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
-# # Pulizia dei file output esistenti
-# if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
-# rm Dati_$3/output*
-# fi
+#vars simulazione
+start_time=$(date +%s)
+rename_output_files() {
+    for file in output-*; do
+        mv "$file" "output_J${i}_${file#output-}"
+    done
+}
+tasks_per_job=("Tasks")
+esito=("Esito")
+jobs=("Job Name")
+ids=("Job ID")
+nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
+Oss=$(grep -oP 'int\s+Oss\s*=\s*\K\d+' main.c)
+L=$(grep -oP '(?<=int L=)\d+' main.c)
+cpu_idle=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}');
+total_tasks=$(($1*$2))
+job_name="${4}_${3}"
 
-# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-# if [ ! -f "Dati_${3}/a.out" ]; then
-#     scancel $job_id
-#     ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste." 
-# fi
-# #-----------------------------------------------------------------
+# Pulizia dei file output esistenti
+if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
+rm Dati_$3/output*
+fi
 
-# cd Dati_$3/
-# for ((i=1; i<=$1; i++)); do
-#     num_tasks="$2"
-#     count=0
-#     while [ $count -eq 0 ]; do
-#         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-#         sleep 10
+#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+if [ ! -f "Dati_${3}/a.out" ]; then
+    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste. Simulazione interrotta."
+    screen -X quit
+fi
+#-----------------------------------------------------------------
 
-#         # Verifica dello stato del job i-esimo
-#         job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
-#         job_status=$(squeue -j $job_id -o "%t" -h)
-#         job_reason=$(squeue -j $job_id -o "%R" -h)
+cd Dati_$3/
+for ((i=1; i<=$1; i++)); do
+    num_tasks="$2"
+    count=0
+    while [ $count -eq 0 ]; do
+        srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+        sleep 10
 
-#         # se la diff è di circa 400 tasks con le cpu, aspetta un tot di min
-#         if (( $((cpu_idle - num_tasks)) < 400 && $((cpu_idle - num_tasks)) >= 390 )); then
-#             echo "Attendo 30 min che il job ${job_name}_J${i} parta..."
-#             for ((j=1; j<=30; j++)); do 
-#                 sleep 60
-#                 job_status=$(squeue -j $job_id -o "%t" -h)
-#             #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-#                 if [[ "$job_status" == "R" ]]; then
-#                 echo "Il job ${job_name}_J${i} partito!"
-#                 ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-#                 break
-#                 fi
-#             #-----------------------------------------------------------------
-#             done
-#             ((num_tasks -= 10))
-#         fi
+        # Verifica dello stato del job i-esimo
+        job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
+        job_status=$(squeue -j $job_id -o "%t" -h)
+        job_reason=$(squeue -j $job_id -o "%R" -h)
 
-#         # Controlla se il job è in attesa di risorse
-#         if [[ "$job_status" == "PD" ]]; then
-#             echo "Il job ${job_name}_J${i} non è riuscito a partire poichè in pending..."
-#             echo "Cancellazione del job..."
-#             scancel $job_id
-#             echo "Riduzione del numero di task di 10."
-#             ((num_tasks -= 10))
-#             if (( $num_tasks < 10 || $num_tasks < 0 )); then
-#                 echo "Il numero di task è inferiore a 10 o <0. Cancellazione del job ${job_name}_J${i}..."
-#                 ((count++))
-#                 scancel $job_id
-#                 esito+=("Cancellato a causa di: ${job_reason}")
-#                 tasks_per_job+=(0)
-#             fi
-#         else
-#             echo "Allocate le risorse per il job ${job_name}_J${i} in stato ${job_status}. Esecuzione..."
-#             #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-#             ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-#             #-----------------------------------------------------------------
-#             job_pid=$!
-#             wait $job_pid
-#             rename_output_files
-#             ((count++))
-#             esito+=("Eseguito") 
-#             tasks_per_job+=($num_tasks)
-#             #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-#                 ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-#             #-----------------------------------------------------------------
-#         fi
-#     done
-#     jobs+=("${job_name}_J${i}")
-#     ids+=("${job_id}")
-# done
-# cd ../
+        # se la diff è di circa 400 tasks con le cpu, aspetta un tot di min
+        if (( $((cpu_idle - num_tasks)) < 400 && $((cpu_idle - num_tasks)) >= 390 )); then
+            echo "Attendo 30 min che il job ${job_name}_J${i} parta..."
+            for ((j=1; j<=30; j++)); do 
+                sleep 60
+                job_status=$(squeue -j $job_id -o "%t" -h)
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+                if [[ "$job_status" == "R" ]]; then
+                echo "Il job ${job_name}_J${i} partito!"
+                ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+                break
+                fi
+            #-----------------------------------------------------------------
+            done
+            ((num_tasks -= 10))
+        fi
 
-# # Verifica del numero di tasks eseguiti dai jobs
-# sum=0
-# for value in "${tasks_per_job[@]}"; do
-#     sum=$((sum + value))
-# done
+        # Controlla se il job è in attesa di risorse
+        if [[ "$job_status" == "PD" ]]; then
+            echo "Il job ${job_name}_J${i} non è riuscito a partire poichè in pending..."
+            echo "Cancellazione del job..."
+            scancel $job_id
+            echo "Riduzione del numero di task di 10."
+            ((num_tasks -= 10))
+            if (( $num_tasks < 10 || $num_tasks < 0 )); then
+                echo "Il numero di task è inferiore a 10 o <0. Cancellazione del job ${job_name}_J${i}..."
+                ((count++))
+                scancel $job_id
+                esito+=("Cancellato a causa di: ${job_reason}")
+                tasks_per_job+=(0)
+            fi
+        else
+            echo "Allocate le risorse per il job ${job_name}_J${i} in stato ${job_status}. Esecuzione..."
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+            ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+            #-----------------------------------------------------------------
+            job_pid=$!
+            wait $job_pid
+            rename_output_files
+            ((count++))
+            esito+=("Eseguito") 
+            tasks_per_job+=($num_tasks)
+            #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+                ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+            #-----------------------------------------------------------------
+        fi
+    done
+    jobs+=("${job_name}_J${i}")
+    ids+=("${job_id}")
+done
+cd ../
 
-# if [ "$sum" -eq 0 ]; then
-#     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-#     ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per $job_name: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati."
-#     rm -rf "Dati_$3"
-#     screen -X quit
-#     #-----------------------------------------------------------------
-# else
-#     #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-#     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
-#     ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
-#     #-----------------------------------------------------------------
-# fi
+# Verifica del numero di tasks eseguiti dai jobs
+sum=0
+for value in "${tasks_per_job[@]}"; do
+    sum=$((sum + value))
+done
+
+if [ "$sum" -eq 0 ]; then
+    #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+    ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per $job_name: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati."
+    rm -rf "Dati_$3"
+    screen -X quit
+    #-----------------------------------------------------------------
+else
+    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+    echo "La somma delle componenti dell'array non è 0. La somma è $sum."
+    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
+    #-----------------------------------------------------------------
+fi
 
 #----------------------------------------------------------------------------------------------------------------
 ############################################### CALCOLO MEDIE ###################################################
@@ -134,7 +136,7 @@ file_count_lines=0
 for file in "Dati_$3"/output*.txt; do
     nan_count=$(grep -c "\-nan" "$file")    
 
-    if [ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) == 1 ]; then
+    if [ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) -eq 1 ]; then
         echo "La soglia del 20% è superata. Eliminazione del file $file..."
         rm "$file"
         file_count_nan=$((file_count_nan + 1))
@@ -168,7 +170,7 @@ for file in "Dati_$3"/output*; do
     last_line=$(tail -n 1 "$file")
     first_number=$(echo "$last_line" | awk '{print $1}')
     if [[ "$first_number" != $nstep ]]; then
-        echo "Eliminando file: $file (primo numero: $first_number)"
+        echo "Eliminando file: $file"
         rm "$file"
         file_count_lines=$((file_count_lines + 1))
     fi
@@ -184,10 +186,10 @@ if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then
 fi
 #-----------------------------------------------------------------
 
-# # Salva le prime 16 righe del primo file in media totale
-# MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
-# output_file=$(find "Dati_$3" -maxdepth 1 -type f -name "output*" | head -n 1)
-# head -n 16 "$output_file" > "${MEDIA}"
+# Salva le prime 16 righe del primo file in media totale
+MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
+output_file=$(find "Dati_$3" -maxdepth 1 -type f -name "output*" | head -n 1)
+head -n 16 "$output_file" > "${MEDIA}"
 
 # Rimuovi in ogni file il numero di righe pari al massimo numero di -nan trovati 
 echo "Rimuovi ${max_nan_count:-0} righe non sommabili da ogni file di output..."
