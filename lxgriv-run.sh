@@ -184,7 +184,7 @@ mkdir -p "Dati_${var}"
 echo "Creata la directory Dati_${var} per i file di output..."
 echo ""
 echo "Compilazione dei file sorgente 'main.c' 'loop.c' 'kernel.c'..."
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o "Dati_${var}"/a.out
 # g++ -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
 echo ""
 
