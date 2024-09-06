@@ -1,10 +1,10 @@
 ------------------------------
-    [ERRORE 100]
+    [ERRORE 110]
 ------------------------------
 
-FILE O DIRECTORY NON TROVATI 
+ESEGUIBILE TROVATO 
 
-I file di dati o la directory 'Dati' non esistono. 
+Il file 'a.out' non è stato trovato. 
 
-[media.sh] I Job sono stati eseguiti ma la cartella Dati_Corr_tw1 non contiene i dati di output. Uscita dallo screen media_Corr_tw1...
+[parallel.sh] Il file 'a.out' non esiste.
 

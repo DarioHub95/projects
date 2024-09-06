@@ -45,3 +45,27 @@ git add .
 git commit -m "New repo"
 git push
 mv ibisco-run.sh scripts/
+ls -la
+ls
+vi libpvm.sh 
+ls
+ls -la
+rm libpvm.sh 
+ls -la
+exit
+ls
+ls -la
+mkdir .lib2
+mv pvm-mpi.tgz .lib2/
+cd .lib2/
+ls -la
+tar xvzf pvm-mpi.tgz 
+ls -la
+cd pvm-mpi/
+ls -la
+./make.sh 
+ls
+cd ..
+ls
+ls -la
+exit
