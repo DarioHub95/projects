@@ -69,3 +69,22 @@ cd ..
 ls
 ls -la
 exit
+./lxgriv-run.sh 
+screen -r Corr_tw1
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+scp -o ProxyJump=adecandia@ibiscohpc-ui.scope.unina.it,desposito@lxclues03.fisica.unina.it .lib2/ desposito@lxgriv11.na.infn.it:.
+scp -o ProxyJump=adecandia@ibiscohpc-ui.scope.unina.it,desposito@lxclues03.fisica.unina.it adecandia/.lib2/ desposito@lxgriv11.na.infn.it:.
+ls
+scp -o ProxyJump=adecandia@ibiscohpc-ui.scope.unina.it,desposito@lxclues03.fisica.unina.it /lustre/home/adecandia/.lib2/ desposito@lxgriv11.na.infn.it:.
+history | grep mpi
+history | grep mpi
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+history 
+ls -ls
+ls -la
+./lxgriv-run.sh 
+screen -r Corr_tw1
+./lxgriv-run.sh 
+screen -r Corr_tw1
+jobs
+jobs
