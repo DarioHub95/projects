@@ -167,8 +167,8 @@ echo ""
 # Esegui il push del commit al repository remoto
 # git pull
 git add -A .
-git commit -a -m "IBiSco: ${git_message}"
-git push origin master
+git commit -a -m "lxgriv11: ${git_message}"
+git push origin lxgriv11
 echo "Commit e push completati."
 #-------------------GITHUB-------------------------------------#
 

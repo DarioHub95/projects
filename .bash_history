@@ -40,3 +40,8 @@ git config --global user.name "DarioHub95"git config --global user.email "despos
 git config --global user.email "despositosogei@gmail.com"
 git commit -m "New branch"
 git push
+git status
+git add .
+git commit -m "New repo"
+git push
+mv ibisco-run.sh scripts/

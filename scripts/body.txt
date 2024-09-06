@@ -1,6 +1,10 @@
---------------------------------------
-[Info sul Job Ising_Corr_tw1_J1]
---------------------------------------
+------------------------------
+    [ERRORE 110]
+------------------------------
 
-Dati acquisiti! Job Ising_Corr_tw1_J1 completato alle ore 18:09:40 con 180 task! 
+ESEGUIBILE TROVATO 
+
+Il file 'a.out' non è stato trovato. 
+
+[parallel.sh] Il file 'a.out' non esiste.
 
