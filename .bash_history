@@ -88,3 +88,8 @@ screen -r Corr_tw1
 screen -r Corr_tw1
 jobs
 jobs
+./lxgriv-run.sh 
+screen -r Corr_tw1
+./lxgriv-run.sh 
+screen -r Corr_tw1
+exit
