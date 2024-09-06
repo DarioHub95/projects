@@ -18,6 +18,7 @@ ids=("Job ID")
 nstep=$(grep -oP 'int\s+nstep\s*=\s*\K\d+' main.c)
 Oss=$(grep -oP 'int\s+Oss\s*=\s*\K\d+' main.c)
 L=$(grep -oP '(?<=int L=)\d+' main.c)
+num_tasks="$2"
 total_tasks=$(($1*$2))
 job_name="${4}_${3}"
 
@@ -28,34 +29,30 @@ fi
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ ! -f "Dati_${3}/a.out" ]; then
-    # scancel $job_id
-    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste." 
+    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste."
+    screen -X quit
 fi
 #-----------------------------------------------------------------
 
 cd Dati_$3/
 for ((i=1; i<=$1; i++)); do
-    num_tasks="$2"
-    count=0
-    while [ $count -eq 0 ]; do
-        # mpirun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > mpirun.log 2>&1 &
-        mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
-        sleep 1
+    # mpirun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > mpirun.log 2>&1 &
+    mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
+    sleep 1
 
-        echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
-        #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-        ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-        #-----------------------------------------------------------------
-        job_pid=$!
-        wait $job_pid
-        rename_output_files
-        ((count++))
-        esito+=("Eseguito") 
-        tasks_per_job+=($num_tasks)
-        #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-            ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-        #-----------------------------------------------------------------
-    done
+    echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
+    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+    #-----------------------------------------------------------------
+    job_pid=$!
+    wait $job_pid
+    rename_output_files
+    ((count++))
+    esito+=("Eseguito") 
+    tasks_per_job+=($num_tasks)
+    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+    #-----------------------------------------------------------------
     jobs+=("${job_name}_J${i}")
     ids+=("${job_id}")
 done
@@ -73,7 +70,7 @@ echo "La somma delle componenti dell'array non è 0. La somma è $sum."
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
     ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
-    # screen -X quit
+    screen -X quit
 fi
 #-----------------------------------------------------------------
 
