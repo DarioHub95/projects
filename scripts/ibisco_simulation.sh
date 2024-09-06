@@ -127,7 +127,7 @@ fi
 #-----------------------------------------------------------------
 
 
-# Tolleranza al 20% per il numero di -nan nei file di dati
+# PULIZIA DATI - Tolleranza al 20% per il numero di -nan nei file di dati
 max_nan_count=0
 file_count_nan=0
 file_count_lines=0
@@ -147,7 +147,23 @@ for file in "Dati_$3"/output*.txt; do
 done
 echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
 
-# Controlla se il primo numero dell'ultima riga è diverso da nstep
+# # PULIZIA DATI - Se la seconda colonna contiene solo zeri, elimina il file
+# for file in "Dati_$3"/output*; do
+#     if awk '{if ($2 != 0) exit 1}' "$file"; then
+#         # rm "$file"
+#         echo "File $file eliminato perché la seconda colonna contiene solo zeri."
+#     fi
+# done
+
+# PULIZIA DATI - Se tutte le colonne di dati contengono solo zeri, elimina il file
+for file in "Dati_$3"/output*; do
+    if awk '{for (i=2; i<=NF; i++) if ($i != 0) exit 1}' "$file"; then
+        # rm "$file"
+        echo "File $file eliminato perché tutte le colonne contengono solo zeri."
+    fi
+done
+
+# PULIZIA DATI - Controlla se il primo numero dell'ultima riga è diverso da nstep
 for file in "Dati_$3"/output*; do
     last_line=$(tail -n 1 "$file")
     first_number=$(echo "$last_line" | awk '{print $1}')
