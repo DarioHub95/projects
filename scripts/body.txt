@@ -1,19 +1,10 @@
---------------------------------------
-       [Jobs per Anderson_Corr_tw1]
---------------------------------------
+------------------------------
+    [ERRORE 100]
+------------------------------
 
-Modello selezionato: Anderson
-Osservabile scelto:  Corr
+FILE O DIRECTORY NON TROVATI 
 
-N° di Task richiesti: 15
-N° di Task eseguiti:  
+I file di dati o la directory 'Dati' non esistono. 
 
-N° di Job richiesti: 2
+[media.sh] I Job sono stati eseguiti ma la cartella Dati_Corr_tw1 non contiene i dati di output. Uscita dallo screen media_Corr_tw1...
 
-Dettagli Job Lanciati:
-
-| Job Name             | Job ID               | Tasks                | Esito                |
-| -------------------- | -------------------- | -------------------- | -------------------- |
-| Anderson_Corr_tw1_J1 |                      | 5                    | Eseguito             |
-| Anderson_Corr_tw1_J2 |                      | 5                    | Eseguito             |
-| -------------------- | -------------------- | -------------------- | -------------------- |
