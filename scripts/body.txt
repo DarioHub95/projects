@@ -1,25 +1,6 @@
 --------------------------------------
-    [Dettagli della Simulazione]
+[Info sul Job Anderson_Corr_tw1_J1]
 --------------------------------------
-Start Date: 06-09-2024 20:51:01
-End Date:   06-09-2024 20:57:41
-Durata:     00:06:40
 
-Modello selezionato: Anderson
-Osservabile scelto:  Corr_tw1
-
-Parametri del Modello:
-> L:     8
-> nstep: 20
-> Sz:    0
-> Jxy:   1
-> Jz:    0
-> eps:   5
-> alpha: 0
-
-File delle medie:
-Anderson_Corr_tw1_L8_R4_20.51.01.txt
-
-N° di file output eliminati: 1
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
+Job 'Anderson_Corr_tw1_J1' lanciato alle ore 21:00:12 con 120 task! 
 
