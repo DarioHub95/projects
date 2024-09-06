@@ -1,8 +1,8 @@
-# #!/bin/bash
+#!/bin/bash
 
 # Comandi di DEBUG
 set -x
-trap 'sleep 1' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 #vars simulazione
 start_time=$(date +%s)
@@ -28,7 +28,7 @@ fi
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ ! -f "Dati_${3}/a.out" ]; then
-    scancel $job_id
+    # scancel $job_id
     ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste." 
 fi
 #-----------------------------------------------------------------
@@ -73,7 +73,7 @@ echo "La somma delle componenti dell'array non è 0. La somma è $sum."
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
     ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
-    screen -X quit
+    # screen -X quit
 fi
 #-----------------------------------------------------------------
 
