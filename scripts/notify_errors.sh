@@ -91,5 +91,5 @@ echo ""
 # git pull
 git add .
 git commit -a -m "IBiSco: ${git_message}!"
-git push origin master
+git push origin ibisco
 echo "Commit e push completati."
