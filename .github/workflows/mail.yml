@@ -2,6 +2,8 @@ name: Notify on Update
 
 on:
   push:
+    branches:
+      - ibisco
     paths:
       - 'scripts/body.txt'
 
