@@ -36,7 +36,6 @@ fi
 
 cd Dati_$3/
 for ((i=1; i<=$1; i++)); do
-    # mpirun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > mpirun.log 2>&1 &
     mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
     sleep 1
 
