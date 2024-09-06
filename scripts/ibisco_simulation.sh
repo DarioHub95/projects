@@ -134,7 +134,7 @@ file_count_lines=0
 for file in "Dati_$3"/output*.txt; do
     nan_count=$(grep -c "\-nan" "$file")    
 
-    if [[ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) == 1 ]]; then
+    if [ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) == 1 ]; then
         echo "La soglia del 20% è superata. Eliminazione del file $file..."
         rm "$file"
         file_count_nan=$((file_count_nan + 1))
@@ -167,7 +167,7 @@ done
 for file in "Dati_$3"/output*; do
     last_line=$(tail -n 1 "$file")
     first_number=$(echo "$last_line" | awk '{print $1}')
-    if [ "$first_number" -ne $nstep ]; then
+    if [[ "$first_number" != $nstep ]]; then
         echo "Eliminando file: $file (primo numero: $first_number)"
         rm "$file"
         file_count_lines=$((file_count_lines + 1))
