@@ -2,5 +2,5 @@
 [Info sul Job Ising_Corr_tw10_J3]
 --------------------------------------
 
-Job 'Ising_Corr_tw10_J3' lanciato alle ore 13:45:37 con 1130 task! 
+Dati acquisiti! Job Ising_Corr_tw10_J3 completato alle ore 14:00:23 con 1130 task! 
 
