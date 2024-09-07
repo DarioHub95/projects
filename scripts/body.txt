@@ -1,6 +1,20 @@
 --------------------------------------
-[Info sul Job Ising_Corr_tw100_J3]
+       [Jobs per Ising_Corr_tw100]
 --------------------------------------
 
-Dati acquisiti! Job Ising_Corr_tw100_J3 completato alle ore 20:39:49 con 1320 task! 
+Modello selezionato: Ising
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 6000
+N° di Task eseguiti:  3960
+
+N° di Job richiesti: 3
+
+Dettagli Job Lanciati:
+
+| Job Name            | Job ID              | Tasks               | Esito               |
+| ------------------- | ------------------- | ------------------- | ------------------- |
+| Ising_Corr_tw100_J1 | 321418              | 1320                | Eseguito            |
+| Ising_Corr_tw100_J2 | 321437              | 1320                | Eseguito            |
+| Ising_Corr_tw100_J3 | 321456              | 1320                | Eseguito            |
+| ------------------- | ------------------- | ------------------- | ------------------- |
