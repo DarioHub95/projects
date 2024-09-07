@@ -124,3 +124,8 @@ screen -ls
 screen -ls
 screen -r
 exit
+screen -ls
+screen -r
+./lxgriv-run.sh 
+screen -r Corr_tw10
+./lxgriv-run.sh 
