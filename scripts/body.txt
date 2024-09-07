@@ -1,22 +1,10 @@
---------------------------------------
-       [Jobs per Ising_Corr_tw10]
---------------------------------------
+------------------------------
+    [ERRORE 350]
+------------------------------
 
-Modello selezionato: Ising
-Osservabile scelto:  Corr
+ERRORE NEL CALCOLO DELLE MEDIE 
 
-N° di Task richiesti: 8400
-N° di Task eseguiti:  5650
+Il calcolo delle medie non è riuscito a causa di dati malformati. 
 
-N° di Job richiesti: 5
+[media.sh] Il file 'Ising_Corr_tw10_L8_R5596_11.02.11.txt' non contiene nessun valore medio. Uscita dallo screen media_Corr_tw10...
 
-Dettagli Job Lanciati:
-
-| Job Name           | Job ID             | Tasks              | Esito              |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| Ising_Corr_tw10_J1 | 321186             | 1130               | Eseguito           |
-| Ising_Corr_tw10_J2 | 321214             | 1130               | Eseguito           |
-| Ising_Corr_tw10_J3 | 321242             | 1130               | Eseguito           |
-| Ising_Corr_tw10_J4 | 321270             | 1130               | Eseguito           |
-| Ising_Corr_tw10_J5 | 321298             | 1130               | Eseguito           |
-| ------------------ | ------------------ | ------------------ | ------------------ |
