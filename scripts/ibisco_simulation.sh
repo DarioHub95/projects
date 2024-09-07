@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Comandi di DEBUG
 set -x
 # trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
