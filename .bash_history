@@ -129,3 +129,10 @@ screen -r
 ./lxgriv-run.sh 
 screen -r Corr_tw10
 ./lxgriv-run.sh 
+screen -ls
+./lxgriv-run.sh 
+creen -r Corr_tw100
+screen -r Corr_tw100
+jobs
+jobs -l
+screen -r Corr_tw100
