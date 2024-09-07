@@ -111,3 +111,13 @@ screen -r Corr_tw1
 screen -r Corr_tw1
 ./lxgriv-run.sh 
 screen -r Corr_tw10
+nstep=5000                    
+if [[ "$nstep" >= 5000 ]]; then     
+                       echo "ok"
+                    fi
+nstep=5000; if [[ "$nstep" >= 5000 ]]; then echo "ok"; fi
+nstep=5000; if [ "$nstep" >= 5000 ]; then echo "ok"; fi
+nstep=5000; if [[ $nstep >= 5000 ]]; then echo "ok"; fi
+nstep=5000; if (( $nstep >= 5000 )); then echo "ok"; fi
+nstep=500; if (( $nstep >= 5000 )); then echo "ok"; fi
+screen -ls
