@@ -1,6 +1,25 @@
 --------------------------------------
-[Info sul Job Ising_Corr_tw10_J3]
+    [Dettagli della Simulazione]
 --------------------------------------
+Start Date: 07-09-2024 17:41:16
+End Date:   07-09-2024 17:43:56
+Durata:     00:02:40
 
-Dati acquisiti! Job Ising_Corr_tw10_J3 completato alle ore 16:31:19 con 1170 task! 
+Modello selezionato: Ising
+Osservabile scelto:  Corr_tw10
+
+Parametri del Modello:
+> L:     8
+> nstep: 1000
+> Sz:    0
+> Jxy:   1
+> Jz:    0.2
+> eps:   0
+> alpha: 0
+
+File delle medie:
+Ising_Corr_tw10_L8_R3470_17.41.16.txt
+
+N° di file output eliminati: 880
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
 
