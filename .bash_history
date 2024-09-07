@@ -109,3 +109,5 @@ screen -r Corr_tw1
 screen -r Corr_tw1
 ./lxgriv-run.sh 
 screen -r Corr_tw1
+./lxgriv-run.sh 
+screen -r Corr_tw10
