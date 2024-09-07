@@ -1,25 +1,6 @@
 --------------------------------------
-    [Dettagli della Simulazione]
+[Info sul Job Ising_Corr_tw1000]
 --------------------------------------
-Start Date: 07-09-2024 17:47:26
-End Date:   07-09-2024 18:42:52
-Durata:     00:55:26
 
-Modello selezionato: Ising
-Osservabile scelto:  Corr_tw100
-
-Parametri del Modello:
-> L:     8
-> nstep: 1000
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   0
-> alpha: 0
-
-File delle medie:
-Ising_Corr_tw100_L8_R3960_17.47.26.txt
-
-N° di file output eliminati: 540
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
+Richiesta presa in carico alle ore 22:56:48: 3 Job per 'Ising_Corr_tw1000' con 1550 task ciascuno.
 
