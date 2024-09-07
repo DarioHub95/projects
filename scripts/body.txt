@@ -1,10 +1,6 @@
-------------------------------
-    [ERRORE 350]
-------------------------------
+--------------------------------------
+[Info sul Job Anderson_Corr_tw100]
+--------------------------------------
 
-ERRORE NEL CALCOLO DELLE MEDIE 
-
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
-
-[media.sh] Il file 'Anderson_Corr_tw100_L8_R0_17.55.14.txt' non contiene nessun valore medio. Uscita dallo screen media_Corr_tw100...
+Richiesta presa in carico alle ore 21:05:44: 20 Job per 'Anderson_Corr_tw100' con 120 task ciascuno.
 
