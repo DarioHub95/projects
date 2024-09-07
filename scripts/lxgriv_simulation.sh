@@ -22,52 +22,56 @@ num_tasks="$2"
 total_tasks=$(($1*$2))
 job_name="${4}_${3}"
 
-# Pulizia dei file output esistenti
-if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
-rm Dati_$3/output*
-fi
+#----------------------------------------------------------------------------------------------------------------
+############################################### SIMULAZIONE ###################################################
+#----------------------------------------------------------------------------------------------------------------
 
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [ ! -f "Dati_${3}/a.out" ]; then
-    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste."
-    screen -X quit
-fi
-#-----------------------------------------------------------------
+# # Pulizia dei file output esistenti
+# if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
+# rm Dati_$3/output*
+# fi
 
-cd Dati_$3/
+# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+# if [ ! -f "Dati_${3}/a.out" ]; then
+#     ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste."
+#     screen -X quit
+# fi
+# #-----------------------------------------------------------------
 
-if [[ "$nstep" < 5000 ]]; then     
-    ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno! "
-fi
+# cd Dati_$3/
 
-for ((i=1; i<=$1; i++)); do
-    mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
-    sleep 1
+# if [[ "$nstep" < 5000 ]]; then     
+#     ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno! "
+# fi
 
-    echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
-    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-    if [[ "$nstep" >= 5000 ]]; then     
-        ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-    fi
-    #-----------------------------------------------------------------
-    job_pid=$!
-    wait $job_pid
-    rename_output_files
-    ((count++))
-    esito+=("Eseguito") 
-    tasks_per_job+=($num_tasks)
-    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-    #-----------------------------------------------------------------
-    jobs+=("${job_name}_J${i}")
-    ids+=("${job_id}")
-done
-cd ../
+# for ((i=1; i<=$1; i++)); do
+#     mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
+#     sleep 1
 
-#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-echo "La somma delle componenti dell'array non è 0. La somma è $sum."
-./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
-#-----------------------------------------------------------------
+#     echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
+#     #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+#     if [[ "$nstep" >= 5000 ]]; then     
+#         ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+#     fi
+#     #-----------------------------------------------------------------
+#     job_pid=$!
+#     wait $job_pid
+#     rename_output_files
+#     ((count++))
+#     esito+=("Eseguito") 
+#     tasks_per_job+=($num_tasks)
+#     #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+#     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+#     #-----------------------------------------------------------------
+#     jobs+=("${job_name}_J${i}")
+#     ids+=("${job_id}")
+# done
+# cd ../
+
+# #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+# echo "La somma delle componenti dell'array non è 0. La somma è $sum."
+# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
+# #-----------------------------------------------------------------
 
 #----------------------------------------------------------------------------------------------------------------
 ############################################### CALCOLO MEDIE ###################################################
@@ -101,14 +105,6 @@ for file in "Dati_$3"/output*.txt; do
 done
 echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
 
-# # PULIZIA DATI - Se la seconda colonna contiene solo zeri, elimina il file
-# for file in "Dati_$3"/output*; do
-#     if awk '{if ($2 != 0) exit 1}' "$file"; then
-#         # rm "$file"
-#         echo "File $file eliminato perché la seconda colonna contiene solo zeri."
-#     fi
-# done
-
 # PULIZIA DATI - Se tutte le colonne di dati contengono solo zeri, elimina il file
 for file in "Dati_$3"/output*; do
     if awk '{for (i=2; i<=NF; i++) if ($i != 0) exit 1}' "$file"; then
@@ -129,14 +125,16 @@ for file in "Dati_$3"/output*; do
 done
 echo "Il numero di file con righe sbagliate è $file_count_lines"
 
-# Conta il numero di file rimasti in Data
-R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
-
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
     ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
 fi
 #-----------------------------------------------------------------
+
+sleep 10
+
+# Conta il numero di file rimasti in Data
+R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
 # Salva le prime 16 righe del primo file in media totale
 MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"

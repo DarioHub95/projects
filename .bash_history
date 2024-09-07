@@ -123,3 +123,4 @@ nstep=500; if (( $nstep >= 5000 )); then echo "ok"; fi
 screen -ls
 screen -ls
 screen -r
+exit
