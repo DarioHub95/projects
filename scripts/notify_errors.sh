@@ -17,8 +17,8 @@ case $error_code in
         error_message_2="Il file 'a.out' non è stato trovato."
         ;;
     150)
-        error_message_1="PERMESSI INSUFFICIENTI"
-        error_message_2="Non hai i permessi necessari per eseguire i comandi richiesti."
+        error_message_1="LIMITE DI FILE APERTI INSUFFICIENTE"
+        error_message_2="Il numero di file da aprire è ancora minore rispetto a quelli permessi dal sistema."
         ;;
     200)
         error_message_1="FILE DI MEDIA NON TROVATO"

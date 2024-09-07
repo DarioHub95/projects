@@ -14,7 +14,7 @@ echo ""
 rm -rf srun.log scripts/*.log
 # Controlla tutti i file .txt nella directory corrente
 for file in *.txt; do
-    if [ -f "$file" ] && [ $(wc -l < "$file") -gt 5000 ]; then
+    if [ -f "$file" ]; then
         echo "Sposto file di media..."
         echo ""
         mv "$file" Medie/

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -x
-trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+# trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 #vars simulazione
 start_time=$(date +%s)
@@ -215,6 +215,10 @@ echo ""
 if [[ $R_tot -gt $(ulimit -n) ]]; then
     ulimit -n $((R_tot + 10))  # Aumenta il limite di file aperti di R_tot + 10
     echo "Il limite dei file aperti è stato aumentato a $((R_tot + 10))"
+    if [[ $((R_tot + 10)) -gt $(ulimit -n) ]]; then
+        echo "Il limite dei file aperti è ancora basso rispetto a ulimit"
+        ./scripts/notify_errors.sh 150 "Rivedi le impostazioni di ulimit"
+    fi
 fi
 
 # Calcolo delle medie a 1 colonna (OPERATORE SINGOLO)
