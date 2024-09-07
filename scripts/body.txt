@@ -1,10 +1,6 @@
-------------------------------
-    [ERRORE 350]
-------------------------------
+--------------------------------------
+[Info sul Job Ising_Corr_tw10]
+--------------------------------------
 
-ERRORE NEL CALCOLO DELLE MEDIE 
-
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
-
-[media.sh] Il file 'Ising_Corr_tw10_L8_R5596_12.52.51.txt' non contiene nessun valore medio. Uscita dallo screen media_Corr_tw10...
+Richiesta presa in carico alle ore 15:14:12: 1 Job per 'Ising_Corr_tw10' con  task ciascuno.
 
