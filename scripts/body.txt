@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job Ising_Corr_tw10]
+[Info sul Job Ising_Corr_tw10_J1]
 --------------------------------------
 
-Richiesta presa in carico alle ore 15:14:12: 1 Job per 'Ising_Corr_tw10' con  task ciascuno.
+Dati acquisiti! Job Ising_Corr_tw10_J1 completato alle ore 15:15:27 con 5 task! 
 
