@@ -121,3 +121,5 @@ nstep=5000; if [[ $nstep >= 5000 ]]; then echo "ok"; fi
 nstep=5000; if (( $nstep >= 5000 )); then echo "ok"; fi
 nstep=500; if (( $nstep >= 5000 )); then echo "ok"; fi
 screen -ls
+screen -ls
+screen -r
