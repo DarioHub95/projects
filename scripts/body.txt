@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job Anderson_Corr_tw100_J5]
+[Info sul Job Anderson_Corr_tw100_J6]
 --------------------------------------
 
-Dati acquisiti! Job Anderson_Corr_tw100_J5 completato alle ore 23:11:35 con 120 task! 
+Dati acquisiti! Job Anderson_Corr_tw100_J6 completato alle ore 23:34:29 con 120 task! 
 
