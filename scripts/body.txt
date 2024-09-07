@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job Ising_Corr_tw1000_J1]
+[Info sul Job Ising_Corr_tw1000_J2]
 --------------------------------------
 
-Dati acquisiti! Job Ising_Corr_tw1000_J1 completato alle ore 23:27:39 con 1360 task! 
+Dati acquisiti! Job Ising_Corr_tw1000_J2 completato alle ore 23:58:47 con 1360 task! 
 
