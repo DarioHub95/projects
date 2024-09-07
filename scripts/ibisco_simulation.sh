@@ -40,7 +40,7 @@ fi
 cd Dati_$3/
 
 if (( $nstep < 5000 )); then     
-    ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
+    ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $2 task ciascuno."
 fi
 
 for ((i=1; i<=$1; i++)); do
