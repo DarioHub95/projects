@@ -139,3 +139,14 @@ screen -r Corr_tw100
 screen -r Corr_tw100
 screen -r Corr_tw100
 ./lxgriv-run.sh 
+screen -ls
+screen -r Corr_tw1
+mpi
+mpicc --help
+mpivars --help
+mpiexec --help
+slurm
+screen -r Corr_tw1
+screen -ls
+./lxgriv-run.sh 
+screen -r Corr_tw10
