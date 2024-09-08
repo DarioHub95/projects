@@ -138,3 +138,4 @@ jobs -l
 screen -r Corr_tw100
 screen -r Corr_tw100
 screen -r Corr_tw100
+./lxgriv-run.sh 
