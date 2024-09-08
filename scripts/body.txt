@@ -1,6 +1,37 @@
 --------------------------------------
-[Info sul Job Anderson_Corr_tw100_J20]
+       [Jobs per Anderson_Corr_tw100]
 --------------------------------------
 
-Dati acquisiti! Job Anderson_Corr_tw100_J20 completato alle ore 05:34:16 con 120 task! 
+Modello selezionato: Anderson
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 2520
+N° di Task eseguiti:  
+
+N° di Job richiesti: 20
+
+Dettagli Job Lanciati:
+
+| Job Name                | Job ID                  | Tasks                   | Esito                   |
+| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Anderson_Corr_tw100_J1  |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J2  |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J3  |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J4  |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J5  |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J6  |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J7  |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J8  |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J9  |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J10 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J11 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J12 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J13 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J14 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J15 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J16 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J17 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J18 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J19 |                         | 120                     | Eseguito                |
+| Anderson_Corr_tw100_J20 |                         | 120                     | Eseguito                |
+| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
