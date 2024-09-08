@@ -1,37 +1,25 @@
 --------------------------------------
-       [Jobs per Anderson_Corr_tw100]
+    [Dettagli della Simulazione]
 --------------------------------------
+Start Date: 07-09-2024 21:05:44
+End Date:   08-09-2024 05:35:09
+Durata:     08:29:25
 
 Modello selezionato: Anderson
-Osservabile scelto:  Corr
+Osservabile scelto:  Corr_tw100
 
-N° di Task richiesti: 2520
-N° di Task eseguiti:  
+Parametri del Modello:
+> L:     8
+> nstep: 3000
+> Sz:    0
+> Jxy:   1
+> Jz:    0
+> eps:   5
+> alpha: 0
 
-N° di Job richiesti: 20
+File delle medie:
+Anderson_Corr_tw100_L8_R2129_21.05.44.txt
 
-Dettagli Job Lanciati:
+N° di file output eliminati: 271
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
 
-| Job Name                | Job ID                  | Tasks                   | Esito                   |
-| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
-| Anderson_Corr_tw100_J1  |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J2  |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J3  |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J4  |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J5  |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J6  |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J7  |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J8  |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J9  |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J10 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J11 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J12 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J13 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J14 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J15 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J16 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J17 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J18 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J19 |                         | 120                     | Eseguito                |
-| Anderson_Corr_tw100_J20 |                         | 120                     | Eseguito                |
-| ----------------------- | ----------------------- | ----------------------- | ----------------------- |
