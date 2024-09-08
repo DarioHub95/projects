@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job Ising_Corr_tw100]
+[Info sul Job MBL_Energie_J1]
 --------------------------------------
 
-Richiesta presa in carico alle ore 11:18:22: 1 Job per 'Ising_Corr_tw100' con 2 task ciascuno.
+Job 'MBL_Energie_J1' lanciato alle ore 11:21:42 con 1600 task! 
 
