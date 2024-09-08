@@ -1,26 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job MBL_Energie_J1   ]
 
 
-Start Date: 08-09-2024 09:57:45
-End Date:   08-09-2024 12:38:13
-Durata:     02:40:28
-
-Modello selezionato: MBL
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     4
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   5
-> alpha: 0
-
-File delle medie:
-MBL_Energie_L4_R2649_09.57.45.txt
-
-N° di file output eliminati: 507
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan' o erano corrotti.
+Job 'MBL_Energie_J1' lanciato alle ore 14:44:59 con 1620 task! 
 
