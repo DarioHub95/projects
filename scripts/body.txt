@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job Ising_Corr_tw1]
+[Info sul Job Ising_Corr_tw1_J1]
 --------------------------------------
 
-Richiesta presa in carico alle ore 10:42:42: 3 Job per 'Ising_Corr_tw1' con 1500 task ciascuno.
+Dati acquisiti! Job Ising_Corr_tw1_J1 completato alle ore 10:50:49 con 1390 task! 
 
