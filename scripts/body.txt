@@ -1,10 +1,6 @@
-------------------------------
-    [ERRORE 100]
-------------------------------
 
-FILE O DIRECTORY NON TROVATI 
+[   Info sul Job MBL_Energie_J1   ]
 
-I file di dati o la directory 'Dati' non esistono. 
 
-[media.sh] I Job sono stati eseguiti ma la cartella Dati_Energie non contiene i dati di output. Uscita dallo screen media_Energie...
+Job 'MBL_Energie_J1' lanciato alle ore 14:51:15 con 1610 task! 
 

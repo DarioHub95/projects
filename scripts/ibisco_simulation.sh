@@ -48,11 +48,14 @@ for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     while :; do
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+        if [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; then 
+            ((num_tasks -= 10))
+            srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+        fi   
         sleep 10
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
-        # if [[ "$job_id" -eq "" ]]; then squeue -u adecandia; sleep 10; screen -X quit; fi
         job_status=$(squeue -j $job_id -o "%t" -h)
         job_reason=$(squeue -j $job_id -o "%R" -h)
 
