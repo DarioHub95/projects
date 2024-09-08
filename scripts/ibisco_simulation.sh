@@ -2,7 +2,7 @@
 
 # Comandi di DEBUG
 set -x
-trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+# trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 #vars simulazione
 start_time=$(date +%s)
@@ -52,6 +52,7 @@ for ((i=1; i<=$1; i++)); do
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
+        # if [[ "$job_id" -eq "" ]]; then squeue -u adecandia; sleep 10; screen -X quit; fi
         job_status=$(squeue -j $job_id -o "%t" -h)
         job_reason=$(squeue -j $job_id -o "%R" -h)
 

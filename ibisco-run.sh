@@ -161,12 +161,20 @@ echo "Eseguire troppi job rispetto al numero di CPU disponibili può causare lun
 echo "poiché i job aspettano risorse libere."
 echo ""
 
-# Inserire il valore di R
+# Inserire il valore di R (numero di run) o usa il valore predefinito di cpu_idle - 10
 read -p "Numero di run (R): " R
+if [ -z "$R" ]; then
+    R=$(( $(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}') - 10 ))
+    echo "R non valorizzato, impostato a default: $R"
+fi
 echo ""
 
-# Inserire il valore di J (numero di jobs)
+# Inserire il valore di J (numero di jobs) o usa il valore predefinito di 1
 read -p "Numero di jobs da eseguire (J): " J
+if [ -z "$J" ]; then
+    J=1
+    echo "J non valorizzato, impostato a default: $J"
+fi
 echo ""
 
 # Inserire numero di step MC
