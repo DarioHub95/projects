@@ -1,20 +1,6 @@
 --------------------------------------
-       [Jobs per Ising_Corr_tw1]
+[Info sul Job MBL_Energie_J1]
 --------------------------------------
 
-Modello selezionato: Ising
-Osservabile scelto:  Corr
+Job 'MBL_Energie_J1' lanciato alle ore 11:12:04 con 1600 task! 
 
-N° di Task richiesti: 6000
-N° di Task eseguiti:  4170
-
-N° di Job richiesti: 3
-
-Dettagli Job Lanciati:
-
-| Job Name          | Job ID            | Tasks             | Esito             |
-| ----------------- | ----------------- | ----------------- | ----------------- |
-| Ising_Corr_tw1_J1 | 321547            | 1390              | Eseguito          |
-| Ising_Corr_tw1_J2 | 321559            | 1390              | Eseguito          |
-| Ising_Corr_tw1_J3 | 321571            | 1390              | Eseguito          |
-| ----------------- | ----------------- | ----------------- | ----------------- |

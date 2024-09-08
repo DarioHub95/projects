@@ -2,7 +2,7 @@
 
 # Comandi di DEBUG
 set -x
-trap 'sleep 2' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+# trap 'sleep 2' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 #vars simulazione
 start_time=$(date +%s)
@@ -46,7 +46,6 @@ fi
 
 for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
-    count=0
     while :; do
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
         sleep 10
