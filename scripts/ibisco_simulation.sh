@@ -48,10 +48,12 @@ for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     while :; do
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        if [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; then 
-            ((num_tasks -= 10))
+        sleep 1
+        while [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; do 
+            ((num_tasks -= 1))
             srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        fi   
+            sleep 1
+        done   
         sleep 10
 
         # Verifica dello stato del job i-esimo
@@ -185,16 +187,14 @@ for file in "Dati_$3"/output*; do
 done
 echo "Il numero di file con righe sbagliate è $file_count_lines"
 
+# Conta il numero di file rimasti in Data
+R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
+
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
     ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
 fi
 #-----------------------------------------------------------------
-
-sleep 10
-
-# Conta il numero di file rimasti in Data
-R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
 # Salva le prime 16 righe del primo file in media totale
 MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"

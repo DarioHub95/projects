@@ -164,7 +164,7 @@ echo ""
 # Inserire il valore di R (numero di run) o usa il valore predefinito di cpu_idle - 10
 read -p "Numero di run (R): " R
 if [ -z "$R" ]; then
-    R=$(( $(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}') - 10 ))
+    R=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}')
     echo "R non valorizzato, impostato a default: $R"
 fi
 echo ""

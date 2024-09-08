@@ -50,9 +50,9 @@ if [ $error_code != 550 ]; then
 git_message="Errore $error_code"
 # Assembla il contenuto del body.txt con la descrizione dell'errore
 cat <<EOF > $output_file
-------------------------------
-    [ERRORE $error_code]
-------------------------------
+
+[   ERRORE $error_code  ]
+
 
 $error_message_1 $nl
 $error_message_2 $nl
@@ -61,16 +61,16 @@ ${extra_message}
 EOF
 
 else
-git_message="Warning $error_code"
+git_message="Info $error_code"
 # Assembla il contenuto del body.txt con la descrizione del warning
 cat <<EOF > $output_file
-------------------------------
-[WARNING $error_code]
-------------------------------
+
+[   INFO $error_code    ]
+
 
 $error_message_1 $nl
 $error_message_2 $nl
-${2}
+${2} $nl
 ${3} $nl
 ${4}
 
