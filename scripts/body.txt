@@ -1,19 +1,10 @@
---------------------------------------
-       [Jobs per MBL_Energie]
---------------------------------------
+------------------------------
+    [ERRORE 100]
+------------------------------
 
-Modello selezionato: MBL
-Osservabile scelto:  Energie
+FILE O DIRECTORY NON TROVATI 
 
-N° di Task richiesti: 4800
-N° di Task eseguiti:  3200
+I file di dati o la directory 'Dati' non esistono. 
 
-N° di Job richiesti: 2
+[media.sh] I Job sono stati eseguiti ma la cartella Dati_Energie non contiene i dati di output. Uscita dallo screen media_Energie...
 
-Dettagli Job Lanciati:
-
-| Job Name       | Job ID         | Tasks          | Esito          |
-| -------------- | -------------- | -------------- | -------------- |
-| MBL_Energie_J1 |                | 1600           | Eseguito       |
-| MBL_Energie_J2 |                | 1600           | Eseguito       |
-| -------------- | -------------- | -------------- | -------------- |
