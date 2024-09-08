@@ -36,9 +36,10 @@ hms=$(date -u -d @$time_diff +'%H:%M:%S')
 
 # Assembla il contenuto del body.txt
 cat <<EOF > $output_file
---------------------------------------
-    [Dettagli della Simulazione]
---------------------------------------
+
+[   Dettagli della Simulazione  ]
+
+
 Start Date: $(date -u -d @$start_time +"%d-%m-%Y %H:%M:%S")
 End Date:   $(date -u -d @$end_time +"%d-%m-%Y %H:%M:%S")
 Durata:     ${hms}
@@ -59,7 +60,7 @@ File delle medie:
 ${2}
 
 N° di file output eliminati: $(($4 - R))
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan' o erano corrotti.
 
 EOF
 
@@ -89,16 +90,14 @@ for element in "${jobs[@]}" "${ids[@]}" "${tasks_per_job[@]}" "${esito[@]}"; do
     if [ $length -gt $max_len ]; then
         max_len=$length
     fi
-    # Stampa la lunghezza corrente per il debug (opzionale)
-    echo "Lunghezza corrente: $length"
 done
 
 
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
---------------------------------------
-       [Jobs per ${4}]
---------------------------------------
+
+[   Jobs per ${4}   ]
+
 
 Modello selezionato: ${modello}
 Osservabile scelto:  ${osservabile}
@@ -113,10 +112,10 @@ Dettagli Job Lanciati:
 EOF
 
 printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$jobs" "$max_len" "$ids" "$max_len" "$tasks_per_job" "$max_len" "$esito" >> $output_file
-printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" >> $output_file
+printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" >> $output_file
 
 
 
@@ -131,27 +130,26 @@ for ((i=1; i<x; i++)); do
 done
 
 
-printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" >> $output_file
+printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
+"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" >> $output_file
 
 # EOF
 
 elif [ "$1" == "J" ]; then
 
 #Formattazione
-# ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Job ${4}_${3}_J${i} lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-# ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "Dati acquisiti! Job ${4}_${3}_J${i} completato con $num_tasks task! "
+# ./../scripts/notify_ok.sh "J" "${4}_${3}_J${i}" "<messaggio>"
 
 output_file="../scripts/body.txt"
 git_message="Job info"
 
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
---------------------------------------
-[Info sul Job ${2}]
---------------------------------------
+
+[   Info sul Job ${2}   ]
+
 
 ${3}
 
