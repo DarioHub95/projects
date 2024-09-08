@@ -95,8 +95,7 @@ for ((i=1; i<=$1; i++)); do
                 ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
             fi
             #-----------------------------------------------------------------
-            job_pid=$!
-            wait $job_pid
+            wait $!
             rename_output_files
             esito+=("Eseguito") 
             tasks_per_job+=($num_tasks)
