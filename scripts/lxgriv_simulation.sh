@@ -5,7 +5,7 @@ set -x
 # trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 # Aspetta il termine della simulazione precedente
-while screen -ls | grep -qv "No Sockets found"; do
+while screen -ls | grep -qv "1 Socket"; do
     echo "Screen attivi rilevati, attendo..."
     sleep 10
 done
@@ -131,16 +131,14 @@ for file in "Dati_$3"/output*; do
 done
 echo "Il numero di file con righe sbagliate è $file_count_lines"
 
+# Conta il numero di file rimasti in Data
+R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
+
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
     ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
 fi
 #-----------------------------------------------------------------
-
-sleep 10
-
-# Conta il numero di file rimasti in Data
-R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
 # Salva le prime 16 righe del primo file in media totale
 MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
