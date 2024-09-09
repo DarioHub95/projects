@@ -1,10 +1,6 @@
 
-[   ERRORE 200  ]
+[   Info sul Job MBL_Energie_J1   ]
 
 
-FILE DI MEDIA NON TROVATO 
-
-Il file non è stato generato. 
-
-[media.sh] Il file '' non esiste. Uscita dallo screen media_Energie...
+Job 'MBL_Energie_J1' lanciato alle ore 17:24:54 con 1100 task! 
 
