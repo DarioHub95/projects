@@ -1,18 +1,10 @@
---------------------------------------
-       [Jobs per Free_Spin]
---------------------------------------
+------------------------------
+    [ERRORE 100]
+------------------------------
 
-Modello selezionato: Free
-Osservabile scelto:  Spin
+FILE O DIRECTORY NON TROVATI 
 
-N° di Task richiesti: 2
-N° di Task eseguiti:  
+I file di dati o la directory 'Dati' non esistono. 
 
-N° di Job richiesti: 1
+[media.sh] I Job sono stati eseguiti ma la cartella Dati_Spin non contiene i dati di output. Uscita dallo screen media_Spin...
 
-Dettagli Job Lanciati:
-
-| Job Name     | Job ID       | Tasks        | Esito        |
-| ------------ | ------------ | ------------ | ------------ |
-| Free_Spin_J1 |              | 1            | Eseguito     |
-| ------------ | ------------ | ------------ | ------------ |
