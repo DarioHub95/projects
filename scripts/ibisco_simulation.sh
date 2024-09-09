@@ -2,7 +2,7 @@
 
 # Comandi di DEBUG
 set -x
-trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+trap 'sleep 5' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 # # Aspetta il termine della simulazione precedente
 # while screen -ls | grep -qv "1 Socket"; do
