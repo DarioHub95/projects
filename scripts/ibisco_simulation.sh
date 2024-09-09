@@ -2,7 +2,7 @@
 
 # Comandi di DEBUG
 set -x
-trap 'sleep 5' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 # # Aspetta il termine della simulazione precedente
 # while screen -ls | grep -qv "1 Socket"; do
@@ -196,27 +196,25 @@ fi
 # Conta il numero di file rimasti in Data
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
-# PULIZIA DATI - Verifica se R_tot è maggiore del limite corrente di file aperti
-if [[ $R_tot -gt $(ulimit -n) ]]; then
-    if [[ $R_tot -le 4096 ]]; then
-        ulimit -n 4096
-        echo "Il limite dei file aperti è stato impostato al massimo"
-        ulimit -n
-    else
-        files_to_remove=$((R_tot - 4096))
-        echo "R_tot supera 4096. Eliminazione di $files_to_remove file .txt dalla cartella Dati..."
-        ls -tp "Dati_$3"/*.txt | tail -n "$files_to_remove" | xargs -I {} rm -- "{}"
-        ulimit -n 4096
-        echo "Il limite dei file aperti è stato impostato al massimo"
-    fi
-    R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
+# PULIZIA DATI - Verifica se R_tot è maggiore del limite corrente di file aperti (meno 6 file che non capisco quali siano)
+if [[ $R_tot -lt 4090 ]]; then
+    ulimit -n 4096
+    echo "Il limite dei file aperti è stato impostato al massimo"
+    ulimit -n
+else
+    files_to_remove=$((R_tot - 4090))
+    echo "R_tot supera 4096. Eliminazione di $files_to_remove file .txt dalla cartella Dati..."
+    ls -tp "Dati_$3"/*.txt | tail -n "$files_to_remove" | xargs -I {} rm -- "{}"
+    ulimit -n 4096
+    echo "Il limite dei file aperti è stato impostato al massimo"
 fi
+R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
-    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file incompleti: $file_count_lines" "N° di file che superano ulimit: $files_to_remove" "N° di file conformi: $R_tot"
-fi
-#-----------------------------------------------------------------
+# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+# if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
+#     ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file incompleti: $file_count_lines" "N° di file che superano ulimit: $files_to_remove" "N° di file conformi: $R_tot"
+# fi
+# #-----------------------------------------------------------------
 
 # # Salva le prime 16 righe del primo file in media totale
 # MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
