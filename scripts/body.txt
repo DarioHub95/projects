@@ -1,10 +1,6 @@
-------------------------------
-    [ERRORE 100]
-------------------------------
+--------------------------------------
+[Info sul Job MBL_Corr_tw100_J5]
+--------------------------------------
 
-FILE O DIRECTORY NON TROVATI 
-
-I file di dati o la directory 'Dati' non esistono. 
-
-[media.sh] I Job sono stati eseguiti ma la cartella Dati_Spin non contiene i dati di output. Uscita dallo screen media_Spin...
+Dati acquisiti! Job MBL_Corr_tw100_J5 completato alle ore 22:52:43 con 100 task! 
 
