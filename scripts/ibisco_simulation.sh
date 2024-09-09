@@ -193,12 +193,26 @@ fi
 # done
 # echo "Il numero di file con righe sbagliate è $file_count_lines"
 
+# PULIZIA DATI - Verifica se R_tot è maggiore del limite corrente di file aperti
+if [[ $R_tot -gt $(ulimit -n) ]]; then
+    if [[ $R_tot -le 4096 ]]; then
+        ulimit -n 4096
+        echo "Il limite dei file aperti è stato impostato al massimo"
+    else
+        files_to_remove=$((R_tot - 4096))
+        echo "R_tot supera 4096. Eliminazione di $files_to_remove file .txt dalla cartella Dati..."
+        ls -tp "Dati_$3"/*.txt | tail -n "$files_to_remove" | xargs -I {} rm -- "{}"
+        ulimit -n 4096
+        echo "Il limite dei file aperti è stato impostato al massimo"
+    fi
+fi
+
 # Conta il numero di file rimasti in Data
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
-    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
+    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file incompleti: $file_count_lines" "N° di file che superano ulimit: $files_to_remove" "N° di file conformi: $R_tot"
 fi
 #-----------------------------------------------------------------
 
@@ -214,15 +228,26 @@ fi
 # done
 # echo ""
 
-# Verifica se R_tot è maggiore del limite corrente di file aperti
-if [[ $R_tot -gt $(ulimit -n) ]]; then
-    ulimit -n $((R_tot + 10))  # Aumenta il limite di file aperti di R_tot + 10
-    echo "Il limite dei file aperti è stato aumentato a $((R_tot + 10))"
-    if [[ $((R_tot + 10)) -gt $(ulimit -n) ]]; then
-        echo "Il limite dei file aperti è ancora basso rispetto a ulimit"
-        ./scripts/notify_errors.sh 150 "Rivedi le impostazioni di ulimit"
-    fi
-fi
+
+
+
+
+
+
+# # Verifica se R_tot è maggiore del limite corrente di file aperti
+# if [[ $R_tot -gt $(ulimit -n) ]]; then
+#     ulimit -n $((R_tot + 10))  # Aumenta il limite di file aperti di R_tot + 10
+#     echo "Il limite dei file aperti è stato aumentato a $((R_tot + 10))"
+#     if [[ $((R_tot + 10)) -gt $(ulimit -n) ]]; then
+#         echo "Il limite dei file aperti è ancora basso rispetto a ulimit"
+#         ./scripts/notify_errors.sh 150 "Rivedi le impostazioni di ulimit"
+#     fi
+# fi
+
+
+
+
+
 
 # Calcolo delle medie a 1 colonna (OPERATORE SINGOLO)
 if [ "$Oss" -eq 2 ] || [ "$Oss" -eq 3 ] || [ "$Oss" -eq 10 ] || [ "$Oss" -eq 12 ]; then
