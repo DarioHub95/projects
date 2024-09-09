@@ -2,5 +2,5 @@
 [   Info sul Job MBL_Energie_J2   ]
 
 
-Job 'MBL_Energie_J2' lanciato alle ore 06:49:45 con 1530 task! 
+Dati acquisiti! Job MBL_Energie_J2 completato alle ore 10:44:09 con 1530 task! 
 
