@@ -1,10 +1,10 @@
 
-[   ERRORE 150  ]
+[   ERRORE 200  ]
 
 
-LIMITE DI FILE APERTI INSUFFICIENTE 
+FILE DI MEDIA NON TROVATO 
 
-Il numero di file da aprire è ancora minore rispetto a quelli permessi dal sistema. 
+Il file non è stato generato. 
 
-Rivedi le impostazioni di ulimit
+[media.sh] Il file '' non esiste. Uscita dallo screen media_Energie...
 
