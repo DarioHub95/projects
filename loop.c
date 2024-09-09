@@ -420,7 +420,7 @@ void loop::dinamica(double *A)
         }
       htot+=nhop[i];
      }
-    printf("nhop:\t%d\t%d\t%d\t%d\n",nhop[0],nhop[1],nhop[2],nhop[3]);
+    // printf("%g\tnhop:\t%d\t%d\t%d\t%d\n",A[0],nhop[0],nhop[1],nhop[2],nhop[3]);
      
 // MEDIA OSSERVABILI
 
