@@ -154,3 +154,5 @@ screen -ls
 screen -r Corr_tw10
 ./lxgriv-run.sh 
 screen -r Corr_tw10
+screen -ls
+screen -r Corr_tw10
