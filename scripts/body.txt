@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job Free_Spin]
+[Info sul Job Free_Spin_J1]
 --------------------------------------
 
-Richiesta presa in carico alle ore 22:31:39: 1 Job per 'Free_Spin' con 1 task ciascuno.
+Dati acquisiti! Job Free_Spin_J1 completato alle ore 22:31:46 con 1 task! 
 
