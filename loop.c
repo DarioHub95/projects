@@ -419,7 +419,7 @@ void loop::dinamica(double *A)
          if (stmp==10 || stmp==5) nhop[i]++;			     // N.B: stmp==5 è un hopping a destra, stmp==10 un hopping a sinistra
         }
       htot+=nhop[i];
-      if (i==L-2) A[22]=(double)nhop[i];
+      if (i==L-2) A[22]+=(double)nhop[i];
 
      }
      
@@ -466,7 +466,7 @@ void loop::dinamica(double *A)
         if(i==L-1)
         {
           A[21]=0;          // Sx
-          // A[22]=(double)sy;     // Sy
+          A[22]/=N;     // Sy
           A[23]=(double)ssum/N;     // Sz
         } 
 
