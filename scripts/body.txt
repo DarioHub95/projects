@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job MBL_Corr_tw10_J5]
+[Info sul Job Free_Spin]
 --------------------------------------
 
-Job 'MBL_Corr_tw10_J5' lanciato alle ore 21:35:29 con 120 task! 
+Richiesta presa in carico alle ore 22:31:39: 1 Job per 'Free_Spin' con 1 task ciascuno.
 
