@@ -1,6 +1,14 @@
 
-[   Info sul Job MBL_Energie_J2   ]
+[   INFO 550    ]
 
 
-Dati acquisiti! Job MBL_Energie_J2 completato alle ore 23:50:32 con 1450 task! 
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
+
+N° di file con eccesso di '-nan': 237 
+
+N° di file corrotti: 0 
+
+N° di file corretti: 2673
 
