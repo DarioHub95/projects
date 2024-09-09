@@ -16,7 +16,7 @@ int main(int argc,char **argv)
    int amax=32;
    int n=0;
    int Sz=0;             // magnetizzazione della catena (sempre negativa)
-   int tw=10;               // tempo di waiting per autocorrelazione
+   int tw=1;               // tempo di waiting per autocorrelazione
    int Oss=5;
    int mype=pvm_mype();
 
@@ -38,7 +38,7 @@ int main(int argc,char **argv)
     if (Oss==5) L=8; // se scelgo la correlazione, la lunghezza deve essere fissata
     for(int m=0;m<M;m++) A[amax+m]=0;  // salva config spin al tempo t=t_w
 
-    int P = 5;
+    int P = 4;
     switch (P) {
         case 1:
             Jz = 0;

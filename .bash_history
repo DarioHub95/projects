@@ -156,3 +156,4 @@ screen -r Corr_tw10
 screen -r Corr_tw10
 screen -ls
 screen -r Corr_tw10
+exit

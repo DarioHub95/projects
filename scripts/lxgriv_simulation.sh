@@ -4,11 +4,11 @@
 set -x
 # trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
-# Aspetta il termine della simulazione precedente
-while screen -ls | grep -qv "1 Socket"; do
-    echo "Screen attivi rilevati, attendo..."
-    sleep 10
-done
+# # Aspetta il termine della simulazione precedente
+# while screen -ls | grep -qv "1 Socket"; do
+#     echo "Screen attivi rilevati, attendo..."
+#     sleep 10
+# done
 
 #vars simulazione
 start_time=$(date +%s)
@@ -32,52 +32,51 @@ job_name="${4}_${3}"
 ########################################### ACQUISIZIONE DATI ###################################################
 #----------------------------------------------------------------------------------------------------------------
 
-# Pulizia dei file output esistenti
-if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
-rm Dati_$3/output*
-fi
+# # Pulizia dei file output esistenti
+# if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
+# rm Dati_$3/output*
+# fi
 
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [ ! -f "Dati_${3}/a.out" ]; then
-    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste. Simulazione interrotta."
-    screen -X quit
-fi
-#-----------------------------------------------------------------
+# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+# if [ ! -f "Dati_${3}/a.out" ]; then
+#     ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste. Simulazione interrotta."
+#     screen -X quit
+# fi
+# #-----------------------------------------------------------------
 
-cd Dati_$3/
+# cd Dati_$3/
 
-if (( $nstep < 5000 )); then     
-    ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
-fi
+# if (( $nstep < 5000 )); then     
+#     ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
+# fi
 
-for ((i=1; i<=$1; i++)); do
-    mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
-    sleep 1
+# for ((i=1; i<=$1; i++)); do
+#     mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
+#     sleep 1
 
-    echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
-    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-    if (( $nstep >= 5000 )); then     
-        ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-    fi
-    #-----------------------------------------------------------------
-    job_pid=$!
-    wait $job_pid
-    rename_output_files
-    ((count++))
-    esito+=("Eseguito") 
-    tasks_per_job+=($num_tasks)
-    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-    #-----------------------------------------------------------------
-    jobs+=("${job_name}_J${i}")
-    ids+=("${job_id}")
-done
-cd ../
+#     echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
+#     #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+#     if (( $nstep >= 5000 )); then     
+#         ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+#     fi
+#     #-----------------------------------------------------------------
+#     wait $!
+#     rename_output_files
+#     ((count++))
+#     esito+=("Eseguito") 
+#     tasks_per_job+=($num_tasks)
+#     #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+#     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+#     #-----------------------------------------------------------------
+#     jobs+=("${job_name}_J${i}")
+#     ids+=("${job_id}")
+# done
+# cd ../
 
-#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-echo "La somma delle componenti dell'array non è 0. La somma è $sum."
-./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
-#-----------------------------------------------------------------
+# #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+# echo "La somma delle componenti dell'array non è 0. La somma è $sum."
+# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
+# #-----------------------------------------------------------------
 
 #----------------------------------------------------------------------------------------------------------------
 ############################################### CALCOLO MEDIE ###################################################
@@ -134,9 +133,23 @@ echo "Il numero di file con righe sbagliate è $file_count_lines"
 # Conta il numero di file rimasti in Data
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
+# PULIZIA DATI - Verifica se R_tot è maggiore del limite corrente di file aperti (meno 6 file che non capisco quali siano)
+if [[ $R_tot -lt 4090 ]]; then
+    ulimit -n 4096
+    echo "Il limite dei file aperti è stato impostato al massimo"
+    ulimit -n
+else
+    files_to_remove=$((R_tot - 4090))
+    echo "R_tot supera 4096. Eliminazione di $files_to_remove file .txt dalla cartella Dati..."
+    ls -tp "Dati_$3"/*.txt | tail -n "$files_to_remove" | xargs -I {} rm -- "{}"
+    ulimit -n 4096
+    echo "Il limite dei file aperti è stato impostato al massimo"
+fi
+R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
+
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
-    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
+    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file incompleti: $file_count_lines" "N° di file che superano ulimit: $files_to_remove" "N° di file conformi: $R_tot"
 fi
 #-----------------------------------------------------------------
 
@@ -151,16 +164,6 @@ for file in "Dati_$3"/output*.txt; do
     tail -n +$((max_nan_count + 16 + 1)) "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
 done
 echo ""
-
-# Verifica se R_tot è maggiore del limite corrente di file aperti
-if [[ $R_tot -gt $(ulimit -n) ]]; then
-    ulimit -n $((R_tot + 10))  # Aumenta il limite di file aperti di R_tot + 10
-    echo "Il limite dei file aperti è stato aumentato a $((R_tot + 10))"
-    if [[ $((R_tot + 10)) -gt $(ulimit -n) ]]; then
-        echo "Il limite dei file aperti è ancora basso rispetto a ulimit"
-        ./scripts/notify_errors.sh 150 "Rivedi le impostazioni di ulimit"
-    fi
-fi
 
 # Calcolo delle medie a 1 colonna (OPERATORE SINGOLO)
 if [ "$Oss" -eq 2 ] || [ "$Oss" -eq 3 ] || [ "$Oss" -eq 10 ] || [ "$Oss" -eq 12 ]; then
