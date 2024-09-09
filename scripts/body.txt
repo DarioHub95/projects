@@ -1,14 +1,10 @@
 
-[   INFO 550    ]
+[   ERRORE 150  ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+LIMITE DI FILE APERTI INSUFFICIENTE 
 
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
+Il numero di file da aprire è ancora minore rispetto a quelli permessi dal sistema. 
 
-N° di file con eccesso di '-nan':  
-
-N° di file corrotti:  
-
-N° di file corretti: 4182
+Rivedi le impostazioni di ulimit
 
