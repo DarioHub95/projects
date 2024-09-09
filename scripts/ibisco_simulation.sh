@@ -193,6 +193,9 @@ fi
 # done
 # echo "Il numero di file con righe sbagliate è $file_count_lines"
 
+# Conta il numero di file rimasti in Data
+R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
+
 # PULIZIA DATI - Verifica se R_tot è maggiore del limite corrente di file aperti
 if [[ $R_tot -gt $(ulimit -n) ]]; then
     if [[ $R_tot -le 4096 ]]; then
@@ -205,10 +208,8 @@ if [[ $R_tot -gt $(ulimit -n) ]]; then
         ulimit -n 4096
         echo "Il limite dei file aperti è stato impostato al massimo"
     fi
+    R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 fi
-
-# Conta il numero di file rimasti in Data
-R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
