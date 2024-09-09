@@ -201,6 +201,7 @@ if [[ $R_tot -gt $(ulimit -n) ]]; then
     if [[ $R_tot -le 4096 ]]; then
         ulimit -n 4096
         echo "Il limite dei file aperti è stato impostato al massimo"
+        ulimit -n
     else
         files_to_remove=$((R_tot - 4096))
         echo "R_tot supera 4096. Eliminazione di $files_to_remove file .txt dalla cartella Dati..."
@@ -228,27 +229,6 @@ fi
 #     tail -n +$((max_nan_count + 16 + 1)) "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
 # done
 # echo ""
-
-
-
-
-
-
-
-# # Verifica se R_tot è maggiore del limite corrente di file aperti
-# if [[ $R_tot -gt $(ulimit -n) ]]; then
-#     ulimit -n $((R_tot + 10))  # Aumenta il limite di file aperti di R_tot + 10
-#     echo "Il limite dei file aperti è stato aumentato a $((R_tot + 10))"
-#     if [[ $((R_tot + 10)) -gt $(ulimit -n) ]]; then
-#         echo "Il limite dei file aperti è ancora basso rispetto a ulimit"
-#         ./scripts/notify_errors.sh 150 "Rivedi le impostazioni di ulimit"
-#     fi
-# fi
-
-
-
-
-
 
 # Calcolo delle medie a 1 colonna (OPERATORE SINGOLO)
 if [ "$Oss" -eq 2 ] || [ "$Oss" -eq 3 ] || [ "$Oss" -eq 10 ] || [ "$Oss" -eq 12 ]; then
