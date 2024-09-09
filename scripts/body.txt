@@ -1,10 +1,10 @@
 
-[   ERRORE 350  ]
+[   ERRORE 150  ]
 
 
-ERRORE NEL CALCOLO DELLE MEDIE 
+LIMITE DI FILE APERTI INSUFFICIENTE 
 
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
+Il numero di file da aprire è ancora minore rispetto a quelli permessi dal sistema. 
 
-[media.sh] Il file 'MBL_Energie_L8_R4182_00.46.36.txt' non contiene nessun valore medio. Uscita dallo screen media_Energie...
+Rivedi le impostazioni di ulimit
 
