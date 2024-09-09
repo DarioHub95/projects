@@ -2,7 +2,7 @@
 
 # Comandi di DEBUG
 set -x
-# trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 # # Aspetta il termine della simulazione precedente
 # while screen -ls | grep -qv "1 Socket"; do
@@ -153,45 +153,45 @@ fi
 #-----------------------------------------------------------------
 
 
-# PULIZIA DATI - Tolleranza al 20% per il numero di -nan nei file di dati
-max_nan_count=0
-file_count_nan=0
-file_count_lines=0
-for file in "Dati_$3"/output*.txt; do
-    nan_count=$(grep -c "\-nan" "$file")    
+# # PULIZIA DATI - Tolleranza al 20% per il numero di -nan nei file di dati
+# max_nan_count=0
+# file_count_nan=0
+# file_count_lines=0
+# for file in "Dati_$3"/output*.txt; do
+#     nan_count=$(grep -c "\-nan" "$file")    
 
-    if [ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) -eq 1 ]; then
-        echo "La soglia del 20% è superata. Eliminazione del file $file..."
-        rm "$file"
-        file_count_nan=$((file_count_nan + 1))
-    else
-        echo "La soglia non è superata. Nan count: $nan_count"
-        if (( nan_count > max_nan_count )); then
-            max_nan_count=$nan_count
-        fi
-    fi
-done
-echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
+#     if [ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) -eq 1 ]; then
+#         echo "La soglia del 20% è superata. Eliminazione del file $file..."
+#         rm "$file"
+#         file_count_nan=$((file_count_nan + 1))
+#     else
+#         echo "La soglia non è superata. Nan count: $nan_count"
+#         if (( nan_count > max_nan_count )); then
+#             max_nan_count=$nan_count
+#         fi
+#     fi
+# done
+# echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
 
-# PULIZIA DATI - Se tutte le colonne di dati contengono solo zeri, elimina il file
-for file in "Dati_$3"/output*; do
-    if awk '{for (i=2; i<=NF; i++) if ($i != 0) exit 1}' "$file"; then
-        rm "$file"
-        echo "File $file eliminato perché tutte le colonne contengono solo zeri."
-    fi
-done
+# # PULIZIA DATI - Se tutte le colonne di dati contengono solo zeri, elimina il file
+# for file in "Dati_$3"/output*; do
+#     if awk '{for (i=2; i<=NF; i++) if ($i != 0) exit 1}' "$file"; then
+#         rm "$file"
+#         echo "File $file eliminato perché tutte le colonne contengono solo zeri."
+#     fi
+# done
 
-# PULIZIA DATI - Controlla se il primo numero dell'ultima riga è diverso da nstep
-for file in "Dati_$3"/output*; do
-    last_line=$(tail -n 1 "$file")
-    first_number=$(echo "$last_line" | awk '{print $1}')
-    if [[ "$first_number" != $nstep ]]; then
-        echo "Eliminando file: $file"
-        rm "$file"
-        file_count_lines=$((file_count_lines + 1))
-    fi
-done
-echo "Il numero di file con righe sbagliate è $file_count_lines"
+# # PULIZIA DATI - Controlla se il primo numero dell'ultima riga è diverso da nstep
+# for file in "Dati_$3"/output*; do
+#     last_line=$(tail -n 1 "$file")
+#     first_number=$(echo "$last_line" | awk '{print $1}')
+#     if [[ "$first_number" != $nstep ]]; then
+#         echo "Eliminando file: $file"
+#         rm "$file"
+#         file_count_lines=$((file_count_lines + 1))
+#     fi
+# done
+# echo "Il numero di file con righe sbagliate è $file_count_lines"
 
 # Conta il numero di file rimasti in Data
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
