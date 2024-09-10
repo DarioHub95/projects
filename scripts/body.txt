@@ -1,6 +1,37 @@
 --------------------------------------
-[Info sul Job MBL_Corr_tw100_J20]
+       [Jobs per MBL_Corr_tw100]
 --------------------------------------
 
-Dati acquisiti! Job MBL_Corr_tw100_J20 completato alle ore 22:51:46 con 100 task! 
+Modello selezionato: MBL
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 2100
+N° di Task eseguiti:  
+
+N° di Job richiesti: 20
+
+Dettagli Job Lanciati:
+
+| Job Name           | Job ID             | Tasks              | Esito              |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| MBL_Corr_tw100_J1  |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J2  |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J3  |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J4  |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J5  |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J6  |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J7  |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J8  |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J9  |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J10 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J11 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J12 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J13 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J14 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J15 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J16 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J17 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J18 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J19 |                    | 100                | Eseguito           |
+| MBL_Corr_tw100_J20 |                    | 100                | Eseguito           |
+| ------------------ | ------------------ | ------------------ | ------------------ |
