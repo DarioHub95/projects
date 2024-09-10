@@ -1,37 +1,25 @@
 --------------------------------------
-       [Jobs per MBL_Corr_tw100]
+    [Dettagli della Simulazione]
 --------------------------------------
+Start Date: 09-09-2024 15:04:54
+End Date:   10-09-2024 22:52:47
+Durata:     07:47:53
 
 Modello selezionato: MBL
-Osservabile scelto:  Corr
+Osservabile scelto:  Corr_tw100
 
-N° di Task richiesti: 2100
-N° di Task eseguiti:  
+Parametri del Modello:
+> L:     8
+> nstep: 10000
+> Sz:    0
+> Jxy:   1
+> Jz:    0.2
+> eps:   5
+> alpha: 0
 
-N° di Job richiesti: 20
+File delle medie:
+MBL_Corr_tw100_L8_R1742_15.04.54.txt
 
-Dettagli Job Lanciati:
+N° di file output eliminati: 258
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
 
-| Job Name           | Job ID             | Tasks              | Esito              |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| MBL_Corr_tw100_J1  |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J2  |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J3  |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J4  |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J5  |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J6  |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J7  |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J8  |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J9  |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J10 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J11 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J12 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J13 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J14 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J15 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J16 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J17 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J18 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J19 |                    | 100                | Eseguito           |
-| MBL_Corr_tw100_J20 |                    | 100                | Eseguito           |
-| ------------------ | ------------------ | ------------------ | ------------------ |
