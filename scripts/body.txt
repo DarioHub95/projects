@@ -1,6 +1,16 @@
 
-[   Info sul Job MBL+B_Energie_J1   ]
+[   Jobs per MBL+B_Energie   ]
 
 
-Dati acquisiti! Job MBL+B_Energie_J1 completato alle ore 00:42:37 con 1200 task! 
+Modello selezionato: MBL+B
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 2400
+N° di Task eseguiti:  1200
+
+N° di Job richiesti: 1
+
+Dettagli Job Lanciati:
+
+| Job Name         | Job ID           | Tasks            | Esito            |
+| MBL+B_Energie_J1 | 322362           | 1200             | Eseguito         |
