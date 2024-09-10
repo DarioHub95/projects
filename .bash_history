@@ -265,3 +265,5 @@ cat mpirun.log
 cat mpirun.log 
 cat mpirun.log 
 screen -ls
+screen -ls
+./lxgriv-run.sh 
