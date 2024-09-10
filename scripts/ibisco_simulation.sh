@@ -211,7 +211,7 @@ R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
-    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file incompleti: $file_count_lines" "N° di file che superano ulimit: $files_to_remove" "N° di file conformi: $R_tot"
+    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file incompleti: $file_count_lines" "N° di file che superano ulimit: ${files_to_remove:-0}" "N° di file conformi: $R_tot"
 fi
 #-----------------------------------------------------------------
 
