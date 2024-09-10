@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job MBL_Corr_tw100_J10]
+[Info sul Job MBL_Corr_tw100_J11]
 --------------------------------------
 
-Dati acquisiti! Job MBL_Corr_tw100_J10 completato alle ore 07:07:25 con 100 task! 
+Job 'MBL_Corr_tw100_J11' lanciato alle ore 07:07:27 con 100 task! 
 
