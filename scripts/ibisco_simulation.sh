@@ -159,7 +159,7 @@ file_count_lines=0
 for file in "Dati_$3"/output*.txt; do
     nan_count=$(grep -c "\-nan" "$file")    
 
-    if [ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) -eq 1 ]; then
+    if [ $(echo "scale=2; $nan_count / $nstep > 0.1" | bc) -eq 1 ]; then
         echo "La soglia del 20% è superata. Eliminazione del file $file..."
         rm "$file"
         file_count_nan=$((file_count_nan + 1))
