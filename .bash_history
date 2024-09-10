@@ -173,3 +173,94 @@ screen -r Corr_tw1
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
+screen -ls
+screen -r Corr_tw10
+./lxgriv-run.sh 
+screen -r Spin
+ls
+Dati_Spin/
+cd Dati_Spin/
+ls
+history | grep mpi
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+ls
+ls
+cat mpirun.log 
+history |grep  mpi
+cd ..
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o Dati_Spin/a.out
+cd Dati_Spin/
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o ../Dati_Spin/a.out
+cd ..
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o Dati_Spin/a.out
+cd Dati_Spin/
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cd ..
+rm -rf Dati_Spin/
+ls
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
+mpirun -np 1 ./a.out > mpirun.log 2>&1 &
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
+cat mpirun.log 
