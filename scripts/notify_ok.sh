@@ -8,7 +8,7 @@ echo ""
 if [ "$1" == "S" ]; then
 
 #Formattazione
-#./scripts/notify_ok.sh "S" "<file>" $start_time $total_tasks
+#./scripts/notify_ok.sh "S" "<file>" $start_time $total_tasks $sum
 
 output_file="scripts/body.txt"
 git_message="Simulazione eseguita con successo!"
@@ -59,7 +59,11 @@ Parametri del Modello:
 File delle medie:
 ${2}
 
-N° di file output eliminati: $(($4 - R))
+N° di file output richiesti: $4
+N° di file output dei job: $5
+N° di file output effettvi: $R
+
+N° di file output eliminati: $(($5 - R))
 Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan' o erano corrotti.
 
 EOF
@@ -92,7 +96,6 @@ for element in "${jobs[@]}" "${ids[@]}" "${tasks_per_job[@]}" "${esito[@]}"; do
     fi
 done
 
-
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
 
@@ -111,15 +114,7 @@ Dettagli Job Lanciati:
 
 EOF
 
-printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$jobs" "$max_len" "$ids" "$max_len" "$tasks_per_job" "$max_len" "$esito" >> $output_file
-printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" >> $output_file
-
-
-
-for ((i=1; i<x; i++)); do
+for ((i=0; i<x; i++)); do
     job_id=${ids[$i]:-""}
     task_per_job=${tasks_per_job[$i]:-""}
     esito_val=${esito[$i]:-""}
@@ -128,12 +123,6 @@ for ((i=1; i<x; i++)); do
     # Stampa della riga formattata
     printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$job_name" "$max_len" "$job_id" "$max_len" "$task_per_job" "$max_len" "$esito_val" >> $output_file
 done
-
-
-printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%-*s' "$max_len" | tr ' ' '-')" >> $output_file
 
 # EOF
 
