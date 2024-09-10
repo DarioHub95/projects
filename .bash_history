@@ -264,3 +264,4 @@ cat mpirun.log
 cat mpirun.log 
 cat mpirun.log 
 cat mpirun.log 
+screen -ls
