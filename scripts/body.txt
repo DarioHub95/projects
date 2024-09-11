@@ -1,6 +1,6 @@
 --------------------------------------
-[Info sul Job MBL_Corr_tw1000_J11]
+[Info sul Job Anderson_Corr_tw1_J4]
 --------------------------------------
 
-Job 'MBL_Corr_tw1000_J11' lanciato alle ore 14:12:57 con 120 task! 
+Dati acquisiti! Job Anderson_Corr_tw1_J4 completato alle ore 14:53:35 con 120 task! 
 
