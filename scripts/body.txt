@@ -1,6 +1,30 @@
 
-[   Info sul Job MBL+B_Corr_tw1_J4   ]
+[   Dettagli della Simulazione  ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw1_J4 completato alle ore 15:02:06 con 270 task! 
+Start Date: 11-09-2024 13:15:13
+End Date:   11-09-2024 13:17:56
+Durata:     00:02:43
+
+Modello selezionato: MBL+B
+Osservabile scelto:  Energie
+
+Parametri del Modello:
+> L:     6
+> nstep: 
+> Sz:    
+> Jxy:   1
+> Jz:    
+> eps:   
+> alpha: 
+
+File delle medie:
+MBL+B_Energie_L6_R2386_13.15.13.txt
+
+N° di file output richiesti: 2000
+N° di file output dei job: 
+N° di file output effettvi: 2386
+
+N° di file output eliminati: -2386
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan' o erano corrotti.
 
