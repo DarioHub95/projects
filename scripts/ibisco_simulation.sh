@@ -152,15 +152,15 @@ if [ "$sum" -ne 0 ] && [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la car
 fi
 #-----------------------------------------------------------------
 
-# PULIZIA DATI - Tolleranza al 20% per il numero di -nan nei file di dati
+# PULIZIA DATI - Tolleranza al 5% per il numero di -nan nei file di dati
 max_nan_count=0
 file_count_nan=0
 file_count_lines=0
 for file in "Dati_$3"/output*.txt; do
     nan_count=$(grep -c "\-nan" "$file")    
 
-    if [ $(echo "scale=2; $nan_count / $nstep > 0.1" | bc) -eq 1 ]; then
-        echo "La soglia del 20% è superata. Eliminazione del file $file..."
+    if [ $(echo "scale=2; $nan_count / $nstep > 0.05" | bc) -eq 1 ]; then
+        echo "La soglia del 5% è superata. Eliminazione del file $file..."
         rm "$file"
         file_count_nan=$((file_count_nan + 1))
     else

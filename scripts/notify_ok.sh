@@ -64,7 +64,7 @@ N° di file output dei job: $5
 N° di file output effettvi: $R
 
 N° di file output eliminati: $(($5 - R))
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan' o erano corrotti.
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
 
 EOF
 
