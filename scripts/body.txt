@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw1_J5   ]
+[   Info sul Job Anderson_Corr_tw1_J6   ]
 
 
-Dati acquisiti! Job Anderson_Corr_tw1_J5 completato alle ore 16:43:43 con 120 task! 
+Job 'Anderson_Corr_tw1_J6' lanciato alle ore 16:43:45 con 120 task! 
 
