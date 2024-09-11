@@ -271,3 +271,5 @@ screen -ls
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
 if screen -ls | grep -wq "Corr_tw1"; then     echo "Acquisizione dei dati ${var} in esecuzione.";     echo "";     screen -ls;     echo "";     echo "Interruzione dello script...";     echo "";     exit 1  ; fi
+if screen -ls | grep -wq "Corr_tw10"; then     echo "Acquisizione dei dati ${var} in esecuzione.";     echo "";     screen -ls;     echo "";     echo "Interruzione dello script...";     echo "" ; fi
+screen -ls
