@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw1_J6   ]
+[   Info sul Job MBL_Corr_tw1000_J12   ]
 
 
-Job 'Anderson_Corr_tw1_J6' lanciato alle ore 16:43:45 con 120 task! 
+Dati acquisiti! Job MBL_Corr_tw1000_J12 completato alle ore 17:37:14 con 120 task! 
 
