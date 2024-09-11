@@ -2,5 +2,5 @@
 [Info sul Job MBL_Corr_tw1000_J2]
 --------------------------------------
 
-Job 'MBL_Corr_tw1000_J2' lanciato alle ore 00:32:59 con 120 task! 
+Dati acquisiti! Job MBL_Corr_tw1000_J2 completato alle ore 02:00:24 con 120 task! 
 
