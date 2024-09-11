@@ -46,20 +46,20 @@ fi
 
 cd Dati_$3/
 
-if (( $nstep < 5000 )); then     
-    ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
-fi
+#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
+#-----------------------------------------------------------------
 
 for ((i=1; i<=$1; i++)); do
     mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
     sleep 1
 
     echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
-    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-    if (( $nstep >= 5000 )); then     
-        ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
-    fi
-    #-----------------------------------------------------------------
+    # #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+    # if (( $nstep >= 5000 )); then     
+    #     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(date '+%H:%M:%S') con $num_tasks task! "
+    # fi
+    # #-----------------------------------------------------------------
     wait $!
     rename_output_files
     ((count++))

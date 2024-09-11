@@ -36,9 +36,10 @@ hms=$(date -u -d @$time_diff +'%H:%M:%S')
 
 # Assembla il contenuto del body.txt
 cat <<EOF > $output_file
---------------------------------------
-    [Dettagli della Simulazione]
---------------------------------------
+
+[   Dettagli della Simulazione  ]
+
+
 Start Date: $(date -u -d @$start_time +"%d-%m-%Y %H:%M:%S")
 End Date:   $(date -u -d @$end_time +"%d-%m-%Y %H:%M:%S")
 Durata:     ${hms}
@@ -96,9 +97,9 @@ done
 
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
---------------------------------------
-       [Jobs per ${4}]
---------------------------------------
+
+[   Jobs per ${4}   ]
+
 
 Modello selezionato: ${modello}
 Osservabile scelto:  ${osservabile}
@@ -112,15 +113,7 @@ Dettagli Job Lanciati:
 
 EOF
 
-printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$jobs" "$max_len" "$ids" "$max_len" "$tasks_per_job" "$max_len" "$esito" >> $output_file
-printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" >> $output_file
-
-
-
-for ((i=1; i<x; i++)); do
+for ((i=0; i<x; i++)); do
     job_id=${ids[$i]:-""}
     task_per_job=${tasks_per_job[$i]:-""}
     esito_val=${esito[$i]:-""}
@@ -129,12 +122,6 @@ for ((i=1; i<x; i++)); do
     # Stampa della riga formattata
     printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$job_name" "$max_len" "$job_id" "$max_len" "$task_per_job" "$max_len" "$esito_val" >> $output_file
 done
-
-
-printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" \
-"$max_len" "$(printf '%*s' "$max_len" | tr ' ' '-')" >> $output_file
 
 # EOF
 
@@ -149,9 +136,9 @@ git_message="Job info"
 
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
---------------------------------------
-[Info sul Job ${2}]
---------------------------------------
+
+[   Info sul Job ${2}   ]
+
 
 ${3}
 
@@ -167,7 +154,7 @@ echo ""
 # Esegui il push del commit al repository remoto
 # git pull
 git add -A .
-git commit -a -m "lxgriv11: ${git_message}"
+git commit -a -m "LXGRIV11: ${git_message}"
 git push origin lxgriv11
 echo "Commit e push completati."
 #-------------------GITHUB-------------------------------------#

@@ -51,9 +51,9 @@ if [ $error_code != 550 ]; then
 git_message="Errore $error_code"
 # Assembla il contenuto del body.txt con la descrizione dell'errore
 cat <<EOF > $output_file
-------------------------------
-    [ERRORE $error_code]
-------------------------------
+
+[   ERRORE $error_code   ]
+
 
 $error_message_1 $nl
 $error_message_2 $nl
@@ -62,12 +62,12 @@ ${extra_message}
 EOF
 
 else
-git_message="Warning $error_code"
+git_message="Info Dati"
 # Assembla il contenuto del body.txt con la descrizione del warning
 cat <<EOF > $output_file
-------------------------------
-[WARNING $error_code]
-------------------------------
+
+[   WARNING $error_code   ]
+
 
 $error_message_1 $nl
 $error_message_2 $nl
@@ -90,6 +90,6 @@ echo ""
 # Esegui il push del commit al repository remoto
 # git pull
 git add .
-git commit -a -m "lxgriv11: ${git_message}!"
+git commit -a -m "LXGRIV11: ${git_message}!"
 git push origin lxgriv11
 echo "Commit e push completati."
