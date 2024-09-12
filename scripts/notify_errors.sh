@@ -17,8 +17,8 @@ case $error_code in
         error_message_2="Il file 'a.out' non è stato trovato."
         ;;
     150)
-        error_message_1="PERMESSI INSUFFICIENTI"
-        error_message_2="Non hai i permessi necessari per eseguire i comandi richiesti."
+        error_message_1="LIMITE DI FILE APERTI INSUFFICIENTE"
+        error_message_2="Il numero di file da aprire è ancora minore rispetto a quelli permessi dal sistema."
         ;;
     200)
         error_message_1="FILE DI MEDIA NON TROVATO"
@@ -44,7 +44,6 @@ case $error_code in
         error_message_1="WARNING NEL PROCESSO DI PULIZIA DEI DATI"
         error_message_2="[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'."
         ;;
-
 esac
 
 if [ $error_code != 550 ]; then
@@ -66,14 +65,15 @@ git_message="Info Dati"
 # Assembla il contenuto del body.txt con la descrizione del warning
 cat <<EOF > $output_file
 
-[   WARNING $error_code   ]
+[   INFO $error_code   ]
 
 
 $error_message_1 $nl
 $error_message_2 $nl
-${2}
+${2} $nl
 ${3} $nl
-${4}
+${4} $nl
+${5}
 
 EOF
 fi
@@ -90,6 +90,6 @@ echo ""
 # Esegui il push del commit al repository remoto
 # git pull
 git add .
-git commit -a -m "LXGRIV11: ${git_message}!"
+git commit -a -m "LXGRIV11: ${git_message}"
 git push origin lxgriv11
 echo "Commit e push completati."

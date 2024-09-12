@@ -8,7 +8,7 @@ echo ""
 if [ "$1" == "S" ]; then
 
 #Formattazione
-#./scripts/notify_ok.sh "S" "<file>" $start_time $total_tasks
+#./scripts/notify_ok.sh "S" "<file>" $start_time $total_tasks $sum
 
 output_file="scripts/body.txt"
 git_message="Simulazione eseguita con successo!"
@@ -40,8 +40,8 @@ cat <<EOF > $output_file
 [   Dettagli della Simulazione  ]
 
 
-Start Date: $(date -u -d @$start_time +"%d-%m-%Y %H:%M:%S")
-End Date:   $(date -u -d @$end_time +"%d-%m-%Y %H:%M:%S")
+Start Date: $(TZ="Europe/Rome" date -u -d @$start_time +"%d-%m-%Y %H:%M:%S")
+End Date:   $(TZ="Europe/Rome" date -u -d @$end_time +"%d-%m-%Y %H:%M:%S")
 Durata:     ${hms}
 
 Modello selezionato: ${modello}
@@ -59,8 +59,12 @@ Parametri del Modello:
 File delle medie:
 ${2}
 
-N° di file output eliminati: $(($4 - R))
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 20% di '-nan'.
+N° di file output richiesti: $4
+N° di file output dei job: $5
+N° di file output effettvi: $R
+
+N° di file output eliminati: $(($5 - R))
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
 
 EOF
 
@@ -90,10 +94,7 @@ for element in "${jobs[@]}" "${ids[@]}" "${tasks_per_job[@]}" "${esito[@]}"; do
     if [ $length -gt $max_len ]; then
         max_len=$length
     fi
-    # Stampa la lunghezza corrente per il debug (opzionale)
-    echo "Lunghezza corrente: $length"
 done
-
 
 # Assembla il contenuto del body.txt
 cat <<EOF > "$output_file"
