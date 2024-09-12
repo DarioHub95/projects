@@ -292,3 +292,6 @@ screen -r Corr_tw1000
 screen -ls
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
+screen -ls
+screen -r Corr_tw1
+./lxgriv-run.sh 
