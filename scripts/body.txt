@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Energie_J1   ]
+[   Info sul Job Anderson_Corr_tw100_J4   ]
 
 
-Dati acquisiti! Job Ising_Energie_J1 completato alle ore 01:19:48 con 120 task! 
+Dati acquisiti! Job Anderson_Corr_tw100_J4 completato alle ore 01:20:13 con 120 task! 
 
