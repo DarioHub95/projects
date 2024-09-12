@@ -275,3 +275,4 @@ if screen -ls | grep -wq "Corr_tw10"; then     echo "Acquisizione dei dati ${var
 screen -ls
 ls
 screen -ls
+exit

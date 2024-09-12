@@ -1,6 +1,13 @@
 
-[   Info sul Job    ]
+[   WARNING 550   ]
 
 
-Richiesta presa in carico alle ore 11:02:33:  Job per '' con  task ciascuno.
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
+
+N° di file con eccesso di '-nan': 0
+N° di file incompleti: 0 
+
+N° di file che superano ulimit: 0
 
