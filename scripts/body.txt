@@ -2,5 +2,5 @@
 [   Info sul Job MBL+B_Corr_tw1000_J1   ]
 
 
-Job 'MBL+B_Corr_tw1000_J1' lanciato alle ore 11:40:09 con 610 task! 
+Job 'MBL+B_Corr_tw1000_J1' lanciato alle ore 11:40:11 con 600 task! 
 
