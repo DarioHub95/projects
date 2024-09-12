@@ -276,3 +276,19 @@ screen -ls
 ls
 screen -ls
 exit
+screen -ls
+screen -r 3293550.Corr_tw1000
+timedatectl
+sudo timedatectl set-timezone Europe/Rome
+./scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
+cd Dati_Corr_tw1
+./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
+cd ..
+screen -ls
+screen -r 
+screen -r 3293550.Corr_tw1000
+./lxgriv-run.sh 
+screen -r Corr_tw1000
+screen -ls
+./lxgriv-run.sh 
+./lxgriv-run.sh 
