@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw1000_J20   ]
+[   Info sul Job Anderson_Corr_tw1_J14   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw1000_J20 completato alle ore 05:59:32 con 120 task! 
+Dati acquisiti! Job Anderson_Corr_tw1_J14 completato alle ore 06:58:13 con 120 task! 
 
