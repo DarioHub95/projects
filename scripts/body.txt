@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job MBL+B_Corr_tw1000_J3   ]
 
 
-Start Date: 12-09-2024 08:54:09
-End Date:   12-09-2024 21:04:24
-Durata:     12:10:15
-
-Modello selezionato: MBL+B
-Osservabile scelto:  Corr_tw100
-
-Parametri del Modello:
-> L:     8
-> nstep: 10100
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   5
-> alpha: 0.01
-
-File delle medie:
-MBL+B_Corr_tw100_L8_R2613_08.54.09.txt
-
-N° di file output richiesti: 7800
-N° di file output dei job: 2940
-N° di file output effettvi: 2613
-
-N° di file output eliminati: 327
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
+Dati acquisiti! Job MBL+B_Corr_tw1000_J3 completato alle ore 23:59:53 con 570 task! 
 
