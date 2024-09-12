@@ -1,18 +1,30 @@
 
-[   Jobs per MBL+B_Corr_tw10   ]
+[   Dettagli della Simulazione  ]
 
+
+Start Date: 11-09-2024 16:28:41
+End Date:   12-09-2024 03:39:15
+Durata:     11:10:34
 
 Modello selezionato: MBL+B
-Osservabile scelto:  Corr
+Osservabile scelto:  Corr_tw10
 
-N° di Task richiesti: 10800
-N° di Task eseguiti:  4740
+Parametri del Modello:
+> L:     8
+> nstep: 10000
+> Sz:    0
+> Jxy:   1
+> Jz:    0.2
+> eps:   5
+> alpha: 0.01
 
-N° di Job richiesti: 3
+File delle medie:
+MBL+B_Corr_tw10_L8_R3924_16.28.41.txt
 
-Dettagli Job Lanciati:
+N° di file output richiesti: 8100
+N° di file output dei job: 4740
+N° di file output effettvi: 3924
 
-| Job Name           | Job ID             | Tasks              | Esito              |
-| MBL+B_Corr_tw10_J1 | 322919             | 1580               | Eseguito           |
-| MBL+B_Corr_tw10_J2 | 322920             | 1580               | Eseguito           |
-| MBL+B_Corr_tw10_J3 | 322921             | 1580               | Eseguito           |
+N° di file output eliminati: 816
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
+
