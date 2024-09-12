@@ -1,6 +1,18 @@
 
-[   Info sul Job MBL+B_Corr_tw10_J3   ]
+[   Jobs per MBL+B_Corr_tw10   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw10_J3 completato alle ore 05:24:34 con 1580 task! 
+Modello selezionato: MBL+B
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 10800
+N° di Task eseguiti:  4740
+
+N° di Job richiesti: 3
+
+Dettagli Job Lanciati:
+
+| Job Name           | Job ID             | Tasks              | Esito              |
+| MBL+B_Corr_tw10_J1 | 322919             | 1580               | Eseguito           |
+| MBL+B_Corr_tw10_J2 | 322920             | 1580               | Eseguito           |
+| MBL+B_Corr_tw10_J3 | 322921             | 1580               | Eseguito           |
