@@ -201,17 +201,19 @@ if [[ $R_tot -lt 4090 ]]; then
     echo "Il limite dei file aperti è stato impostato al massimo"
     ulimit -n
 else
-    files_to_remove=$((R_tot - 4090))
-    echo "R_tot supera 4096. Eliminazione di $files_to_remove file .txt dalla cartella Dati..."
-    ls -tp "Dati_$3"/*.txt | tail -n "$files_to_remove" | xargs -I {} rm -- "{}"
+    files_to_move=$((R_tot - 4090))
+    echo "R_tot supera 4096. Spostamento di $files_to_move file .txt dalla cartella Dati..."
+    mkdir -p "Dati_${3}_extra"
+    ls -tp "Dati_$3"/*.txt | tail -n "$files_to_move" | xargs -I {} mv -- "{}" "Dati_${3}_extra/"
+    # ls -tp "Dati_$3"/*.txt | tail -n "$files_to_move" | xargs -I {} rm -- "{}"
     ulimit -n 4096
     echo "Il limite dei file aperti è stato impostato al massimo"
 fi
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [[ $file_count_nan != 0 || $file_count_lines != 0 || $files_to_remove != 0 ]]; then       
-    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file incompleti: $file_count_lines" "N° di file che superano ulimit: ${files_to_remove:-0}" "N° di file conformi: $R_tot"
+if [[ $file_count_nan != 0 || $file_count_lines != 0 || $files_to_move != 0 ]]; then       
+    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file incompleti: $file_count_lines" "N° di file che superano ulimit: ${files_to_move:-0}" "N° di file conformi: $R_tot"
 fi
 #-----------------------------------------------------------------
 
