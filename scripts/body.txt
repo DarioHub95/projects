@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw1_J17   ]
+[   Info sul Job Anderson_Corr_tw1_J18   ]
 
 
-Dati acquisiti! Job Anderson_Corr_tw1_J17 completato alle ore 13:15:25 con 120 task! 
+Job 'Anderson_Corr_tw1_J18' lanciato alle ore 13:15:27 con 120 task! 
 
