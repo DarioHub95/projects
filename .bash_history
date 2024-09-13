@@ -296,3 +296,13 @@ screen -ls
 screen -r Corr_tw1
 ./lxgriv-run.sh 
 exit
+screen -ls
+screen -r 3416669.Energie
+screen -ls
+screen -r 3332059.Corr_tw1
+screen -ls
+./lxgriv-run.sh 
+screen -r 3432686.Corr_tw1
+screen -ls
+rm -rf Dati_Corr_tw1000/ a.out
+screen -ls
