@@ -1,16 +1,30 @@
 
-[   INFO 550   ]
+[   Dettagli della Simulazione  ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+Start Date: 13-09-2024 15:17:56
+End Date:   13-09-2024 15:21:11
+Durata:     00:03:15
 
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
+Modello selezionato: Anderson
+Osservabile scelto:  Corr_tw1
 
-N° di file con eccesso di '-nan': 0 
+Parametri del Modello:
+> L:     8
+> nstep: 10000
+> Sz:    0
+> Jxy:   1
+> Jz:    0
+> eps:   5
+> alpha: 0
 
-N° di file incompleti: 0 
+File delle medie:
+Anderson_Corr_tw1_L8_R2078_15.17.56.txt
 
-N° di file che superano ulimit: 0 
+N° di file output richiesti: 2400
+N° di file output dei job: 
+N° di file output effettvi: 2078
 
-N° di file conformi: 2078
+N° di file output eliminati: -2078
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
 

@@ -42,7 +42,7 @@ case $error_code in
         ;;
     550)
         error_message_1="WARNING NEL PROCESSO DI PULIZIA DEI DATI"
-        error_message_2="[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'."
+        error_message_2="[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'."
         ;;
 esac
 
