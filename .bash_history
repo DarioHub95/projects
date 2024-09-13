@@ -295,3 +295,4 @@ screen -ls
 screen -ls
 screen -r Corr_tw1
 ./lxgriv-run.sh 
+exit

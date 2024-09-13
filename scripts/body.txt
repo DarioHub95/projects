@@ -1,6 +1,16 @@
 
-[   Info sul Job Ising_Energie_J7   ]
+[   INFO 550   ]
 
 
-Dati acquisiti! Job Ising_Energie_J7 completato alle ore 16:12:26 con 120 task! 
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
+
+N° di file con eccesso di '-nan': 0 
+
+N° di file incompleti: 0 
+
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 2078
 
