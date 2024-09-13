@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw10_J9   ]
+[   Info sul Job Ising_Energie_J8   ]
 
 
-Dati acquisiti! Job Anderson_Corr_tw10_J9 completato alle ore 17:48:08 con 120 task! 
+Dati acquisiti! Job Ising_Energie_J8 completato alle ore 19:02:03 con 120 task! 
 
