@@ -17,7 +17,7 @@ int main(int argc,char **argv)
    int n=0;
    int Sz=0;             // magnetizzazione della catena (sempre negativa)
    int tw=100;               // tempo di waiting per autocorrelazione
-   int Oss=3;
+   int Oss=4;
    int mype=pvm_mype();
 
    double Jz=0.2; //0.2						        // interazione spin-spin            // MODIFICATO
