@@ -12,11 +12,11 @@ int main(int argc,char **argv)
    int L=8;							// numero di siti della catena di spin
    int pbc=0;							// condizioni al bordo (0: condizioni aperte, 1: condizioni periodiche)
    int type=1;						// tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
-   int nstep=11000;       // numero di esecuzioni del monte carlo
+   int nstep=10000;       // numero di esecuzioni del monte carlo
    int amax=32;
    int n=0;
    int Sz=0;             // magnetizzazione della catena (sempre negativa)
-   int tw=1000;               // tempo di waiting per autocorrelazione
+   int tw=1;               // tempo di waiting per autocorrelazione
    int Oss=5;
    int mype=pvm_mype();
 
