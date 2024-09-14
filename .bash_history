@@ -306,3 +306,25 @@ screen -r 3432686.Corr_tw1
 screen -ls
 rm -rf Dati_Corr_tw1000/ a.out
 screen -ls
+screen -ls
+screen -r 3407405.Corr_tw100
+rm Dati_Corr_tw100/output-*
+./lxgriv-run.sh 
+screen -r 3416669.Energie
+rm Dati_Energie/output-*
+./lxgriv-run.sh 
+screen -r 3507866.Oss3
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+screen -r 3406965.Corr_tw10
+rm Dati_Corr_tw10/output-*
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+screen -ls
+screen -r 3550604.Anderson_Corr_tw1
+screen -r 3549858.Anderson_Corr_tw1000
