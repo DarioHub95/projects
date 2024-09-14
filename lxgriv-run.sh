@@ -156,7 +156,7 @@ read -p "Numero di run (R): " R
 echo ""
 
 # Controlla se R è maggiore di 120
-while [ "$R" -gt 120 ]; do
+while [ "$R" -gt 200 ]; do
     echo "Il valore inserito è maggiore di 120. Per favore, inserisci un valore più basso."
     read -p "Inserisci un nuovo valore per R: " R
     echo ""
@@ -191,10 +191,10 @@ echo ""
 # Loop per creare screen e eseguire comandi
 echo -e "${GREEN}[TASK 6 - ESECUZIONE SIMULAZIONI]------------------------------------------|${NC}"
 echo ""
-echo "Creazione dello screen: ${var}"
+echo "Creazione dello screen: ${mod}_${var}"
 echo "Esecuzione di $script_path..."
 echo ""
-screen -dmS "${var}" bash -c "bash $script_path ${J} ${R} ${var} ${mod}; exec bash"
+screen -dmS "${mod}_${var}" bash -c "bash $script_path ${J} ${R} ${var} ${mod}; exec bash"
 sleep 1
 
 # # Loop per creare screen e eseguire comandi
