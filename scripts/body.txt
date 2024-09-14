@@ -1,6 +1,16 @@
 
-[   Info sul Job Anderson_Corr_tw10_J14   ]
+[   INFO 550   ]
 
 
-Dati acquisiti! Job Anderson_Corr_tw10_J14 completato alle ore 10:45:53 con 120 task! 
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'. 
+
+N° di file con eccesso di '-nan': 0 
+
+N° di file incompleti: 0 
+
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 1575
 
