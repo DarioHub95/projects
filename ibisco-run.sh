@@ -202,10 +202,10 @@ echo ""
 # Loop per creare screen e eseguire comandi
 echo -e "${GREEN}[TASK 6 - ESECUZIONE SIMULAZIONI]------------------------------------------|${NC}"
 echo ""
-echo "Creazione dello screen: ${var}"
+echo "Creazione dello screen: ${mod}_${var}"
 echo "Esecuzione di $script_path..."
 echo ""
-screen -dmS "${var}" bash -c "bash $script_path ${J} ${R} ${var} ${mod}; exec bash"
+screen -dmS "${mod}_${var}" bash -c "bash $script_path ${J} ${R} ${var} ${mod}; exec bash"
 sleep 1
 
 # # Loop per creare screen e eseguire comandi
