@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Corr_tw10_J3   ]
 
 
-Job 'Anderson_Corr_tw10_J3' lanciato alle ore 18:39:36 con 1250 task! 
+Dati acquisiti! Job Anderson_Corr_tw10_J3 completato alle ore 22:01:56 con 1250 task! 
 
