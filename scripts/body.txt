@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Energie_J13   ]
+[   Info sul Job Anderson_Corr_tw10_J14   ]
 
 
-Dati acquisiti! Job Ising_Energie_J13 completato alle ore 09:44:51 con 120 task! 
+Dati acquisiti! Job Anderson_Corr_tw10_J14 completato alle ore 10:45:53 con 120 task! 
 
