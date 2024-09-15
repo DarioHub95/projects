@@ -1,6 +1,18 @@
 
-[   Info sul Job Ising_Energie_J3   ]
+[   Jobs per Ising_Energie   ]
 
 
-Dati acquisiti! Job Ising_Energie_J3 completato alle ore 19:06:32 con 1580 task! 
+Modello selezionato: Ising
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 10800
+N° di Task eseguiti:  4630
+
+N° di Job richiesti: 3
+
+Dettagli Job Lanciati:
+
+| Job Name         | Job ID           | Tasks            | Esito            |
+| Ising_Energie_J1 | 324383           | 1470             | Eseguito         |
+| Ising_Energie_J2 | 324384           | 1580             | Eseguito         |
+| Ising_Energie_J3 | 324386           | 1580             | Eseguito         |
