@@ -328,3 +328,6 @@ rm Dati_Corr_tw10/output-*
 screen -ls
 screen -r 3550604.Anderson_Corr_tw1
 screen -r 3549858.Anderson_Corr_tw1000
+screen -ls
+screen -r 3550604.Anderson_Corr_tw1
+screen -r 3549858.Anderson_Corr_tw1000
