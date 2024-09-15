@@ -2,5 +2,5 @@
 [   Info sul Job Ising_Energie_J1   ]
 
 
-Job 'Ising_Energie_J1' lanciato alle ore 15:31:57 con 1470 task! 
+Dati acquisiti! Job Ising_Energie_J1 completato alle ore 16:31:51 con 1470 task! 
 
