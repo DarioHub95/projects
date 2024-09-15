@@ -227,7 +227,7 @@ sleep 1
 
 screen -ls
 echo "Usa il comando 'screen -ls' per visualizzare lo stato degli screen."
-echo "Usa il comando 'screen -r ${var}' per visualizzare l'acquisizione."
+echo "Usa il comando 'screen -r ${mod}_${var}' per visualizzare l'acquisizione."
 # echo "Usa il comando 'screen -r media_${var}' per visualizzare l'acquisizione."
 echo ""
 
