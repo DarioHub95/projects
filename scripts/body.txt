@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw1_J11   ]
+[   Info sul Job Anderson_Corr_tw1000_J11   ]
 
 
-Dati acquisiti! Job Anderson_Corr_tw1_J11 completato alle ore 13:48:15 con 200 task! 
+Dati acquisiti! Job Anderson_Corr_tw1000_J11 completato alle ore 17:14:39 con 200 task! 
 
