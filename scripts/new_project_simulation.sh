@@ -2,7 +2,7 @@
 
 # Comandi di DEBUG
 set -x
-trap 'sleep 1' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+# trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 #vars simulazione
 start_time=$(date +%s)
@@ -22,6 +22,10 @@ L=$(grep -oP '(?<=int L=)\d+' main.c)
 total_tasks=$(($1*$2))
 job_name="${4}_${3}"
 
+#----------------------------------------------------------------------------------------------------------------
+########################################### ACQUISIZIONE DATI ###################################################
+#----------------------------------------------------------------------------------------------------------------
+
 # Pulizia dei file output esistenti
 if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
 rm Dati_$3/output*
@@ -29,12 +33,17 @@ fi
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ ! -f "Dati_${3}/a.out" ]; then
-    scancel $job_id
-    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste." 
+    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste. Simulazione interrotta."
+    screen -X quit
 fi
 #-----------------------------------------------------------------
 
 cd Dati_$3/
+
+if (( $nstep < 5000 )); then     
+    ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $2 task ciascuno."
+fi
+
 for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     count=0
@@ -147,7 +156,6 @@ for ((i=1; i<=$1; i++)); do
     jobs+=("${job_name}_J${i}")
     ids+=("${job_id}")
 done
-
 cd ../
 
 # Verifica del numero di tasks eseguiti dai jobs
@@ -158,14 +166,14 @@ done
 
 if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-    ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per ${4}_${3}: superato il limite inferiore di 50 task per tutti i job. Eliminazione directory per i dati."
+    ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per $job_name: non sono state allocate risorse per i job. Eliminazione directory per i dati."
     rm -rf "Dati_$3"
     screen -X quit
     #-----------------------------------------------------------------
 else
     #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
-    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}_${3}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
+    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
     #-----------------------------------------------------------------
 fi
 
@@ -178,18 +186,17 @@ if [ "$sum" -ne 0 ] && [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la car
     ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
     screen -X quit
 fi
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+#-----------------------------------------------------------------
 
-
-# Tolleranza al 20% per il numero di -nan nei file di dati
+# PULIZIA DATI - Tolleranza al 5% per il numero di -nan nei file di dati
 max_nan_count=0
 file_count_nan=0
 file_count_lines=0
 for file in "Dati_$3"/output*.txt; do
     nan_count=$(grep -c "\-nan" "$file")    
 
-    if [ $(echo "scale=2; $nan_count / $nstep > 0.2" | bc) -eq 1 ]; then
-        echo "La soglia del 20% è superata. Eliminazione del file $file..."
+    if [ $(echo "scale=2; $nan_count / $nstep > 0.05" | bc) -eq 1 ]; then
+        echo "La soglia del 5% è superata. Eliminazione del file $file..."
         rm "$file"
         file_count_nan=$((file_count_nan + 1))
     else
@@ -201,13 +208,21 @@ for file in "Dati_$3"/output*.txt; do
 done
 echo "Il massimo numero di '-nan' è ${max_nan_count:-0}."
 
-# Controlla se il primo numero dell'ultima riga è diverso da nstep
+# PULIZIA DATI - Se tutte le colonne di dati contengono solo zeri, elimina il file
+for file in "Dati_$3"/output*; do
+    if awk '{for (i=2; i<=NF; i++) if ($i != 0) exit 1}' "$file"; then
+        rm "$file"
+        echo "File $file eliminato perché tutte le colonne contengono solo zeri."
+    fi
+done
+
+# PULIZIA DATI - Controlla se il primo numero dell'ultima riga è diverso da nstep
 for file in "Dati_$3"/output*; do
     last_line=$(tail -n 1 "$file")
     first_number=$(echo "$last_line" | awk '{print $1}')
-    if [ "$first_number" -ne $nstep ]; then
-        echo "Eliminando file: $file (primo numero: $first_number)"
-        # rm "$file"
+    if [[ "$first_number" != $nstep ]]; then
+        echo "Eliminando file: $file"
+        rm "$file"
         file_count_lines=$((file_count_lines + 1))
     fi
 done
@@ -216,11 +231,27 @@ echo "Il numero di file con righe sbagliate è $file_count_lines"
 # Conta il numero di file rimasti in Data
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
 
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [[ $file_count_nan != 0 || $file_count_lines != 0 ]]; then       
-    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file corrotti: $file_count_lines" "N° di file corretti: $R_tot"
+# PULIZIA DATI - Verifica se R_tot è maggiore del limite corrente di file aperti (meno 6 file che non capisco quali siano)
+if [[ $R_tot -lt 4090 ]]; then
+    ulimit -n 4096
+    echo "Il limite dei file aperti è stato impostato al massimo"
+    ulimit -n
+else
+    files_to_move=$((R_tot - 4090))
+    echo "R_tot supera 4096. Spostamento di $files_to_move file .txt dalla cartella Dati..."
+    mkdir -p "Dati_${3}_extra"
+    ls -tp "Dati_$3"/*.txt | tail -n "$files_to_move" | xargs -I {} mv -- "{}" "Dati_${3}_extra/"
+    # ls -tp "Dati_$3"/*.txt | tail -n "$files_to_move" | xargs -I {} rm -- "{}"
+    ulimit -n 4096
+    echo "Il limite dei file aperti è stato impostato al massimo"
 fi
+R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
+
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+if [[ $file_count_nan != 0 || $file_count_lines != 0 || $files_to_move != 0 ]]; then       
+    ./scripts/notify_errors.sh 550 "N° di file con eccesso di '-nan': $file_count_nan" "N° di file incompleti: $file_count_lines" "N° di file che superano ulimit: ${files_to_move:-0}" "N° di file conformi: $R_tot"
+fi
+#-----------------------------------------------------------------
 
 # Salva le prime 16 righe del primo file in media totale
 MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
@@ -230,15 +261,11 @@ head -n 16 "$output_file" > "${MEDIA}"
 # Rimuovi in ogni file il numero di righe pari al massimo numero di -nan trovati 
 echo "Rimuovi ${max_nan_count:-0} righe non sommabili da ogni file di output..."
 for file in "Dati_$3"/output*.txt; do
-    tail -n +$((max_nan_count + 16 + 1)) "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
+    if head -n 1 "$file" | grep -q "seed"; then
+        tail -n +$((max_nan_count + 16 + 1)) "$file" > "${file}.tmp" && mv "${file}.tmp" "$file"
+    fi
 done
 echo ""
-
-# Verifica se R_tot è maggiore del limite corrente di file aperti
-if [[ $R_tot -gt $(ulimit -n) ]]; then
-    ulimit -n $((R_tot + 10))  # Aumenta il limite di file aperti di R_tot + 10
-    echo "Il limite dei file aperti è stato aumentato a $((R_tot + 10))"
-fi
 
 # Calcolo delle medie a 1 colonna (OPERATORE SINGOLO)
 if [ "$Oss" -eq 2 ] || [ "$Oss" -eq 3 ] || [ "$Oss" -eq 10 ] || [ "$Oss" -eq 12 ]; then
@@ -275,7 +302,7 @@ elif [ ! -f "${MEDIA}" ]; then
     ./scripts/notify_errors.sh 200 "[media.sh] Il file '${MEDIA}' non esiste. Uscita dallo screen media_$3..." 
     screen -X quit
 fi
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+#-----------------------------------------------------------------
 
 # Inserisci riga di Data e ora e di tasks nel file di media totale
 sed -i "1i Tasks: ${R_tot}" "${MEDIA}"
@@ -283,8 +310,8 @@ sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${MEDIA}"
 sed -i '/seed/d' "${MEDIA}"
 
 #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-./scripts/notify_ok.sh "S" "${MEDIA}" $start_time $total_tasks
-#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+./scripts/notify_ok.sh "S" "${MEDIA}" $start_time $total_tasks $sum
+#-----------------------------------------------------------------
 
 # Processa i file di output nella directory
 echo "Sostituzione punti con virgole nel file delle medie..."

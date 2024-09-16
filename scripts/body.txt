@@ -1,10 +1,6 @@
 
-[   ERRORE 350   ]
+[   Info sul Job MBL+B_Corr_tw1_J1   ]
 
 
-ERRORE NEL CALCOLO DELLE MEDIE 
-
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
-
-[media.sh] Il file 'MBL+B_Corr_tw1_L8_R0_18.41.44.txt' non contiene nessun valore medio. Uscita dallo screen media_Corr_tw1...
+Job 'MBL+B_Corr_tw1_J1' lanciato alle ore 20:58:17 con 1580 task! 
 
