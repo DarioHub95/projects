@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job Ising_Energie_J1   ]
 
 
-Start Date: 15-09-2024 17:20:15
-End Date:   15-09-2024 17:20:42
-Durata:     00:00:27
-
-Modello selezionato: Ising
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     10
-> nstep: 
-> Sz:    
-> Jxy:   1
-> Jz:    
-> eps:   
-> alpha: 
-
-File delle medie:
-Ising_Energie_L10_R540_17.20.15.txt
-
-N° di file output richiesti: 8400
-N° di file output dei job: 
-N° di file output effettvi: 540
-
-N° di file output eliminati: -540
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
+Job 'Ising_Energie_J1' lanciato alle ore 11:16:04 con 1580 task! 
 
