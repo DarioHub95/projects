@@ -20,6 +20,7 @@ Oss=$(grep -oP 'int\s+Oss\s*=\s*\K\d+' main.c)
 L=$(grep -oP '(?<=int L=)\d+' main.c)
 # cpu_idle=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}');
 total_tasks=$(($1*$2))
+total_jobs=$1
 job_name="${4}_${3}"
 
 #----------------------------------------------------------------------------------------------------------------
@@ -44,9 +45,8 @@ if (( $nstep < 5000 )); then
     ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $2 task ciascuno."
 fi
 
-for ((i=1; i<=$1; i++)); do
+for ((i=1; i<=$total_jobs; i++)); do
     num_tasks="$2"
-    count=0
     while :; do
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
         sleep 10
@@ -77,7 +77,7 @@ for ((i=1; i<=$1; i++)); do
                 #     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato con $num_tasks task! "
                 # fi
                 # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-                break  # Esci dal ciclo se il job è in esecuzione
+                break  # Esci dal ciclo se il job è stato eseguito
                 ;;
             "PD")
                 # Se srun avviene tra 00:00 e le 05:00 allora aspetta
@@ -99,6 +99,7 @@ for ((i=1; i<=$1; i++)); do
                         if (( $num_tasks < 2 )); then
                             echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
                             scancel $job_id
+                            ((total_jobs + 1))
                             esito+=("Cancellato (bassa Priority)")
                             tasks_per_job+=(0)
                             break
@@ -113,6 +114,7 @@ for ((i=1; i<=$1; i++)); do
                     if (( $num_tasks < 2 )); then
                         echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
                         scancel $job_id
+                        ((total_jobs + 1))
                         esito+=("Cancellato (assenza di risorse)")
                         tasks_per_job+=(0)
                         break
@@ -136,6 +138,7 @@ for ((i=1; i<=$1; i++)); do
                         if (( $time == 0 )); then
                             echo "Eseguiti i 3 tentativi di attesa ma il job non è partito. Cancellazione del job ${job_name}_J${i}..."
                             scancel $job_id
+                            ((total_jobs + 1))
                             esito+=("Cancellato (attesa eccessiva)")
                             tasks_per_job+=(0)
                             break
@@ -145,6 +148,7 @@ for ((i=1; i<=$1; i++)); do
                     else
                         echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
                         scancel $job_id
+                        ((total_jobs + 1))
                         esito+=("Cancellato (bassa Priority)")
                         tasks_per_job+=(0)
                         break
