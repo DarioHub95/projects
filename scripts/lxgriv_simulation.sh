@@ -4,11 +4,13 @@
 set -x
 # trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
-# # Aspetta il termine della simulazione precedente
-# while screen -ls | grep -qv "1 Socket"; do
-#     echo "Screen attivi rilevati, attendo..."
+# # Attende la creazione di un file .txt nella directory corrente
+# while [ -z "$(ls *.txt 2>/dev/null)" ]; do
+#     echo "Nessun file .txt trovato, attendo..."
 #     sleep 10
 # done
+# echo "File .txt trovato!"
+
 
 #vars simulazione
 start_time=$(date +%s)
