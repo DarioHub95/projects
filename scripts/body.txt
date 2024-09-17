@@ -1,18 +1,16 @@
 
-[   Jobs per MBL+B_Corr_tw1   ]
+[   INFO 550   ]
 
 
-Modello selezionato: MBL+B
-Osservabile scelto:  Corr
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 10000
-N° di Task eseguiti:  4740
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 3
+N° di file con eccesso di '-nan': 0 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 0 
 
-| Job Name          | Job ID            | Tasks             | Esito             |
-| MBL+B_Corr_tw1_J1 | 324611            | 1580              | Eseguito          |
-| MBL+B_Corr_tw1_J2 | 324632            | 1580              | Eseguito          |
-| MBL+B_Corr_tw1_J3 | 324638            | 1580              | Eseguito          |
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 3641
+
