@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Energie   ]
+[   Info sul Job Anderson_Energie_J1   ]
 
 
-Richiesta presa in carico alle ore 13:08:53: 20 Job per 'Anderson_Energie' con 200 task ciascuno.
+Dati acquisiti! Job Anderson_Energie_J1 completato alle ore 15:56:00 con 200 task! 
 
