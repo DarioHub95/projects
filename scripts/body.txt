@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job Anderson_Corr_tw1000_J14   ]
 
 
-Start Date: 14-09-2024 09:16:00
-End Date:   17-09-2024 07:11:21
-Durata:     21:55:21
-
-Modello selezionato: Anderson
-Osservabile scelto:  Corr_tw1
-
-Parametri del Modello:
-> L:     8
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0
-> eps:   5
-> alpha: 0
-
-File delle medie:
-Anderson_Corr_tw1_L8_R2305_09.16.00.txt
-
-N° di file output richiesti: 3000
-N° di file output dei job: 
-N° di file output effettvi: 2305
-
-N° di file output eliminati: -2305
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
+Dati acquisiti! Job Anderson_Corr_tw1000_J14 completato alle ore 09:15:29 con 200 task! 
 
