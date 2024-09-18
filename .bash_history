@@ -341,3 +341,7 @@ mv Anderson_Corr_tw1_L8_R2305_09.16.00.txt Medie/
 while [ -z "$(ls *.txt 2>/dev/null)" ]; do     echo "Nessun file .txt trovato, attendo...";     sleep 10; done
 echo "File .txt trovato!"
 ./lxgriv-run.sh 
+screen -ls
+rm -rf Dati_Corr_tw1/
+ls
+history
