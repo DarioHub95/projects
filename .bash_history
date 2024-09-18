@@ -345,3 +345,4 @@ screen -ls
 rm -rf Dati_Corr_tw1/
 ls
 history
+screen -ls
