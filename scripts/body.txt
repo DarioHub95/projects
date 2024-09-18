@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw1000_J19   ]
+[   Info sul Job Anderson_Energie_J5   ]
 
 
-Dati acquisiti! Job Anderson_Corr_tw1000_J19 completato alle ore 02:24:07 con 200 task! 
+Dati acquisiti! Job Anderson_Energie_J5 completato alle ore 03:04:23 con 200 task! 
 
