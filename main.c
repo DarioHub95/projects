@@ -16,7 +16,7 @@ int main(int argc,char **argv)
    int amax=32;
    int n=0;
    int Sz=0;             // magnetizzazione della catena (sempre negativa)
-   int tw=1;               // tempo di waiting per autocorrelazione
+   int tw=1000;               // tempo di waiting per autocorrelazione
    int Oss=4;
    int mype=pvm_mype();
 
