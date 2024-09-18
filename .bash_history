@@ -346,3 +346,5 @@ rm -rf Dati_Corr_tw1/
 ls
 history
 screen -ls
+screen -ls
+screen -r 640157.Anderson_Energie
