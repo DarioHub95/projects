@@ -1,6 +1,35 @@
 
-[   Info sul Job Anderson_Energie_J20   ]
+[   Jobs per Anderson_Energie   ]
 
 
-Dati acquisiti! Job Anderson_Energie_J20 completato alle ore 19:19:13 con 200 task! 
+Modello selezionato: Anderson
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 4200
+N° di Task eseguiti:  
+
+N° di Job richiesti: 20
+
+Dettagli Job Lanciati:
+
+| Job Name             | Job ID               | Tasks                | Esito                |
+| Anderson_Energie_J1  |                      | 200                  | Eseguito             |
+| Anderson_Energie_J2  |                      | 200                  | Eseguito             |
+| Anderson_Energie_J3  |                      | 200                  | Eseguito             |
+| Anderson_Energie_J4  |                      | 200                  | Eseguito             |
+| Anderson_Energie_J5  |                      | 200                  | Eseguito             |
+| Anderson_Energie_J6  |                      | 200                  | Eseguito             |
+| Anderson_Energie_J7  |                      | 200                  | Eseguito             |
+| Anderson_Energie_J8  |                      | 200                  | Eseguito             |
+| Anderson_Energie_J9  |                      | 200                  | Eseguito             |
+| Anderson_Energie_J10 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J11 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J12 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J13 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J14 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J15 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J16 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J17 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J18 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J19 |                      | 200                  | Eseguito             |
+| Anderson_Energie_J20 |                      | 200                  | Eseguito             |
