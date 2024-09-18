@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Energie_J1   ]
 
 
-Job 'Anderson_Energie_J1' lanciato alle ore 02:07:27 con 1580 task! 
+Dati acquisiti! Job Anderson_Energie_J1 completato alle ore 06:26:20 con 1580 task! 
 
