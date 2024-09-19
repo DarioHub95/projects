@@ -89,7 +89,7 @@ for ((i=1; i<=$total_jobs; i++)); do
                 elif [[ "$job_reason" == *"Resources"* ]]; then
 
                     # Verifica se il job_id è il primo nella lista di sprio
-                    elif [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
+                    if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
                         echo "Il job con ID $job_id NON è il primo nella lista, ma il SECONDO."
                         sprio -S '-Y' --long
                         scancel $job_id
