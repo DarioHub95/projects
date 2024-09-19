@@ -1,6 +1,18 @@
 
-[   Info sul Job Ising_Energie   ]
+[   Jobs per Ising_Energie   ]
 
 
-Richiesta presa in carico alle ore 17:06:27: 3 Job per 'Ising_Energie' con 10 task ciascuno.
+Modello selezionato: Ising
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 40
+N° di Task eseguiti:  30
+
+N° di Job richiesti: 3
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| Ising_Energie_J1          | 326416                    | 10                        | Eseguito dopo 1 tentativi |
+| Ising_Energie_J2          | 326417                    | 10                        | Eseguito dopo 1 tentativi |
+| Ising_Energie_J3          | 326418                    | 10                        | Eseguito dopo 1 tentativi |
