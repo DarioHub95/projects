@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Energie   ]
+[   Info sul Job Ising_Energie_J1   ]
 
 
-Richiesta presa in carico alle ore 17:21:09: 5 Job per 'Ising_Energie' con 700 task ciascuno.
+Job Ising_Energie_J1 lanciato con 185 task! 
 
