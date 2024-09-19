@@ -2,5 +2,5 @@
 [   Info sul Job Ising_Energie   ]
 
 
-Richiesta presa in carico alle ore 16:03:18: 4 Job per 'Ising_Energie' con 1500 task ciascuno.
+Richiesta presa in carico alle ore 16:08:50: 3 Job per 'Ising_Energie' con 1500 task ciascuno.
 
