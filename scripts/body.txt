@@ -1,18 +1,16 @@
 
-[   Jobs per Ising_Energie   ]
+[   INFO 550   ]
 
 
-Modello selezionato: Ising
-Osservabile scelto:  Energie
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 40
-N° di Task eseguiti:  30
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 3
+N° di file con eccesso di '-nan': 2 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 0 
 
-| Job Name                  | Job ID                    | Tasks                     | Esito                     |
-| Ising_Energie_J1          | 326416                    | 10                        | Eseguito dopo 1 tentativi |
-| Ising_Energie_J2          | 326417                    | 10                        | Eseguito dopo 1 tentativi |
-| Ising_Energie_J3          | 326418                    | 10                        | Eseguito dopo 1 tentativi |
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 28
+
