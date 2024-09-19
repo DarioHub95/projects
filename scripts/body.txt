@@ -1,10 +1,6 @@
 
-[   ERRORE 250   ]
+[   Info sul Job Ising_Energie   ]
 
 
-ERRORE DI ESECUZIONE DEI JOB 
-
-I job non sono riusciti a partire a causa di risorse non disponibili. 
-
-[parallel.sh] Interruzione della simulazione per Ising_Energie: non sono state allocate risorse per i job. Eliminazione directory per i dati.
+Richiesta presa in carico alle ore 16:03:18: 4 Job per 'Ising_Energie' con 1500 task ciascuno.
 
