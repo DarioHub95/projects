@@ -2,7 +2,7 @@
 
 # Comandi di DEBUG
 set -x
-# trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 #vars simulazione
 start_time=$(date +%s)
@@ -58,12 +58,12 @@ for ((i=1; i<=$total_jobs; i++)); do
 
         case $job_status in
             "R")
-                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-                # if [ "$nstep" -eq 10000 ]; then
-                #     echo "Il job ${job_name}_J${i} partito!"
-                #     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job ${job_name}_J${i} lanciato con $num_tasks task! "
-                # fi
-                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                if [ "$nstep" -gt 5000 ]; then
+                    echo "Il job ${job_name}_J${i} partito!"
+                    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job ${job_name}_J${i} lanciato con $num_tasks task! "
+                fi
+                #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 
                 echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
                 job_pid=$!
@@ -72,11 +72,11 @@ for ((i=1; i<=$total_jobs; i++)); do
                 esito+=("Eseguito") 
                 tasks_per_job+=($num_tasks)
                 
-                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-                # if [ "$nstep" -eq 10000 ]; then
-                #     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato con $num_tasks task! "
-                # fi
-                # #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+                if [ "$nstep" -gt 5000 ]; then
+                    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato con $num_tasks task! "
+                fi
+                #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
                 break  # Esci dal ciclo se il job è stato eseguito
                 ;;
             "PD")

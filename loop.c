@@ -324,7 +324,6 @@ void loop::dinamica(double *A)
       // dissipazione sul sito L-mo: lungo la worldline del sito centrale 
       // vengono estratti n siti in modo random salvati in stack[]
       // e per ognuno viene fatto il bond con il sito centrale
-      printf("Bagno sul sito %i\n",i);
       for (int j=0;j<N;j++)
         {
          int m1=i+j*L;

@@ -3,7 +3,8 @@
 echo ""
 GREEN='\033[0;32m'
 NC='\033[0m'
-script_path="scripts/ibisco_simulation.sh"
+# script_path="scripts/ibisco_simulation.sh"
+script_path="scripts/new_project_simulation.sh"
 # script_path="scripts/lxgriv_simulation.sh"
 
 
