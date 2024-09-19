@@ -350,3 +350,4 @@ screen -ls
 screen -r 640157.Anderson_Energie
 screen -ls
 ./lxgriv-run.sh 
+screen -ls
