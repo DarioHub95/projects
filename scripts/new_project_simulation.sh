@@ -50,6 +50,7 @@ for ((i=1; i<=$total_jobs; i++)); do
     while :; do
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
         sleep 10
+        echo "total_jobs=$total_jobs"
 
         # Verifica dello stato del job i-esimo
         job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
@@ -66,8 +67,7 @@ for ((i=1; i<=$total_jobs; i++)); do
                 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 
                 echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
-                job_pid=$!
-                wait $job_pid
+                wait $!
                 rename_output_files
                 esito+=("Eseguito") 
                 tasks_per_job+=($num_tasks)
