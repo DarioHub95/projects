@@ -1,16 +1,10 @@
 
-[   INFO 550   ]
+[   ERRORE 350   ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+ERRORE NEL CALCOLO DELLE MEDIE 
 
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
+Il calcolo delle medie non è riuscito a causa di dati malformati. 
 
-N° di file con eccesso di '-nan': 0 
-
-N° di file incompleti: 1 
-
-N° di file che superano ulimit: 0 
-
-N° di file conformi: 0
+[media.sh] Il file 'MBL+B_Energie_L4_R0_10.33.27.txt' non contiene nessun valore medio. Uscita dallo screen media_Energie...
 
