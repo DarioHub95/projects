@@ -2,7 +2,7 @@
 
 # Comandi di DEBUG
 set -x
-trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+# trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 #vars simulazione
 start_time=$(date +%s)
@@ -45,11 +45,11 @@ if (( $nstep < 5000 )); then
     ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $2 task ciascuno."
 fi
 
-for ((i=1; i<=$total_jobs; i++)); do
+for ((i=1; i<=total_jobs; i++)); do
     num_tasks="$2"
     while :; do
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        sleep 10
+        sleep 5
         echo "total_jobs=$total_jobs"
 
         # Verifica dello stato del job i-esimo
@@ -80,21 +80,15 @@ for ((i=1; i<=$total_jobs; i++)); do
                 break  # Esci dal ciclo se il job è stato eseguito
                 ;;
             "PD")
-                # Se srun avviene tra 00:00 e le 05:00 allora aspetta
-                if [ $(date +"%H") -ge 0 ] && [ $(date +"%H") -lt 5 ] && [[ "$job_reason" == *"ibiscohpc"* ]]; then
-                    echo "L'orario è compreso tra mezzanotte e le 5. Aspetto..."
-                    sleep 1
-
-                # Controlla se il job è in attesa di risorse
-                elif [[ "$job_reason" == *"Resources"* ]]; then
+                if [[ "$job_reason" == *"Resources"* ]]; then
 
                     # Verifica se il job_id è il primo nella lista di sprio
                     if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
                         echo "Il job con ID $job_id NON è il primo nella lista, ma il SECONDO."
                         sprio -S '-Y' --long
                         scancel $job_id
-                        echo "Riduzione del numero di task di 10 e rilancio del job ${job_name}_J${i}..."
-                        ((num_tasks -= 10))
+                        echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
+                        ((num_tasks -= 5))
 
                         if (( $num_tasks < 2 )); then
                             echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
@@ -108,10 +102,10 @@ for ((i=1; i<=$total_jobs; i++)); do
 
                     echo "Il job ${job_name}_J${i} non ha le risorse necessarie."
                     scancel $job_id
-                    echo "Riduzione del numero di task di 10 e rilancio del job ${job_name}_J${i}..."
-                    ((num_tasks -= 10))
+                    echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
+                    ((num_tasks -= 5))
 
-                    if (( $num_tasks < 2 )); then
+                    if (( $num_tasks < 1 )); then
                         echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
                         scancel $job_id
                         ((total_jobs + 1))
@@ -122,7 +116,7 @@ for ((i=1; i<=$total_jobs; i++)); do
 
                 # Controlla se il job non è ancora running ma in priority
                 elif [[ "$job_reason" == *"Priority"* || "$job_reason" == *"DOWN, DRAINED"* ]]; then 
-                    echo "Il job con ID $job_id è ancora in attesa (PD) ma con $job_reason."
+                    echo "Il job ${job_name}_J${i} con ID $job_id è in attesa (PD) con reason: $job_reason."
                     time=1800
 
                     # Verifica se il job_id è il primo nella lista di sprio
@@ -136,7 +130,7 @@ for ((i=1; i<=$total_jobs; i++)); do
                         done
                         ((time -= 600))
                         if (( $time == 0 )); then
-                            echo "Eseguiti i 3 tentativi di attesa ma il job non è partito. Cancellazione del job ${job_name}_J${i}..."
+                            echo "Eseguiti i 3 tentativi di attesa. Cancellazione del job ${job_name}_J${i}..."
                             scancel $job_id
                             ((total_jobs + 1))
                             esito+=("Cancellato (attesa eccessiva)")
