@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie_J3   ]
+[   Info sul Job MBL_Corr_tw100_J2   ]
 
 
-Dati acquisiti! Job MBL_Energie_J3 completato alle ore 23:45:46 con 200 task! 
+Dati acquisiti! Job MBL_Corr_tw100_J2 completato alle ore 23:55:02 con 200 task! 
 
