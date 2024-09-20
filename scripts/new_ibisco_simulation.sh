@@ -124,11 +124,11 @@ for ((i=1; i<=$1; i++)); do
                     # Verifica se il job_id è il primo nella lista di sprio
                     if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
                         echo "Il job con ID $job_id è il primo nella lista."
-                        i=0
-                        while (( $i < $time && $(squeue -j $job_id -o "%t" -h) != "R" )); do        # aspetta al massimo 30 min e ogni 1s controlla job_status==R
+                        t=0
+                        while (( $t < $time && $(squeue -j $job_id -o "%t" -h) != "R" )); do        # aspetta al massimo 30 min e ogni 1s controlla job_status==R
                             echo "Il job con ID $job_id è il primo nella lista."
                             sleep 1
-                            ((i++))
+                            ((t++))
                         done
                         ((time -= 600))
                         if (( $time == 0 )); then
