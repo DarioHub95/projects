@@ -1,6 +1,19 @@
 
-[   Info sul Job MBL_Corr_tw1000_J4   ]
+[   Jobs per MBL_Corr_tw1000   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw1000_J4 completato alle ore 10:55:10 con 960 task! 
+Modello selezionato: MBL
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 9500
+N° di Task eseguiti:  3850
+
+N° di Job richiesti: 4
+
+Dettagli Job Lanciati:
+
+| Job Name           | Job ID             | Tasks              | Esito              |
+| MBL_Corr_tw1000_J1 | 325466             | 990                | Eseguito           |
+| MBL_Corr_tw1000_J2 | 326716             | 940                | Eseguito           |
+| MBL_Corr_tw1000_J3 | 326819             | 960                | Eseguito           |
+| MBL_Corr_tw1000_J4 | 326936             | 960                | Eseguito           |
