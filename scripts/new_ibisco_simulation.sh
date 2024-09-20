@@ -213,6 +213,7 @@ for file in "Dati_$3"/output*; do
     if awk '{for (i=2; i<=NF; i++) if ($i != 0) exit 1}' "$file"; then
         rm "$file"
         echo "File $file eliminato perché tutte le colonne contengono solo zeri."
+        file_count_lines=$((file_count_lines + 1))
     fi
 done
 
