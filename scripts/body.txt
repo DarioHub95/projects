@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie   ]
+[   Info sul Job MBL_Corr_tw100   ]
 
 
-Richiesta presa in carico alle ore 16:09:11: 20 Job per 'MBL_Energie' con 200 task ciascuno.
+Richiesta presa in carico alle ore 16:10:05: 20 Job per 'MBL_Corr_tw100' con 200 task ciascuno.
 
