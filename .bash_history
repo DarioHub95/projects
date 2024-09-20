@@ -366,3 +366,6 @@ screen -r Anderson_Corr_tw1000
 screen -ls
 screen -r 2518957.MBL_Corr_tw100
 screen -r 2518279.MBL_Energie
+screen -ls
+./lxgriv-run.sh 
+screen -ls
