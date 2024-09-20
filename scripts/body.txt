@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Energie_J4   ]
+[   Info sul Job MBL_Corr_tw1000_J3   ]
 
 
-Job Ising_Energie_J4 lanciato con 640 task! 
+Dati acquisiti! Job MBL_Corr_tw1000_J3 completato alle ore 05:20:04 con 960 task! 
 
