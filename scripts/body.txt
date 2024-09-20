@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw1_J2   ]
+[   Info sul Job MBL_Corr_tw1_J3   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw1_J2 completato con 1000 task! 
+Job MBL_Corr_tw1_J3 lanciato con 1000 task! 
 
