@@ -357,3 +357,4 @@ screen -ls
 screen -ls
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
+exit
