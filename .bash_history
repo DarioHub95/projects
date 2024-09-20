@@ -358,3 +358,11 @@ screen -ls
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
 exit
+screen -ls
+screen -r 3549858.Anderson_Corr_tw1000
+./lxgriv-run.sh 
+screen -r Anderson_Corr_tw1000
+screen -r Anderson_Corr_tw1000
+screen -ls
+screen -r 2518957.MBL_Corr_tw100
+screen -r 2518279.MBL_Energie
