@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw1000_J5   ]
+[   Info sul Job MBL_Energie_J2   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw1000_J5 completato con 330 task! 
+Dati acquisiti! Job MBL_Energie_J2 completato con 1580 task! 
 
