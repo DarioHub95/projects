@@ -293,6 +293,10 @@ echo "Media su tutte le realizzazioni..."
 paste -d+ "Dati_$3"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=9; i++) for(j=1; j<R; j++) $i+=$(i+j*9); printf "\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\n", $1/R, $2/R, $3/R, $4/R, $5/R, $6/R, $7/R, $8/R, $9/R}' > "Medie/temp_output_${3}.txt"
 fi
 
+trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+
+
+
 # Inserisci l'output dopo la 16esima riga
 {
     head -n 16 "Medie/${MEDIA}"
