@@ -3,8 +3,8 @@
 echo ""
 GREEN='\033[0;32m'
 NC='\033[0m'
-script_path="scripts/ibisco_simulation.sh"
-# script_path="scripts/new_ibisco_simulation.sh"
+# script_path="scripts/ibisco_simulation.sh"
+script_path="scripts/new_ibisco_simulation.sh"
 
 echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]-----------------------------------------------|${NC}"
 echo ""
