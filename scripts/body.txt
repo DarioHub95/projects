@@ -1,20 +1,16 @@
 
-[   Jobs per MBL_Corr_tw10   ]
+[   INFO 550   ]
 
 
-Modello selezionato: MBL
-Osservabile scelto:  Corr
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 6600
-N° di Task eseguiti:  3490
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 20% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 5
+N° di file con eccesso di '-nan': 0 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 615 
 
-| Job Name                  | Job ID                    | Tasks                     | Esito                     |
-| MBL_Corr_tw10_J1          | 327091                    | 635                       | Eseguito dopo 1 tentativi |
-| MBL_Corr_tw10_J2          | 327200                    | 635                       | Eseguito dopo 1 tentativi |
-| MBL_Corr_tw10_J3          | 327388                    | 685                       | Eseguito dopo 1 tentativi |
-| MBL_Corr_tw10_J4          | 327552                    | 755                       | Eseguito dopo 1 tentativi |
-| MBL_Corr_tw10_J5          | 327703                    | 780                       | Eseguito dopo 1 tentativi |
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 2875
+
