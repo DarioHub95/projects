@@ -2,5 +2,5 @@
 [   Info sul Job MBL_Energie   ]
 
 
-Richiesta presa in carico alle ore 14:35:36: 3 Job per 'MBL_Energie' con 2300 task ciascuno.
+Richiesta presa in carico alle ore 14:37:53: 3 Job per 'MBL_Energie' con 2200 task ciascuno.
 
