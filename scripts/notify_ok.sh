@@ -49,12 +49,12 @@ Osservabile scelto:  ${osservabile}
 
 Parametri del Modello:
 > L:     ${L}
-> nstep: $(grep -oP '(?<=^nstep=)\d+' "${2}")
-> Sz:    $(grep -oP '(?<=^Sz=)-?\d+' "${2}")
+> nstep: $(grep -oP '(?<=^nstep=)\d+' "Medie/${2}")
+> Sz:    $(grep -oP '(?<=^Sz=)-?\d+' "Medie/${2}")
 > Jxy:   1
-> Jz:    $(grep -oP '(?<=^Jz=)\d+(\.\d+)?' "${2}")
-> eps:   $(grep -oP '(?<=^eps=)\d+(\.\d+)?' "${2}")
-> alpha: $(grep -oP '(?<=^alpha=)\d+(\.\d+)?' "${2}")
+> Jz:    $(grep -oP '(?<=^Jz=)\d+(\.\d+)?' "Medie/${2}")
+> eps:   $(grep -oP '(?<=^eps=)\d+(\.\d+)?' "Medie/${2}")
+> alpha: $(grep -oP '(?<=^alpha=)\d+(\.\d+)?' "Medie/${2}")
 
 File delle medie:
 ${2}
