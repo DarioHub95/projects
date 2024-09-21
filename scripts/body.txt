@@ -1,6 +1,20 @@
 
-[   Info sul Job MBL_Corr_tw10_J5   ]
+[   Jobs per MBL_Corr_tw10   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw10_J5 completato con 780 task! 
+Modello selezionato: MBL
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 6600
+N° di Task eseguiti:  3490
+
+N° di Job richiesti: 5
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| MBL_Corr_tw10_J1          | 327091                    | 635                       | Eseguito dopo 1 tentativi |
+| MBL_Corr_tw10_J2          | 327200                    | 635                       | Eseguito dopo 1 tentativi |
+| MBL_Corr_tw10_J3          | 327388                    | 685                       | Eseguito dopo 1 tentativi |
+| MBL_Corr_tw10_J4          | 327552                    | 755                       | Eseguito dopo 1 tentativi |
+| MBL_Corr_tw10_J5          | 327703                    | 780                       | Eseguito dopo 1 tentativi |
