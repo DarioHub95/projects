@@ -190,7 +190,7 @@ job_name="${4}_${3}"
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ "$sum" -ne 0 ] && [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
-    ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
+    ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen ${4}_${3}..." 
     screen -X quit
 fi
 #-----------------------------------------------------------------
@@ -262,9 +262,9 @@ fi
 #-----------------------------------------------------------------
 
 # Salva le prime 16 righe del primo file in media totale
-MEDIA="Medie/${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
+MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 output_file=$(find "Dati_$3" -maxdepth 1 -type f -name "output*" | head -n 1)
-head -n 16 "$output_file" > "${MEDIA}"
+head -n 16 "$output_file" > "Medie/${MEDIA}"
 
 # Rimuovi in ogni file il numero di righe pari al massimo numero di -nan trovati 
 echo "Rimuovi ${max_nan_count:-0} righe non sommabili da ogni file di output..."
@@ -295,27 +295,27 @@ fi
 
 # Inserisci l'output dopo la 16esima riga
 {
-    head -n 16 "${MEDIA}"
+    head -n 16 "Medie/${MEDIA}"
     cat "Medie/temp_output_${3}.txt"
 } > "${MEDIA}.tmp"
 
-mv "${MEDIA}.tmp" "${MEDIA}"
+mv "${MEDIA}.tmp" "Medie/${MEDIA}"
 rm "Medie/temp_output_${3}.txt"
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [ $(wc -l < "${MEDIA}") -le 20 ]; then
-    ./scripts/notify_errors.sh 350 "[media.sh] Il file '${MEDIA}' non contiene nessun valore medio. Uscita dallo screen media_$3..." 
+if [ $(wc -l < "Medie/${MEDIA}") -le 20 ]; then
+    ./scripts/notify_errors.sh 350 "[media.sh] Il file '${MEDIA}' non contiene nessun valore medio. Uscita dallo screen ${4}_${3}..." 
     screen -X quit
-elif [ ! -f "${MEDIA}" ]; then
-    ./scripts/notify_errors.sh 200 "[media.sh] Il file '${MEDIA}' non esiste. Uscita dallo screen media_$3..." 
+elif [ ! -f "Medie/${MEDIA}" ]; then
+    ./scripts/notify_errors.sh 200 "[media.sh] Il file '${MEDIA}' non esiste. Uscita dallo screen ${4}_${3}..." 
     screen -X quit
 fi
 #-----------------------------------------------------------------
 
 # Inserisci riga di Data e ora e di tasks nel file di media totale
-sed -i "1i Tasks: ${R_tot}" "${MEDIA}"
-sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "${MEDIA}"
-sed -i '/seed/d' "${MEDIA}"
+sed -i "1i Tasks: ${R_tot}" "Medie/${MEDIA}"
+sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "Medie/${MEDIA}"
+sed -i '/seed/d' "Medie/${MEDIA}"
 
 #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
 ./scripts/notify_ok.sh "S" "${MEDIA}" $start_time $total_tasks $sum
@@ -323,6 +323,6 @@ sed -i '/seed/d' "${MEDIA}"
 
 # Processa i file di output nella directory
 echo "Sostituzione punti con virgole nel file delle medie..."
-sed -i 's/\./,/g' "${MEDIA}"
+sed -i 's/\./,/g' "Medie/${MEDIA}"
 
 screen -X quit

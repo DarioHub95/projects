@@ -11,14 +11,12 @@ echo ""
 echo "Rimozione file di log..."
 echo ""
 rm -rf srun.log scripts/*.log
-# Controlla tutti i file .txt nella directory corrente
-for file in *.txt; do
-    if [ -f "$file" ]; then
-        echo "Sposto file di media..."
-        echo ""
-        mv "$file" Medie/
-    fi
-done
+
+# Verifica se la cartella "Medie" esiste, altrimenti creala
+if [ ! -d "Medie" ]; then
+    echo "La cartella Medie non esiste. Creazione della cartella..."
+    mkdir Medie
+fi
 
 # Inserire osservabile
 echo -e "${GREEN}[TASK 1 - OSSERVABILE]----------------------------------------------------|${NC}"
@@ -26,14 +24,27 @@ echo ""
 echo "Osservabili disponibili:"
 echo ""
 echo " 2 - ENEGIA TOTALE E_tot"
+echo ""
 # echo " 3 - ENEGIA E_hop"
 # echo "10 - ENEGIA E_Int"
 # echo "12 - ENEGIA E_mag"
 echo " 4 - ENEGIE H_hop, H_int, H_mag"
+echo ""
 echo " 5 - AUTOCORRELAZIONE 8 SPIN"
-echo " 6 - COMPONENI SPIN SU L"
+echo ""
+echo " 6 - COMPONENI SPIN SU i=L"
 echo ""
 read -p "Inserire numero del corrispondente osservabile: " O
+echo ""
+if [ "$O" -eq 2 ]; then
+echo " OSSERVABILE: ENEGIA TOTALE E_tot"
+elif [ "$O" -eq 6 ]; then
+echo " OSSERVABILE: COMPONENI SPIN SU i=L"
+elif [ "$O" -eq 4 ]; then
+echo " OSSERVABILE: ENEGIE H_hop, H_int, H_mag"
+elif [ "$O" -eq 5 ]; then
+echo " OSSERVABILE: AUTOCORRELAZIONE 8 SPIN"
+fi
 echo ""
 
 # Inserire vars per autocorrelazione
@@ -94,6 +105,7 @@ echo " 5 - MBL + BAGNO SULL'ULTIMO SITO"
 echo "     Jz  = 0.2   hi  = 5    alfa = 0.01"
 echo ""
 read -p "Inserire numero del corrispondente modello: " P
+echo ""
 if [ "$P" -eq 1 ]; then
 echo " MODELLO: PARTICELLE LIBERE"
 elif [ "$P" -eq 2 ]; then
