@@ -45,11 +45,15 @@ cd Dati_$3/
 count=0
 for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
-    ((count++))
     while :; do
 
-
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+        sleep 1
+        while [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; do 
+            ((num_tasks -= 1))
+            srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+            sleep 1
+        done   
         sleep 5
 
         # Verifica dello stato del job i-esimo
