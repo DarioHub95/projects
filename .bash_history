@@ -369,3 +369,4 @@ screen -r 2518279.MBL_Energie
 screen -ls
 ./lxgriv-run.sh 
 screen -ls
+screen -ls
