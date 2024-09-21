@@ -95,6 +95,7 @@ for ((i=1; i<=$1; i++)); do
                             echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
                             scancel $job_id
                             ((i--))
+                            ((count++))
                             # esito+=("Cancellato (bassa Priority)")
                             # tasks_per_job+=(0)
                             break
@@ -135,6 +136,7 @@ for ((i=1; i<=$1; i++)); do
                             echo "Eseguiti i 3 tentativi di attesa. Cancellazione del job ${job_name}_J${i}..."
                             scancel $job_id
                             ((i--))
+                            ((count++))
                             # esito+=("Cancellato (attesa eccessiva)")
                             # tasks_per_job+=(0)
                             break
@@ -145,6 +147,7 @@ for ((i=1; i<=$1; i++)); do
                         echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
                         scancel $job_id
                         ((i--))
+                        ((count++))
                         # esito+=("Cancellato (bassa Priority)")
                         # tasks_per_job+=(0)
                         break
