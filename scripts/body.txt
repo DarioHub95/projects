@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job MBL_Corr_tw10_J5   ]
 
 
-Start Date: 20-09-2024 14:06:34
-End Date:   21-09-2024 10:17:01
-Durata:     20:10:27
-
-Modello selezionato: MBL
-Osservabile scelto:  Corr_tw1
-
-Parametri del Modello:
-> L:     8
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   5
-> alpha: 0
-
-File delle medie:
-MBL_Corr_tw1_L8_R3790_14.06.34.txt
-
-N° di file output richiesti: 5000
-N° di file output dei job: 5000
-N° di file output effettvi: 3790
-
-N° di file output eliminati: 1210
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
+Dati acquisiti! Job MBL_Corr_tw10_J5 completato con 780 task! 
 
