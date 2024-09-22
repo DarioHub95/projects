@@ -2,5 +2,5 @@
 [   Info sul Job MBL_Corr_tw1000_J1   ]
 
 
-Job MBL_Corr_tw1000_J1 lanciato con 348 task! 
+Dati acquisiti! Job MBL_Corr_tw1000_J1 completato con 348 task! 
 
