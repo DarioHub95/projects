@@ -26,163 +26,163 @@ job_name="${4}_${3}"
 ########################################### ACQUISIZIONE DATI ###################################################
 #----------------------------------------------------------------------------------------------------------------
 
-# Pulizia dei file output esistenti
-if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
-rm Dati_$3/output*
-fi
+# # Pulizia dei file output esistenti
+# if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
+# rm Dati_$3/output*
+# fi
 
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [ ! -f "Dati_${3}/a.out" ]; then
-    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste. Simulazione interrotta."
-    screen -X quit
-fi
-#-----------------------------------------------------------------
+# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+# if [ ! -f "Dati_${3}/a.out" ]; then
+#     ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste. Simulazione interrotta."
+#     screen -X quit
+# fi
+# #-----------------------------------------------------------------
 
-cd Dati_$3/
+# cd Dati_$3/
 
-./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $2 task ciascuno."
+# ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $2 task ciascuno."
 
-count=0
-for ((i=1; i<=$1; i++)); do
-    num_tasks="$2"
-    while :; do
+# count=0
+# for ((i=1; i<=$1; i++)); do
+#     num_tasks="$2"
+#     while :; do
 
-        srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        sleep 1
-        while [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; do 
-            ((num_tasks -= 1))
-            srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-            sleep 1
-        done   
-        sleep 5
+#         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+#         sleep 1
+#         while [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; do 
+#             ((num_tasks -= 1))
+#             srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+#             sleep 1
+#         done   
+#         sleep 5
 
-        # Verifica dello stato del job i-esimo
-        job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
-        job_status=$(squeue -j $job_id -o "%t" -h)
-        job_reason=$(squeue -j $job_id -o "%R" -h)
+#         # Verifica dello stato del job i-esimo
+#         job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
+#         job_status=$(squeue -j $job_id -o "%t" -h)
+#         job_reason=$(squeue -j $job_id -o "%R" -h)
 
-        case $job_status in
-            "R")
-                #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-                if [ "$nstep" -gt 5000 ]; then
-                    echo "Il job ${job_name}_J${i} partito!"
-                    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job ${job_name}_J${i} lanciato con $num_tasks task! "
-                fi
-                #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+#         case $job_status in
+#             "R")
+#                 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+#                 if [ "$nstep" -gt 5000 ]; then
+#                     echo "Il job ${job_name}_J${i} partito!"
+#                     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job ${job_name}_J${i} lanciato con $num_tasks task! "
+#                 fi
+#                 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
 
-                echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
-                wait $!
-                rename_output_files
-                esito+=("Eseguito dopo ${count} tentativi") 
-                tasks_per_job+=($num_tasks)
-                count=0
+#                 echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
+#                 wait $!
+#                 rename_output_files
+#                 esito+=("Eseguito dopo ${count} tentativi") 
+#                 tasks_per_job+=($num_tasks)
+#                 count=0
                 
-                #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-                if [ "$nstep" -gt 5000 ]; then
-                    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato con $num_tasks task! "
-                fi
-                #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-                break  # Esci dal ciclo se il job è stato eseguito
-                ;;
-            "PD")
-                if [[ "$job_reason" == *"Resources"* ]]; then
+#                 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+#                 if [ "$nstep" -gt 5000 ]; then
+#                     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato con $num_tasks task! "
+#                 fi
+#                 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+#                 break  # Esci dal ciclo se il job è stato eseguito
+#                 ;;
+#             "PD")
+#                 if [[ "$job_reason" == *"Resources"* ]]; then
 
-                    # Verifica se il job_id è il primo nella lista di sprio
-                    if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
-                        echo "Il job con ID $job_id NON è il primo nella lista, ma il SECONDO."
-                        sprio -S '-Y' --long
-                        scancel $job_id
-                        echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
-                        ((num_tasks -= 5))
+#                     # Verifica se il job_id è il primo nella lista di sprio
+#                     if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
+#                         echo "Il job con ID $job_id NON è il primo nella lista, ma il SECONDO."
+#                         sprio -S '-Y' --long
+#                         scancel $job_id
+#                         echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
+#                         ((num_tasks -= 5))
 
-                        if (( $num_tasks < 2 )); then
-                            echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
-                            scancel $job_id
-                            ((i--))
-                            ((count++))
-                            # esito+=("Cancellato (bassa Priority)")
-                            # tasks_per_job+=(0)
-                            break
-                        fi
-                    fi
+#                         if (( $num_tasks < 2 )); then
+#                             echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
+#                             scancel $job_id
+#                             ((i--))
+#                             ((count++))
+#                             # esito+=("Cancellato (bassa Priority)")
+#                             # tasks_per_job+=(0)
+#                             break
+#                         fi
+#                     fi
 
-                    echo "Il job ${job_name}_J${i} non ha le risorse necessarie."
-                    scancel $job_id
-                    echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
-                    ((num_tasks -= 5))
+#                     echo "Il job ${job_name}_J${i} non ha le risorse necessarie."
+#                     scancel $job_id
+#                     echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
+#                     ((num_tasks -= 5))
 
-                    if (( $num_tasks < 1 )); then
-                        echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
-                        scancel $job_id
-                        ((i--))
-                        ((count++))
-                        # esito+=("Cancellato (assenza di risorse)")
-                        # tasks_per_job+=(0)
-                        break
-                    fi
+#                     if (( $num_tasks < 1 )); then
+#                         echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
+#                         scancel $job_id
+#                         ((i--))
+#                         ((count++))
+#                         # esito+=("Cancellato (assenza di risorse)")
+#                         # tasks_per_job+=(0)
+#                         break
+#                     fi
 
-                # Controlla se il job non è ancora running ma in priority
-                elif [[ "$job_reason" == *"Priority"* || "$job_reason" == *"DOWN, DRAINED"* ]]; then 
-                    echo "Il job ${job_name}_J${i} con ID $job_id è in attesa (PD) con reason: $job_reason."
-                    time=1800
+#                 # Controlla se il job non è ancora running ma in priority
+#                 elif [[ "$job_reason" == *"Priority"* || "$job_reason" == *"DOWN, DRAINED"* ]]; then 
+#                     echo "Il job ${job_name}_J${i} con ID $job_id è in attesa (PD) con reason: $job_reason."
+#                     time=1800
 
-                    # Verifica se il job_id è il primo nella lista di sprio
-                    if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
-                        echo "Il job con ID $job_id è il primo nella lista."
-                        t=0
-                        while (( $t < $time && $(squeue -j $job_id -o "%t" -h) != "R" )); do        # aspetta al massimo 30 min e ogni 1s controlla job_status==R
-                            echo "Il job con ID $job_id è il primo nella lista."
-                            sleep 1
-                            ((t++))
-                        done
-                        ((time -= 600))
-                        if (( $time == 0 )); then
-                            echo "Eseguiti i 3 tentativi di attesa. Cancellazione del job ${job_name}_J${i}..."
-                            scancel $job_id
-                            ((i--))
-                            ((count++))
-                            # esito+=("Cancellato (attesa eccessiva)")
-                            # tasks_per_job+=(0)
-                            break
-                        fi
+#                     # Verifica se il job_id è il primo nella lista di sprio
+#                     if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
+#                         echo "Il job con ID $job_id è il primo nella lista."
+#                         t=0
+#                         while (( $t < $time && $(squeue -j $job_id -o "%t" -h) != "R" )); do        # aspetta al massimo 30 min e ogni 1s controlla job_status==R
+#                             echo "Il job con ID $job_id è il primo nella lista."
+#                             sleep 1
+#                             ((t++))
+#                         done
+#                         ((time -= 600))
+#                         if (( $time == 0 )); then
+#                             echo "Eseguiti i 3 tentativi di attesa. Cancellazione del job ${job_name}_J${i}..."
+#                             scancel $job_id
+#                             ((i--))
+#                             ((count++))
+#                             # esito+=("Cancellato (attesa eccessiva)")
+#                             # tasks_per_job+=(0)
+#                             break
+#                         fi
                     
-                    # Elimina il job_id se ha poca Priority
-                    else
-                        echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
-                        scancel $job_id
-                        ((i--))
-                        ((count++))
-                        # esito+=("Cancellato (bassa Priority)")
-                        # tasks_per_job+=(0)
-                        break
-                    fi
-                fi
-                ;;
-        esac
-    done
-    jobs+=("${job_name}_J${i}")
-    ids+=("${job_id}")
-done
-cd ../
+#                     # Elimina il job_id se ha poca Priority
+#                     else
+#                         echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
+#                         scancel $job_id
+#                         ((i--))
+#                         ((count++))
+#                         # esito+=("Cancellato (bassa Priority)")
+#                         # tasks_per_job+=(0)
+#                         break
+#                     fi
+#                 fi
+#                 ;;
+#         esac
+#     done
+#     jobs+=("${job_name}_J${i}")
+#     ids+=("${job_id}")
+# done
+# cd ../
 
-# Verifica del numero di tasks eseguiti dai jobs
-sum=0
-for value in "${tasks_per_job[@]}"; do
-    sum=$((sum + value))
-done
+# # Verifica del numero di tasks eseguiti dai jobs
+# sum=0
+# for value in "${tasks_per_job[@]}"; do
+#     sum=$((sum + value))
+# done
 
-if [ "$sum" -eq 0 ]; then
-    #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-    ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per $job_name: non sono state allocate risorse per i job. Eliminazione directory per i dati."
-    rm -rf "Dati_$3"
-    screen -X quit
-    #-----------------------------------------------------------------
-else
-    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-    echo "La somma delle componenti dell'array non è 0. La somma è $sum."
-    ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
-    #-----------------------------------------------------------------
-fi
+# if [ "$sum" -eq 0 ]; then
+#     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+#     ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per $job_name: non sono state allocate risorse per i job. Eliminazione directory per i dati."
+#     rm -rf "Dati_$3"
+#     screen -X quit
+#     #-----------------------------------------------------------------
+# else
+#     #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+#     echo "La somma delle componenti dell'array non è 0. La somma è $sum."
+#     ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
+#     #-----------------------------------------------------------------
+# fi
 
 #----------------------------------------------------------------------------------------------------------------
 ############################################### CALCOLO MEDIE ###################################################
@@ -202,8 +202,8 @@ file_count_lines=0
 for file in "Dati_$3"/output*.txt; do
     nan_count=$(grep -c "\-nan" "$file")    
 
-    if [ $(echo "scale=2; $nan_count / $nstep > 0.05" | bc) -eq 1 ]; then
-        echo "La soglia del 5% è superata. Eliminazione del file $file..."
+    if [ $(echo "scale=2; $nan_count / $nstep > 0.04" | bc) -eq 1 ]; then
+        echo "La soglia del 4% è superata. Eliminazione del file $file..."
         rm "$file"
         file_count_nan=$((file_count_nan + 1))
     else
