@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw1000   ]
+[   Info sul Job MBL_Corr_tw1000_J1   ]
 
 
-Richiesta presa in carico alle ore 15:33:42: 5 Job per 'MBL_Corr_tw1000' con 1238 task ciascuno.
+Job MBL_Corr_tw1000_J1 lanciato con 348 task! 
 
