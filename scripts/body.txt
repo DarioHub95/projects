@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw100_J9   ]
+[   Info sul Job MBL_Energie_J14   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw100_J9 completato alle ore 12:23:22 con 200 task! 
+Dati acquisiti! Job MBL_Energie_J14 completato alle ore 12:28:42 con 200 task! 
 
