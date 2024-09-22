@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw1000_J7   ]
+[   Info sul Job MBL_Energie_J15   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw1000_J7 completato alle ore 12:48:22 con 200 task! 
+Dati acquisiti! Job MBL_Energie_J15 completato alle ore 15:55:51 con 200 task! 
 
