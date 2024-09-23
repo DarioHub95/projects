@@ -27,14 +27,27 @@ echo ""
 echo "Osservabili disponibili:"
 echo ""
 echo " 2 - ENEGIA TOTALE E_tot"
+echo ""
 # echo " 3 - ENEGIA E_hop"
 # echo "10 - ENEGIA E_Int"
 # echo "12 - ENEGIA E_mag"
 echo " 4 - ENEGIE H_hop, H_int, H_mag"
+echo ""
 echo " 5 - AUTOCORRELAZIONE 8 SPIN"
-echo " 6 - COMPONENI SPIN SU L"
+echo ""
+echo " 6 - COMPONENI SPIN SU i=L"
 echo ""
 read -p "Inserire numero del corrispondente osservabile: " O
+echo ""
+if [ "$O" -eq 2 ]; then
+echo " OSSERVABILE: ENEGIA TOTALE E_tot"
+elif [ "$O" -eq 6 ]; then
+echo " OSSERVABILE: COMPONENI SPIN SU i=L"
+elif [ "$O" -eq 4 ]; then
+echo " OSSERVABILE: ENEGIE H_hop, H_int, H_mag"
+elif [ "$O" -eq 5 ]; then
+echo " OSSERVABILE: AUTOCORRELAZIONE 8 SPIN"
+fi
 echo ""
 
 # Inserire vars per autocorrelazione
@@ -63,7 +76,7 @@ elif [ "$O" -eq 6 ]; then
     var=Spin
 fi
 
-if screen -ls | grep -wq "${var}"; then
+if screen -ls | grep -q "${var}"; then
     echo "Acquisizione dei dati ${var} in esecuzione."
     echo ""
     screen -ls
@@ -95,6 +108,7 @@ echo " 5 - MBL + BAGNO SULL'ULTIMO SITO"
 echo "     Jz  = 0.2   hi  = 5    alfa = 0.01"
 echo ""
 read -p "Inserire numero del corrispondente modello: " P
+echo ""
 if [ "$P" -eq 1 ]; then
 echo " MODELLO: PARTICELLE LIBERE"
 elif [ "$P" -eq 2 ]; then
@@ -216,7 +230,7 @@ sleep 1
 
 screen -ls
 echo "Usa il comando 'screen -ls' per visualizzare lo stato degli screen."
-echo "Usa il comando 'screen -r ${var}' per visualizzare l'acquisizione."
+echo "Usa il comando 'screen -r ${mod}_${var}' per visualizzare l'acquisizione."
 # echo "Usa il comando 'screen -r media_${var}' per visualizzare l'acquisizione."
 echo ""
 
