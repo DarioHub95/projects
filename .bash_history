@@ -371,3 +371,18 @@ screen -ls
 screen -ls
 screen -ls
 screen -ls
+screen -ls
+screen -ls
+screen -ls
+screen -ls
+./lxgriv-run.sh 
+screen -r 2689078.Anderson_Corr_tw100
+screen -ls
+screen -r 2518957.MBL_Corr_tw100
+screen -ls
+screen -ls | grep -wq "Energie"
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+./lxgriv-run.sh 
