@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw1000_J4   ]
+[   Info sul Job Ising_Corr_tw1_J1   ]
 
 
-Job MBL+B_Corr_tw1000_J4 lanciato con 720 task! 
+Dati acquisiti! Job Ising_Corr_tw1_J1 completato con 500 task! 
 
