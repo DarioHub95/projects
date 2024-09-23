@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Corr_tw1_J2   ]
+[   Info sul Job Ising_Corr_tw1_J3   ]
 
 
-Dati acquisiti! Job Ising_Corr_tw1_J2 completato con 500 task! 
+Job Ising_Corr_tw1_J3 lanciato con 500 task! 
 
