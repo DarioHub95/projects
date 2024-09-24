@@ -1,6 +1,20 @@
 
-[   Info sul Job MBL+B_Energie_J5   ]
+[   Jobs per MBL+B_Energie   ]
 
 
-Dati acquisiti! Job MBL+B_Energie_J5 completato con 1000 task! 
+Modello selezionato: MBL+B
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 6000
+N° di Task eseguiti:  4960
+
+N° di Job richiesti: 5
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| MBL+B_Energie_J1          | 330063                    | 1000                      | Eseguito dopo 0 tentativi |
+| MBL+B_Energie_J2          | 330400                    | 965                       | Eseguito dopo 0 tentativi |
+| MBL+B_Energie_J3          | 330922                    | 1000                      | Eseguito dopo 0 tentativi |
+| MBL+B_Energie_J4          | 332277                    | 995                       | Eseguito dopo 0 tentativi |
+| MBL+B_Energie_J5          | 332882                    | 1000                      | Eseguito dopo 0 tentativi |
