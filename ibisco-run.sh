@@ -254,8 +254,8 @@ sleep 1
 # sleep 1
 
 screen -ls
-echo "Usa il comando 'screen -ls' per visualizzare lo stato degli screen."
-echo "Usa il comando 'screen -r ${mod}_${var}' per visualizzare l'acquisizione."
+echo "Usa il comando ' screen -ls ' per visualizzare lo stato degli screen."
+echo "Usa il comando ' screen -r ${mod}_${var} ' per visualizzare l'acquisizione."
 # echo "Usa il comando 'screen -r media_${var}' per visualizzare l'acquisizione."
 echo ""
 
@@ -264,5 +264,5 @@ echo ""
 # sed -i "s/int P = [0-9]*;/int P = 0;/" "main.c"
 # sed -i "s/int L=[0-9]*;/int L=3;/" "main.c"
 # sed -i "s/int nstep=[0-9]*;/int nstep=20;/" "main.c"
-# sed -i "s/int tw=[0-9]*;/int tw=1;/" "main.c"
+sed -i "s/int tw=[0-9]*;/int tw=1;/" "main.c"
 # sed -i "s/int Oss=[0-9]*;/int Oss=0;/" "main.c" 
