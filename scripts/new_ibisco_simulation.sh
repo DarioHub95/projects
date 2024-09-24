@@ -237,16 +237,17 @@ done
 echo "Il numero di file con righe sbagliate è $file_count_lines"
 
 # PULIZIA DATI - Controlla se il primo numero dell'ultima riga è diverso da nstep
-for file in *.txt; do
+for file in "Dati_$3"/output*; do
     num_righe=$(wc -l < "$file")
-    if [ "$num_righe" -eq 10001 ]; then
-        echo "Il file $file contiene 10001 righe."
+    if [ "$num_righe" -eq $((16 + nstep - $(grep -oP '(?<=int tw=)\d+' main.c) + 1)) ]; then
+        echo "Il numero di righe in $file è corretto: $num_righe"
     else
-        echo "Il file $file non contiene 10001 righe, ma $num_righe righe."
-        # mv "$file" Medie/
+        echo "Il numero di righe in $file non corrisponde. Trovate: $num_righe"
+        echo "Eliminando file: $file"
+        rm "$file"
+        file_count_lines=$((file_count_lines + 1))
     fi
 done
-
 
 # Conta il numero di file rimasti in Data
 R_tot=$(ls -1 "Dati_$3"/output* 2>/dev/null | wc -l)
