@@ -2,5 +2,5 @@
 [   Info sul Job Ising_Corr_tw1_J4   ]
 
 
-Job Ising_Corr_tw1_J4 lanciato con 500 task! 
+Dati acquisiti! Job Ising_Corr_tw1_J4 completato con 500 task! 
 
