@@ -387,3 +387,4 @@ screen -ls | grep -wq "Energie"
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
 screen -ls
+screen -ls
