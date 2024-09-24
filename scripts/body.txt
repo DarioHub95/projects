@@ -1,6 +1,20 @@
 
-[   Info sul Job MBL+B_Corr_tw1000_J5   ]
+[   Jobs per MBL+B_Corr_tw1000   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw1000_J5 completato con 720 task! 
+Modello selezionato: MBL+B
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 8940
+N° di Task eseguiti:  3450
+
+N° di Job richiesti: 5
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| MBL+B_Corr_tw1000_J1      | 328918                    | 615                       | Eseguito dopo 0 tentativi |
+| MBL+B_Corr_tw1000_J2      | 329132                    | 675                       | Eseguito dopo 0 tentativi |
+| MBL+B_Corr_tw1000_J3      | 329363                    | 720                       | Eseguito dopo 0 tentativi |
+| MBL+B_Corr_tw1000_J4      | 329674                    | 720                       | Eseguito dopo 0 tentativi |
+| MBL+B_Corr_tw1000_J5      | 329979                    | 720                       | Eseguito dopo 0 tentativi |
