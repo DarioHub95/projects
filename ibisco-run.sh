@@ -184,10 +184,10 @@ echo "poiché i job aspettano risorse libere."
 echo ""
 
 # Inserire il valore di R (numero di run)
-read -p "Numero di run (R): " r
-if [ -z "$r" ]; then
-    r=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}')
-    echo "R non valorizzato, impostato a default: $r"
+read -p "Numero di run (R): " R
+if [ -z "$R" ]; then
+    R=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}')
+    echo "R non valorizzato, impostato a default: $R"
 fi
 echo ""
 
@@ -213,15 +213,6 @@ echo ""
 sed -i "s/int P = [0-9]*;/int P = $P;/" "main.c"
 sed -i "s/int nstep=[0-9]*;/int nstep=$nstep;/" "main.c"
 sed -i "s/int Oss=[0-9]*;/int Oss=$O;/" "main.c"
-
-
-
-# Comandi di DEBUG
-set -x
-trap 'sleep 5' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
-
-
-
 
 # Compila i file sorgente C
 echo -e "${GREEN}[TASK 5 - COMPILAZIONE]----------------------------------------------------|${NC}"
