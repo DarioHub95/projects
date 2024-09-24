@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw100_J8   ]
+[   Info sul Job Anderson_Corr_tw1000_J8   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw100_J8 completato alle ore 21:43:46 con 200 task! 
+Dati acquisiti! Job Anderson_Corr_tw1000_J8 completato alle ore 22:56:53 con 200 task! 
 
