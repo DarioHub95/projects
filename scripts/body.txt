@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw10   ]
+[   Info sul Job Anderson_Corr_tw10_J1   ]
 
 
-Richiesta presa in carico alle ore 11:22:19: 5 Job per 'Anderson_Corr_tw10' con 1000 task ciascuno.
+Job Anderson_Corr_tw10_J1 lanciato con 1000 task! 
 
