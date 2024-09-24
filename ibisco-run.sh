@@ -234,7 +234,8 @@ echo "Creazione dello screen: ${mod}_${var}"
 echo ""
 echo "Esecuzione di $script_path..."
 echo ""
-screen -dmS "${mod}_${var}" bash -c "bash $script_path ${J} ${R} ${var} ${mod}; exec bash"
+# screen -dmS "${mod}_${var}" bash -c "bash $script_path ${J} ${R} ${var} ${mod}; exec bash"
+screen -dmS "${mod}_${var}" bash -c "J=${J} R=${R} var=${var} mod=${mod} bash $script_path \$J \$R \$var \$mod; exec bash"
 sleep 1
 
 # # Loop per creare screen e eseguire comandi
