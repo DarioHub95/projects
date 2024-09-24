@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Energie_J3   ]
+[   Info sul Job Anderson_Corr_tw10_J3   ]
 
 
-Job MBL+B_Energie_J3 lanciato con 415 task! 
+Dati acquisiti! Job Anderson_Corr_tw10_J3 completato con 235 task! 
 
