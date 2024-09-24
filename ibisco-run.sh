@@ -215,6 +215,14 @@ sed -i "s/int nstep=[0-9]*;/int nstep=$nstep;/" "main.c"
 sed -i "s/int Oss=[0-9]*;/int Oss=$O;/" "main.c"
 
 
+
+# Comandi di DEBUG
+set -x
+trap 'sleep 5' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+
+
+
+
 # Compila i file sorgente C
 echo -e "${GREEN}[TASK 5 - COMPILAZIONE]----------------------------------------------------|${NC}"
 echo ""
@@ -234,8 +242,7 @@ echo "Creazione dello screen: ${mod}_${var}"
 echo ""
 echo "Esecuzione di $script_path..."
 echo ""
-# screen -dmS "${mod}_${var}" bash -c "bash $script_path ${J} ${R} ${var} ${mod}; exec bash"
-screen -dmS "${mod}_${var}" bash -c "J=${J} R=${R} var=${var} mod=${mod} bash $script_path \$J \$R \$var \$mod; exec bash"
+screen -dmS "${mod}_${var}" bash -c "bash $script_path ${J} ${R} ${var} ${mod}; exec bash"
 sleep 1
 
 # # Loop per creare screen e eseguire comandi
