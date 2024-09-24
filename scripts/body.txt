@@ -1,6 +1,19 @@
 
-[   Info sul Job Anderson_Corr_tw1000_J3   ]
+[   Jobs per Anderson_Corr_tw1000   ]
 
 
-Dati acquisiti! Job Anderson_Corr_tw1000_J3 completato con 402 task! 
+Modello selezionato: Anderson
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 4760
+N° di Task eseguiti:  826
+
+N° di Job richiesti: 4
+
+Dettagli Job Lanciati:
+
+| Anderson_Corr_tw1000_J1   | 330276                    | Tasks                     | Eseguito dopo 0 tentativi |
+| Anderson_Corr_tw1000_J1   | 333450                    | 52                        | Eseguito dopo 2 tentativi |
+| Anderson_Corr_tw1000_J2   | 333823                    | 372                       | Eseguito dopo 0 tentativi |
+| Anderson_Corr_tw1000_J3   | 334036                    | 402                       | Job Name                  |
+| Job ID                    | 334661                    | Esito                     | Anderson_Corr_tw1000_J1   |
