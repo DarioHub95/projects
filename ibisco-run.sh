@@ -58,10 +58,21 @@ echo ""
 L=8
 sed -i "s/int L=[0-9]*;/int L=8;/" "main.c"
 sed -i "s/int Sz=-\?1;/int Sz=0;/" "main.c"
+while true; do
 read -p "Inserire tempo di waiting (t_w): " tw
 echo ""
-sed -i "s/int tw=[0-9]*;/int tw=$tw;/" "main.c"
+    # Verifica che la variabile sia maggiore di 0
+    if (( tw > 0 )); then
+        sed -i "s/int tw=[0-9]*;/int tw=$tw;/" "main.c"
+        break
+    else
+        echo "Errore: il tempo di waiting deve essere un numero maggiore di 0. Riprova..."
+        echo ""
+        unset tw  # Resetta la variabile per richiedere un nuovo input
+    fi
+done
 fi
+
 
 if [ "$O" -eq 2 ] || [ "$O" -eq 3 ] || [ "$O" -eq 10 ] || [ "$O" -eq 12 ]; then
     var="Oss$O"
@@ -172,12 +183,18 @@ echo "Eseguire troppi job rispetto al numero di CPU disponibili può causare lun
 echo "poiché i job aspettano risorse libere."
 echo ""
 
-# Inserire il valore di R (numero di run) o usa il valore predefinito di cpu_idle - 10
-read -p "Numero di run (R): " R
-if [ -z "$R" ]; then
-    R=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}')
-    echo "R non valorizzato, impostato a default: $R"
+# Inserire il valore di R (numero di run)
+if [ ! -z "$tw" ] && [ "$tw" -gt 1 ]; then
+    echo "Attenzione, il conteggio delle run partirà da tw = ${tw}."
+    R=$tw
 fi
+read -p "Numero di run (R): " r
+if [ -z "$r" ]; then
+    r=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}')
+    echo "R non valorizzato, impostato a default: $r"
+fi
+((R += r))
+echo "Numero di run R totali: $R"
 echo ""
 
 # Inserire il valore di J (numero di jobs) o usa il valore predefinito di 1
