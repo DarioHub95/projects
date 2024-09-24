@@ -1,6 +1,10 @@
 
-[   Info sul Job MBL+B_Energie_J1   ]
+[   ERRORE 110   ]
 
 
-Job MBL+B_Energie_J1 lanciato con 1000 task! 
+ESEGUIBILE TROVATO 
+
+Il file 'a.out' non è stato trovato. 
+
+[parallel.sh] Il file 'a.out' non esiste. Simulazione interrotta.
 

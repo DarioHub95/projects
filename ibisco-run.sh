@@ -184,17 +184,11 @@ echo "poiché i job aspettano risorse libere."
 echo ""
 
 # Inserire il valore di R (numero di run)
-if [ ! -z "$tw" ] && [ "$tw" -gt 1 ]; then
-    echo "Attenzione, il conteggio delle run partirà da tw = ${tw}."
-    R=$tw
-fi
 read -p "Numero di run (R): " r
 if [ -z "$r" ]; then
     r=$(sinfo -o "%C" | tail -n 1 | awk -F "/" '{print $2}')
     echo "R non valorizzato, impostato a default: $r"
 fi
-((R += r))
-echo "Numero di run R totali: $R"
 echo ""
 
 # Inserire il valore di J (numero di jobs) o usa il valore predefinito di 1
@@ -206,7 +200,13 @@ fi
 echo ""
 
 # Inserire numero di step MC
-read -p "Numero di step Montecarlo (nstep): " nstep
+if [ ! -z "$tw" ] && [ "$tw" -gt 1 ]; then
+    echo "Attenzione, il conteggio degli step MC partirà da tw = ${tw}."
+    nstep=$tw
+fi
+read -p "Numero di step Montecarlo (nstep): " n
+((nstep += n))
+echo "Numero di step MC totali: $nstep"
 echo ""
 
 # Sostituzione dei parametri di input nel main.c
