@@ -243,7 +243,7 @@ for file in *.txt; do
         echo "Il file $file contiene 10001 righe."
     else
         echo "Il file $file non contiene 10001 righe, ma $num_righe righe."
-        mv "$file" Medie/
+        # mv "$file" Medie/
     fi
 done
 
