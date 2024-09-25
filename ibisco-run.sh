@@ -73,16 +73,6 @@ echo ""
 done
 fi
 
-
-if [ "$O" -eq 2 ] || [ "$O" -eq 3 ] || [ "$O" -eq 10 ] || [ "$O" -eq 12 ]; then
-    var="Oss$O"
-elif [ "$O" -eq 4 ]; then
-    var=Energie
-elif [ "$O" -eq 5 ]; then
-    var="Corr_tw${tw}"
-elif [ "$O" -eq 6 ]; then
-    var=Spin
-fi
 # Trova una cartella contenente 'Energie' e verifica la presenza di un solo file con il prefisso 'Durata_'
 if [[ $(squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R" | grep "${var}_" | wc -l) -ne 0 ]]; then
     echo "Acquisizione dei dati ${var} in esecuzione."
@@ -168,6 +158,16 @@ elif [ "$P" -eq 4 ]; then
     mod=MBL
 elif [ "$P" -eq 5 ]; then
     mod=MBL+B
+fi
+
+if [ "$O" -eq 2 ] || [ "$O" -eq 3 ] || [ "$O" -eq 10 ] || [ "$O" -eq 12 ]; then
+    var="Oss$O"
+elif [ "$O" -eq 4 ]; then
+    var="Energie_L${L}"
+elif [ "$O" -eq 5 ]; then
+    var="Corr_tw${tw}"
+elif [ "$O" -eq 6 ]; then
+    var=Spin
 fi
 
 
