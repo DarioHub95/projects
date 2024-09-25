@@ -1,16 +1,30 @@
 
-[   Jobs per MBL_Energie_L4   ]
+[   Dettagli della Simulazione  ]
 
 
-Modello selezionato: MBL
-Osservabile scelto:  Energie
+Start Date: 25-09-2024 10:08:59
+End Date:   25-09-2024 10:12:49
+Durata:     00:03:50
 
-N° di Task richiesti: 10
-N° di Task eseguiti:  5
+Modello selezionato: MBL+B
+Osservabile scelto:  Corr_tw1
 
-N° di Job richiesti: 1
+Parametri del Modello:
+> L:     8
+> nstep: 100
+> Sz:    0
+> Jxy:   1
+> Jz:    0.2
+> eps:   5
+> alpha: 0.01
 
-Dettagli Job Lanciati:
+File delle medie:
+MBL+B_Corr_tw1_L8_R2_10.08.59.txt
 
-| Job Name                  | Job ID                    | Tasks                     | Esito                     |
-| MBL_Energie_L4_J1         | 336399                    | 5                         | Eseguito dopo 0 tentativi |
+N° di file output richiesti: 2
+N° di file output dei job: 2
+N° di file output effettvi: 2
+
+N° di file output eliminati: 0
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
+
