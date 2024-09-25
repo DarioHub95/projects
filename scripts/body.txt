@@ -1,10 +1,6 @@
 
-[   ERRORE 350   ]
+[   Info sul Job MBL_Energie_L4   ]
 
 
-ERRORE NEL CALCOLO DELLE MEDIE 
-
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
-
-[media.sh] Il file 'Anderson_Energie_L4_L4_R3_10.01.27.txt' non contiene nessun valore medio. Uscita dallo screen Anderson_Energie_L4...
+Richiesta presa in carico alle ore 12:05:12: 1 Job per 'MBL_Energie_L4' con 5 task ciascuno.
 

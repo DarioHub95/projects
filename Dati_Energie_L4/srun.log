@@ -3,3 +3,9 @@ mpi process #3: redirecting stdout & stderr to output-003.txt
 mpi process #4: redirecting stdout & stderr to output-004.txt
 mpi process #2: redirecting stdout & stderr to output-002.txt
 mpi process #1: redirecting stdout & stderr to output-001.txt
+srun: interrupt (one more within 1 sec to abort)
+srun: StepId=336398.0 tasks 0-4: running
+srun: sending Ctrl-C to StepId=336398.0
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 336398.0 ON ibiscohpc-wn05 CANCELLED AT 2024-09-25T12:04:46 ***
+srun: forcing job termination
