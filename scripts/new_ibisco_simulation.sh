@@ -40,7 +40,7 @@ fi
 
 cd Dati_$3/
 
-./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(date '+%H:%M:%S'): $1 Job per '${job_name}' con $2 task ciascuno."
+./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $2 task ciascuno."
 
 count=0
 for ((i=1; i<=$1; i++)); do
@@ -275,7 +275,7 @@ fi
 #-----------------------------------------------------------------
 
 # Salva le prime 16 righe del primo file in media totale
-MEDIA="${4}_${3}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
+MEDIA="${4}_${3}_R${R_tot}_$(TZ='Europe/Rome' date -u -d @$start_time +'%H.%M.%S').txt"
 output_file=$(find "Dati_$3" -maxdepth 1 -type f -name "output*" | head -n 1)
 head -n 16 "$output_file" > "Medie/${MEDIA}"
 
@@ -327,7 +327,7 @@ fi
 
 # Inserisci riga di Data e ora e di tasks nel file di media totale
 sed -i "1i Tasks: ${R_tot}" "Medie/${MEDIA}"
-sed -i "1i Date: $(date '+%Y-%m-%d %H:%M:%S')" "Medie/${MEDIA}"
+sed -i "1i Date: $(TZ='Europe/Rome' date '+%Y-%m-%d %H:%M:%S')" "Medie/${MEDIA}"
 sed -i '/seed/d' "Medie/${MEDIA}"
 
 #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------

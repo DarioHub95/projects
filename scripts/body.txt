@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job Free_Corr_tw1   ]
 
 
-Start Date: 25-09-2024 10:24:13
-End Date:   25-09-2024 10:24:33
-Durata:     00:00:20
-
-Modello selezionato: MBL
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     4
-> nstep: 10
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   5
-> alpha: 0
-
-File delle medie:
-MBL_Energie_L4_R47_10.24.13.txt
-
-N° di file output richiesti: 50
-N° di file output dei job: 50
-N° di file output effettvi: 47
-
-N° di file output eliminati: 3
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
+Richiesta presa in carico alle ore 12:31:16: 1 Job per 'Free_Corr_tw1' con 50 task ciascuno.
 
