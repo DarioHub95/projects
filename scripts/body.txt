@@ -1,6 +1,16 @@
 
-[   Info sul Job Free_Corr_tw1   ]
+[   Jobs per Free_Corr_tw1   ]
 
 
-Richiesta presa in carico alle ore 12:31:16: 1 Job per 'Free_Corr_tw1' con 50 task ciascuno.
+Modello selezionato: Free
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 100
+N° di Task eseguiti:  50
+
+N° di Job richiesti: 1
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| Free_Corr_tw1_J1          | 336411                    | 50                        | Eseguito dopo 0 tentativi |
