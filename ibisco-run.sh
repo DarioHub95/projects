@@ -72,7 +72,7 @@ if [ "$O" -eq 5 ]; then
         fi
     done
     # Verifica se esiste già un job che sta acquisendo gli stessi dati per la correlazione
-    if [[ $(squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R" | grep "tw${tw}_" | wc -l) -ne 0 ]]; then
+    if [[ $(squeue -u $USER -o "%.8i %.10P %.25j %.10u %.2t %.10M %.5D %.35R" | grep "tw${tw}_" | wc -l) -ne 0 ]]; then
         echo "Acquisizione dei dati in esecuzione:"
         echo ""
         squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R"

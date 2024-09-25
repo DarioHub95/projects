@@ -1,0 +1,5 @@
+mpi process #0: redirecting stdout & stderr to output-000.txt
+mpi process #1: redirecting stdout & stderr to output-001.txt
+mpi process #2: redirecting stdout & stderr to output-002.txt
+mpi process #3: redirecting stdout & stderr to output-003.txt
+mpi process #4: redirecting stdout & stderr to output-004.txt
