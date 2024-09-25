@@ -236,8 +236,6 @@ for file in "Dati_$3"/output*; do
 done
 echo "Il numero di file con righe sbagliate è $file_count_lines"
 
-trap 'sleep 2' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
-
 # PULIZIA DATI - Controlla se il numero di righe è esatto (operazione delicata)
 for file in "Dati_$3"/output*; do
     num_righe=$(wc -l < "$file")
