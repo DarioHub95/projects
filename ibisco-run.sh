@@ -161,7 +161,7 @@ elif [ "$O" -eq 4 ]; then
 elif [ "$O" -eq 5 ]; then
     var="Corr_tw${tw}"
 elif [ "$O" -eq 6 ]; then
-    var=Spin
+    var="Spin_L${L}"
 fi
 
 # Verifica se esiste già un job che sta acquisendo gli stessi dati per la correlazione

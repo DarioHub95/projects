@@ -275,7 +275,7 @@ fi
 #-----------------------------------------------------------------
 
 # Salva le prime 16 righe del primo file in media totale
-MEDIA="${4}_${3}_L${L}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
+MEDIA="${4}_${3}_R${R_tot}_$(date -u -d @$start_time +'%H.%M.%S').txt"
 output_file=$(find "Dati_$3" -maxdepth 1 -type f -name "output*" | head -n 1)
 head -n 16 "$output_file" > "Medie/${MEDIA}"
 
