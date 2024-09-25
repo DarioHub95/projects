@@ -1,6 +1,16 @@
 
-[   Info sul Job Anderson_Energie_L4   ]
+[   Jobs per Anderson_Energie_L4   ]
 
 
-Richiesta presa in carico alle ore 12:01:27: 1 Job per 'Anderson_Energie_L4' con 4 task ciascuno.
+Modello selezionato: Anderson
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 8
+N° di Task eseguiti:  4
+
+N° di Job richiesti: 1
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| Anderson_Energie_L4_J1    | 336396                    | 4                         | Eseguito dopo 0 tentativi |
