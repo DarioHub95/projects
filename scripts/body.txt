@@ -1,10 +1,6 @@
 
-[   ERRORE 350   ]
+[   Info sul Job Free_Oss2   ]
 
 
-ERRORE NEL CALCOLO DELLE MEDIE 
-
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
-
-[media.sh] Il file 'Anderson_Corr_tw1000_L8_R0_21.51.32.txt' non contiene nessun valore medio. Uscita dallo screen Anderson_Corr_tw1000...
+Richiesta presa in carico alle ore 11:17:43: 1 Job per 'Free_Oss2' con 5 task ciascuno.
 

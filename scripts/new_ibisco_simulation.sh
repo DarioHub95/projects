@@ -236,7 +236,7 @@ for file in "Dati_$3"/output*; do
 done
 echo "Il numero di file con righe sbagliate è $file_count_lines"
 
-# PULIZIA DATI - Controlla se il primo numero dell'ultima riga è diverso da nstep
+# PULIZIA DATI - Controlla se il numero di righe è esatto (operazione delicata)
 for file in "Dati_$3"/output*; do
     num_righe=$(wc -l < "$file")
     if [ "$num_righe" -eq $((16 + nstep - $(grep -oP '(?<=int tw=)\d+' main.c) + 1)) ]; then
