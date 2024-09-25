@@ -8,7 +8,7 @@ WARNING NEL PROCESSO DI PULIZIA DEI DATI
 
 N° di file con eccesso di '-nan': 0 
 
-N° di file incompleti: 3 
+N° di file incompleti: 1 
 
 N° di file che superano ulimit: 0 
 
