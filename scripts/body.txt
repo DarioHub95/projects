@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Corr_tw10_J2   ]
 
 
-Job Anderson_Corr_tw10_J2 lanciato con 500 task! 
+Dati acquisiti! Job Anderson_Corr_tw10_J2 completato con 500 task! 
 
