@@ -1,16 +1,6 @@
 
-[   Jobs per MBL+B_Corr_tw5   ]
+[   Info sul Job MBL+B_Energie_L4   ]
 
 
-Modello selezionato: MBL+B
-Osservabile scelto:  Corr
+Richiesta presa in carico alle ore 11:47:17: 1 Job per 'MBL+B_Energie_L4' con 50 task ciascuno.
 
-N° di Task richiesti: 100
-N° di Task eseguiti:  50
-
-N° di Job richiesti: 1
-
-Dettagli Job Lanciati:
-
-| Job Name                  | Job ID                    | Tasks                     | Esito                     |
-| MBL+B_Corr_tw5_J1         | 336389                    | 50                        | Eseguito dopo 0 tentativi |
