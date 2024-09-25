@@ -72,10 +72,10 @@ if [ "$O" -eq 5 ]; then
         fi
     done
     # Verifica se esiste già un job che sta acquisendo gli stessi dati per la correlazione
-    if [[ $(squeue -u $USER -o "%.8i %.10P %.25j %.10u %.2t %.10M %.5D %.35R" | grep "tw${tw}_" | wc -l) -ne 0 ]]; then
+    if [[ $(squeue -u $USER -o "%.8i %.10P %.30j %.10u %.2t %.10M %.5D %.35R" | grep "tw${tw}_" | wc -l) -ne 0 ]]; then
         echo "Acquisizione dei dati 'Corr_tw${tw}' in esecuzione:"
         echo ""
-        squeue -u $USER -o "%.8i %.10P %.25j %.10u %.2t %.10M %.5D %.35R"
+        squeue -u $USER -o "%.8i %.10P %.30j %.10u %.2t %.10M %.5D %.35R"
         echo ""
         echo "Interruzione dello script..."
         echo ""
@@ -165,10 +165,10 @@ elif [ "$O" -eq 6 ]; then
 fi
 
 # Verifica se esiste già un job che sta acquisendo gli stessi dati per la correlazione
-if [[ $(squeue -u $USER -o "%.8i %.10P %.25j %.10u %.2t %.10M %.5D %.35R" | grep "${var}_" | wc -l) -ne 0 ]]; then
+if [[ $(squeue -u $USER -o "%.8i %.10P %.30j %.10u %.2t %.10M %.5D %.35R" | grep "${var}_" | wc -l) -ne 0 ]]; then
     echo "Acquisizione dei dati '${var}' in esecuzione."
     echo ""
-    squeue -u $USER -o "%.8i %.10P %.25j %.10u %.2t %.10M %.5D %.35R"
+    squeue -u $USER -o "%.8i %.10P %.30j %.10u %.2t %.10M %.5D %.35R"
     echo ""
     echo "Interruzione dello script..."
     echo ""
@@ -223,7 +223,7 @@ echo -e "${GREEN}[TASK 5 - COMPILAZIONE]----------------------------------------
 echo ""
 # Crea una directory per i file di output
 mkdir -p "Dati_${var}"
-echo "Creata la directory Dati_${var} per i file di output..."
+echo "Creata la directory per i file di output: Dati_${var}"
 echo ""
 echo "Compilazione dei file sorgente 'main.c' 'loop.c' 'kernel.c'..."
 mpiCC -O3 -I/lustre/home/adecandia/.lib2/ main.c loop.c kernel.c -L/lustre/home/adecandia/.lib2/ -lpvm -o "Dati_${var}"/a.out
