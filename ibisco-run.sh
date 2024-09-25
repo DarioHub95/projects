@@ -73,7 +73,7 @@ if [ "$O" -eq 5 ]; then
     done
     # Verifica se esiste già un job che sta acquisendo gli stessi dati per la correlazione
     if [[ $(squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R" | grep "tw${tw}_" | wc -l) -ne 0 ]]; then
-        echo "Acquisizione dei dati ${var} in esecuzione."
+        echo "Acquisizione dei dati in esecuzione:"
         echo ""
         squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R"
         echo ""
@@ -81,6 +81,9 @@ if [ "$O" -eq 5 ]; then
         echo ""
         exit 1  
     fi
+else
+    # setta tw=1 se l'osservabile è diverso dall'autocorrelazione
+    sed -i "s/int tw=[0-9]*;/int tw=1;/" "main.c"
 fi
 
 # Inserire modello
@@ -265,5 +268,4 @@ echo ""
 # sed -i "s/int P = [0-9]*;/int P = 0;/" "main.c"
 # sed -i "s/int L=[0-9]*;/int L=3;/" "main.c"
 # sed -i "s/int nstep=[0-9]*;/int nstep=20;/" "main.c"
-# sed -i "s/int tw=[0-9]*;/int tw=1;/" "main.c"
-# sed -i "s/int Oss=[0-9]*;/int Oss=0;/" "main.c" 
+# # sed -i "s/int Oss=[0-9]*;/int Oss=0;/" "main.c" 

@@ -1,16 +1,6 @@
 
-[   Jobs per MBL+B_Energie_L4   ]
+[   Info sul Job Anderson_Corr_tw5   ]
 
 
-Modello selezionato: MBL+B
-Osservabile scelto:  Energie
+Richiesta presa in carico alle ore 11:53:33: 1 Job per 'Anderson_Corr_tw5' con 50 task ciascuno.
 
-N° di Task richiesti: 100
-N° di Task eseguiti:  50
-
-N° di Job richiesti: 1
-
-Dettagli Job Lanciati:
-
-| Job Name                  | Job ID                    | Tasks                     | Esito                     |
-| MBL+B_Energie_L4_J1       | 336391                    | 50                        | Eseguito dopo 0 tentativi |
