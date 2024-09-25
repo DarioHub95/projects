@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie_L4   ]
+[   Info sul Job MBL+B_Corr_tw1   ]
 
 
-Richiesta presa in carico alle ore 12:05:12: 1 Job per 'MBL_Energie_L4' con 5 task ciascuno.
+Richiesta presa in carico alle ore 12:08:59: 1 Job per 'MBL+B_Corr_tw1' con 2 task ciascuno.
 
