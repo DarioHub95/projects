@@ -1,6 +1,16 @@
 
-[   Info sul Job MBL+B_Corr_tw1   ]
+[   Jobs per MBL+B_Corr_tw1   ]
 
 
-Richiesta presa in carico alle ore 12:08:59: 1 Job per 'MBL+B_Corr_tw1' con 2 task ciascuno.
+Modello selezionato: MBL+B
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 4
+N° di Task eseguiti:  2
+
+N° di Job richiesti: 1
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| MBL+B_Corr_tw1_J1         | 336402                    | 2                         | Eseguito dopo 0 tentativi |
