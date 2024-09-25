@@ -75,7 +75,7 @@ if [ "$O" -eq 5 ]; then
     if [[ $(squeue -u $USER -o "%.8i %.10P %.25j %.10u %.2t %.10M %.5D %.35R" | grep "tw${tw}_" | wc -l) -ne 0 ]]; then
         echo "Acquisizione dei dati 'Corr_tw${tw}' in esecuzione:"
         echo ""
-        squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R"
+        squeue -u $USER -o "%.8i %.10P %.25j %.10u %.2t %.10M %.5D %.35R"
         echo ""
         echo "Interruzione dello script..."
         echo ""
@@ -168,7 +168,7 @@ fi
 if [[ $(squeue -u $USER -o "%.8i %.10P %.25j %.10u %.2t %.10M %.5D %.35R" | grep "${var}_" | wc -l) -ne 0 ]]; then
     echo "Acquisizione dei dati '${var}' in esecuzione."
     echo ""
-    squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R"
+    squeue -u $USER -o "%.8i %.10P %.25j %.10u %.2t %.10M %.5D %.35R"
     echo ""
     echo "Interruzione dello script..."
     echo ""
