@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job Anderson_Corr_tw1000_J1   ]
 
 
-Start Date: 24-09-2024 14:15:11
-End Date:   25-09-2024 02:05:27
-Durata:     11:50:16
-
-Modello selezionato: MBL+B
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     6
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   5
-> alpha: 0.01
-
-File delle medie:
-MBL+B_Energie_L6_R3088_14.15.11.txt
-
-N° di file output richiesti: 5000
-N° di file output dei job: 3375
-N° di file output effettvi: 3088
-
-N° di file output eliminati: 287
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
+Dati acquisiti! Job Anderson_Corr_tw1000_J1 completato con 105 task! 
 
