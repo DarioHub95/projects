@@ -49,41 +49,39 @@ echo ""
 
 # Inserire vars per autocorrelazione
 if [ "$O" -eq 5 ]; then
-echo -e "${GREEN}[TASK 1.1 - OSSERVABILE AUTOCORRELAZIONE]---------------------------------|${NC}"
-echo ""
-echo "Osservabile AUTOCORRELAZIONE SPIN-SPIN C(t_w, t)."
-echo ""
-echo "Lunghezza della catena impostata a: 8 siti"
-echo ""
-L=8
-sed -i "s/int L=[0-9]*;/int L=8;/" "main.c"
-sed -i "s/int Sz=-\?1;/int Sz=0;/" "main.c"
-while true; do
-read -p "Inserire tempo di waiting (t_w): " tw
-echo ""
-    # Verifica che la variabile sia maggiore di 0
-    if (( tw > 0 )); then
-        sed -i "s/int tw=[0-9]*;/int tw=$tw;/" "main.c"
-        break
-    else
-        echo "Errore: il tempo di waiting deve essere un numero maggiore di 0. Riprova..."
+    echo -e "${GREEN}[TASK 1.1 - OSSERVABILE AUTOCORRELAZIONE]---------------------------------|${NC}"
+    echo ""
+    echo "Osservabile AUTOCORRELAZIONE SPIN-SPIN C(t_w, t)."
+    echo ""
+    echo "Lunghezza della catena impostata a: 8 siti"
+    echo ""
+    L=8
+    sed -i "s/int L=[0-9]*;/int L=8;/" "main.c"
+    sed -i "s/int Sz=-\?1;/int Sz=0;/" "main.c"
+    while true; do
+    read -p "Inserire tempo di waiting (t_w): " tw
+    echo ""
+        # Verifica che la variabile sia maggiore di 0
+        if (( tw > 0 )); then
+            sed -i "s/int tw=[0-9]*;/int tw=$tw;/" "main.c"
+            break
+        else
+            echo "Errore: il tempo di waiting deve essere un numero maggiore di 0. Riprova..."
+            echo ""
+            unset tw  # Resetta la variabile per richiedere un nuovo input
+        fi
+    done
+    # Verifica se esiste già un job che sta acquisendo gli stessi dati per la correlazione
+    if [[ $(squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R" | grep "tw${tw}_" | wc -l) -ne 0 ]]; then
+        echo "Acquisizione dei dati ${var} in esecuzione."
         echo ""
-        unset tw  # Resetta la variabile per richiedere un nuovo input
+        squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R"
+        echo ""
+        echo "Interruzione dello script..."
+        echo ""
+        exit 1  
     fi
-done
 fi
-
-# Trova una cartella contenente 'Energie' e verifica la presenza di un solo file con il prefisso 'Durata_'
-if [[ $(squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R" | grep "${var}_" | wc -l) -ne 0 ]]; then
-    echo "Acquisizione dei dati ${var} in esecuzione."
-    echo ""
-    squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R"
-    echo ""
-    echo "Interruzione dello script..."
-    echo ""
-    exit 1  
-fi
-
 
 # Inserire modello
 echo -e "${GREEN}[TASK 2 - MODELLO DI PARTICELLE]------------------------------------------|${NC}"
@@ -108,60 +106,53 @@ echo ""
 read -p "Inserire numero del corrispondente modello: " P
 echo ""
 if [ "$P" -eq 1 ]; then
-echo " MODELLO: PARTICELLE LIBERE"
+    echo " MODELLO: PARTICELLE LIBERE"
+    mod=Free
 elif [ "$P" -eq 2 ]; then
-echo " MODELLO: PARTICELLE INTERAGENTI (ISING)"
+    echo " MODELLO: PARTICELLE INTERAGENTI (ISING)"
+    mod=Ising
 elif [ "$P" -eq 3 ]; then
-echo " MODELLO: ANDERSON"
+    echo " MODELLO: ANDERSON"
+    mod=Anderson
 elif [ "$P" -eq 4 ]; then
-echo " MODELLO: MANY BODY LOCALIZATION (MBL)"
+    echo " MODELLO: MANY BODY LOCALIZATION (MBL)"
+    mod=MBL
 elif [ "$P" -eq 5 ]; then
-echo " MODELLO: MBL + BAGNO SULL'ULTIMO SITO"
+    echo " MODELLO: MBL + BAGNO SULL'ULTIMO SITO"
+    mod=MBL+B
 fi
 echo ""
 
 # Controlla se la variabile è definita
 if [ -z "$L" ]; then
-while true; do
-read -p "Inserire lunghezza pari e maggiore di 2 della catena (L): " L
-echo ""
-    # Verifica che la variabile sia maggiore di 2
-    if (( L > 2 )); then
-        # Controlla se la variabile è dispari
-        if (( L % 2 != 0 )); then
-            sed -i "s/int Sz=[0-9]*;/int Sz=-1;/" "main.c"
-            echo "La lunghezza è dispari. Magnetizzazione totale Sz impostata a: -1"
-            echo ""
+    while true; do
+    read -p "Inserire lunghezza pari e maggiore di 2 della catena (L): " L
+    echo ""
+        # Verifica che la variabile sia maggiore di 2
+        if (( L > 2 )); then
+            # Controlla se la variabile è dispari
+            if (( L % 2 != 0 )); then
+                sed -i "s/int Sz=[0-9]*;/int Sz=-1;/" "main.c"
+                echo "La lunghezza è dispari. Magnetizzazione totale Sz impostata a: -1"
+                echo ""
+            else
+                sed -i "s/int Sz=-\?1;/int Sz=0;/" "main.c"
+                echo "La lunghezza è pari. Magnetizzazione totale Sz impostata a: 0"
+                echo ""
+            fi
+            break
         else
-            sed -i "s/int Sz=-\?1;/int Sz=0;/" "main.c"
-            echo "La lunghezza è pari. Magnetizzazione totale Sz impostata a: 0"
+            echo "Errore: La lunghezza della catena deve essere un numero maggiore di 2. Riprova.."
             echo ""
+            unset L  # Resetta la variabile per richiedere un nuovo input
         fi
-        break
-    else
-        echo "Errore: La lunghezza della catena deve essere un numero maggiore di 2. Riprova.."
-        echo ""
-        unset L  # Resetta la variabile per richiedere un nuovo input
-    fi
-done
-sed -i "s/int L=[0-9]*;/int L=$L;/" "main.c"
-sleep 2
-fi
-
-if [ "$P" -eq 1 ]; then
-    mod=Free
-elif [ "$P" -eq 2 ]; then
-    mod=Ising
-elif [ "$P" -eq 3 ]; then
-    mod=Anderson
-elif [ "$P" -eq 4 ]; then
-    mod=MBL
-elif [ "$P" -eq 5 ]; then
-    mod=MBL+B
+    done
+    sed -i "s/int L=[0-9]*;/int L=$L;/" "main.c"
+    sleep 2
 fi
 
 if [ "$O" -eq 2 ] || [ "$O" -eq 3 ] || [ "$O" -eq 10 ] || [ "$O" -eq 12 ]; then
-    var="Oss$O"
+    var="Oss${O}_L${L}"
 elif [ "$O" -eq 4 ]; then
     var="Energie_L${L}"
 elif [ "$O" -eq 5 ]; then
@@ -170,6 +161,16 @@ elif [ "$O" -eq 6 ]; then
     var=Spin
 fi
 
+# Verifica se esiste già un job che sta acquisendo gli stessi dati per la correlazione
+if [[ $(squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R" | grep "${var}_" | wc -l) -ne 0 ]]; then
+    echo "Acquisizione dei dati ${var} in esecuzione."
+    echo ""
+    squeue -u $USER -o "%.8i %.10P %.20j %.10u %.2t %.10M %.5D %.35R"
+    echo ""
+    echo "Interruzione dello script..."
+    echo ""
+    exit 1  
+fi
 
 echo -e "${GREEN}[TASK 3 - RISORSE CLUSTER IBISCO]------------------------------------------|${NC}"
 echo ""
