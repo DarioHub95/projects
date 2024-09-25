@@ -195,8 +195,6 @@ if [ "$sum" -ne 0 ] && [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la car
 fi
 #-----------------------------------------------------------------
 
-trap 'sleep 2' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
-
 # PULIZIA DATI - Tolleranza al 5% per il numero di -nan nei file di dati
 max_nan_count=0
 file_count_nan=0
@@ -237,6 +235,8 @@ for file in "Dati_$3"/output*; do
     fi
 done
 echo "Il numero di file con righe sbagliate è $file_count_lines"
+
+trap 'sleep 2' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
 # PULIZIA DATI - Controlla se il numero di righe è esatto (operazione delicata)
 for file in "Dati_$3"/output*; do
