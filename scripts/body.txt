@@ -1,6 +1,16 @@
 
-[   Info sul Job Free_Energie_L4   ]
+[   Jobs per Free_Energie_L4   ]
 
 
-Richiesta presa in carico alle ore 12:17:58: 1 Job per 'Free_Energie_L4' con 50 task ciascuno.
+Modello selezionato: Free
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 100
+N° di Task eseguiti:  50
+
+N° di Job richiesti: 1
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| Free_Energie_L4_J1        | 336408                    | 50                        | Eseguito dopo 0 tentativi |
