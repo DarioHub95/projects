@@ -1,16 +1,16 @@
 
-[   Jobs per Free_Energie_L4   ]
+[   INFO 550   ]
 
 
-Modello selezionato: Free
-Osservabile scelto:  Energie
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 100
-N° di Task eseguiti:  50
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 1
+N° di file con eccesso di '-nan': 9 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 0 
 
-| Job Name                  | Job ID                    | Tasks                     | Esito                     |
-| Free_Energie_L4_J1        | 336408                    | 50                        | Eseguito dopo 0 tentativi |
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 41
+
