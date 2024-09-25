@@ -1,6 +1,16 @@
 
-[   Info sul Job Free_Oss2   ]
+[   Jobs per Free_Oss2   ]
 
 
-Richiesta presa in carico alle ore 11:17:43: 1 Job per 'Free_Oss2' con 5 task ciascuno.
+Modello selezionato: Free
+Osservabile scelto:  Oss2
 
+N° di Task richiesti: 10
+N° di Task eseguiti:  5
+
+N° di Job richiesti: 1
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| Free_Oss2_J1              | 336362                    | 5                         | Eseguito dopo 0 tentativi |
