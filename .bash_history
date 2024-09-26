@@ -392,3 +392,6 @@ screen -ls
 screen -ls
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
+screen -ls
+top
+top
