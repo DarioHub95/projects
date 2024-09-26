@@ -57,12 +57,10 @@ for ((i=1; i<=$1; i++)); do
         sleep 5
 
         # Acquisizione dei dati del job i-esimo
-        job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
-        job_status=$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%t" -h)
+        # job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
+        # job_status=$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%t" -h)
 
-        job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
-        job_status=
-
+        # Verifica se lo status è R o PD
         case $(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%t" -h) in
             "R")
                 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
@@ -87,7 +85,7 @@ for ((i=1; i<=$1; i++)); do
                 break  # Esci dal ciclo se il job è stato eseguito
                 ;;
             "PD")
-
+                # Verifica se la reason è Resources, Priority o altro
                 if [[ "$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%R" -h)" == *"Resources"* ]]; then
                     # Verifica se il job_id è il primo nella lista di priorità
                     if [ "$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
@@ -115,7 +113,7 @@ for ((i=1; i<=$1; i++)); do
                         break
                     fi
 
-                # Controlla se il job non è ancora running ma in priority
+                # Controlla se il job è in priority
                 elif [[ "$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%R" -h)" == *"Priority"* || "$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%R" -h)" == *"DOWN, DRAINED"* ]]; then
                     job_reason=$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%R" -h)
                     echo "Il job ${job_name}_J${i} con ID $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) è in attesa (PD) con reason: $job_reason."
