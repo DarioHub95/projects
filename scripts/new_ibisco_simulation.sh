@@ -6,7 +6,12 @@ set -x
 
 while [[ $(squeue -u $USER | wc -l) -ge 3 ]]; do
     echo "In attesa che finisca almeno un job..."
-    sleep 10
+    sleep $(( (RANDOM % 10) + 1 ))
+    if [[ $(squeue -u $USER | wc -l) -eq 2 ]]; then
+        random_number=$(( (RANDOM % 100) + 1 ))
+        echo "Numero casuale generato: $random_number"
+        sleep $random_number
+    fi
 done
 
 #vars simulazione
