@@ -4,14 +4,14 @@
 set -x
 # trap 'sleep 2' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
-while [[ $(squeue -u $USER | wc -l) -ge 3 ]]; do
+while [[ $(squeue -u $USER | wc -l) -ge 3 && "$var" == "ok" ]]; do
+    var="no"
+    if [[ $(squeue -u $USER | wc -l) -eq 2 ]]; then
+        sleep $(( (RANDOM % 100) + 1 ))
+        var="ok"
+    fi
     echo "In attesa che finisca almeno un job..."
     sleep $(( (RANDOM % 10) + 1 ))
-    if [[ $(squeue -u $USER | wc -l) -eq 2 ]]; then
-        random_number=$(( (RANDOM % 100) + 1 ))
-        echo "Numero casuale generato: $random_number"
-        sleep $random_number
-    fi
 done
 
 #vars simulazione
