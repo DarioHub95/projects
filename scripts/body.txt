@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Corr_tw10   ]
+[   Info sul Job Ising_Corr_tw100   ]
 
 
-Richiesta presa in carico alle ore 13:29:20: 7 Job per 'Ising_Corr_tw10' con 200 task ciascuno.
+Richiesta presa in carico alle ore 13:29:49: 7 Job per 'Ising_Corr_tw100' con 200 task ciascuno.
 
