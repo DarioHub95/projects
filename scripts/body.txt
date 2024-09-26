@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Energie_L8   ]
+[   Info sul Job Anderson_Corr_tw1000   ]
 
 
-Richiesta presa in carico alle ore 16:55:24: 4 Job per 'MBL+B_Energie_L8' con 1056 task ciascuno.
+Richiesta presa in carico alle ore 17:01:50: 4 Job per 'Anderson_Corr_tw1000' con 1044 task ciascuno.
 
