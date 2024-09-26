@@ -4,6 +4,11 @@
 set -x
 # trap 'sleep 2' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
+while [[ $(squeue -u $USER | wc -l) -lt 3 ]]; do
+    echo "In attesa che finisca almeno un job..."
+    sleep 10
+done
+
 #vars simulazione
 start_time=$(date +%s)
 rename_output_files() {
