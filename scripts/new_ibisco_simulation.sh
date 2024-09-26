@@ -57,11 +57,11 @@ for ((i=1; i<=$1; i++)); do
         sleep 5
 
         # Acquisizione dei dati del job i-esimo
-        # job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
-        # job_status=$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%t" -h)
+        job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
+        # job_status=$(squeue -j $job_id -o "%t" -h)
 
         # Verifica se lo status è R o PD
-        case $(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%t" -h) in
+        case $(squeue -j $job_id -o "%t" -h) in
             "R")
                 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
                 if [ "$nstep" -gt 5000 ]; then
@@ -86,52 +86,42 @@ for ((i=1; i<=$1; i++)); do
                 ;;
             "PD")
                 # Verifica se la reason è Resources, Priority o altro
-                if [[ "$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%R" -h)" == *"Resources"* ]]; then
-                    # Verifica se il job_id è il primo nella lista di priorità
-                    if [ "$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
+                if [[ "$(squeue -j $job_id -o "%R" -h)" == *"Resources"* ]]; then
+                    echo "Il job ${job_name}_J${i} ha priorità massima ma non ha le risorse necessarie."
+                    scancel $job_id
+                    echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
+                    ((num_tasks -= 5))
 
-                        echo "Il job ${job_name}_J${i} ha priorità massima ma non ha le risorse necessarie."
-                        scancel $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
-                        echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
-                        ((num_tasks -= 5))
-
-                        if (( $num_tasks < 1 )); then
-                            echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
-                            scancel $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
-                            ((i--))
-                            ((count++))
-                            # esito+=("Cancellato (assenza di risorse)")
-                            # tasks_per_job+=(0)
-                            break
-                        fi
-                    else
-                        echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
-                        sprio -S '-Y' --long
-                        scancel $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
+                    if (( $num_tasks < 1 )); then
+                        echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
+                        scancel $job_id
                         ((i--))
                         ((count++))
+                        # esito+=("Cancellato (assenza di risorse)")
+                        # tasks_per_job+=(0)
                         break
                     fi
 
                 # Controlla se il job è in priority
-                elif [[ "$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%R" -h)" == *"Priority"* || "$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%R" -h)" == *"DOWN, DRAINED"* ]]; then
-                    job_reason=$(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%R" -h)
-                    echo "Il job ${job_name}_J${i} con ID $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) è in attesa (PD) con reason: $job_reason."
+                # elif [[ "$(squeue -j $job_id -o "%R" -h)" == *"Priority"* || "$(squeue -j $job_id -o "%R" -h)" == *"DOWN, DRAINED"* ]]; then
+                elif [[ "$(squeue -j $job_id -o "%R" -h)" != *"ibiscohpc"* ]]; then
+                    job_reason=$(squeue -j $job_id -o "%R" -h)
+                    echo "Il job ${job_name}_J${i} con ID $job_id è in attesa (PD) con reason: $job_reason."
                     time=1800
 
                     # Verifica se il job_id è il primo nella lista di sprio
-                    if [ "$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
-                        echo "Il job con ID $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) è il primo nella lista."
+                    if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
+                        echo "Il job con ID $job_id è il primo nella lista."
                         t=0
-                        while (( $t < $time && $(squeue -j $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -o "%t" -h) != "R" )); do        # aspetta al massimo 30 min e ogni 1s controlla job_status==R
-                            echo "Il job con ID $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) è il primo nella lista."
+                        while (( $t < $time && $(squeue -j $job_id -o "%t" -h) != "R" )); do        # aspetta al massimo 30 min e ogni 1s controlla job_status==R
+                            echo "Il job con ID $job_id è il primo nella lista."
                             sleep 1
                             ((t++))
                         done
                         ((time -= 600))
                         if (( $time == 0 )); then
                             echo "Eseguiti i 3 tentativi di attesa. Cancellazione del job ${job_name}_J${i}..."
-                            scancel $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
+                            scancel $job_id
                             ((i--))
                             ((count++))
                             # esito+=("Cancellato (attesa eccessiva)")
@@ -142,7 +132,7 @@ for ((i=1; i<=$1; i++)); do
                     # Elimina il job_id se ha poca Priority
                     else
                         echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
-                        scancel $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
+                        scancel $job_id
                         ((i--))
                         ((count++))
                         # esito+=("Cancellato (bassa Priority)")
