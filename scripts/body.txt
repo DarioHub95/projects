@@ -1,6 +1,10 @@
 
-[   Info sul Job MBL+B_Energie_L8   ]
+[   ERRORE 250   ]
 
 
-Richiesta presa in carico alle ore 00:20:11: 4 Job per 'MBL+B_Energie_L8' con 714 task ciascuno.
+ERRORE DI ESECUZIONE DEI JOB 
+
+I job non sono riusciti a partire a causa di risorse non disponibili. 
+
+[parallel.sh] Interruzione della simulazione per MBL+B_Energie_L8: non sono state allocate risorse per i job. Eliminazione directory per i dati.
 
