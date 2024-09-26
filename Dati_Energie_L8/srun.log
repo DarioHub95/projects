@@ -1,4 +1,4 @@
-srun: job 378394 queued and waiting for resources
-srun: Job allocation 378358 has been revoked
-srun: Job allocation 378374 has been revoked
-srun: Force Terminated job 378358
+srun: job 378649 queued and waiting for resources
+srun: Job allocation 378632 has been revoked
+srun: Job allocation 378649 has been revoked
+srun: Force Terminated job 378635
