@@ -56,10 +56,9 @@ for ((i=1; i<=$1; i++)); do
         done   
         sleep 5
 
-        # Verifica dello stato del job i-esimo
+        # Acquisizione dei dati del job i-esimo
         job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
         job_status=$(squeue -j $job_id -o "%t" -h)
-        job_reason=$(squeue -j $job_id -o "%R" -h)
 
         case $job_status in
             "R")
@@ -85,44 +84,35 @@ for ((i=1; i<=$1; i++)); do
                 break  # Esci dal ciclo se il job è stato eseguito
                 ;;
             "PD")
-                if [[ "$job_reason" == *"Resources"* ]]; then
 
-                    # Verifica se il job_id è il primo nella lista di sprio
-                    if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==3 {print $1}')" ]; then
-                        echo "Il job con ID $job_id NON è il primo nella lista, ma il SECONDO."
-                        sprio -S '-Y' --long
+                if [[ "$(squeue -j $job_id -o "%R" -h)" == *"Resources"* ]]; then
+                    # Verifica se il job_id è il primo nella lista di priorità
+                    if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
+
+                        echo "Il job ${job_name}_J${i} ha priorità massima ma non ha le risorse necessarie."
                         scancel $job_id
                         echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
                         ((num_tasks -= 5))
 
-                        if (( $num_tasks < 2 )); then
+                        if (( $num_tasks < 1 )); then
                             echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
                             scancel $job_id
                             ((i--))
                             ((count++))
-                            # esito+=("Cancellato (bassa Priority)")
+                            # esito+=("Cancellato (assenza di risorse)")
                             # tasks_per_job+=(0)
                             break
                         fi
-                    fi
-
-                    echo "Il job ${job_name}_J${i} non ha le risorse necessarie."
-                    scancel $job_id
-                    echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
-                    ((num_tasks -= 5))
-
-                    if (( $num_tasks < 1 )); then
-                        echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
+                    else
+                        echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
+                        sprio -S '-Y' --long
                         scancel $job_id
-                        ((i--))
-                        ((count++))
-                        # esito+=("Cancellato (assenza di risorse)")
-                        # tasks_per_job+=(0)
                         break
                     fi
 
                 # Controlla se il job non è ancora running ma in priority
-                elif [[ "$job_reason" == *"Priority"* || "$job_reason" == *"DOWN, DRAINED"* ]]; then 
+                elif [[ "$(squeue -j $job_id -o "%R" -h)" == *"Priority"* || "$(squeue -j $job_id -o "%R" -h)" == *"DOWN, DRAINED"* ]]; then
+                    job_reason=$(squeue -j $job_id -o "%R" -h)
                     echo "Il job ${job_name}_J${i} con ID $job_id è in attesa (PD) con reason: $job_reason."
                     time=1800
 
