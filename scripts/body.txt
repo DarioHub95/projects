@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Corr_tw10_J4   ]
+[   Info sul Job Ising_Corr_tw100_J4   ]
 
 
-Dati acquisiti! Job Ising_Corr_tw10_J4 completato alle ore 00:19:18 con 200 task! 
+Dati acquisiti! Job Ising_Corr_tw100_J4 completato alle ore 00:46:24 con 200 task! 
 
