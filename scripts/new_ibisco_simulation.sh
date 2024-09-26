@@ -2,12 +2,12 @@
 
 # Comandi di DEBUG
 set -x
-# trap 'sleep 2' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
+# trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
-var="ok"
-while [[ $(squeue -u $USER | wc -l) -ge 3 && "$var" == "ok" ]]; do
+var="no"
+while [[ $(squeue -u $USER | wc -l) -ge 3 && "$var" == "no" ]]; do
     var="no"
-    if [[ $(squeue -u $USER | wc -l) -eq 2 ]]; then
+    if [[ $(squeue -u $USER | wc -l) -lt 3 ]]; then
         sleep $(( (RANDOM % 100) + 1 ))
         var="ok"
     fi
