@@ -107,6 +107,8 @@ for ((i=1; i<=$1; i++)); do
                         echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
                         sprio -S '-Y' --long
                         scancel $job_id
+                        ((i--))
+                        ((count++))
                         break
                     fi
 
