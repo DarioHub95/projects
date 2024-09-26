@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Corr_tw100   ]
+[   Info sul Job Ising_Corr_tw10_J1   ]
 
 
-Richiesta presa in carico alle ore 13:29:49: 7 Job per 'Ising_Corr_tw100' con 200 task ciascuno.
+Dati acquisiti! Job Ising_Corr_tw10_J1 completato alle ore 16:17:32 con 200 task! 
 
