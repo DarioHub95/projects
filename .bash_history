@@ -396,3 +396,9 @@ screen -ls
 top
 top
 exit
+screen -ls
+screen -r 2518279.MBL_Energie
+./lxgriv-run.sh 
+screen -r MBL_Energie
+./lxgriv-run.sh 
+./lxgriv-run.sh 
