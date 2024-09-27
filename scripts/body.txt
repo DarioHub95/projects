@@ -1,22 +1,16 @@
 
-[   Jobs per Ising_Corr_tw100   ]
+[   INFO 550   ]
 
 
-Modello selezionato: Ising
-Osservabile scelto:  Corr
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 1600
-N° di Task eseguiti:  
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 7
+N° di file con eccesso di '-nan': 0 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 0 
 
-| Job Name            | Job ID              | Tasks               | Esito               |
-| Ising_Corr_tw100_J1 |                     | 200                 | Eseguito            |
-| Ising_Corr_tw100_J2 |                     | 200                 | Eseguito            |
-| Ising_Corr_tw100_J3 |                     | 200                 | Eseguito            |
-| Ising_Corr_tw100_J4 |                     | 200                 | Eseguito            |
-| Ising_Corr_tw100_J5 |                     | 200                 | Eseguito            |
-| Ising_Corr_tw100_J6 |                     | 200                 | Eseguito            |
-| Ising_Corr_tw100_J7 |                     | 200                 | Eseguito            |
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 1400
+
