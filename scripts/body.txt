@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Energie_J2   ]
+[   Info sul Job MBL_Corr_tw1000   ]
 
 
-Dati acquisiti! Job Anderson_Energie_J2 completato alle ore 15:35:06 con 200 task! 
+Richiesta presa in carico alle ore 18:41:42: 20 Job per 'MBL_Corr_tw1000' con 200 task ciascuno.
 
