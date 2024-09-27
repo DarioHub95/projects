@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw10   ]
+[   Info sul Job Anderson_Corr_tw1000_J2   ]
 
 
-Richiesta presa in carico alle ore 22:39:55: 5 Job per 'Anderson_Corr_tw10' con 914 task ciascuno.
+Dati acquisiti! Job Anderson_Corr_tw1000_J2 completato con 321 task! 
 
