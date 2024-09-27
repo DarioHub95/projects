@@ -402,3 +402,4 @@ screen -r 2518279.MBL_Energie
 screen -r MBL_Energie
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
+screen -ls
