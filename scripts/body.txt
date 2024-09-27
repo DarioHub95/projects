@@ -1,6 +1,22 @@
 
-[   Info sul Job Ising_Corr_tw10_J7   ]
+[   Jobs per Ising_Corr_tw10   ]
 
 
-Dati acquisiti! Job Ising_Corr_tw10_J7 completato alle ore 08:15:28 con 200 task! 
+Modello selezionato: Ising
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 1600
+N° di Task eseguiti:  
+
+N° di Job richiesti: 7
+
+Dettagli Job Lanciati:
+
+| Job Name           | Job ID             | Tasks              | Esito              |
+| Ising_Corr_tw10_J1 |                    | 200                | Eseguito           |
+| Ising_Corr_tw10_J2 |                    | 200                | Eseguito           |
+| Ising_Corr_tw10_J3 |                    | 200                | Eseguito           |
+| Ising_Corr_tw10_J4 |                    | 200                | Eseguito           |
+| Ising_Corr_tw10_J5 |                    | 200                | Eseguito           |
+| Ising_Corr_tw10_J6 |                    | 200                | Eseguito           |
+| Ising_Corr_tw10_J7 |                    | 200                | Eseguito           |
