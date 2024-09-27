@@ -51,7 +51,7 @@ for ((i=1; i<=$1; i++)); do
     while :; do
 
         # Check se ci sono altri job e in che stato sono
-        ./scripts/check.sh
+        ./../scripts/check.sh
 
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
         sleep 1
