@@ -1,16 +1,30 @@
 
-[   INFO 550   ]
+[   Dettagli della Simulazione  ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+Start Date: 26-09-2024 11:29:20
+End Date:   27-09-2024 06:17:00
+Durata:     18:47:40
 
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'. 
+Modello selezionato: Ising
+Osservabile scelto:  Corr_tw10
 
-N° di file con eccesso di '-nan': 0 
+Parametri del Modello:
+> L:     8
+> nstep: 10010
+> Sz:    0
+> Jxy:   1
+> Jz:    0.2
+> eps:   0
+> alpha: 0
 
-N° di file incompleti: 14 
+File delle medie:
+Ising_Corr_tw10_L8_R1386_11.29.20.txt
 
-N° di file che superano ulimit: 0 
+N° di file output richiesti: 1400
+N° di file output dei job: 
+N° di file output effettvi: 1386
 
-N° di file conformi: 1386
+N° di file output eliminati: -1386
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
 
