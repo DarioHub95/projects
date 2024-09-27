@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Energie_L8   ]
+[   Info sul Job MBL+B_Energie_L8_J1   ]
 
 
-Richiesta presa in carico alle ore 14:47:03: 5 Job per 'MBL+B_Energie_L8' con 754 task ciascuno.
+Job MBL+B_Energie_L8_J1 lanciato con 149 task! 
 
