@@ -4,6 +4,10 @@
 set -x
 # trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
+# Check se ci sono altri job e in che stato sono
+./scripts/check.sh
+
+
 #vars simulazione
 start_time=$(date +%s)
 rename_output_files() {
