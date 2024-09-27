@@ -403,3 +403,8 @@ screen -r MBL_Energie
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
 screen -ls
+screen -ls
+top
+screen -ls
+./lxgriv-run.sh 
+rm -rf Dati_Corr_tw10/
