@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Corr_tw1000   ]
 
 
-Richiesta presa in carico alle ore 10:20:59: 5 Job per 'Anderson_Corr_tw1000' con 1362 task ciascuno.
+Richiesta presa in carico alle ore 14:08:38: 4 Job per 'Anderson_Corr_tw1000' con 1026 task ciascuno.
 
