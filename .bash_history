@@ -482,3 +482,7 @@ ps aux | grep "bash"
 screen -r prova
 SCREEN -dmS prova bash -c bash scripts/lxgriv_simulation.sh 20 200 Corr_tw1000 MBL; exec bash
 screen -dmS prova bash -c bash scripts/lxgriv_simulation.sh 20 200 Corr_tw1000 MBL; exec bash
+bash scripts/lxgriv_simulation.sh 20 200 Corr_tw1000 MBL; exec bash
+exit
+bash -c bash scripts/lxgriv_simulation.sh 20 200 Corr_tw1000 MBL; exec bash
+exit
