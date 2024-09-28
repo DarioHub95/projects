@@ -1,105 +1,3 @@
-git pull
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
-mpirun --job-name="prova" -p parallel -n "5" a.out > srun.log 2>&1 &
-jobs
-mpirun -np "5" --hostfile pippo a.out
-mpirun -np "5" a.out
-mpirun -np "5" ./a.out
-mpirun -np "5" ./a.out > srun.log 2>&1 &
-mpirun --output-filename output_%t.txt -np "5" ./a.out > srun.log 2>&1 &
-jobss
-jobs
-./lxgriv-run.sh 
-screen -r Corr_tw1
-git status
-git add -A
-git commit -m "New code"
-cd ..
-touch .gitconfig
-cd es
-cd desposito/
-touch .gitconfig
-./lxgriv-run.sh 
-screen -r Corr_tw1
-git fetch
-./lxgriv-run.sh 
-screen -r Corr_tw1
-git status
-git pull
-git status
-git branch
-git pul
-git pull
-git branch
-git checkout lxgriv11
-git status
-git add -A
-git commit -m "New branch"
-git config --global user.name "DarioHub95"
-git config --global user.name "DarioHub95"git config --global user.email "despositosogei@gmail.com"
-git config --global user.email "despositosogei@gmail.com"
-git commit -m "New branch"
-git push
-git status
-git add .
-git commit -m "New repo"
-git push
-mv ibisco-run.sh scripts/
-ls -la
-ls
-vi libpvm.sh 
-ls
-ls -la
-rm libpvm.sh 
-ls -la
-exit
-ls
-ls -la
-mkdir .lib2
-mv pvm-mpi.tgz .lib2/
-cd .lib2/
-ls -la
-tar xvzf pvm-mpi.tgz 
-ls -la
-cd pvm-mpi/
-ls -la
-./make.sh 
-ls
-cd ..
-ls
-ls -la
-exit
-./lxgriv-run.sh 
-screen -r Corr_tw1
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
-scp -o ProxyJump=adecandia@ibiscohpc-ui.scope.unina.it,desposito@lxclues03.fisica.unina.it .lib2/ desposito@lxgriv11.na.infn.it:.
-scp -o ProxyJump=adecandia@ibiscohpc-ui.scope.unina.it,desposito@lxclues03.fisica.unina.it adecandia/.lib2/ desposito@lxgriv11.na.infn.it:.
-ls
-scp -o ProxyJump=adecandia@ibiscohpc-ui.scope.unina.it,desposito@lxclues03.fisica.unina.it /lustre/home/adecandia/.lib2/ desposito@lxgriv11.na.infn.it:.
-history | grep mpi
-history | grep mpi
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
-history 
-ls -ls
-ls -la
-./lxgriv-run.sh 
-screen -r Corr_tw1
-./lxgriv-run.sh 
-screen -r Corr_tw1
-jobs
-jobs
-./lxgriv-run.sh 
-screen -r Corr_tw1
-./lxgriv-run.sh 
-screen -r Corr_tw1
-exit
-exit
-bash -n lxgriv-run.sh 
-bash -n scripts/lxgriv_simulation.sh 
-bash -n scripts/lxgriv_simulation.sh 
-./lxgriv-run.sh 
-screen -r Corr_tw1
-./lxgriv-run.sh 
 jobs
 ./lxgriv-run.sh 
 screen -r Corr_tw1
@@ -486,3 +384,117 @@ bash scripts/lxgriv_simulation.sh 20 200 Corr_tw1000 MBL; exec bash
 exit
 bash -c bash scripts/lxgriv_simulation.sh 20 200 Corr_tw1000 MBL; exec bash
 exit
+screen -r prova
+screen -r prova
+screen -ls
+ps aux | grep "lxgriv_simulation.sh"
+kill -SIGSTOP 2956800
+screen -ls
+screen -r 2956797.Anderson_Corr_tw100
+kill -SIGCONT 2956800
+prstat
+./lxgriv-run.sh 
+screen -r 3124492.MBL_Corr_tw1000
+./lxgriv-run.sh 
+qstat -u desposito
+qstat
+qstat
+qstat -h
+ps aux | grep "mpirun"
+screen -ls
+ps aux | grep "mpirun"
+pstree -p | grep mpirun
+screen -ls
+screen -r 3474177.MBL_Corr_tw1000
+pstree -p | grep mpirun
+screen -ls
+screen -r 3474177.MBL_Corr_tw1000
+./lxgriv-run.sh 
+screen -r MBL_Corr_tw1000
+screen -ls
+pstree -p | grep mpirun
+pstree -p | grep mpirun
+ps aux | grep "mpirun"
+kill -TSTP 3482314
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+top
+ps aux | grep "mpirun"
+pstree -p | grep mpirun
+ps aux | grep "mpirun"
+kill -SIGSTOP 3482314
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+kill -SIGCONT 3482314
+ps aux | grep "mpirun"
+kill -SIGSTOP 3482314
+pstree -p | grep mpirun
+ps -p 3471218 -o pid,user,%cpu,%mem,vsz,rss,tty,stat,start,time,cmd
+kill -SIGSTOP 3471218
+ps -p 3471218 -o pid,user,%cpu,%mem,vsz,rss,tty,stat,start,time,cmd
+ps -o pid,user,%cpu,%mem,vsz,rss,tty,stat,start,time,cmd
+ps aux | grep "mpirun"
+screen -ls
+kill 3471218
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+screen -ls
+pstree -p | grep mpirun
+ps -p 3471218
+ps -p 3471218
+kill 3471218
+ps -p 3471218
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+ps -o pid,user,%cpu,%mem,vsz,rss,tty,stat,start,time,cmd
+kill -SIGSTOP 3443989
+qstat
+qstat
+qstat
+kill -SIGSTOP 3482317
+qstat
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+pstree -p | grep mpirun
+kill 3471602
+pstree -p | grep mpirun
+kill 3471221
+pstree -p | grep mpirun
+pstree -p -l | grep mpirun
+kill -SIGSTOP 3482747
+pstree -p -l | grep mpirun
+ps aux | grep "mpirun"
+ps aux | grep "SCREEN"
+kill -SIGSTOP 3482279
+screen -ls
+ps aux | grep "SCREEN"
+pstree -p -l | grep mpirun
+ps aux | grep "mpirun"
+kill -CONT 3471218
+ps aux | grep "mpirun"
+kill -TSTP 3471218
+ps aux | grep "mpirun"
+kill -CONT 3482314
+ps aux | grep "mpirun"
+ps aux | grep "a.out"
+ps aux | grep "mpirun"
+kill -TSTP 3482314
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+top -p 3482314
+ps aux | grep "mpirun"
+top -p 3443989
+ps aux | grep "mpirun"
+kill -SIGSTOP 3482314
+ps aux | grep "mpirun"
+top -p 3482314
+top
+ps aux | grep "mpirun"
+kill -SIGSTOP 3430027
+ps aux | grep "mpirun"
