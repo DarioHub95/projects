@@ -412,3 +412,73 @@ screen -ls
 screen -r 2956124.Anderson_Energie
 screen -r 2956797.Anderson_Corr_tw100
 screen -r 3124492.MBL_Corr_tw1000
+for i in {1..1000000}; do echo "ciao"; sleep 3; done
+fg
+fg
+for i in {1..1000000}; do echo "ciao"; sleep 3; done
+for i in {1..1000000}; do echo "ciao"; sleep 1; done
+fg
+fg
+for i in {1..1000000}; do echo "ciao"; sleep 1; done
+JOBS
+jobs
+jobid
+jobs -l
+kill -CONT 3468153
+jobs -l
+for i in {1..1000000}; do echo "ciao"; sleep 1; done
+JOBS -CONT 3468153
+jobs -CONT 3468153
+fg %1
+for i in {1..1000000}; do echo "ciao"; sleep 1; done
+fg %1
+for i in {1..1000000}; do echo "ciao"; sleep 1; done &
+fg
+for i in {1..1000000}; do echo "ciao"; sleep 1; done
+exit
+screen -ls
+top
+top -h
+top --help
+top -hv
+pid
+pw
+pwd
+jobs
+pid
+top -u desposito
+ps
+ps aux
+ps aux | grep desposit
+ps aux | grep desposi
+ps aux | grep bash -c bash
+ps aux | grep "bash -c bash"
+ps aux | grep "bash -c bash"
+ps aux | grep "bash -c bash"
+ps aux | grep "lxgriv_simulation.sh"
+screen -S prova
+ps aux | grep "lxgriv_simulation.sh"
+ps aux | grep "SCREEN"
+ps aux | grep prova
+ps aux | grep desposi
+ps aux | grep desposi
+ps aux | grep desposi
+ps aux | grep "bash"
+screen -ls
+screen -r prova
+screen -ls
+ps aux | grep "bash"
+screen -r prova
+ps aux | grep "bash"
+kill -STOP 3464028
+screen -r prova
+ps aux | grep 'T'
+ps aux | grep 'T'
+ps aux | grep "bash"
+kill -CONT 3464028
+ps aux | grep "bash"
+screen -r prova
+ps aux | grep "bash"
+screen -r prova
+SCREEN -dmS prova bash -c bash scripts/lxgriv_simulation.sh 20 200 Corr_tw1000 MBL; exec bash
+screen -dmS prova bash -c bash scripts/lxgriv_simulation.sh 20 200 Corr_tw1000 MBL; exec bash
