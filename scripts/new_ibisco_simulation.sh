@@ -4,9 +4,6 @@
 set -x
 # trap 'sleep 3' DEBUG        # Imposta un rallentamento generale di 1 secondo prima di ogni comando
 
-# Check se ci sono altri job e in che stato sono
-./scripts/check.sh
-
 #vars simulazione
 start_time=$(date +%s)
 rename_output_files() {
@@ -50,12 +47,10 @@ for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     while :; do
 
-        ./../scripts/check.sh
         srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
         sleep 1
         while [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; do 
             ((num_tasks -= 1))
-            ./../scripts/check.sh   
             srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
             sleep 1
         done   
@@ -92,28 +87,18 @@ for ((i=1; i<=$1; i++)); do
             "PD")
                 # Verifica se la reason è Resources, Priority o altro
                 if [[ "$(squeue -j $job_id -o "%R" -h)" == *"Resources"* ]]; then
-                    # Verifica se il job_id è il primo nella lista di priorità
-                    if [ "$job_id" == "$(sprio -S '-Y' | awk 'NR==2 {print $1}')" ]; then
 
-                        echo "Il job ${job_name}_J${i} ha priorità massima ma non ha le risorse necessarie."
-                        scancel $job_id
-                        echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
-                        ((num_tasks -= 5))
-
-                        if (( $num_tasks < 1 )); then
-                            echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
-                            scancel $job_id
-                            ((i--))
-                            ((count++))
-                            # esito+=("Cancellato (assenza di risorse)")
-                            # tasks_per_job+=(0)
-                            break
-                        fi
-                    else
-                        echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
+                    echo "Il job ${job_name}_J${i} ha priorità massima ma non ha le risorse necessarie."
+                    scancel $job_id
+                    echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
+                    ((num_tasks -= 5))
+                    if (( $num_tasks < 1 )); then
+                        echo "Raggiunto il minimo numero di task (-n 2) per job. Cancellazione del job ${job_name}_J${i}..."
                         scancel $job_id
                         ((i--))
                         ((count++))
+                        # esito+=("Cancellato (assenza di risorse)")
+                        # tasks_per_job+=(0)
                         break
                     fi
 
