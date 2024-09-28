@@ -408,3 +408,7 @@ top
 screen -ls
 ./lxgriv-run.sh 
 rm -rf Dati_Corr_tw10/
+screen -ls
+screen -r 2956124.Anderson_Energie
+screen -r 2956797.Anderson_Corr_tw100
+screen -r 3124492.MBL_Corr_tw1000
