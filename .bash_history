@@ -1,10 +1,3 @@
-mpiexec --help
-slurm
-screen -r Corr_tw1
-screen -ls
-./lxgriv-run.sh 
-screen -r Corr_tw10
-screen -ls
 screen -r Corr_tw10
 ./lxgriv-run.sh 
 screen -r Corr_tw10
@@ -498,3 +491,10 @@ kill -SIGCONT 3482317
 kill -SIGCONT 3482747
 top -p 3482314
 top
+screen -ls
+top
+pstree -p -l | grep mpirun
+qstat
+qstat
+top
+exit
