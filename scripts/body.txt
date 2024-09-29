@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Energie_L8   ]
+[   Info sul Job Anderson_Corr_tw10_J4   ]
 
 
-Richiesta presa in carico alle ore 17:07:43: 5 Job per 'MBL+B_Energie_L8' con 152 task ciascuno.
+Dati acquisiti! Job Anderson_Corr_tw10_J4 completato con 1450 task! 
 

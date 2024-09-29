@@ -136,7 +136,7 @@ for ((i=1; i<=$1; i++)); do
                         ((count++))
                         while (($(screen -ls | wc -l) >= $(squeue -u $USER | wc -l)+2)); do 
                             echo "In attesa che si completi qualche job..."
-                            sleep 1
+                            sleep 10
                         done                        
                         # esito+=("Cancellato (bassa Priority)")
                         # tasks_per_job+=(0)
