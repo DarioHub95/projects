@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw10_J3   ]
+[   Info sul Job Anderson_Corr_tw10_J4   ]
 
 
-Dati acquisiti! Job Anderson_Corr_tw10_J3 completato con 1300 task! 
+Job Anderson_Corr_tw10_J4 lanciato con 1450 task! 
 
