@@ -1,47 +1,3 @@
-jobs
-./lxgriv-run.sh 
-screen -r Corr_tw1
-./lxgriv-run.sh 
-screen -r Corr_tw1
-./lxgriv-run.sh 
-screen -r Corr_tw1
-./lxgriv-run.sh 
-screen -r Corr_tw1
-./lxgriv-run.sh 
-screen -r Corr_tw10
-nstep=5000                    
-if [[ "$nstep" >= 5000 ]]; then     
-                       echo "ok"
-                    fi
-nstep=5000; if [[ "$nstep" >= 5000 ]]; then echo "ok"; fi
-nstep=5000; if [ "$nstep" >= 5000 ]; then echo "ok"; fi
-nstep=5000; if [[ $nstep >= 5000 ]]; then echo "ok"; fi
-nstep=5000; if (( $nstep >= 5000 )); then echo "ok"; fi
-nstep=500; if (( $nstep >= 5000 )); then echo "ok"; fi
-screen -ls
-screen -ls
-screen -r
-exit
-screen -ls
-screen -r
-./lxgriv-run.sh 
-screen -r Corr_tw10
-./lxgriv-run.sh 
-screen -ls
-./lxgriv-run.sh 
-creen -r Corr_tw100
-screen -r Corr_tw100
-jobs
-jobs -l
-screen -r Corr_tw100
-screen -r Corr_tw100
-screen -r Corr_tw100
-./lxgriv-run.sh 
-screen -ls
-screen -r Corr_tw1
-mpi
-mpicc --help
-mpivars --help
 mpiexec --help
 slurm
 screen -r Corr_tw1
@@ -498,3 +454,47 @@ top
 ps aux | grep "mpirun"
 kill -SIGSTOP 3430027
 ps aux | grep "mpirun"
+ps aux | grep "mpirun"
+screen -ls
+pstree -p -l | grep mpirun
+qstat
+
+pstree -p -l | grep mpirun
+qstat
+top -p 3482747
+pstree -p -l | grep mpirun
+top -p 3482314
+pstree -p -l | grep mpirun
+screen -ls
+kill -SIGCONT 3482279
+kill -SIGCONT 3482314
+kill -SIGCONT 3482747
+qstat
+ps aux | grep "mpirun"
+screen -r 3482279.MBL_Corr_tw1000
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+ps aux | grep "mpirun"
+top -p 3482314
+top -p 3482314
+pstree -p -l | grep mpirun
+kill -SIGCONT 3482279
+kill -SIGCONT 3482281
+kill -SIGCONT 3482282
+kill -SIGCONT 3482314
+kill -SIGCONT 3482316
+kill -SIGCONT 3482317
+kill -SIGCONT 3482747
+top -p 3482314
+top
