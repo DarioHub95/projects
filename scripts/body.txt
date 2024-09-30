@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Energie_L8_J7   ]
+[   Info sul Job Anderson_Corr_tw1000_J8   ]
 
 
-Job MBL+B_Energie_L8_J7 lanciato con 600 task! 
+Dati acquisiti! Job Anderson_Corr_tw1000_J8 completato con 294 task! 
 
