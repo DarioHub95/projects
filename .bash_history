@@ -1,6 +1,3 @@
-ls
-cat mpirun.log 
-history |grep  mpi
 cd ..
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o Dati_Spin/a.out
 cd Dati_Spin/
@@ -498,3 +495,6 @@ pstree -p -l | grep mpirun
 kill -SIGCONT 1090882
 kill -SIGCONT 1090883
 kill -SIGCONT 1091204
+screen -ls
+./lxgriv-run.sh 
+qstat
