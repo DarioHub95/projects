@@ -1,9 +1,5 @@
 screen -r Corr_tw1
 ./lxgriv-run.sh 
-screen -r Corr_tw1
-./lxgriv-run.sh 
-screen -r Corr_tw1
-./lxgriv-run.sh 
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
 screen -ls
@@ -497,4 +493,8 @@ pstree -p -l | grep mpirun
 kill -SIGCONT 525840
 kill -SIGCONT 525841
 kill -SIGCONT 526305
+pstree -p -l | grep mpirun
+screen -ls
+ps aux | grep "mpirun"
+qstat
 pstree -p -l | grep mpirun
