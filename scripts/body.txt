@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job MBL+B_Energie   ]
 
 
-Start Date: 27-09-2024 08:14:52
-End Date:   01-10-2024 21:40:58
-Durata:     13:26:06
-
-Modello selezionato: Anderson
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     4
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0
-> eps:   5
-> alpha: 0
-
-File delle medie:
-Anderson_Energie_L4_R1886_08.14.52.txt
-
-N° di file output richiesti: 2000
-N° di file output dei job: 
-N° di file output effettvi: 1886
-
-N° di file output eliminati: -1886
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
+Richiesta presa in carico alle ore 23:45:08: 15 Job per 'MBL+B_Energie' con 200 task ciascuno.
 
