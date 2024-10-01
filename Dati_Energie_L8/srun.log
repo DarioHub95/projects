@@ -598,3 +598,7 @@ mpi process #299: redirecting stdout & stderr to output-299.txt
 mpi process #342: redirecting stdout & stderr to output-342.txt
 mpi process #351: redirecting stdout & stderr to output-351.txt
 mpi process #328: redirecting stdout & stderr to output-328.txt
+srun: error: Node failure on ibiscohpc-wn07
+srun: error: Node failure on ibiscohpc-wn07
+srun: Force Terminated job 413948
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
