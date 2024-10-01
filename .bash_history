@@ -1,16 +1,3 @@
-./lxgriv-run.sh 
-screen -r Corr_tw10
-screen -ls
-screen -r Corr_tw10
-exit
-screen -ls
-screen -r Corr_tw10
-screen -r Corr_tw1
-screen -r Corr_tw10
-screen -ls
-./lxgriv-run.sh 
-screen -r Corr_tw10
-./lxgriv-run.sh 
 screen -r Corr_tw1
 ./lxgriv-run.sh 
 screen -r Corr_tw1
@@ -498,3 +485,16 @@ qstat
 top
 exit
 qstat
+screen -ls
+qstat
+pstree -p -l | grep mpirun
+kill -SIGCONT 2956797
+kill -SIGCONT 2956799
+kill -SIGCONT 2956800
+kill -SIGCONT 3443989
+kill -SIGCONT 3443991
+pstree -p -l | grep mpirun
+kill -SIGCONT 525840
+kill -SIGCONT 525841
+kill -SIGCONT 526305
+pstree -p -l | grep mpirun
