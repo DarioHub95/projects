@@ -1,16 +1,3 @@
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-screen -ls
-screen -r Corr_tw10
-./lxgriv-run.sh 
-screen -r Spin
-ls
-Dati_Spin/
-cd Dati_Spin/
-ls
-history | grep mpi
-mpirun -np 1 ./a.out > mpirun.log 2>&1 &
-ls
 ls
 cat mpirun.log 
 history |grep  mpi
@@ -498,3 +485,16 @@ qstat
 pstree -p -l | grep mpirun
 screen -ls
 qstat
+screen -ls
+qstat
+pstree -p -l | grep mpirun
+kill -SIGCONT 2956124
+kill -SIGCONT 2956126
+kill -SIGCONT 
+kill -SIGCONT 2956127
+kill -SIGCONT 3430027
+kill -SIGCONT 3430029
+pstree -p -l | grep mpirun
+kill -SIGCONT 1090882
+kill -SIGCONT 1090883
+kill -SIGCONT 1091204
