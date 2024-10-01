@@ -1,5 +1,3 @@
-screen -r Corr_tw1
-./lxgriv-run.sh 
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
 screen -ls
@@ -498,3 +496,5 @@ screen -ls
 ps aux | grep "mpirun"
 qstat
 pstree -p -l | grep mpirun
+screen -ls
+qstat
