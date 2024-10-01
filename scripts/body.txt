@@ -2,5 +2,5 @@
 [   Info sul Job Ising_Energie_L8_J2   ]
 
 
-Job Ising_Energie_L8_J2 lanciato con 891 task! 
+Dati acquisiti! Job Ising_Energie_L8_J2 completato con 891 task! 
 
