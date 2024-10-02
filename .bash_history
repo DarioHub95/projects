@@ -1,14 +1,3 @@
-cd ..
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o Dati_Spin/a.out
-cd Dati_Spin/
-mpirun -np 1 ./a.out > mpirun.log 2>&1 &
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o ../Dati_Spin/a.out
-cd ..
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o Dati_Spin/a.out
 cd Dati_Spin/
 mpirun -np 1 ./a.out > mpirun.log 2>&1 &
 cat mpirun.log 
@@ -497,4 +486,15 @@ kill -SIGCONT 1090883
 kill -SIGCONT 1091204
 screen -ls
 ./lxgriv-run.sh 
+qstat
+./lxgriv-run.sh 
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
+qstat
 qstat
