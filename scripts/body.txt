@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw1000_J2   ]
+[   Info sul Job Ising_Energie_L4_J7   ]
 
 
-Job Anderson_Corr_tw1000_J2 lanciato con 600 task! 
+Dati acquisiti! Job Ising_Energie_L4_J7 completato con 525 task! 
 
