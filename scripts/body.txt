@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Energie_L4_J1   ]
+[   Info sul Job Ising_Energie_L4_J2   ]
 
 
-Dati acquisiti! Job Ising_Energie_L4_J1 completato con 285 task! 
+Job Ising_Energie_L4_J2 lanciato con 430 task! 
 
