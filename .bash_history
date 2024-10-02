@@ -1,5 +1,3 @@
-mpirun -np 1 ./a.out > mpirun.log 2>&1 &
-cat mpirun.log 
 cat mpirun.log 
 cat mpirun.log 
 cat mpirun.log 
@@ -498,3 +496,5 @@ qstat
 qstat
 qstat
 top
+screen -ls
+qstat
