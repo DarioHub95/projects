@@ -1,16 +1,30 @@
 
-[   INFO 550   ]
+[   Dettagli della Simulazione  ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+Start Date: 02-10-2024 17:34:06
+End Date:   03-10-2024 00:17:53
+Durata:     06:43:47
 
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
+Modello selezionato: Ising
+Osservabile scelto:  Energie
 
-N° di file con eccesso di '-nan': 0 
+Parametri del Modello:
+> L:     4
+> nstep: 10000
+> Sz:    0
+> Jxy:   1
+> Jz:    0.2
+> eps:   0
+> alpha: 0
 
-N° di file incompleti: 0 
+File delle medie:
+Ising_Energie_L4_R4090_17.34.06.txt
 
-N° di file che superano ulimit: 670 
+N° di file output richiesti: 7000
+N° di file output dei job: 4760
+N° di file output effettvi: 4090
 
-N° di file conformi: 4090
+N° di file output eliminati: 670
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
 
