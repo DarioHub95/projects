@@ -1,6 +1,3 @@
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
 cd ..
 rm -rf Dati_Spin/
 ls
@@ -498,3 +495,6 @@ qstat
 top
 screen -ls
 qstat
+qstat
+./lxgriv-run.sh 
+rm -rf Dati_Energie/ Dati_Corr_tw100/ Dati_Corr_tw1000/
