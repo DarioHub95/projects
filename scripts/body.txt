@@ -1,22 +1,16 @@
 
-[   Jobs per Anderson_Corr_tw1000   ]
+[   INFO 550   ]
 
 
-Modello selezionato: Anderson
-Osservabile scelto:  Corr
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 4800
-N° di Task eseguiti:  4155
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 7
+N° di file con eccesso di '-nan': 0 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 364 
 
-| Job Name                  | Job ID                    | Tasks                     | Esito                     |
-| Anderson_Corr_tw1000_J1   | 414943                    | 600                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J2   | 415324                    | 600                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J3   | 415438                    | 600                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J4   | 415508                    | 600                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J5   | 415684                    | 600                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J6   | 415780                    | 600                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J7   | 415858                    | 555                       | Eseguito dopo 0 tentativi |
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 3791
+
