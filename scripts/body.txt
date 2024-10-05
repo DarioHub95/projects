@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw100   ]
+[   Info sul Job Ising_Energie_L10   ]
 
 
-Richiesta presa in carico alle ore 00:17:57: 3 Job per 'MBL_Corr_tw100' con 1486 task ciascuno.
+Richiesta presa in carico alle ore 00:18:39: 4 Job per 'Ising_Energie_L10' con 1486 task ciascuno.
 
