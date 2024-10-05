@@ -1,6 +1,30 @@
 
-[   Info sul Job Ising_Energie_L10_J1   ]
+[   Dettagli della Simulazione  ]
 
 
-Job Ising_Energie_L10_J1 lanciato con 698 task! 
+Start Date: 04-10-2024 06:19:03
+End Date:   05-10-2024 13:30:48
+Durata:     07:11:45
+
+Modello selezionato: MBL+B
+Osservabile scelto:  Corr
+
+Parametri del Modello:
+> L:     tw1000
+> nstep: 11000
+> Sz:    0
+> Jxy:   1
+> Jz:    0.2
+> eps:   5
+> alpha: 0.01
+
+File delle medie:
+MBL+B_Corr_tw1000_R3443_06.19.03.txt
+
+N° di file output richiesti: 4200
+N° di file output dei job: 3770
+N° di file output effettvi: 3443
+
+N° di file output eliminati: 327
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
 
