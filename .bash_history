@@ -1,9 +1,3 @@
-cd ..
-rm -rf Dati_Spin/
-ls
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
-mpirun -np 1 ./a.out > mpirun.log 2>&1 &
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
 mpirun -np 1 ./a.out > mpirun.log 2>&1 &
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
@@ -498,3 +492,9 @@ qstat
 qstat
 ./lxgriv-run.sh 
 rm -rf Dati_Energie/ Dati_Corr_tw100/ Dati_Corr_tw1000/
+./lxgriv-run.sh 
+qstat
+qstat
+qstat
+qstat
+top
