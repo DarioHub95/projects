@@ -47,7 +47,7 @@ for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     while :; do
 
-        if [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -ne "" ]]; then
+        if [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; then
             srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
             sleep 1
             while [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; do 
