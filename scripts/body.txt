@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Energie_L6   ]
+[   Info sul Job MBL_Corr_tw100_J1   ]
 
 
-Richiesta presa in carico alle ore 13:55:48: 4 Job per 'Ising_Energie_L6' con 1884 task ciascuno.
+Job MBL_Corr_tw100_J1 lanciato con 1495 task! 
 
