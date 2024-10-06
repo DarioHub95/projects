@@ -1,6 +1,3 @@
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
-mpirun -np 1 ./a.out > mpirun.log 2>&1 &
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
 mpirun -np 1 ./a.out > mpirun.log 2>&1 &
 cat mpirun.log 
 cat mpirun.log 
@@ -498,3 +495,6 @@ qstat
 qstat
 qstat
 top
+screen -ls
+./lxgriv-run.sh 
+ls
