@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Energie_L6_J1   ]
+[   Info sul Job MBL_Corr_tw100_J2   ]
 
 
-Job Ising_Energie_L6_J1 lanciato con 420 task! 
+Dati acquisiti! Job MBL_Corr_tw100_J2 completato con 1495 task! 
 
