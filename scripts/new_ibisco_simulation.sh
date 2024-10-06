@@ -47,14 +47,16 @@ for ((i=1; i<=$1; i++)); do
     num_tasks="$2"
     while :; do
 
-        srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
-        sleep 1
-        while [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; do 
-            ((num_tasks -= 1))
+        if [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -ne "" ]]
             srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
             sleep 1
-        done   
-        sleep 5
+            while [[ $(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1) -eq "" ]]; do 
+                ((num_tasks -= 1))
+                srun --job-name="${job_name}_J${i}" -p parallel -n $num_tasks a.out > srun.log 2>&1 &
+                sleep 1
+            done   
+            sleep 5
+        fi
 
         # Acquisizione dei dati del job i-esimo
         job_id=$(squeue -u $USER -n "${job_name}_J${i}" -o "%i" -h | head -n 1)
@@ -134,7 +136,7 @@ for ((i=1; i<=$1; i++)); do
                         scancel $job_id
                         ((i--))
                         ((count++))
-                        while (($(screen -ls | wc -l) >= $(squeue -u $USER | wc -l)+2)); do 
+                        while (($(screen -ls | wc -l) != $(squeue -u $USER | wc -l)+3)); do 
                             echo "In attesa che si completi qualche job..."
                             sleep 10
                         done                        
