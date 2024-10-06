@@ -1,6 +1,19 @@
 
-[   Info sul Job Ising_Energie_L10_J4   ]
+[   Jobs per Ising_Energie_L10   ]
 
 
-Dati acquisiti! Job Ising_Energie_L10_J4 completato con 1486 task! 
+Modello selezionato: Ising
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 7430
+N° di Task eseguiti:  5219
+
+N° di Job richiesti: 4
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| Ising_Energie_L10_J1      | 424661                    | 1076                      | Eseguito dopo 0 tentativi |
+| Ising_Energie_L10_J2      | 424727                    | 1171                      | Eseguito dopo 0 tentativi |
+| Ising_Energie_L10_J3      | 424728                    | 1486                      | Eseguito dopo 0 tentativi |
+| Ising_Energie_L10_J4      | 424729                    | 1486                      | Eseguito dopo 0 tentativi |
