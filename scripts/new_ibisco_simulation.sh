@@ -228,7 +228,7 @@ echo "Il numero di file con righe sbagliate è $file_count_lines"
 t_w=$(grep -oP '(?<=tw=)\d+' $(find "Dati_$3" -maxdepth 1 -type f -name "output_J*" | head -n 1))
 for file in "Dati_$3"/output*; do
     num_righe=$(wc -l < "$file")
-    if [ "$num_righe" -eq $((16 + nstep - t_w + 1)) ]; then
+    if [ "$num_righe" -eq $((nstep - 100 + 1)) ]; then
         echo "Il numero di righe in $file è corretto: $num_righe"
     else
         echo "Il numero di righe in $file non corrisponde. Trovate: $num_righe"
