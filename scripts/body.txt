@@ -1,6 +1,19 @@
 
-[   Info sul Job MBL_Corr_tw100_J4   ]
+[   Jobs per MBL_Corr_tw100   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw100_J4 completato con 845 task! 
+Modello selezionato: MBL
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 9420
+N° di Task eseguiti:  4555
+
+N° di Job richiesti: 4
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| MBL_Corr_tw100_J1         | 424756                    | 1495                      | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J2         | 425685                    | 1495                      | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J3         | 426959                    | 720                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J4         | 427120                    | 845                       | Eseguito dopo 0 tentativi |
