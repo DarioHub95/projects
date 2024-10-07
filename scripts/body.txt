@@ -1,6 +1,30 @@
 
-[   Info sul Job MBL+B_Energie_L4_J6   ]
+[   Jobs per MBL+B_Energie_L4   ]
 
 
-Dati acquisiti! Job MBL+B_Energie_L4_J6 completato con 299 task! 
+Modello selezionato: MBL+B
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 17984
+N° di Task eseguiti:  2304
+
+N° di Job richiesti: 15
+
+Dettagli Job Lanciati:
+
+| MBL+B_Energie_L4_J4        | 428826                     | Tasks                      | MBL+B_Energie_L4_J2        |
+| MBL+B_Energie_L4_J4        | 429007                     | 639                        | MBL+B_Energie_L4_J3        |
+| MBL+B_Energie_L4_J4        | 429196                     | 474                        | MBL+B_Energie_L4_J4        |
+| MBL+B_Energie_L4_J4        | 429399                     | 349                        | MBL+B_Energie_L4_J4        |
+| MBL+B_Energie_L4_J4        | 429522                     | 309                        | MBL+B_Energie_L4_J4        |
+| MBL+B_Energie_L4_J5        | 429881                     | 234                        | MBL+B_Energie_L4_J4        |
+| MBL+B_Energie_L4_J6        | 430075                     | 299                        | MBL+B_Energie_L4_J4        |
+| Job ID                     | 430271                     | Esito                      | MBL+B_Energie_L4_J4        |
+| 427248                     | 430467                     | Eseguito dopo 0 tentativi  | MBL+B_Energie_L4_J4        |
+| 427390                     | 430660                     | Eseguito dopo 0 tentativi  | MBL+B_Energie_L4_J4        |
+| 427591                     | 430858                     | Eseguito dopo 0 tentativi  | MBL+B_Energie_L4_J4        |
+| 427843                     | 430991                     | Eseguito dopo 0 tentativi  | MBL+B_Energie_L4_J4        |
+| 428069                     | 431122                     | Eseguito dopo 18 tentativi | MBL+B_Energie_L4_J4        |
+| 428258                     | 431309                     | Eseguito dopo 0 tentativi  | MBL+B_Energie_L4_J4        |
+| 428445                     | 431488                     | Job Name                   | MBL+B_Energie_L4_J4        |
+| 428638                     | 431659                     | MBL+B_Energie_L4_J1        | MBL+B_Energie_L4_J4        |
