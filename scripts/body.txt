@@ -1,16 +1,6 @@
 
-[   INFO 550   ]
+[   Info sul Job MBL+B_Energie_L4_J1   ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
-
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
-
-N° di file con eccesso di '-nan': 0 
-
-N° di file incompleti: 1096 
-
-N° di file che superano ulimit: 0 
-
-N° di file conformi: 2362
+Job MBL+B_Energie_L4_J1 lanciato con 639 task! 
 
