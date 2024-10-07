@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job MBL_Corr_tw100_J4   ]
 
 
-Start Date: 06-10-2024 18:48:01
-End Date:   07-10-2024 04:28:42
-Durata:     09:40:41
-
-Modello selezionato: Ising
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     6
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   0
-> alpha: 0
-
-File delle medie:
-Ising_Energie_L6_R4090_18.48.01.txt
-
-N° di file output richiesti: 4320
-N° di file output dei job: 4165
-N° di file output effettvi: 4090
-
-N° di file output eliminati: 75
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
+Dati acquisiti! Job MBL_Corr_tw100_J4 completato con 845 task! 
 
