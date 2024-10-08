@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Energie_L4_J4   ]
+[   Info sul Job Anderson_Energie_L4_J5   ]
 
 
-Dati acquisiti! Job Anderson_Energie_L4_J4 completato con 541 task! 
+Job Anderson_Energie_L4_J5 lanciato con 521 task! 
 
