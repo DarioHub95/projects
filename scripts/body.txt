@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Corr_tw1000_J6   ]
 
 
-Job Anderson_Corr_tw1000_J6 lanciato con 190 task! 
+Dati acquisiti! Job Anderson_Corr_tw1000_J6 completato con 190 task! 
 
