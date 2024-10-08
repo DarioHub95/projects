@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Energie_L4_J6   ]
+[   Info sul Job Anderson_Corr_tw1000_J6   ]
 
 
-Dati acquisiti! Job Anderson_Energie_L4_J6 completato con 316 task! 
+Job Anderson_Corr_tw1000_J6 lanciato con 190 task! 
 
