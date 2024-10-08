@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Corr_tw1000_J5   ]
 
 
-Job Anderson_Corr_tw1000_J5 lanciato con 405 task! 
+Dati acquisiti! Job Anderson_Corr_tw1000_J5 completato con 405 task! 
 
