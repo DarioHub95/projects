@@ -9,7 +9,7 @@ int main(int argc,char **argv)
   {
    pvm_init();
 
-   int L=4;							// numero di siti della catena di spin
+   int L=10;							// numero di siti della catena di spin
    int pbc=0;							// condizioni al bordo (0: condizioni aperte, 1: condizioni periodiche)
    int type=1;						// tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
    int nstep=10000;       // numero di esecuzioni del monte carlo
