@@ -1,6 +1,70 @@
 
-[   Info sul Job Anderson_Corr_tw1000_J6   ]
+[   Jobs per Anderson_Corr_tw1000   ]
 
 
-Dati acquisiti! Job Anderson_Corr_tw1000_J6 completato con 190 task! 
+Modello selezionato: Anderson
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 44800
+N° di Task eseguiti:  2325
+
+N° di Job richiesti: 55
+
+Dettagli Job Lanciati:
+
+| Anderson_Corr_tw1000_J5    | 429626                     | Tasks                      | Anderson_Corr_tw1000_J2    |
+| Anderson_Corr_tw1000_J5    | 429628                     | 800                        | Anderson_Corr_tw1000_J2    |
+| Anderson_Corr_tw1000_J5    | 429630                     | 420                        | Anderson_Corr_tw1000_J2    |
+| Anderson_Corr_tw1000_J5    | 429632                     | 310                        | Anderson_Corr_tw1000_J2    |
+| Anderson_Corr_tw1000_J5    | 429634                     | 200                        | Anderson_Corr_tw1000_J2    |
+| Anderson_Corr_tw1000_J5    | 429636                     | 405                        | Anderson_Corr_tw1000_J2    |
+| Anderson_Corr_tw1000_J6    | 429638                     | 190                        | Anderson_Corr_tw1000_J2    |
+| Job ID                     | 429640                     | Esito                      | Anderson_Corr_tw1000_J2    |
+| 427143                     | 429642                     | Eseguito dopo 0 tentativi  | Anderson_Corr_tw1000_J2    |
+| 427677                     | 429644                     | Eseguito dopo 0 tentativi  | Anderson_Corr_tw1000_J2    |
+| 429530                     | 429646                     | Eseguito dopo 61 tentativi | Anderson_Corr_tw1000_J2    |
+| 429532                     | 429648                     | Eseguito dopo 0 tentativi  | Anderson_Corr_tw1000_J2    |
+| 429534                     | 429650                     | Eseguito dopo 16 tentativi | Anderson_Corr_tw1000_J2    |
+| 429536                     | 429653                     | Eseguito dopo 21 tentativi | Anderson_Corr_tw1000_J2    |
+| 429538                     | 429655                     | Job Name                   | Anderson_Corr_tw1000_J2    |
+| 429540                     | 429860                     | Anderson_Corr_tw1000_J1    | Anderson_Corr_tw1000_J2    |
+| 429542                     | 431784                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J2    |
+| 429544                     | 432191                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J2    |
+| 429546                     | 432242                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J2    |
+| 429548                     | 432415                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J2    |
+| 429550                     | 432535                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J2    |
+| 429554                     | 432655                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J2    |
+| 429556                     | 432775                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J3    |
+| 429558                     | 432895                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429560                     | 432994                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429562                     | 433092                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429564                     | 433158                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429566                     | 433335                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429568                     | 433454                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429570                     | 433573                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429572                     | 433692                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429574                     | 433811                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429576                     | 433930                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429578                     | 434013                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429580                     | 437324                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429582                     | 437610                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429584                     | 437725                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429586                     | 437839                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429588                     | 437953                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429590                     | 438067                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J4    |
+| 429592                     | 438181                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429594                     | 438295                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429596                     | 438411                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429598                     | 438527                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429600                     | 438643                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429602                     | 438870                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429604                     | 439005                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429606                     | 439135                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429608                     | 439265                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429612                     | 439396                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429614                     | 439520                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429616                     | 439599                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429618                     | 439859                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429620                     | 440118                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429622                     | 440377                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
+| 429624                     | 440623                     | Anderson_Corr_tw1000_J2    | Anderson_Corr_tw1000_J5    |
