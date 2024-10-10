@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie_L4_J3   ]
+[   Info sul Job Anderson_Energie_L10_J6   ]
 
 
-Dati acquisiti! Job MBL_Energie_L4_J3 completato con 525 task! 
+Job Anderson_Energie_L10_J6 lanciato con 305 task! 
 
