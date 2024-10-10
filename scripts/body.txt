@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw1000_J13   ]
+[   Info sul Job MBL_Corr_tw1000_J14   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw1000_J13 completato alle ore 07:13:45 con 200 task! 
+Dati acquisiti! Job MBL_Corr_tw1000_J14 completato alle ore 08:53:18 con 200 task! 
 
