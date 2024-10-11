@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Energie_L10_J8   ]
 
 
-Job Anderson_Energie_L10_J8 lanciato con 775 task! 
+Dati acquisiti! Job Anderson_Energie_L10_J8 completato con 775 task! 
 
