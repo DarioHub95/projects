@@ -1,55 +1,16 @@
 
-[   Jobs per MBL_Corr_tw1000   ]
+[   INFO 550   ]
 
 
-Modello selezionato: MBL
-Osservabile scelto:  Corr
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 8200
-N° di Task eseguiti:  
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 40
+N° di file con eccesso di '-nan': 0 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 864 
 
-| Job Name            | Job ID              | Tasks               | Esito               |
-| MBL_Corr_tw1000_J1  |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J2  |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J3  |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J4  |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J5  |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J6  |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J7  |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J8  |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J9  |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J10 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J11 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J12 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J13 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J14 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J15 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J16 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J17 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J18 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J19 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J20 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J21 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J22 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J23 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J24 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J25 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J26 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J27 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J28 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J29 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J30 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J31 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J32 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J33 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J34 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J35 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J36 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J37 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J38 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J39 |                     | 200                 | Eseguito            |
-| MBL_Corr_tw1000_J40 |                     | 200                 | Eseguito            |
+N° di file che superano ulimit: 3046 
+
+N° di file conformi: 4090
+
