@@ -1,12 +1,6 @@
 cat mpirun.log 
 cat mpirun.log 
 cat mpirun.log 
-mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
-mpirun -np 1 ./a.out > mpirun.log 2>&1 &
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
 cat mpirun.log 
 cat mpirun.log 
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
@@ -498,3 +492,9 @@ screen -ls
 top
 ./lxgriv-run.sh 
 qstat
+screen -ls
+rm -rf Dati_Energie/ Dati_Corr_tw10/ Dati_Corr_tw1000/
+./lxgriv-run.sh 
+screen -r MBL_Corr_tw1000
+./lxgriv-run.sh 
+top
