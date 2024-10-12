@@ -1,6 +1,16 @@
 
-[   Info sul Job MBL_Corr_tw100_J3   ]
+[   INFO 550   ]
 
 
-Job MBL_Corr_tw100_J3 lanciato con 700 task! 
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
+
+N° di file con eccesso di '-nan': 0 
+
+N° di file incompleti: 0 
+
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 1300
 
