@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Corr_tw1000_J3   ]
+[   Info sul Job MBL_Corr_tw100_J6   ]
 
 
-Job Anderson_Corr_tw1000_J3 lanciato con 795 task! 
+Dati acquisiti! Job MBL_Corr_tw100_J6 completato con 270 task! 
 
