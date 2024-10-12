@@ -1,16 +1,10 @@
 
-[   INFO 550   ]
+[   ERRORE 350   ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+ERRORE NEL CALCOLO DELLE MEDIE 
 
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'. 
+Il calcolo delle medie non è riuscito a causa di dati malformati. 
 
-N° di file con eccesso di '-nan': 0 
-
-N° di file incompleti: 3046 
-
-N° di file che superano ulimit: 0 
-
-N° di file conformi: 0
+[media.sh] Il file 'MBL_Corr_tw1000_L8_R0_10.43.15.txt' non contiene nessun valore medio. Uscita dallo screen media_Corr_tw1000...
 
