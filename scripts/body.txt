@@ -2,5 +2,5 @@
 [   Info sul Job MBL_Energie_L4_J15   ]
 
 
-Job MBL_Energie_L4_J15 lanciato con 800 task! 
+Dati acquisiti! Job MBL_Energie_L4_J15 completato con 800 task! 
 
