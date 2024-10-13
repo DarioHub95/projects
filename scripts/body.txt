@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Corr_tw100_J9   ]
+[   Info sul Job MBL_Corr_tw100_J10   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw100_J9 completato con 555 task! 
+Job MBL_Corr_tw100_J10 lanciato con 615 task! 
 
