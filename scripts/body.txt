@@ -1,35 +1,6 @@
 
-[   Jobs per Anderson_Corr_tw1000   ]
+[   Info sul Job MBL+B_Energie_L4_J10   ]
 
 
-Modello selezionato: Anderson
-Osservabile scelto:  Corr
+Dati acquisiti! Job MBL+B_Energie_L4_J10 completato con 922 task! 
 
-N° di Task richiesti: 21000
-N° di Task eseguiti:  17885
-
-N° di Job richiesti: 20
-
-Dettagli Job Lanciati:
-
-| Job Name                  | Job ID                    | Tasks                     | Esito                     |
-| Anderson_Corr_tw1000_J1   | 489050                    | 705                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J2   | 489104                    | 795                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J3   | 489299                    | 795                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J4   | 489384                    | 1000                      | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J5   | 489420                    | 1000                      | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J6   | 489462                    | 970                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J7   | 489519                    | 865                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J8   | 489627                    | 650                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J9   | 489674                    | 870                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J10  | 489699                    | 925                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J11  | 489715                    | 940                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J12  | 489907                    | 730                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J13  | 490007                    | 800                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J14  | 490081                    | 885                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J15  | 490124                    | 1000                      | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J16  | 490133                    | 1000                      | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J17  | 490137                    | 1000                      | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J18  | 490273                    | 1000                      | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J19  | 490654                    | 955                       | Eseguito dopo 0 tentativi |
-| Anderson_Corr_tw1000_J20  | 490677                    | 1000                      | Eseguito dopo 0 tentativi |
