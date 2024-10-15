@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job Anderson_Energie_J1   ]
 
 
-Start Date: 15-10-2024 12:26:22
-End Date:   15-10-2024 12:30:22
-Durata:     00:04:00
-
-Modello selezionato: Anderson
-Osservabile scelto:  Corr_tw100
-
-Parametri del Modello:
-> L:     8
-> nstep: 10100
-> Sz:    0
-> Jxy:   1
-> Jz:    0
-> eps:   5
-> alpha: 0
-
-File delle medie:
-Anderson_Corr_tw100_L8_R3089_12.26.22.txt
-
-N° di file output richiesti: 8000
-N° di file output dei job: 
-N° di file output effettvi: 3089
-
-N° di file output eliminati: -3089
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
+Dati acquisiti! Job Anderson_Energie_J1 completato alle ore 17:07:46 con 200 task! 
 

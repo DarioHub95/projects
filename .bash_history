@@ -1,7 +1,3 @@
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
 mpirun -np 1 ./a.out > mpirun.log 2>&1 &
 cat mpirun.log 
@@ -498,3 +494,7 @@ screen -r MBL_Corr_tw1000
 ./lxgriv-run.sh 
 top
 screen -ls
+./lxgriv-run.sh 
+rm -rf Dati_Corr_tw1000/ Dati_Corr_tw100/
+./lxgriv-run.sh 
+screen -r Anderson_Corr_tw100
