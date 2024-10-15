@@ -1,6 +1,35 @@
 
-[   Info sul Job MBL_Corr_tw100_J20   ]
+[   Jobs per MBL_Corr_tw100   ]
 
 
-Dati acquisiti! Job MBL_Corr_tw100_J20 completato con 700 task! 
+Modello selezionato: MBL
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 14700
+N° di Task eseguiti:  12065
+
+N° di Job richiesti: 20
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| MBL_Corr_tw100_J1         | 488981                    | 330                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J2         | 488983                    | 700                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J3         | 488984                    | 700                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J4         | 489051                    | 700                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J5         | 489062                    | 700                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J6         | 489255                    | 270                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J7         | 489383                    | 310                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J8         | 489419                    | 540                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J9         | 489451                    | 555                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J10        | 489482                    | 615                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J11        | 489532                    | 640                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J12        | 489645                    | 625                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J13        | 489679                    | 700                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J14        | 489700                    | 700                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J15        | 489722                    | 700                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J16        | 489918                    | 650                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J17        | 490024                    | 635                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J18        | 490105                    | 595                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J19        | 490126                    | 700                       | Eseguito dopo 0 tentativi |
+| MBL_Corr_tw100_J20        | 490134                    | 700                       | Eseguito dopo 0 tentativi |
