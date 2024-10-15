@@ -1,55 +1,16 @@
 
-[   Jobs per Anderson_Corr_tw100   ]
+[   INFO 550   ]
 
 
-Modello selezionato: Anderson
-Osservabile scelto:  Corr
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 8200
-N° di Task eseguiti:  
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 40
+N° di file con eccesso di '-nan': 0 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 821 
 
-| Job Name                | Job ID                  | Tasks                   | Esito                   |
-| Anderson_Corr_tw100_J1  |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J2  |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J3  |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J4  |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J5  |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J6  |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J7  |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J8  |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J9  |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J10 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J11 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J12 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J13 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J14 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J15 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J16 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J17 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J18 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J19 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J20 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J21 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J22 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J23 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J24 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J25 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J26 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J27 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J28 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J29 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J30 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J31 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J32 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J33 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J34 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J35 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J36 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J37 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J38 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J39 |                         | 200                     | Eseguito                |
-| Anderson_Corr_tw100_J40 |                         | 200                     | Eseguito                |
+N° di file che superano ulimit: 3089 
+
+N° di file conformi: 4090
+
