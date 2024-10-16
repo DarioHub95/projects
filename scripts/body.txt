@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie_L4_J7   ]
+[   Info sul Job MBL_Corr_tw100_J3   ]
 
 
-Job MBL_Energie_L4_J7 lanciato con 905 task! 
+Dati acquisiti! Job MBL_Corr_tw100_J3 completato con 900 task! 
 
