@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job MBL_Energie_L4   ]
 
 
-Start Date: 16-10-2024 08:13:16
-End Date:   16-10-2024 08:24:45
-Durata:     00:11:29
-
-Modello selezionato: MBL+B
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     4
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   5
-> alpha: 0.01
-
-File delle medie:
-MBL+B_Energie_L4_R3936_08.13.16.txt
-
-N° di file output richiesti: 11480
-N° di file output dei job: 
-N° di file output effettvi: 3936
-
-N° di file output eliminati: -3936
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
+Richiesta presa in carico alle ore 10:29:53: 10 Job per 'MBL_Energie_L4' con 1180 task ciascuno.
 
