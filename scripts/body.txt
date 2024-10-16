@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie_L4_J2   ]
+[   Info sul Job MBL_Energie_L4_J3   ]
 
 
-Dati acquisiti! Job MBL_Energie_L4_J2 completato con 1025 task! 
+Job MBL_Energie_L4_J3 lanciato con 860 task! 
 
