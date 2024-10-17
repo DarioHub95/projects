@@ -1,6 +1,25 @@
 
-[   Info sul Job MBL_Energie_L4_J10   ]
+[   Jobs per MBL_Energie_L4   ]
 
 
-Dati acquisiti! Job MBL_Energie_L4_J10 completato con 895 task! 
+Modello selezionato: MBL
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 12980
+N° di Task eseguiti:  10300
+
+N° di Job richiesti: 10
+
+Dettagli Job Lanciati:
+
+| Job Name                  | Job ID                    | Tasks                     | Esito                     |
+| MBL_Energie_L4_J1         | 490754                    | 1050                      | Eseguito dopo 0 tentativi |
+| MBL_Energie_L4_J2         | 490826                    | 1025                      | Eseguito dopo 0 tentativi |
+| MBL_Energie_L4_J3         | 491034                    | 860                       | Eseguito dopo 0 tentativi |
+| MBL_Energie_L4_J4         | 491165                    | 915                       | Eseguito dopo 0 tentativi |
+| MBL_Energie_L4_J5         | 491259                    | 1155                      | Eseguito dopo 0 tentativi |
+| MBL_Energie_L4_J6         | 491268                    | 1180                      | Eseguito dopo 0 tentativi |
+| MBL_Energie_L4_J7         | 492419                    | 905                       | Eseguito dopo 0 tentativi |
+| MBL_Energie_L4_J8         | 492480                    | 1160                      | Eseguito dopo 0 tentativi |
+| MBL_Energie_L4_J9         | 492486                    | 1155                      | Eseguito dopo 0 tentativi |
+| MBL_Energie_L4_J10        | 492576                    | 895                       | Eseguito dopo 0 tentativi |
