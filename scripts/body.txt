@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Energie_L12_J1   ]
+[   Info sul Job MBL_Corr_tw1000_J6   ]
 
 
-Dati acquisiti! Job Anderson_Energie_L12_J1 completato con 993 task! 
+Dati acquisiti! Job MBL_Corr_tw1000_J6 completato con 1184 task! 
 
