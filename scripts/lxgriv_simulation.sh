@@ -49,26 +49,19 @@ for ((i=1; i<=$1; i++)); do
     sleep 1
 
     echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
-    # #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-    # if (( $1 <= 5000 )); then     
-    #     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Job '${job_name}_J${i}' lanciato alle ore $(TZ='Europe/Rome' date '+%H:%M:%S') con $num_tasks task! "
-    # fi
-    # #-----------------------------------------------------------------
     wait $!
     rename_output_files
     esito+=("Eseguito") 
     tasks_per_job+=($num_tasks)
-    #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+    #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(TZ='Europe/Rome' date '+%H:%M:%S') con $num_tasks task! "
-    #-----------------------------------------------------------------
+    #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
     jobs+=("${job_name}_J${i}")
-    ids+=("${job_id}")
 done
 cd ../
 
-#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-echo "La somma delle componenti dell'array non è 0. La somma è $sum."
-./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}"    # $2 ---> input_tasks (R)
+#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}"    # $2 ---> input_tasks (R)
 #-----------------------------------------------------------------
 
 #----------------------------------------------------------------------------------------------------------------
@@ -77,11 +70,10 @@ echo "La somma delle componenti dell'array non è 0. La somma è $sum."
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ "$(ls Dati_$3 | wc -l)" -eq 2 ]; then       # Se la cartella contiene solo 2 file 
-    ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen media_$3..." 
+    ./scripts/notify_errors.sh 100 "[media.sh] I Job sono stati eseguiti ma la cartella Dati_$3 non contiene i dati di output. Uscita dallo screen ${4}_${3}..." 
     screen -X quit
 fi
 #-----------------------------------------------------------------
-
 
 # PULIZIA DATI - Tolleranza al 5% per il numero di -nan nei file di dati
 max_nan_count=0
@@ -152,7 +144,7 @@ fi
 # Salva le prime 16 righe del primo file in media totale
 MEDIA="${4}_${3}_L${L}_R${R_tot}_$(TZ='Europe/Rome' date -u -d @$start_time +'%H.%M.%S').txt"
 output_file=$(find "Dati_$3" -maxdepth 1 -type f -name "output*" | head -n 1)
-head -n 16 "$output_file" > "${MEDIA}"
+head -n 16 "$output_file" > "Medie/${MEDIA}"
 
 # Rimuovi in ogni file il numero di righe pari al massimo numero di -nan trovati 
 echo "Rimuovi ${max_nan_count:-0} righe non sommabili da ogni file di output..."
@@ -166,44 +158,44 @@ echo ""
 # Calcolo delle medie a 1 colonna (OPERATORE SINGOLO)
 if [ "$Oss" -eq 2 ] || [ "$Oss" -eq 3 ] || [ "$Oss" -eq 10 ] || [ "$Oss" -eq 12 ]; then
 echo "Media su tutte le realizzazioni..."
-paste -d+ "Dati_$3"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=2; i++) for(j=1; j<R; j++) $i+=$(i+j*2); printf "\t%20.15g\t%20.15g\n", $1/R, $2/R}' > "temp_output.txt"
+paste -d+ "Dati_$3"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=2; i++) for(j=1; j<R; j++) $i+=$(i+j*2); printf "\t%20.15g\t%20.15g\n", $1/R, $2/R}' > "Medie/temp_output.txt"
 fi
 
 # Calcolo delle medie a 3 colonne (ENERGIE / COMPONENTI SPIN SU L)
 if [[ "$Oss" -eq 4 || "$Oss" -eq 6 ]]; then
 echo "Media su tutte le realizzazioni..."
-paste -d+ "Dati_$3"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=4; i++) for(j=1; j<R; j++) $i+=$(i+j*4); printf "\t%20.15g\t%20.15g\t%20.15g\t%20.15g\n", $1/R, $2/R, $3/R, $4/R}' > "temp_output.txt"
+paste -d+ "Dati_$3"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=4; i++) for(j=1; j<R; j++) $i+=$(i+j*4); printf "\t%20.15g\t%20.15g\t%20.15g\t%20.15g\n", $1/R, $2/R, $3/R, $4/R}' > "Medie/temp_output.txt"
 fi
 
 # Calcolo delle medie a 8 colonne (CORRELAZIONE PER L=8)
 if [[ "$Oss" -eq 5 ]]; then
 echo "Media su tutte le realizzazioni..."
-paste -d+ "Dati_$3"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=9; i++) for(j=1; j<R; j++) $i+=$(i+j*9); printf "\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\n", $1/R, $2/R, $3/R, $4/R, $5/R, $6/R, $7/R, $8/R, $9/R}' > "temp_output.txt"
+paste -d+ "Dati_$3"/output*.txt | awk -v R=$R_tot '{for(i=1; i<=9; i++) for(j=1; j<R; j++) $i+=$(i+j*9); printf "\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\t%20.15g\n", $1/R, $2/R, $3/R, $4/R, $5/R, $6/R, $7/R, $8/R, $9/R}' > "Medie/temp_output.txt"
 fi
 
 # Inserisci l'output dopo la 16esima riga
 {
-    head -n 16 "${MEDIA}"
-    cat "temp_output.txt"
+    head -n 16 "Medie/${MEDIA}"
+    cat "Medie/temp_output.txt"
 } > "${MEDIA}.tmp"
 
-mv "${MEDIA}.tmp" "${MEDIA}"
-rm temp_*.txt
+mv "${MEDIA}.tmp" "Medie/${MEDIA}"
+rm "Medie/temp_*.txt"
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [ $(wc -l < "${MEDIA}") -le 20 ]; then
-    ./scripts/notify_errors.sh 350 "[media.sh] Il file '${MEDIA}' non contiene nessun valore medio. Uscita dallo screen media_$3..." 
+if [ $(wc -l < "Medie/${MEDIA}") -le 20 ]; then
+    ./scripts/notify_errors.sh 350 "[media.sh] Il file '${MEDIA}' non contiene nessun valore medio. Uscita dallo screen ${4}_${3}..." 
     screen -X quit
-elif [ ! -f "${MEDIA}" ]; then
-    ./scripts/notify_errors.sh 200 "[media.sh] Il file '${MEDIA}' non esiste. Uscita dallo screen media_$3..." 
+elif [ ! -f "Medie/${MEDIA}" ]; then
+    ./scripts/notify_errors.sh 200 "[media.sh] Il file '${MEDIA}' non esiste. Uscita dallo screen ${4}_${3}..." 
     screen -X quit
 fi
 #-----------------------------------------------------------------
 
 # Inserisci riga di Data e ora e di tasks nel file di media totale
-sed -i "1i Tasks: ${R_tot}" "${MEDIA}"
-sed -i "1i Date: $(TZ='Europe/Rome' date '+%Y-%m-%d %H:%M:%S')" "${MEDIA}"
-sed -i '/seed/d' "${MEDIA}"
+sed -i "1i Tasks: ${R_tot}" "Medie/${MEDIA}"
+sed -i "1i Date: $(TZ='Europe/Rome' date '+%Y-%m-%d %H:%M:%S')" "Medie/${MEDIA}"
+sed -i '/seed/d' "Medie/${MEDIA}"
 
 #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
 ./scripts/notify_ok.sh "S" "${MEDIA}" $start_time $total_tasks $sum
@@ -211,6 +203,6 @@ sed -i '/seed/d' "${MEDIA}"
 
 # Processa i file di output nella directory
 echo "Sostituzione punti con virgole nel file delle medie..."
-sed -i 's/\./,/g' "${MEDIA}"
+sed -i 's/\./,/g' "Medie/${MEDIA}"
 
 screen -X quit

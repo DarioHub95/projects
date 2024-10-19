@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie   ]
+[   Info sul Job MBL_Energie_J1   ]
 
 
-Richiesta presa in carico alle ore 13:31:24: 50 Job per 'MBL_Energie' con 200 task ciascuno.
+Dati acquisiti! Job MBL_Energie_J1 completato alle ore 16:36:50 con 200 task! 
 

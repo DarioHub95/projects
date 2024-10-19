@@ -32,7 +32,7 @@ fi
 start_time=$3
 end_time=$(date +%s)
 time_diff=$((end_time - start_time))
-hms=$(date -u -d @$time_diff +'%H:%M:%S')
+hms=$(date -u -d @$time_diff +'%d %H:%M:%S')
 
 # Assembla il contenuto del body.txt
 cat <<EOF > $output_file
@@ -49,12 +49,12 @@ Osservabile scelto:  ${osservabile}
 
 Parametri del Modello:
 > L:     ${L}
-> nstep: $(grep -oP '(?<=^nstep=)\d+' "${2}")
-> Sz:    $(grep -oP '(?<=^Sz=)-?\d+' "${2}")
+> nstep: $(grep -oP '(?<=^nstep=)\d+' "Medie/${2}")
+> Sz:    $(grep -oP '(?<=^Sz=)-?\d+' "Medie/${2}")
 > Jxy:   1
-> Jz:    $(grep -oP '(?<=^Jz=)\d+(\.\d+)?' "${2}")
-> eps:   $(grep -oP '(?<=^eps=)\d+(\.\d+)?' "${2}")
-> alpha: $(grep -oP '(?<=^alpha=)\d+(\.\d+)?' "${2}")
+> Jz:    $(grep -oP '(?<=^Jz=)\d+(\.\d+)?' "Medie/${2}")
+> eps:   $(grep -oP '(?<=^eps=)\d+(\.\d+)?' "Medie/${2}")
+> alpha: $(grep -oP '(?<=^alpha=)\d+(\.\d+)?' "Medie/${2}")
 
 File delle medie:
 ${2}
@@ -64,7 +64,7 @@ N° di file output dei job: $5
 N° di file output effettvi: $R
 
 N° di file output eliminati: $(($5 - R))
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 5% di '-nan' o erano corrotti.
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
 
 EOF
 
