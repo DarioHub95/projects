@@ -6,11 +6,12 @@ NC='\033[0m'
 # script_path="scripts/ibisco_simulation.sh"
 script_path="scripts/new_ibisco_simulation.sh"
 
-echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]-----------------------------------------------|${NC}"
-echo ""
-echo "Rimozione file di log..."
-echo ""
-rm -rf srun.log scripts/*.log
+
+# echo -e "${GREEN}[TASK 0 - PULIZIA AMBIENTE]-----------------------------------------------|${NC}"
+# echo ""
+# echo "Rimozione file di log..."
+# echo ""
+# rm -rf srun.log scripts/*.log
 
 # Verifica se la cartella "Medie" esiste, altrimenti creala
 if [ ! -d "Medie" ]; then
@@ -268,4 +269,4 @@ echo ""
 # sed -i "s/int P = [0-9]*;/int P = 0;/" "main.c"
 # sed -i "s/int L=[0-9]*;/int L=3;/" "main.c"
 # sed -i "s/int nstep=[0-9]*;/int nstep=20;/" "main.c"
-# # sed -i "s/int Oss=[0-9]*;/int Oss=0;/" "main.c" 
+# sed -i "s/int Oss=[0-9]*;/int Oss=0;/" "main.c" 

@@ -32,7 +32,7 @@ fi
 start_time=$3
 end_time=$(date +%s)
 time_diff=$((end_time - start_time))
-hms=$(date -u -d @$time_diff +'%H:%M:%S')
+hms=$(date -u -d @$time_diff +'%d %H:%M:%S')
 
 # Assembla il contenuto del body.txt
 cat <<EOF > $output_file
@@ -40,8 +40,8 @@ cat <<EOF > $output_file
 [   Dettagli della Simulazione  ]
 
 
-Start Date: $(date -u -d @$start_time +"%d-%m-%Y %H:%M:%S")
-End Date:   $(date -u -d @$end_time +"%d-%m-%Y %H:%M:%S")
+Start Date: $(TZ="Europe/Rome" date -u -d @$start_time +"%d-%m-%Y %H:%M:%S")
+End Date:   $(TZ="Europe/Rome" date -u -d @$end_time +"%d-%m-%Y %H:%M:%S")
 Durata:     ${hms}
 
 Modello selezionato: ${modello}

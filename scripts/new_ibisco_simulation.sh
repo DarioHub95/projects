@@ -77,11 +77,13 @@ for ((i=1; i<=$1; i++)); do
                 rename_output_files
                 esito+=("Eseguito dopo ${count} tentativi") 
                 tasks_per_job+=($num_tasks)
+                jobs+=("${job_name}_J${i}")
+                ids+=("${job_id}")
                 count=0
                 
                 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
                 if [ "$nstep" -gt 5000 ]; then
-                    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato con $num_tasks task! "
+                    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(TZ='Europe/Rome' date '+%H:%M:%S') con $num_tasks task! "
                 fi
                 #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
                 break  # Esci dal ciclo se il job è stato eseguito
@@ -92,6 +94,7 @@ for ((i=1; i<=$1; i++)); do
 
                     echo "Il job ${job_name}_J${i} ha priorità massima ma non ha le risorse necessarie."
                     scancel $job_id
+                    ((count++))
                     echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
                     ((num_tasks -= 5))
                     if (( $num_tasks < 1 )); then
@@ -99,8 +102,6 @@ for ((i=1; i<=$1; i++)); do
                         scancel $job_id
                         ((i--))
                         ((count++))
-                        # esito+=("Cancellato (assenza di risorse)")
-                        # tasks_per_job+=(0)
                         break
                     fi
 
@@ -125,8 +126,6 @@ for ((i=1; i<=$1; i++)); do
                             scancel $job_id
                             ((i--))
                             ((count++))
-                            # esito+=("Cancellato (attesa eccessiva)")
-                            # tasks_per_job+=(0)
                             break
                         fi
                     
@@ -140,16 +139,12 @@ for ((i=1; i<=$1; i++)); do
                             echo "In attesa che si completi qualche job..."
                             sleep 10
                         done                        
-                        # esito+=("Cancellato (bassa Priority)")
-                        # tasks_per_job+=(0)
                         break
                     fi
                 fi
                 ;;
         esac
     done
-    jobs+=("${job_name}_J${i}")
-    ids+=("${job_id}")
 done
 cd ../
 
@@ -161,8 +156,8 @@ done
 
 if [ "$sum" -eq 0 ]; then
     #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-    ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per $job_name: non sono state allocate risorse per i job. Eliminazione directory per i dati."
-    rm -rf "Dati_$3"
+    ./scripts/notify_errors.sh 250 "[parallel.sh] Interruzione della simulazione per $job_name: non sono state allocate risorse per i job."
+    # rm -rf "Dati_$3"
     screen -X quit
     #-----------------------------------------------------------------
 else
