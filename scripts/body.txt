@@ -1,114 +1,16 @@
 
-[   Jobs per MBL_Corr_tw1000   ]
+[   INFO 550   ]
 
 
-Modello selezionato: MBL
-Osservabile scelto:  Corr
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 118400
-N° di Task eseguiti:  6912
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 99
+N° di file con eccesso di '-nan': 0 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 2540 
 
-| MBL_Corr_tw1000_J6          | 494088                      | Tasks                       | MBL_Corr_tw1000_J6          |
-| MBL_Corr_tw1000_J6          | 494089                      | 994                         | MBL_Corr_tw1000_J6          |
-| MBL_Corr_tw1000_J6          | 494090                      | 604                         | MBL_Corr_tw1000_J6          |
-| MBL_Corr_tw1000_J6          | 494091                      | 634                         | MBL_Corr_tw1000_J6          |
-| MBL_Corr_tw1000_J6          | 494092                      | 1069                        | MBL_Corr_tw1000_J6          |
-| MBL_Corr_tw1000_J6          | 494093                      | 1184                        | MBL_Corr_tw1000_J6          |
-| MBL_Corr_tw1000_J6          | 494094                      | 1184                        | MBL_Corr_tw1000_J6          |
-| MBL_Corr_tw1000_J6          | 494095                      | 339                         | MBL_Corr_tw1000_J6          |
-| MBL_Corr_tw1000_J7          | 494096                      | 904                         | MBL_Corr_tw1000_J6          |
-| MBL_Corr_tw1000_J8          | 494097                      | Esito                       | MBL_Corr_tw1000_J6          |
-| Job ID                      | 494098                      | Eseguito dopo 0 tentativi   | MBL_Corr_tw1000_J6          |
-| 492737                      | 494099                      | Eseguito dopo 0 tentativi   | MBL_Corr_tw1000_J6          |
-| 492926                      | 494100                      | Eseguito dopo 0 tentativi   | MBL_Corr_tw1000_J6          |
-| 493040                      | 494101                      | Eseguito dopo 0 tentativi   | MBL_Corr_tw1000_J6          |
-| 493065                      | 494102                      | Eseguito dopo 0 tentativi   | MBL_Corr_tw1000_J6          |
-| 493108                      | 494103                      | Eseguito dopo 0 tentativi   | MBL_Corr_tw1000_J6          |
-| 493204                      | 494104                      | Eseguito dopo 183 tentativi | MBL_Corr_tw1000_J6          |
-| 493998                      | 494105                      | Eseguito dopo 0 tentativi   | MBL_Corr_tw1000_J6          |
-| 494004                      | 494106                      | Job Name                    | MBL_Corr_tw1000_J6          |
-| 494005                      | 494107                      | MBL_Corr_tw1000_J1          | MBL_Corr_tw1000_J6          |
-| 494006                      | 494108                      | MBL_Corr_tw1000_J2          | MBL_Corr_tw1000_J6          |
-| 494007                      | 494109                      | MBL_Corr_tw1000_J3          | MBL_Corr_tw1000_J6          |
-| 494008                      | 494110                      | MBL_Corr_tw1000_J4          | MBL_Corr_tw1000_J6          |
-| 494009                      | 494111                      | MBL_Corr_tw1000_J5          | MBL_Corr_tw1000_J6          |
-| 494010                      | 494112                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494011                      | 494113                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494012                      | 494114                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494013                      | 494115                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494014                      | 494116                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494015                      | 494117                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494016                      | 494118                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494017                      | 494119                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494018                      | 494120                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494019                      | 494121                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494020                      | 494122                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494021                      | 494123                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494022                      | 494124                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494023                      | 494125                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494024                      | 494126                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494025                      | 494127                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494026                      | 494128                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494027                      | 494129                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494028                      | 494130                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494029                      | 494131                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494030                      | 494132                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494032                      | 494133                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494033                      | 494134                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494034                      | 494135                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494035                      | 494136                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494036                      | 494137                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494037                      | 494138                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494038                      | 494139                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494040                      | 494140                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494041                      | 494141                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494042                      | 494142                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494043                      | 494143                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494044                      | 494144                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494045                      | 494145                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494046                      | 494146                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494047                      | 494147                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494048                      | 494148                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494049                      | 494149                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494050                      | 494151                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494051                      | 494152                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494052                      | 494153                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494053                      | 494154                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494054                      | 494155                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494055                      | 494156                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494056                      | 494157                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494057                      | 494158                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494058                      | 494159                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494059                      | 494160                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494060                      | 494161                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494061                      | 494162                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494062                      | 494163                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494063                      | 494164                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494064                      | 494165                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494065                      | 494166                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494066                      | 494167                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494067                      | 494168                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494068                      | 494169                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494069                      | 494170                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494070                      | 494171                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494071                      | 494172                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494072                      | 494173                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494073                      | 494174                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494074                      | 494175                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494075                      | 494176                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494076                      | 494177                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494077                      | 494178                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494078                      | 494179                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494079                      | 494180                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494080                      | 494181                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494081                      | 494182                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494082                      | 494183                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494083                      | 494184                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494084                      | 494185                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494085                      | 494186                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494086                      | 494187                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
-| 494087                      | 494382                      | MBL_Corr_tw1000_J6          | MBL_Corr_tw1000_J6          |
+N° di file che superano ulimit: 282 
+
+N° di file conformi: 4090
+
