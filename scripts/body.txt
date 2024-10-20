@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw1000_J3   ]
+[   Info sul Job Anderson_Energie_L12_J1   ]
 
 
-Job MBL+B_Corr_tw1000_J3 lanciato con 1000 task! 
+Dati acquisiti! Job Anderson_Energie_L12_J1 completato alle ore 23:31:29 con 1096 task! 
 
