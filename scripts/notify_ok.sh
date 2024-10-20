@@ -71,7 +71,7 @@ EOF
 elif [ "$1" == "JJ" ]; then
 
 #Formattazione
-# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}_${3}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}" "${ids[@]}" 
+# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "${4}_${3}" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}"
 
 output_file="scripts/body.txt"
 git_message="Jobs lanciati con successo!"
@@ -81,7 +81,6 @@ x=$(( ( $# - 4 ) / 4 ))
 tasks_per_job=("${@:5:x}") # I prossimi 3 argomenti sono gli elementi di tasks_per_job
 esito=("${@:5+x:x}")         # I successivi 3 argomenti sono gli elementi di esito
 jobs=("${@:5+x*2:x}")         # I successivi 3 argomenti sono gli elementi di jobs
-ids=("${@:5+x*3:x}")          # I successivi 3 argomenti sono gli elementi di ids
 basename="${4%.txt}"
 IFS='_' read -r -a components <<< "$basename"
 modello="${components[0]}"        # Ising
@@ -89,7 +88,7 @@ osservabile="${components[1]}"     # Energie
 max_len=0
 
 # Itera su tutte le componenti di tutti gli array e trova la lunghezza massima
-for element in "${jobs[@]}" "${ids[@]}" "${tasks_per_job[@]}" "${esito[@]}"; do
+for element in "${jobs[@]}" "${tasks_per_job[@]}" "${esito[@]}"; do
     length=${#element}
     if [ $length -gt $max_len ]; then
         max_len=$length
@@ -106,7 +105,7 @@ Modello selezionato: ${modello}
 Osservabile scelto:  ${osservabile}
 
 N° di Task richiesti: $((${2}*${#jobs[@]}))
-N° di Task eseguiti:  ${3}
+N° di Task eseguiti:  $((200*${#jobs[@]}))
 
 N° di Job richiesti: $((${#jobs[@]} - 1))
 
@@ -115,13 +114,12 @@ Dettagli Job Lanciati:
 EOF
 
 for ((i=0; i<x; i++)); do
-    job_id=${ids[$i]:-""}
     task_per_job=${tasks_per_job[$i]:-""}
     esito_val=${esito[$i]:-""}
     job_name=${jobs[$i]:-""}
     
     # Stampa della riga formattata
-    printf "| %-*s | %-*s | %-*s | %-*s |\n" "$max_len" "$job_name" "$max_len" "$job_id" "$max_len" "$task_per_job" "$max_len" "$esito_val" >> $output_file
+    printf "| %-*s | %-*s | %-*s |\n" "$max_len" "$job_name" "$max_len" "$task_per_job" "$max_len" "$esito_val" >> $output_file
 done
 
 # EOF

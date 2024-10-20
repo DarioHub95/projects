@@ -1,5 +1,3 @@
-cat mpirun.log 
-cat mpirun.log 
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm
 mpirun -np 1 ./a.out > mpirun.log 2>&1 &
 cat mpirun.log 
@@ -498,3 +496,5 @@ top
 top
 screen -ls
 top
+screen -ls
+screen -r 2693868.MBL_Energie
