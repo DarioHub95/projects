@@ -135,10 +135,10 @@ for ((i=1; i<=$1; i++)); do
                         scancel $job_id
                         ((i--))
                         ((count++))
-                        while (($(screen -ls | wc -l) != $(squeue -u $USER | wc -l)+3)); do 
-                            echo "In attesa che si completi qualche job..."
+                        while [ "$(sprio -S '-Y' -l | awk 'NR==2 {print $3}')" == "adecandia" ] && [ "$(sprio -S '-Y' -l | awk 'NR==3 {print $3}')" == "adecandia" ]; do
+                            echo "L'utente adecandia è primo nella Priority. Aspetto 10 secondi..."
                             sleep 10
-                        done                        
+                        done                       
                         break
                     fi
                 fi

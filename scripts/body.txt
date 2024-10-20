@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw1000_J1   ]
+[   Info sul Job Anderson_Energie_L12   ]
 
 
-Job MBL+B_Corr_tw1000_J1 lanciato con 1000 task! 
+Richiesta presa in carico alle ore 16:57:30: 3 Job per 'Anderson_Energie_L12' con 1286 task ciascuno.
 
