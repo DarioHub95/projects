@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie_J10   ]
+[   Info sul Job MBL_Energie_J11   ]
 
 
-Dati acquisiti! Job MBL_Energie_J10 completato alle ore 18:13:20 con 200 task! 
+Dati acquisiti! Job MBL_Energie_J11 completato alle ore 21:04:01 con 200 task! 
 
