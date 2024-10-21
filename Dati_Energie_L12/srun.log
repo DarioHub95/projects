@@ -1019,3 +1019,8 @@ mpi process #423: redirecting stdout & stderr to output-423.txt
 mpi process #426: redirecting stdout & stderr to output-426.txt
 mpi process #425: redirecting stdout & stderr to output-425.txt
 mpi process #421: redirecting stdout & stderr to output-421.txt
+srun: error: Node failure on ibiscohpc-wn16
+srun: error: Node failure on ibiscohpc-wn16
+srun: Force Terminated job 498472
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 498472.0 ON ibiscohpc-wn01 CANCELLED AT 2024-10-21T10:25:23 DUE TO NODE FAILURE, SEE SLURMCTLD LOG FOR DETAILS ***
