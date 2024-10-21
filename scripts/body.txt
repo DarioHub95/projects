@@ -1,6 +1,18 @@
 
-[   Info sul Job Anderson_Energie_L12_J3   ]
+[   Jobs per Anderson_Energie_L12   ]
 
 
-Dati acquisiti! Job Anderson_Energie_L12_J3 completato alle ore 10:25:34 con 1021 task! 
+Modello selezionato: Anderson
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 5144
+N° di Task eseguiti:  2863
+
+N° di Job richiesti: 3
+
+Dettagli Job Lanciati:
+
+| Job Name                    | Job ID                      | Tasks                       | Esito                       |
+| Anderson_Energie_L12_J1     | 498260                      | 1096                        | Eseguito dopo 38 tentativi  |
+| Anderson_Energie_L12_J2     | 498393                      | 746                         | Eseguito dopo 108 tentativi |
+| Anderson_Energie_L12_J3     | 498472                      | 1021                        | Eseguito dopo 53 tentativi  |
