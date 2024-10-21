@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Energie_L12   ]
 
 
-Richiesta presa in carico alle ore 10:58:10: 7 Job per 'Anderson_Energie_L12' con 1030 task ciascuno.
+Richiesta presa in carico alle ore 10:59:06: 8 Job per 'Anderson_Energie_L12' con 1006 task ciascuno.
 
