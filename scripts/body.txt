@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Energie_L12_J5   ]
 
 
-Job Anderson_Energie_L12_J5 lanciato con 956 task! 
+Dati acquisiti! Job Anderson_Energie_L12_J5 completato alle ore 01:31:44 con 956 task! 
 
