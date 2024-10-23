@@ -1,16 +1,30 @@
 
-[   INFO 550   ]
+[   Dettagli della Simulazione  ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+Start Date: 21-10-2024 08:59:06
+End Date:   23-10-2024 10:30:06
+Durata:     03 01:31:00
 
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
+Modello selezionato: Anderson
+Osservabile scelto:  Energie
 
-N° di file con eccesso di '-nan': 857 
+Parametri del Modello:
+> L:     12
+> nstep: 10000
+> Sz:    0
+> Jxy:   1
+> Jz:    0
+> eps:   5
+> alpha: 0
 
-N° di file incompleti: 1791 
+File delle medie:
+Anderson_Energie_L12_R4090_08.59.06.txt
 
-N° di file che superano ulimit: 685 
+N° di file output richiesti: 8048
+N° di file output dei job: 7423
+N° di file output effettvi: 4090
 
-N° di file conformi: 4090
+N° di file output eliminati: 3333
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
 
