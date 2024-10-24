@@ -1,6 +1,16 @@
 
-[   Info sul Job MBL+B_Energie_L12_J1   ]
+[   INFO 550   ]
 
 
-Dati acquisiti! Job MBL+B_Energie_L12_J1 completato alle ore 20:52:17 con 1580 task! 
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
+
+N° di file con eccesso di '-nan': 0 
+
+N° di file incompleti: 1742 
+
+N° di file che superano ulimit: 3015 
+
+N° di file conformi: 4090
 
