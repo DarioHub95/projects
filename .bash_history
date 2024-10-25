@@ -1,19 +1,3 @@
-mpirun -np 1 ./a.out > mpirun.log 2>&1 &
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
 cat mpirun.log 
 cat mpirun.log 
 cat mpirun.log 
@@ -498,3 +482,19 @@ top
 screen -ls
 screen -r 2693868.MBL_Energie
 screen -ls
+screen -ls
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+screen -r MBL_Energie
+rm "Medie/temp_*.txt"
+rm "Medie/temp_output.txt"
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+screen -r MBL_Energie
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+qstat
+qstat
+screen -ls
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
