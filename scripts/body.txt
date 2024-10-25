@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Energie_J1   ]
+[   Info sul Job Anderson_Energie_J2   ]
 
 
-Dati acquisiti! Job Anderson_Energie_J1 completato alle ore 23:31:01 con 200 task! 
+Dati acquisiti! Job Anderson_Energie_J2 completato alle ore 00:39:01 con 200 task! 
 
