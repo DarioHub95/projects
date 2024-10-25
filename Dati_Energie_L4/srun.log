@@ -1,2 +1,2 @@
-srun: error: QOSMaxCpuPerJobLimit
-srun: error: Unable to allocate resources: Job violates accounting/QOS policy (job submit limit, user's size and/or time limits)
+srun: job 520617 queued and waiting for resources
+srun: job 520617 has been allocated resources
