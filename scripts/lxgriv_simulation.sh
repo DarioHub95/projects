@@ -180,7 +180,7 @@ fi
 } > "${MEDIA}.tmp"
 
 mv "${MEDIA}.tmp" "Medie/${MEDIA}"
-rm "Medie/temp_*.txt"
+rm "Medie/temp_output.txt"
 
 #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
 if [ $(wc -l < "Medie/${MEDIA}") -le 20 ]; then
