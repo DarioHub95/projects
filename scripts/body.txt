@@ -2,5 +2,5 @@
 [   Info sul Job Anderson_Energie_L4   ]
 
 
-Richiesta presa in carico alle ore 21:59:25: 10 Job per 'Anderson_Energie_L4' con 1582 task ciascuno.
+Richiesta presa in carico alle ore 22:02:07: 10 Job per 'Anderson_Energie_L4' con 500 task ciascuno.
 
