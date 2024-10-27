@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Energie_L6   ]
+[   Info sul Job Anderson_Energie_L8_J5   ]
 
 
-Richiesta presa in carico alle ore 21:11:35: 8 Job per 'MBL+B_Energie_L6' con 1310 task ciascuno.
+Dati acquisiti! Job Anderson_Energie_L8_J5 completato alle ore 22:10:07 con 1310 task! 
 
