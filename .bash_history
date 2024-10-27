@@ -1,8 +1,3 @@
-cat mpirun.log 
-cat mpirun.log 
-cat mpirun.log 
-screen -ls
-screen -ls
 ./lxgriv-run.sh 
 screen -ls
 ./lxgriv-run.sh 
@@ -497,4 +492,9 @@ qstat
 qstat
 screen -ls
 rm -rf Dati_Energie/
+./lxgriv-run.sh 
+screen -ls
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+screen -r Anderson_Energie
 ./lxgriv-run.sh 
