@@ -1,6 +1,6 @@
 
-[   Info sul Job Anderson_Energie_L8_J6   ]
+[   Info sul Job Anderson_Energie_L8_J7   ]
 
 
-Dati acquisiti! Job Anderson_Energie_L8_J6 completato alle ore 23:11:20 con 1310 task! 
+Job Anderson_Energie_L8_J7 lanciato con 1310 task! 
 
