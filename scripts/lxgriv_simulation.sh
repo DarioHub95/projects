@@ -26,43 +26,43 @@ job_name="${4}_${3}"
 ########################################### ACQUISIZIONE DATI ###################################################
 #----------------------------------------------------------------------------------------------------------------
 
-# Pulizia dei file output esistenti
-if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
-rm Dati_$3/output*
-fi
+# # Pulizia dei file output esistenti
+# if [ "$(ls Dati_$3 | wc -l)" -gt 2 ]; then
+# rm Dati_$3/output*
+# fi
 
-#-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
-if [ ! -f "Dati_${3}/a.out" ]; then
-    ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste. Simulazione interrotta."
-    screen -X quit
-fi
-#-----------------------------------------------------------------
+# #-------------RICHIAMA LO SCRIPT NOTIFY_ERRORS--------------------
+# if [ ! -f "Dati_${3}/a.out" ]; then
+#     ./scripts/notify_errors.sh 110 "[parallel.sh] Il file 'a.out' non esiste. Simulazione interrotta."
+#     screen -X quit
+# fi
+# #-----------------------------------------------------------------
 
-cd Dati_$3/
+# cd Dati_$3/
 
-#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
-./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
-#-----------------------------------------------------------------
+# #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK---------------------
+# ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
+# #-----------------------------------------------------------------
 
-for ((i=1; i<=$1; i++)); do
-    mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
-    sleep 1
+# for ((i=1; i<=$1; i++)); do
+#     mpirun -np $num_tasks ./a.out > mpirun.log 2>&1 &
+#     sleep 1
 
-    echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
-    wait $!
-    rename_output_files
-    esito+=("Eseguito") 
-    tasks_per_job+=($num_tasks)
-    #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-    ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(TZ='Europe/Rome' date '+%H:%M:%S') con $num_tasks task! "
-    #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
-    jobs+=("${job_name}_J${i}")
-done
-cd ../
+#     echo "Allocate le risorse per il job ${job_name}_J${i}. Esecuzione..."
+#     wait $!
+#     rename_output_files
+#     esito+=("Eseguito") 
+#     tasks_per_job+=($num_tasks)
+#     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+#     ./../scripts/notify_ok.sh "J" "${job_name}_J${i}" "Dati acquisiti! Job ${job_name}_J${i} completato alle ore $(TZ='Europe/Rome' date '+%H:%M:%S') con $num_tasks task! "
+#     #----------------RICHIAMA LO SCRIPT NOTIFY_OK------------------------------------------
+#     jobs+=("${job_name}_J${i}")
+# done
+# cd ../
 
-#----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
-./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}"    # $2 ---> input_tasks (R)
-#-----------------------------------------------------------------
+# #----------------RICHIAMA_LO_SCRIPT_NOTIFY_OK------------------------------------------
+# ./scripts/notify_ok.sh "JJ" "$2" "$sum" "$job_name" "${tasks_per_job[@]}" "${esito[@]}" "${jobs[@]}"    # $2 ---> input_tasks (R)
+# #-----------------------------------------------------------------
 
 #----------------------------------------------------------------------------------------------------------------
 ############################################### CALCOLO MEDIE ###################################################
