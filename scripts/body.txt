@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Energie_L6_J7   ]
+[   Info sul Job Anderson_Energie_L8_J10   ]
 
 
-Job MBL+B_Energie_L6_J7 lanciato con 1310 task! 
+Dati acquisiti! Job Anderson_Energie_L8_J10 completato alle ore 00:29:58 con 1025 task! 
 
