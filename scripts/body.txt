@@ -1,25 +1,16 @@
 
-[   Jobs per Anderson_Energie_L8   ]
+[   INFO 550   ]
 
 
-Modello selezionato: Anderson
-Osservabile scelto:  Energie
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 14410
-N° di Task eseguiti:  12265
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 10
+N° di file con eccesso di '-nan': 1134 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 1183 
 
-| Job Name                     | Job ID                       | Tasks                        | Esito                        |
-| Anderson_Energie_L8_J1       | 526146                       | 1310                         | Eseguito dopo 181 tentativi  |
-| Anderson_Energie_L8_J2       | 528162                       | 1310                         | Eseguito dopo 1 tentativi    |
-| Anderson_Energie_L8_J3       | 528182                       | 1310                         | Eseguito dopo 3 tentativi    |
-| Anderson_Energie_L8_J4       | 528206                       | 1310                         | Eseguito dopo 2 tentativi    |
-| Anderson_Energie_L8_J5       | 528225                       | 1310                         | Eseguito dopo 2 tentativi    |
-| Anderson_Energie_L8_J6       | 528824                       | 1310                         | Eseguito dopo 3 tentativi    |
-| Anderson_Energie_L8_J7       | 529418                       | 1310                         | Eseguito dopo 2 tentativi    |
-| Anderson_Energie_L8_J8       | 540689                       | 1045                         | Eseguito dopo 4383 tentativi |
-| Anderson_Energie_L8_J9       | 540992                       | 1025                         | Eseguito dopo 57 tentativi   |
-| Anderson_Energie_L8_J10      | 541105                       | 1025                         | Eseguito dopo 57 tentativi   |
+N° di file che superano ulimit: 5858 
+
+N° di file conformi: 4090
+
