@@ -1,4 +1,3 @@
-./lxgriv-run.sh 
 screen -ls
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
@@ -498,3 +497,4 @@ rm -rf Dati_Energie/
 ./lxgriv-run.sh 
 screen -r Anderson_Energie
 ./lxgriv-run.sh 
+screen -ls
