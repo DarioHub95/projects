@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Energie_L8_J6   ]
+[   Info sul Job MBL+B_Energie_L8_J7   ]
 
 
-Dati acquisiti! Job MBL+B_Energie_L8_J6 completato alle ore 00:58:32 con 1144 task! 
+Job MBL+B_Energie_L8_J7 lanciato con 1144 task! 
 
