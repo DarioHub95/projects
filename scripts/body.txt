@@ -1,6 +1,23 @@
 
-[   Info sul Job MBL+B_Energie_L6_J8   ]
+[   Jobs per MBL+B_Energie_L6   ]
 
 
-Dati acquisiti! Job MBL+B_Energie_L6_J8 completato alle ore 03:24:15 con 1310 task! 
+Modello selezionato: MBL+B
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 11790
+N° di Task eseguiti:  9240
+
+N° di Job richiesti: 8
+
+Dettagli Job Lanciati:
+
+| Job Name                     | Job ID                       | Tasks                        | Esito                        |
+| MBL+B_Energie_L6_J1          | 540714                       | 920                          | Eseguito dopo 7983 tentativi |
+| MBL+B_Energie_L6_J2          | 540863                       | 845                          | Eseguito dopo 93 tentativi   |
+| MBL+B_Energie_L6_J3          | 540903                       | 1190                         | Eseguito dopo 24 tentativi   |
+| MBL+B_Energie_L6_J4          | 541028                       | 1170                         | Eseguito dopo 28 tentativi   |
+| MBL+B_Energie_L6_J5          | 541047                       | 1245                         | Eseguito dopo 13 tentativi   |
+| MBL+B_Energie_L6_J6          | 541118                       | 1250                         | Eseguito dopo 12 tentativi   |
+| MBL+B_Energie_L6_J7          | 541121                       | 1310                         | Eseguito dopo 0 tentativi    |
+| MBL+B_Energie_L6_J8          | 541146                       | 1310                         | Eseguito dopo 0 tentativi    |
