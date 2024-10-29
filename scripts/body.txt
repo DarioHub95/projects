@@ -1,16 +1,6 @@
 
-[   INFO 550   ]
+[   Info sul Job MBL+B_Energie   ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
-
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'. 
-
-N° di file con eccesso di '-nan': 0 
-
-N° di file incompleti: 0 
-
-N° di file che superano ulimit: 0 
-
-N° di file conformi: 1335
+Richiesta presa in carico alle ore 09:57:27: 40 Job per 'MBL+B_Energie' con 200 task ciascuno.
 
