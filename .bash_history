@@ -1,4 +1,3 @@
-./scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
 cd Dati_Corr_tw1
 ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
 cd ..
@@ -498,3 +497,4 @@ screen -r 3596921.MBL+B_Energie
 rm -rf Dati_Energie/
 ./lxgriv-run.sh 
 screen -r MBL+B_Energie
+top
