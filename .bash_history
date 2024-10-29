@@ -1,12 +1,3 @@
-if screen -ls | grep -wq "Corr_tw10"; then     echo "Acquisizione dei dati ${var} in esecuzione.";     echo "";     screen -ls;     echo "";     echo "Interruzione dello script...";     echo "" ; fi
-screen -ls
-ls
-screen -ls
-exit
-screen -ls
-screen -r 3293550.Corr_tw1000
-timedatectl
-sudo timedatectl set-timezone Europe/Rome
 ./scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
 cd Dati_Corr_tw1
 ./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
@@ -498,3 +489,12 @@ rm -rf Dati_Energie/
 ./lxgriv-run.sh 
 screen -ls
 exit
+top
+screen -ls
+screen -r 3596921.MBL+B_Energie
+ls Dati_Energie/ | wc -l
+screen -r 3596921.MBL+B_Energie
+./lxgriv-run.sh 
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+screen -r MBL+B_Energie
