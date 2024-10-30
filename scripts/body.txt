@@ -1,25 +1,6 @@
 
-[   Jobs per MBL+B_Energie_L8   ]
+[   Info sul Job Anderson_Energie_L4_J10   ]
 
 
-Modello selezionato: MBL+B
-Osservabile scelto:  Energie
+Job Anderson_Energie_L4_J10 lanciato con 986 task! 
 
-N° di Task richiesti: 12584
-N° di Task eseguiti:  10855
-
-N° di Job richiesti: 10
-
-Dettagli Job Lanciati:
-
-| Job Name                     | Job ID                       | Tasks                        | Esito                        |
-| MBL+B_Energie_L8_J1          | 541145                       | 1029                         | Eseguito dopo 23 tentativi   |
-| MBL+B_Energie_L8_J2          | 541147                       | 1144                         | Eseguito dopo 0 tentativi    |
-| MBL+B_Energie_L8_J3          | 541148                       | 1144                         | Eseguito dopo 0 tentativi    |
-| MBL+B_Energie_L8_J4          | 541572                       | 1144                         | Eseguito dopo 0 tentativi    |
-| MBL+B_Energie_L8_J5          | 541967                       | 674                          | Eseguito dopo 94 tentativi   |
-| MBL+B_Energie_L8_J6          | 543759                       | 1144                         | Eseguito dopo 1566 tentativi |
-| MBL+B_Energie_L8_J7          | 545321                       | 1144                         | Eseguito dopo 3 tentativi    |
-| MBL+B_Energie_L8_J8          | 546198                       | 1144                         | Eseguito dopo 0 tentativi    |
-| MBL+B_Energie_L8_J9          | 546208                       | 1144                         | Eseguito dopo 0 tentativi    |
-| MBL+B_Energie_L8_J10         | 546654                       | 1144                         | Eseguito dopo 1 tentativi    |
