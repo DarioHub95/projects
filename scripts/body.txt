@@ -2,29 +2,29 @@
 [   Dettagli della Simulazione  ]
 
 
-Start Date: 30-10-2024 16:02:27
-End Date:   30-10-2024 16:03:46
-Durata:     01 00:01:19
+Start Date: 30-10-2024 16:02:42
+End Date:   30-10-2024 16:04:59
+Durata:     01 00:02:17
 
-Modello selezionato: Anderson
+Modello selezionato: MBL+B
 Osservabile scelto:  Energie
 
 Parametri del Modello:
-> L:     4
+> L:     8
 > nstep: 10000
 > Sz:    0
 > Jxy:   1
-> Jz:    0
+> Jz:    0.2
 > eps:   5
-> alpha: 0
+> alpha: 0.01
 
 File delle medie:
-Anderson_Energie_L4_R1003_16.02.27.txt
+MBL+B_Energie_L8_R1635_16.02.42.txt
 
 N° di file output richiesti: 8880
 N° di file output dei job: 
-N° di file output effettvi: 1003
+N° di file output effettvi: 1635
 
-N° di file output eliminati: -1003
+N° di file output eliminati: -1635
 Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
 
