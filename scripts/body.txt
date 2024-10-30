@@ -1,6 +1,25 @@
 
-[   Info sul Job Anderson_Energie_L4_J10   ]
+[   Jobs per Anderson_Energie_L4   ]
 
 
-Dati acquisiti! Job Anderson_Energie_L4_J10 completato alle ore 16:03:25 con 986 task! 
+Modello selezionato: Anderson
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 10846
+N° di Task eseguiti:  9860
+
+N° di Job richiesti: 10
+
+Dettagli Job Lanciati:
+
+| Job Name                     | Job ID                       | Tasks                        | Esito                        |
+| Anderson_Energie_L4_J1       | 546196                       | 986                          | Eseguito dopo 2430 tentativi |
+| Anderson_Energie_L4_J2       | 546197                       | 986                          | Eseguito dopo 0 tentativi    |
+| Anderson_Energie_L4_J3       | 546201                       | 986                          | Eseguito dopo 2 tentativi    |
+| Anderson_Energie_L4_J4       | 546203                       | 986                          | Eseguito dopo 1 tentativi    |
+| Anderson_Energie_L4_J5       | 546205                       | 986                          | Eseguito dopo 1 tentativi    |
+| Anderson_Energie_L4_J6       | 546210                       | 986                          | Eseguito dopo 1 tentativi    |
+| Anderson_Energie_L4_J7       | 546216                       | 986                          | Eseguito dopo 3 tentativi    |
+| Anderson_Energie_L4_J8       | 546633                       | 986                          | Eseguito dopo 3 tentativi    |
+| Anderson_Energie_L4_J9       | 546652                       | 986                          | Eseguito dopo 2 tentativi    |
+| Anderson_Energie_L4_J10      | 548064                       | 986                          | Eseguito dopo 1376 tentativi |
