@@ -10,7 +10,7 @@ N° di file con eccesso di '-nan': 0
 
 N° di file incompleti: 0 
 
-N° di file che superano ulimit: 1003 
+N° di file che superano ulimit: 1635 
 
 N° di file conformi: 4090
 
