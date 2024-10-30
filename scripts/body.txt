@@ -2,24 +2,24 @@
 [   Dettagli della Simulazione  ]
 
 
-Start Date: 30-10-2024 15:50:43
-End Date:   30-10-2024 15:58:14
-Durata:     01 00:07:31
+Start Date: 30-10-2024 15:51:33
+End Date:   30-10-2024 15:59:45
+Durata:     01 00:08:12
 
-Modello selezionato: Anderson
+Modello selezionato: MBL+B
 Osservabile scelto:  Energie
 
 Parametri del Modello:
-> L:     4
+> L:     8
 > nstep: 10000
 > Sz:    0
 > Jxy:   1
-> Jz:    0
+> Jz:    0.2
 > eps:   5
-> alpha: 0
+> alpha: 0.01
 
 File delle medie:
-Anderson_Energie_L4_R4090_15.50.43.txt
+MBL+B_Energie_L8_R4090_15.51.33.txt
 
 N° di file output richiesti: 8880
 N° di file output dei job: 
