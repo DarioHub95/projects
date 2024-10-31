@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Energie_J32   ]
+[   Info sul Job MBL+B_Energie_J33   ]
 
 
-Dati acquisiti! Job MBL+B_Energie_J32 completato alle ore 08:40:20 con 200 task! 
+Dati acquisiti! Job MBL+B_Energie_J33 completato alle ore 10:05:15 con 200 task! 
 
