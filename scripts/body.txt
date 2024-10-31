@@ -1,6 +1,44 @@
 
-[   Info sul Job MBL+B_Energie_J40   ]
+[   Jobs per MBL+B_Energie   ]
 
 
-Dati acquisiti! Job MBL+B_Energie_J40 completato alle ore 20:49:30 con 200 task! 
+Modello selezionato: MBL+B
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 6000
+N° di Task eseguiti:  6000
+
+N° di Job richiesti: 29
+
+Dettagli Job Lanciati:
+
+| Eseguito         | Tasks            | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | 200              |
+| Eseguito         | 200              | Esito            |
+| Eseguito         | 200              | Eseguito         |
+| Eseguito         | 200              | Eseguito         |
+| Eseguito         | 200              | Eseguito         |
+| Eseguito         | 200              | Eseguito         |
+| Eseguito         | 200              | Eseguito         |
+| Eseguito         | 200              | Eseguito         |
+| Eseguito         | 200              | Eseguito         |
+| Eseguito         | 200              | Eseguito         |
+| Eseguito         | 200              | Eseguito         |
+| Eseguito         | 200              | Eseguito         |
+| Job Name         | 200              | Eseguito         |
+| MBL+B_Energie_J1 | 200              | Eseguito         |
+| MBL+B_Energie_J2 | 200              | Eseguito         |
+| MBL+B_Energie_J3 | 200              | Eseguito         |
+| MBL+B_Energie_J4 | 200              | Eseguito         |
+| MBL+B_Energie_J5 | 200              | Eseguito         |
+| MBL+B_Energie_J6 | 200              | Eseguito         |
+| MBL+B_Energie_J7 | 200              | Eseguito         |
