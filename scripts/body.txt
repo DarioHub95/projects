@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw1   ]
+[   Info sul Job MBL+B_Corr_tw10   ]
 
 
-Richiesta presa in carico alle ore 21:40:41: 50 Job per 'MBL+B_Corr_tw1' con 100 task ciascuno.
+Richiesta presa in carico alle ore 21:41:24: 50 Job per 'MBL+B_Corr_tw10' con 100 task ciascuno.
 
