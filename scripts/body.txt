@@ -1,30 +1,16 @@
 
-[   Jobs per MBL_Energie_L4   ]
+[   INFO 550   ]
 
 
-Modello selezionato: MBL
-Osservabile scelto:  Energie
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 14784
-N° di Task eseguiti:  13860
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 15
+N° di file con eccesso di '-nan': 962 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 0 
 
-| Job Name                     | Job ID                       | Tasks                        | Esito                        |
-| MBL_Energie_L4_J1            | 551386                       | 924                          | Eseguito dopo 3248 tentativi |
-| MBL_Energie_L4_J2            | 552071                       | 924                          | Eseguito dopo 676 tentativi  |
-| MBL_Energie_L4_J3            | 552082                       | 924                          | Eseguito dopo 3 tentativi    |
-| MBL_Energie_L4_J4            | 552091                       | 924                          | Eseguito dopo 4 tentativi    |
-| MBL_Energie_L4_J5            | 552095                       | 924                          | Eseguito dopo 2 tentativi    |
-| MBL_Energie_L4_J6            | 552104                       | 924                          | Eseguito dopo 3 tentativi    |
-| MBL_Energie_L4_J7            | 552110                       | 924                          | Eseguito dopo 1 tentativi    |
-| MBL_Energie_L4_J8            | 552118                       | 924                          | Eseguito dopo 1 tentativi    |
-| MBL_Energie_L4_J9            | 552136                       | 924                          | Eseguito dopo 1 tentativi    |
-| MBL_Energie_L4_J10           | 552162                       | 924                          | Eseguito dopo 2 tentativi    |
-| MBL_Energie_L4_J11           | 552190                       | 924                          | Eseguito dopo 2 tentativi    |
-| MBL_Energie_L4_J12           | 552214                       | 924                          | Eseguito dopo 7 tentativi    |
-| MBL_Energie_L4_J13           | 552233                       | 924                          | Eseguito dopo 0 tentativi    |
-| MBL_Energie_L4_J14           | 552266                       | 924                          | Eseguito dopo 0 tentativi    |
-| MBL_Energie_L4_J15           | 552285                       | 924                          | Eseguito dopo 2 tentativi    |
+N° di file che superano ulimit: 8808 
+
+N° di file conformi: 4090
+
