@@ -1,30 +1,6 @@
 
-[   Dettagli della Simulazione  ]
+[   Info sul Job MBL+B_Corr_tw1   ]
 
 
-Start Date: 31-10-2024 20:29:47
-End Date:   31-10-2024 20:31:00
-Durata:     01 00:01:13
-
-Modello selezionato: MBL+B
-Osservabile scelto:  Energie
-
-Parametri del Modello:
-> L:     8
-> nstep: 10000
-> Sz:    0
-> Jxy:   1
-> Jz:    0.2
-> eps:   5
-> alpha: 0.01
-
-File delle medie:
-MBL+B_Energie_L8_R3174_20.29.47.txt
-
-N° di file output richiesti: 8000
-N° di file output dei job: 
-N° di file output effettvi: 3174
-
-N° di file output eliminati: -3174
-Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
+Richiesta presa in carico alle ore 21:40:41: 50 Job per 'MBL+B_Corr_tw1' con 100 task ciascuno.
 
