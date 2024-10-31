@@ -1,6 +1,30 @@
 
-[   Info sul Job MBL_Energie_L4_J15   ]
+[   Jobs per MBL_Energie_L4   ]
 
 
-Dati acquisiti! Job MBL_Energie_L4_J15 completato alle ore 19:07:08 con 924 task! 
+Modello selezionato: MBL
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 14784
+N° di Task eseguiti:  13860
+
+N° di Job richiesti: 15
+
+Dettagli Job Lanciati:
+
+| Job Name                     | Job ID                       | Tasks                        | Esito                        |
+| MBL_Energie_L4_J1            | 551386                       | 924                          | Eseguito dopo 3248 tentativi |
+| MBL_Energie_L4_J2            | 552071                       | 924                          | Eseguito dopo 676 tentativi  |
+| MBL_Energie_L4_J3            | 552082                       | 924                          | Eseguito dopo 3 tentativi    |
+| MBL_Energie_L4_J4            | 552091                       | 924                          | Eseguito dopo 4 tentativi    |
+| MBL_Energie_L4_J5            | 552095                       | 924                          | Eseguito dopo 2 tentativi    |
+| MBL_Energie_L4_J6            | 552104                       | 924                          | Eseguito dopo 3 tentativi    |
+| MBL_Energie_L4_J7            | 552110                       | 924                          | Eseguito dopo 1 tentativi    |
+| MBL_Energie_L4_J8            | 552118                       | 924                          | Eseguito dopo 1 tentativi    |
+| MBL_Energie_L4_J9            | 552136                       | 924                          | Eseguito dopo 1 tentativi    |
+| MBL_Energie_L4_J10           | 552162                       | 924                          | Eseguito dopo 2 tentativi    |
+| MBL_Energie_L4_J11           | 552190                       | 924                          | Eseguito dopo 2 tentativi    |
+| MBL_Energie_L4_J12           | 552214                       | 924                          | Eseguito dopo 7 tentativi    |
+| MBL_Energie_L4_J13           | 552233                       | 924                          | Eseguito dopo 0 tentativi    |
+| MBL_Energie_L4_J14           | 552266                       | 924                          | Eseguito dopo 0 tentativi    |
+| MBL_Energie_L4_J15           | 552285                       | 924                          | Eseguito dopo 2 tentativi    |
