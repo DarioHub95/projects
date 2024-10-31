@@ -1,11 +1,3 @@
-cd Dati_Corr_tw1
-./../scripts/notify_ok.sh "J" "${job_name}" "Richiesta presa in carico alle ore $(TZ='Europe/Rome' date '+%H:%M:%S'): $1 Job per '${job_name}' con $num_tasks task ciascuno."
-cd ..
-screen -ls
-screen -r 
-screen -r 3293550.Corr_tw1000
-./lxgriv-run.sh 
-screen -r Corr_tw1000
 screen -ls
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
@@ -498,3 +490,11 @@ rm -rf Dati_Energie/
 ./lxgriv-run.sh 
 screen -r MBL+B_Energie
 top
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+history | grep wc
+ls Dati_Energie/ | wc -l
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+qstat+
+qstat
