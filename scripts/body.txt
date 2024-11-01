@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw1_J18   ]
+[   Info sul Job MBL+B_Corr_tw10_J19   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw1_J18 completato alle ore 23:42:04 con 100 task! 
+Dati acquisiti! Job MBL+B_Corr_tw10_J19 completato alle ore 23:57:07 con 100 task! 
 
