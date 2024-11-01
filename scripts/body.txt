@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw1_J9   ]
+[   Info sul Job MBL+B_Corr_tw10_J10   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw1_J9 completato alle ore 10:30:39 con 100 task! 
+Dati acquisiti! Job MBL+B_Corr_tw10_J10 completato alle ore 11:07:11 con 100 task! 
 
