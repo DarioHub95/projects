@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw10_J22   ]
+[   Info sul Job MBL+B_Corr_tw1_J22   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw10_J22 completato alle ore 04:14:33 con 100 task! 
+Dati acquisiti! Job MBL+B_Corr_tw1_J22 completato alle ore 05:26:16 con 100 task! 
 
