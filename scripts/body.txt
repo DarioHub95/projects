@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw10_J21   ]
+[   Info sul Job MBL+B_Corr_tw1_J21   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw10_J21 completato alle ore 02:41:14 con 100 task! 
+Dati acquisiti! Job MBL+B_Corr_tw1_J21 completato alle ore 04:01:07 con 100 task! 
 
