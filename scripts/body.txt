@@ -1,6 +1,52 @@
 
-[   Info sul Job MBL+B_Corr_tw1_J50   ]
+[   Jobs per MBL+B_Corr_tw1   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw1_J50 completato alle ore 21:46:43 con 100 task! 
+Modello selezionato: MBL+B
+Osservabile scelto:  Corr
 
+N° di Task richiesti: 3800
+N° di Task eseguiti:  7600
+
+N° di Job richiesti: 37
+
+Dettagli Job Lanciati:
+
+| Eseguito           | Tasks              | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | 100                |
+| Eseguito           | 100                | Esito              |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Eseguito           | 100                | Eseguito           |
+| Job Name           | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J1  | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J2  | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J3  | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J4  | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J5  | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J6  | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J7  | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J8  | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J9  | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J10 | 100                | Eseguito           |
+| MBL+B_Corr_tw1_J11 | 100                | Eseguito           |
