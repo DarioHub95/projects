@@ -1,7 +1,3 @@
-screen -ls
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-screen -ls
 screen -r Corr_tw1
 ./lxgriv-run.sh 
 exit
@@ -498,3 +494,7 @@ ls Dati_Energie/ | wc -l
 ./lxgriv-run.sh 
 qstat+
 qstat
+screen -ls
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+rm -rf Dati_Energie/
