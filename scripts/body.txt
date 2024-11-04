@@ -2,5 +2,5 @@
 [   Info sul Job MBL+B_Energie_L10_J7   ]
 
 
-Job MBL+B_Energie_L10_J7 lanciato con 1210 task! 
+Dati acquisiti! Job MBL+B_Energie_L10_J7 completato alle ore 13:08:15 con 1210 task! 
 
