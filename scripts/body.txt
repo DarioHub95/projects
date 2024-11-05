@@ -1,16 +1,30 @@
 
-[   INFO 550   ]
+[   Dettagli della Simulazione  ]
 
 
-WARNING NEL PROCESSO DI PULIZIA DEI DATI 
+Start Date: 31-10-2024 19:17:11
+End Date:   05-11-2024 09:28:44
+Durata:     05 14:11:33
 
-[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
+Modello selezionato: MBL
+Osservabile scelto:  Energie
 
-N° di file con eccesso di '-nan': 965 
+Parametri del Modello:
+> L:     6
+> nstep: 10000
+> Sz:    0
+> Jxy:   1
+> Jz:    0.2
+> eps:   5
+> alpha: 0
 
-N° di file incompleti: 0 
+File delle medie:
+MBL_Energie_L6_R4090_19.17.11.txt
 
-N° di file che superano ulimit: 6465 
+N° di file output richiesti: 11520
+N° di file output dei job: 11520
+N° di file output effettvi: 4090
 
-N° di file conformi: 4090
+N° di file output eliminati: 7430
+Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
 
