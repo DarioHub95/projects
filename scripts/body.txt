@@ -1,16 +1,16 @@
 
-[   Jobs per MBL+B_Energie_L10   ]
+[   INFO 550   ]
 
 
-Modello selezionato: MBL+B
-Osservabile scelto:  Energie
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 13310
-N° di Task eseguiti:  12100
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 4% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 10
+N° di file con eccesso di '-nan': 1257 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 0 
 
-| Job Name                     | Job ID                       | Tasks                        | Esito                        |
-| MBL+B_Energie_L10_J1         | 584779                       | 1210                         | Eseguito dopo 703 tentativi  |
+N° di file che superano ulimit: 6753 
+
+N° di file conformi: 4090
+
