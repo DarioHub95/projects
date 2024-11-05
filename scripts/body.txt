@@ -1,6 +1,16 @@
 
-[   Info sul Job MBL+B_Energie_L10_J10   ]
+[   Jobs per MBL+B_Energie_L10   ]
 
 
-Dati acquisiti! Job MBL+B_Energie_L10_J10 completato alle ore 02:19:39 con 1210 task! 
+Modello selezionato: MBL+B
+Osservabile scelto:  Energie
 
+N° di Task richiesti: 13310
+N° di Task eseguiti:  12100
+
+N° di Job richiesti: 10
+
+Dettagli Job Lanciati:
+
+| Job Name                     | Job ID                       | Tasks                        | Esito                        |
+| MBL+B_Energie_L10_J1         | 584779                       | 1210                         | Eseguito dopo 703 tentativi  |
