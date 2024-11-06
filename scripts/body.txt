@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw100_J33   ]
+[   Info sul Job MBL+B_Corr_tw1000_J30   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw100_J33 completato alle ore 00:59:37 con 100 task! 
+Dati acquisiti! Job MBL+B_Corr_tw1000_J30 completato alle ore 01:27:17 con 100 task! 
 
