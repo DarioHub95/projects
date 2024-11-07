@@ -1,10 +1,3 @@
-./lxgriv-run.sh 
-screen -r 3432686.Corr_tw1
-screen -ls
-rm -rf Dati_Corr_tw1000/ a.out
-screen -ls
-screen -ls
-screen -r 3407405.Corr_tw100
 rm Dati_Corr_tw100/output-*
 ./lxgriv-run.sh 
 screen -r 3416669.Energie
@@ -498,3 +491,10 @@ top
 top
 screen -ls
 rm -rf Dati_Corr_tw1/ Dati_Corr_tw10/
+screen -ls
+./lxgriv-run.sh 
+rm -rf Dati_Corr_tw100/ Dati_Corr_tw1000/
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+rm -rf Dati_Corr_tw100/ Dati_Corr_tw1000/
