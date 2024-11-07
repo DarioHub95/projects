@@ -12,5 +12,5 @@ N° di file incompleti: 0
 
 N° di file che superano ulimit: 0 
 
-N° di file conformi: 1207
+N° di file conformi: 729
 
