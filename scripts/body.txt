@@ -2,16 +2,16 @@
 [   Dettagli della Simulazione  ]
 
 
-Start Date: 07-11-2024 08:16:46
-End Date:   07-11-2024 08:20:48
-Durata:     01 00:04:02
+Start Date: 07-11-2024 08:17:03
+End Date:   07-11-2024 08:21:33
+Durata:     01 00:04:30
 
 Modello selezionato: MBL+B
 Osservabile scelto:  Corr
 
 Parametri del Modello:
-> L:     tw1
-> nstep: 10000
+> L:     tw10
+> nstep: 10010
 > Sz:    0
 > Jxy:   1
 > Jz:    0.2
@@ -19,12 +19,12 @@ Parametri del Modello:
 > alpha: 0.01
 
 File delle medie:
-MBL+B_Corr_tw1_R729_08.16.46.txt
+MBL+B_Corr_tw10_R1207_08.17.03.txt
 
 N° di file output richiesti: 9536
 N° di file output dei job: 
-N° di file output effettvi: 729
+N° di file output effettvi: 1207
 
-N° di file output eliminati: -729
+N° di file output eliminati: -1207
 Questo è il numero di file esclusi dal calcolo della media poichè contenevano almeno il 4% di '-nan' o erano corrotti.
 
