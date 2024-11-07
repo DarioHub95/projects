@@ -319,7 +319,7 @@ void loop::dinamica(double *A)
 
 // DISSIPAZIONE sull'ultimo sito della catena //MODIFICATO
    int nb=0;
-   for (int i=0;i<L;i++)	
+   for (int i=0;i<L;i++) if (i==L-1)	
      {
       // dissipazione sul sito L-mo: lungo la worldline del sito centrale 
       // vengono estratti n siti in modo random salvati in stack[]
