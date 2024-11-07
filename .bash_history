@@ -1,5 +1,3 @@
-screen -r 3332059.Corr_tw1
-screen -ls
 ./lxgriv-run.sh 
 screen -r 3432686.Corr_tw1
 screen -ls
@@ -498,3 +496,5 @@ top
 qstat
 top
 top
+screen -ls
+rm -rf Dati_Corr_tw1/ Dati_Corr_tw10/
