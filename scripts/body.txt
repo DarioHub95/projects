@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie_J24   ]
+[   Info sul Job MBL_Energie_J25   ]
 
 
-Dati acquisiti! Job MBL_Energie_J24 completato alle ore 05:41:30 con 200 task! 
+Dati acquisiti! Job MBL_Energie_J25 completato alle ore 06:24:21 con 200 task! 
 
