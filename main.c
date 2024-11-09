@@ -138,13 +138,6 @@ int main(int argc,char **argv)
               Corr[i]=Corr[i]/N;        // media su tempo immaginario      
           }
 
-        // for(int j=0;j<N;j++) printf("%4g%4g%4g%4g%4g%4g%4g%4g\n",Stmp[0+j*L],Stmp[1+j*L],Stmp[2+j*L],Stmp[3+j*L],Stmp[4+j*L],Stmp[5+j*L],Stmp[6+j*L],Stmp[7+j*L]);
-        // printf("\n");
-        // for(int j=0;j<N;j++) printf("%4g%4g%4g%4g%4g%4g%4g%4g\n",A[amax+j*L],A[amax+1+j*L],A[amax+2+j*L],A[amax+3+j*L],A[amax+4+j*L],A[amax+5+j*L],A[amax+6+j*L],A[amax+7+j*L]);
-        // printf("\n");
-        // for(int j=0;j<N;j++) printf("%4g%4g%4g%4g%4g%4g%4g%4g\n",Stmp[j*L]*A[amax+j*L],Stmp[1+j*L]*A[amax+1+j*L],Stmp[2+j*L]*A[amax+2+j*L],Stmp[3+j*L]*A[amax+3+j*L],Stmp[4+j*L]*A[amax+4+j*L],Stmp[5+j*L]*A[amax+5+j*L],Stmp[6+j*L]*A[amax+6+j*L],Stmp[7+j*L]*A[amax+7+j*L]);
-        // printf("\n");
-
         printf("%15g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g%20.10g\n",
               A[0],Corr[0],Corr[1],Corr[2],Corr[3],Corr[4],Corr[5],Corr[6],Corr[7]);
 

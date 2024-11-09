@@ -420,7 +420,6 @@ void loop::dinamica(double *A)
         }
       htot+=nhop[i];
      }
-    // printf("%g\tnhop:\t%d\t%d\t%d\t%d\n",A[0],nhop[0],nhop[1],nhop[2],nhop[3]);
      
 // MEDIA OSSERVABILI
 
@@ -441,16 +440,24 @@ void loop::dinamica(double *A)
       // interazioni
       double utmp=0;
       double htmp=0;
+      // componenti spin
+      int sz=0, sx=0, sy=0;
       for (int i=0;i<L;i++)
       {
-        int ssum=0;
         for (int j=0;j<N;j++)
         {
          int m=i+j*L;
          int s1=(S[m]?1:-1);
          htmp-=ham3*hi[i]*s1;
-         ssum+=s1;        // somma tutti gli spin immaginari
-         // Parte di codice per autocorrelazione1 spin-spin
+        // Parte di codice per componenti spin
+          if(i==L-1)
+          {
+            if(S[m]=!S[m+1]) sx+=1;          // Sx
+            else sy+=1;             // Sy
+            sz+=s1;        // somma tutti gli spin Sz immaginari
+          } 
+
+        // Parte di codice per autocorrelazione spin-spin
          A[32+m]=s1; // la configurazione di spin corrente
 
          if (pbc || i<L-1)
@@ -461,16 +468,12 @@ void loop::dinamica(double *A)
             utmp+=ham2*V*s1*s2;
            }
         }
-        // Parte di codice per componenti ultimo spin
-        if(i==L-1)
-        {
-          A[21]=(double)nhop[L-1]/N;          // Sx
-          A[22]=0;             // Sy
-          A[23]=(double)ssum/N;     // Sz
-        } 
-
 
       }
+
+      A[21]=sx/N;          // Sx
+      A[22]=sy/N;             // Sy
+      A[23]=(double)sz/N;     // Sz
 
       A[10]+=utmp/N;       // media su tempo immag di interazione spin-spin
       A[12]+=htmp/N;       // media su tempo immag di interazione con B

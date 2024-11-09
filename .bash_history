@@ -1,20 +1,3 @@
-rm Dati_Corr_tw100/output-*
-./lxgriv-run.sh 
-screen -r 3416669.Energie
-rm Dati_Energie/output-*
-./lxgriv-run.sh 
-screen -r 3507866.Oss3
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-screen -r 3406965.Corr_tw10
-rm Dati_Corr_tw10/output-*
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-./lxgriv-run.sh 
 screen -ls
 screen -r 3550604.Anderson_Corr_tw1
 screen -r 3549858.Anderson_Corr_tw1000
@@ -498,3 +481,20 @@ rm -rf Dati_Corr_tw100/ Dati_Corr_tw1000/
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
 rm -rf Dati_Corr_tw100/ Dati_Corr_tw1000/
+screen -ls
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+screen -r MBL_Energie
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+screen -r MBL_Energie
+./lxgriv-run.sh 
+./lxgriv-run.sh 
+top
+history | grep mpi+
+history | grep mpi
+history 
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+history | grep mpirun
