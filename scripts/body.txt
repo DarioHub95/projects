@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie_J48   ]
+[   Info sul Job MBL_Energie_J49   ]
 
 
-Dati acquisiti! Job MBL_Energie_J48 completato alle ore 01:12:37 con 200 task! 
+Dati acquisiti! Job MBL_Energie_J49 completato alle ore 02:07:27 con 200 task! 
 
