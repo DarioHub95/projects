@@ -442,6 +442,8 @@ void loop::dinamica(double *A)
       // interazioni
       double utmp=0;
       double htmp=0;
+      // componenti spin
+      int sz=0, sx=0, sy=0;
       for (int i=0;i<L;i++)
       {
         int ssum=0;
@@ -450,7 +452,16 @@ void loop::dinamica(double *A)
          int m=i+j*L;
          int s1=(S[m]?1:-1);
          htmp-=ham3*hi[i]*s1;
-         ssum+=s1;        // somma tutti gli spin immaginari
+            // ssum+=s1;        // somma tutti gli spin Sz immaginari
+
+         // Parte di codice per componenti spin
+          if(i==L-1)
+          {
+            if(sx>=0) sx+=1;          // Sx
+            else sy+=1;             // Sy
+            ssum+=s1;        // somma tutti gli spin Sz immaginari
+          }
+
          // Parte di codice per autocorrelazione1 spin-spin
          A[32+m]=s1; // la configurazione di spin corrente
 

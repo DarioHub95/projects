@@ -1,12 +1,3 @@
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-exit
-screen -ls
-screen -r 3549858.Anderson_Corr_tw1000
-./lxgriv-run.sh 
-screen -r Anderson_Corr_tw1000
-screen -r Anderson_Corr_tw1000
-screen -ls
 screen -r 2518957.MBL_Corr_tw100
 screen -r 2518279.MBL_Energie
 screen -ls
@@ -498,3 +489,12 @@ rm -rf Dati_Energie/
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
 ./a.out
 mpirun -np 3 ./a.out > mpirun.log 2>&1 &
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+jobs
+./lxgriv-run.sh 
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
