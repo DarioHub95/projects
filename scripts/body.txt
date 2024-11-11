@@ -1,10 +1,6 @@
 
-[   ERRORE 350   ]
+[   Info sul Job Anderson_Spin   ]
 
 
-ERRORE NEL CALCOLO DELLE MEDIE 
-
-Il calcolo delle medie non è riuscito a causa di dati malformati. 
-
-[media.sh] Il file 'Ising_Energie_L4_R0_11.15.29.txt' non contiene nessun valore medio. Uscita dallo screen Ising_Energie...
+Richiesta presa in carico alle ore 12:18:38: 10 Job per 'Anderson_Spin' con 10 task ciascuno.
 
