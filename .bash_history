@@ -1,33 +1,3 @@
-screen -ls
-screen -r 3550604.Anderson_Corr_tw1
-screen -r 3549858.Anderson_Corr_tw1000
-screen -ls
-screen -r 3550604.Anderson_Corr_tw1
-screen -r 3549858.Anderson_Corr_tw1000
-screen -ls
-screen -r
-while [ -z "$(ls *.txt 2>/dev/null)" ]; do     echo "Nessun file .txt trovato, attendo...";     sleep 10; done
-echo "File .txt trovato!"
-while [ -z "$(ls *.txt 2>/dev/null)" ]; do     echo "Nessun file .txt trovato, attendo...";     sleep 10; done
-echo "File .txt trovato!"
-mv Anderson_Corr_tw1_L8_R2305_09.16.00.txt Medie/
-while [ -z "$(ls *.txt 2>/dev/null)" ]; do     echo "Nessun file .txt trovato, attendo...";     sleep 10; done
-echo "File .txt trovato!"
-./lxgriv-run.sh 
-screen -ls
-rm -rf Dati_Corr_tw1/
-ls
-history
-screen -ls
-screen -ls
-screen -r 640157.Anderson_Energie
-screen -ls
-./lxgriv-run.sh 
-screen -ls
-screen -ls
-screen -ls
-screen -ls
-screen -ls
 ./lxgriv-run.sh 
 ./lxgriv-run.sh 
 exit
@@ -498,3 +468,33 @@ mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
 history | grep mpirun
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+mpirun -np 3 ./a.out > mpirun.log 2>&1 &
+./lxgriv-run.sh 
+screen -r Ising_Energie
+screen -r Ising_Energie
+./lxgriv-run.sh 
+screen -r Ising_Energie
+qstatus
+qstat
+jobs
+./lxgriv-run.sh 
+ screen -r Anderson_Spin 
+./lxgriv-run.sh 
+screen -r Ising_Energie
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+mpirun -np 3 ./a.out > mpirun.log 2>&1 &
+jobs
+jobs
+jobs
+jobs
+jobs
+ls -l
+./a.out
+top
+screen -ls
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpirun -np 3 ./a.out > mpirun.log 2>&1 &
