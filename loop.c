@@ -457,7 +457,7 @@ void loop::dinamica(double *A)
          // Parte di codice per componenti spin
           if(i==L-1)
           {
-            if(sx>=0) sx+=1;          // Sx
+            if(S[m]!=S[m+1]) sx+=1;          // Sx
             else sy+=1;             // Sy
             ssum+=s1;        // somma tutti gli spin Sz immaginari
           }
@@ -477,12 +477,13 @@ void loop::dinamica(double *A)
         if(i==L-1)
         {
           A[21]=0;          // Sx
-          A[22]/=N;     // Sy
+          A[22]=/N;     // Sy
           A[23]=(double)ssum/N;     // Sz
         } 
 
 
       }
+      
 
       A[10]+=utmp/N;       // media su tempo immag di interazione spin-spin
       A[12]+=htmp/N;       // media su tempo immag di interazione con B
