@@ -1,22 +1,16 @@
 
-[   Jobs per Anderson_Spin   ]
+[   INFO 550   ]
 
 
-Modello selezionato: Anderson
-Osservabile scelto:  Spin
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 80
-N° di Task eseguiti:  1600
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 7
+N° di file con eccesso di '-nan': 0 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 100 
 
-| Eseguito         | Tasks            | 10               |
-| Eseguito         | 10               | 10               |
-| Eseguito         | 10               | 10               |
-| Eseguito         | 10               | Esito            |
-| Eseguito         | 10               | Eseguito         |
-| Eseguito         | 10               | Eseguito         |
-| Job Name         | 10               | Eseguito         |
-| Anderson_Spin_J1 | 10               | Eseguito         |
+N° di file che superano ulimit: 0 
+
+N° di file conformi: 0
+
