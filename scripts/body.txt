@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL_Energie_J39   ]
+[   Info sul Job MBL_Energie_J40   ]
 
 
-Dati acquisiti! Job MBL_Energie_J39 completato alle ore 09:37:53 con 200 task! 
+Dati acquisiti! Job MBL_Energie_J40 completato alle ore 10:50:19 con 200 task! 
 
