@@ -1,6 +1,22 @@
 
-[   Info sul Job Anderson_Spin_J10   ]
+[   Jobs per Anderson_Spin   ]
 
 
-Dati acquisiti! Job Anderson_Spin_J10 completato alle ore 12:19:07 con 10 task! 
+Modello selezionato: Anderson
+Osservabile scelto:  Spin
 
+N° di Task richiesti: 80
+N° di Task eseguiti:  1600
+
+N° di Job richiesti: 7
+
+Dettagli Job Lanciati:
+
+| Eseguito         | Tasks            | 10               |
+| Eseguito         | 10               | 10               |
+| Eseguito         | 10               | 10               |
+| Eseguito         | 10               | Esito            |
+| Eseguito         | 10               | Eseguito         |
+| Eseguito         | 10               | Eseguito         |
+| Job Name         | 10               | Eseguito         |
+| Anderson_Spin_J1 | 10               | Eseguito         |
