@@ -1,17 +1,3 @@
-screen -ls
-screen -ls
-screen -ls
-./lxgriv-run.sh 
-./lxgriv-run.sh 
-screen -ls
-top
-top
-exit
-screen -ls
-screen -r 2518279.MBL_Energie
-./lxgriv-run.sh 
-screen -r MBL_Energie
-./lxgriv-run.sh 
 ./lxgriv-run.sh 
 screen -ls
 screen -ls
@@ -498,3 +484,17 @@ mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib
 ./a.out
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+screen -ls
+screen -r 424381.Ising_Energie
+./lxgriv-run.sh 
+screen -r Ising_Energie
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+rm -rf Dati_Spin/
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
