@@ -446,20 +446,20 @@ void loop::dinamica(double *A)
       int sz=0, sx=0, sy=0;
       for (int i=0;i<L;i++)
       {
-        int ssum=0;
+        // int sz=0;
         for (int j=0;j<N;j++)
         {
          int m=i+j*L;
          int s1=(S[m]?1:-1);
          htmp-=ham3*hi[i]*s1;
-            // ssum+=s1;        // somma tutti gli spin Sz immaginari
+            // sz+=s1;        // somma tutti gli spin Sz immaginari
 
          // Parte di codice per componenti spin
           if(i==L-1)
           {
             if(S[m]!=S[m+1]) sx+=1;          // Sx
             else sy+=1;             // Sy
-            ssum+=s1;        // somma tutti gli spin Sz immaginari
+            sz+=s1;        // somma tutti gli spin Sz immaginari
           }
 
          // Parte di codice per autocorrelazione1 spin-spin
@@ -473,18 +473,13 @@ void loop::dinamica(double *A)
             utmp+=ham2*V*s1*s2;
            }
         }
-        // Parte di codice per componenti ultimo spin
-        if(i==L-1)
-        {
-          A[21]=0;          // Sx
-          A[22]/=N;     // Sy
-          A[23]=(double)ssum/N;     // Sz
-        } 
-
 
       }
-      
 
+      A[21]+=(double)sx/N;          // Sx
+      A[22]+=(double)sy/N;     // Sy
+      A[23]+=(double)sz/N;     // Sz
+      
       A[10]+=utmp/N;       // media su tempo immag di interazione spin-spin
       A[12]+=htmp/N;       // media su tempo immag di interazione con B
       A[2]=A[3]+A[10]+A[12];           // media temporale Energia interna

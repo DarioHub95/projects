@@ -9,7 +9,7 @@ int main(int argc,char **argv)
   {
    pvm_init();
 
-   int L=4;							// numero di siti della catena di spin
+   int L=6;							// numero di siti della catena di spin
    int pbc=0;							// condizioni al bordo (0: condizioni aperte, 1: condizioni periodiche)
    int type=1;						// tipo di campo magnetico: 0 uniforme, -1 antiferro, >0 random
    int nstep=10000;       // numero di esecuzioni del monte carlo
@@ -21,7 +21,7 @@ int main(int argc,char **argv)
    int mype=pvm_mype();
 
    double Jz=0.2; //0.2						        // interazione spin-spin            // MODIFICATO
-   double eps=0;  //5						        //intensità del campo magnetico     // MODIFICATO
+   double eps=5;  //5						        //intensità del campo magnetico     // MODIFICATO
    double beta=10;						      // temperatura inversa (parametro fissato)
    double tau=0.001;					    	// step tempo immaginario (errore 101 se uguale a beta) 0.001
    double alpha=0; //0.01					        // dissipazione sul sito centrale
@@ -146,7 +146,7 @@ int main(int argc,char **argv)
 
     // PRINT COMPONENTI SPIN
     else if (Oss==6)
-        printf("%15g%15g%15g%15g\n",A[0],A[Oss+15],A[Oss+16],A[Oss+17]);
+        printf("%15g%15g%15g%15g\n",A[0],A[Oss+15]/A[1],A[Oss+16]/A[1],A[Oss+17]/A[1]);
 
 
       n++;
