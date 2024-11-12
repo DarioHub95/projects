@@ -1,6 +1,6 @@
 
-[   Info sul Job Ising_Energie_J15   ]
+[   Info sul Job Ising_Energie_J16   ]
 
 
-Dati acquisiti! Job Ising_Energie_J15 completato alle ore 20:01:40 con 200 task! 
+Dati acquisiti! Job Ising_Energie_J16 completato alle ore 20:39:17 con 200 task! 
 
