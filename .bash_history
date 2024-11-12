@@ -1,7 +1,3 @@
-./lxgriv-run.sh 
-screen -ls
-screen -ls
-top
 screen -ls
 ./lxgriv-run.sh 
 rm -rf Dati_Corr_tw10/
@@ -492,6 +488,10 @@ rm -rf Dati_Energie/
 ./lxgriv-run.sh 
 rm -rf Dati_Spin/
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
 ./a.out
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
