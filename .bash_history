@@ -1,21 +1,3 @@
-screen -ls
-./lxgriv-run.sh 
-rm -rf Dati_Corr_tw10/
-screen -ls
-screen -r 2956124.Anderson_Energie
-screen -r 2956797.Anderson_Corr_tw100
-screen -r 3124492.MBL_Corr_tw1000
-for i in {1..1000000}; do echo "ciao"; sleep 3; done
-fg
-fg
-for i in {1..1000000}; do echo "ciao"; sleep 3; done
-for i in {1..1000000}; do echo "ciao"; sleep 1; done
-fg
-fg
-for i in {1..1000000}; do echo "ciao"; sleep 1; done
-JOBS
-jobs
-jobid
 jobs -l
 kill -CONT 3468153
 jobs -l
@@ -492,6 +474,24 @@ mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib
 ./a.out
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
 ./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+top
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
+./a.out
+./lxgriv-run.sh 
+screen -r Ising_Energie
+./lxgriv-run.sh 
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
 ./a.out
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
