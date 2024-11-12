@@ -477,7 +477,7 @@ void loop::dinamica(double *A)
         if(i==L-1)
         {
           A[21]=0;          // Sx
-          A[22]=/N;     // Sy
+          A[22]/=N;     // Sy
           A[23]=(double)ssum/N;     // Sz
         } 
 
