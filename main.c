@@ -21,7 +21,7 @@ int main(int argc,char **argv)
    int mype=pvm_mype();
 
    double Jz=0.2; //0.2						        // interazione spin-spin            // MODIFICATO
-   double eps=5;  //5						        //intensità del campo magnetico     // MODIFICATO
+   double eps=0;  //5						        //intensità del campo magnetico     // MODIFICATO
    double beta=10;						      // temperatura inversa (parametro fissato)
    double tau=0.001;					    	// step tempo immaginario (errore 101 se uguale a beta) 0.001
    double alpha=0; //0.01					        // dissipazione sul sito centrale
