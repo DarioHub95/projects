@@ -1,8 +1,3 @@
-jobs -l
-kill -CONT 3468153
-jobs -l
-for i in {1..1000000}; do echo "ciao"; sleep 1; done
-JOBS -CONT 3468153
 jobs -CONT 3468153
 fg %1
 for i in {1..1000000}; do echo "ciao"; sleep 1; done
@@ -498,3 +493,8 @@ mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib
 ./a.out
 mpiCC -O3 -I/home/desposito/.lib2/ main.c loop.c kernel.c -L/home/desposito/.lib2/ -lpvm -o a.out
 ./a.out
+screen -ls
+rm -rf Dati_Energie/
+./lxgriv-run.sh 
+screen -r Ising_Energie
+./lxgriv-run.sh 
