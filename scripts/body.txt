@@ -1,44 +1,16 @@
 
-[   Jobs per Ising_Energie   ]
+[   INFO 550   ]
 
 
-Modello selezionato: Ising
-Osservabile scelto:  Energie
+WARNING NEL PROCESSO DI PULIZIA DEI DATI 
 
-N° di Task richiesti: 6000
-N° di Task eseguiti:  6000
+[media.sh] Eseguita la rimozione dei file di output non conformi o che hanno superato la soglia del 5% di tolleranza di '-nan'. 
 
-N° di Job richiesti: 29
+N° di file con eccesso di '-nan': 0 
 
-Dettagli Job Lanciati:
+N° di file incompleti: 0 
 
-| Eseguito         | Tasks            | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | 200              |
-| Eseguito         | 200              | Esito            |
-| Eseguito         | 200              | Eseguito         |
-| Eseguito         | 200              | Eseguito         |
-| Eseguito         | 200              | Eseguito         |
-| Eseguito         | 200              | Eseguito         |
-| Eseguito         | 200              | Eseguito         |
-| Eseguito         | 200              | Eseguito         |
-| Eseguito         | 200              | Eseguito         |
-| Eseguito         | 200              | Eseguito         |
-| Eseguito         | 200              | Eseguito         |
-| Eseguito         | 200              | Eseguito         |
-| Job Name         | 200              | Eseguito         |
-| Ising_Energie_J1 | 200              | Eseguito         |
-| Ising_Energie_J2 | 200              | Eseguito         |
-| Ising_Energie_J3 | 200              | Eseguito         |
-| Ising_Energie_J4 | 200              | Eseguito         |
-| Ising_Energie_J5 | 200              | Eseguito         |
-| Ising_Energie_J6 | 200              | Eseguito         |
-| Ising_Energie_J7 | 200              | Eseguito         |
+N° di file che superano ulimit: 3910 
+
+N° di file conformi: 4090
+
