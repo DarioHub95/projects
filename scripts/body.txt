@@ -1,6 +1,15 @@
 
-[   Info sul Job Ising_Spin_J1   ]
+[   Jobs per Ising_Spin   ]
 
 
-Dati acquisiti! Job Ising_Spin_J1 completato alle ore 15:02:39 con 200 task! 
+Modello selezionato: Ising
+Osservabile scelto:  Spin
 
+N° di Task richiesti: 200
+N° di Task eseguiti:  200
+
+N° di Job richiesti: 0
+
+Dettagli Job Lanciati:
+
+| Esito | Tasks | 200   |
