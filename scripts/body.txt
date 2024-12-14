@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw10_J2   ]
+[   Info sul Job MBL+B_Corr_tw100   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw10_J2 completato alle ore 15:52:25 con 1580 task! 
+Richiesta presa in carico alle ore 15:22:12: 20 Job per 'MBL+B_Corr_tw100' con 600 task ciascuno.
 
