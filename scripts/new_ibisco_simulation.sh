@@ -141,7 +141,7 @@ for ((i=1; i<=$1; i++)); do
                             echo "L'utente adecandia è primo nella Priority. Aspetto 10 secondi..."
                             sleep 10
                         done                       
-                        break
+                        # break
                     fi
                 fi
                 ;;
