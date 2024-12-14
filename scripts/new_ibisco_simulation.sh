@@ -133,6 +133,8 @@ for ((i=1; i<=$1; i++)); do
                     else
                         echo "Il Job ${job_name}_J${i} ha una priority troppo bassa. Cancellazione del job ${job_name}_J${i}..."
                         scancel $job_id
+                        echo "Riduzione del numero di task di 5 e rilancio del job ${job_name}_J${i}..."
+                        ((num_tasks -= 5))
                         ((i--))
                         ((count++))
                         while [ "$(sprio -S '-Y' -l | awk 'NR==2 {print $3}')" == "adecandia" ] && [ "$(sprio -S '-Y' -l | awk 'NR==3 {print $3}')" == "adecandia" ]; do
