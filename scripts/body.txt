@@ -1,6 +1,6 @@
 
-[   Info sul Job MBL+B_Corr_tw100_J3   ]
+[   Info sul Job MBL+B_Corr_tw100_J4   ]
 
 
-Dati acquisiti! Job MBL+B_Corr_tw100_J3 completato alle ore 02:37:43 con 580 task! 
+Job MBL+B_Corr_tw100_J4 lanciato con 585 task! 
 
