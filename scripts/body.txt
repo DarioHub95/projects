@@ -2,5 +2,5 @@
 [   Info sul Job MBL+B_Corr_tw100_J8   ]
 
 
-Job MBL+B_Corr_tw100_J8 lanciato con 600 task! 
+Dati acquisiti! Job MBL+B_Corr_tw100_J8 completato alle ore 20:59:36 con 600 task! 
 
